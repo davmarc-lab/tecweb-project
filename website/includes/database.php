@@ -11,4 +11,19 @@ class DataBaseHelper
             die("Connection failed: " . $this->db->connect_error);
         }
     }
+
+    public function getDataBaseController() 
+    {
+        return $this->db;
+    }
+
+    public function execQuery($query, $retType = MYSQLI_BOTH)
+    {
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all($retType);
+    }
 };
+
+$dbh = new DataBaseHelper("localhost", "root", "", "noteforall", 41062);
+// $dbh = new DataBaseHelper("localhost", "root", "", "noteforall", 3307);

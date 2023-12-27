@@ -9,6 +9,17 @@
 </head>
 
 <body>
+    <?php
+    require_once("../includes/database.php");
+    if (!isset($_SESSION["id"])) {
+        // login not done
+        // header("location:../login/login.php");
+    }
+
+    // login already done
+    if (!isset($_POST["submit"])) {
+        print_r($dbh->execQuery("SELECT * FROM utente"));
+    ?>
     <div class="container-fluid">
         <!-- vertical navbar -->
         <div class="row d-flex align-items-center">
@@ -43,7 +54,7 @@
 
                         <div class="mb-3">
                             <label for="files" class="form-label">Choose notes:</label>
-                            <input type="file" class="form-control" name="files" id="files" multiple />
+                            <input type="file" class="form-control" name="files" id="files" multiple required/>
                         </div>
 
                         <div class="mb-3">
@@ -57,7 +68,7 @@
 
                         <div class="mb-3">
                             <label for="categories">Choose Categories:</label>
-                            <input type="text" class="form-control" name="categories" placeholder="Search categories" id="categories" />
+                            <input type="text" class="form-control" name="categories" placeholder="Search categories" id="categories" required/>
                         </div>
 
                         <div class="mb-3">
@@ -71,6 +82,9 @@
             </div>
         </div>
     </div>
+    <?php } else {      // submit already done
+        print_r($dbh->execQuery("SELECT * FROM utente"));
+    }?>
 
 
 
