@@ -8,21 +8,7 @@
 -- * Schema: schema1/SQL 
 -- ********************************************* 
 
-
--- Database Section
--- ________________ 
-
-create database NoteForAll;
-
-
--- DBSpace Section
--- _______________
-
-
--- Tables Section
--- _____________ 
-
-create table USER (
+create table utente (
      IdUser char(1) not null,
      Name char(1) not null,
      Surname char(1) not null,
@@ -31,114 +17,71 @@ create table USER (
      Password char(1) not null,
      constraint ID_USER_ID primary key (IdUser));
 
-create table VOTE (
+create table vote (
      IdVote char(1) not null,
      IdPost char(1) not null,
      IdUser char(1) not null,
      constraint ID_LIKE_ID primary key (IdVote));
 
-create table COMMENT (
+create table userComment (
      IdComment char(1) not null,
      IdPost char(1) not null,
-     IdUser char(1) not null);
+     IdUser char(1) not null,
+     constraint ID_COMMENT_ID primary key(IdComment));
 
-create table NOTIFICATION (
+create table notification (
      IdNotification char(1) not null,
-     IdUser char(1) not null);
+     IdUser char(1) not null,
+     constraint ID_NOTIFICATION_ID primary key(IdNotification));
 
-create table CATEGORY (
+create table category (
      IdCategory char(1) not null,
      constraint ID_CATEGORY_ID primary key (IdCategory));
 
-create table POST (
+create table post (
      IdPost char(1) not null,
      Title char(1) not null,
      Description char(1) not null,
      IdUser char(1) not null,
      constraint ID_POST_ID primary key (IdPost));
 
-create table of (
+create table post_category (
      IdCategory char(1) not null,
      IdPost char(1) not null,
-     constraint ID_of_ID primary key (IdCategory, IdPost));
+     constraint ID_POSTCATEGORY_ID primary key (IdCategory, IdPost));
 
 
 -- Constraints Section
 -- ___________________ 
 
-alter table VOTE add constraint REF_LIKE_POST_FK
+alter table vote add constraint REF_LIKE_POST_FK
      foreign key (IdPost)
-     references POST;
+     references post(IdPost);
 
-alter table VOTE add constraint REF_LIKE_USER_FK
+alter table vote add constraint REF_LIKE_USER_FK
      foreign key (IdUser)
-     references USER;
+     references utente(IdUser);
 
-alter table COMMENT add constraint REF_COMME_POST_FK
+alter table userComment add constraint REF_COMME_POST_FK
      foreign key (IdPost)
-     references POST;
+     references post(IdPost);
 
-alter table COMMENT add constraint REF_COMME_USER_FK
+alter table userComment add constraint REF_COMME_USER_FK
      foreign key (IdUser)
-     references USER;
+     references utente(IdUser);
 
-alter table NOTIFICATION add constraint REF_NOTIF_USER_FK
+alter table notification add constraint REF_NOTIF_USER_FK
      foreign key (IdUser)
-     references USER;
+     references utente(IdUser);
 
-alter table POST add constraint ID_POST_CHK
-     check(exists(select * from of
-                  where of.IdPost = IdPost)); 
-
-alter table POST add constraint REF_POST_USER_FK
+alter table post add constraint REF_POST_USER_FK
      foreign key (IdUser)
-     references USER;
+     references utente(IdUser);
 
-alter table of add constraint EQU_of_POST_FK
+alter table post_category add constraint EQU_POSTCATEGORY_POST_FK
      foreign key (IdPost)
-     references POST;
+     references post(IdPost);
 
-alter table of add constraint REF_of_CATEG
+alter table post_category add constraint REF_POSTCATEGORY_CATEG
      foreign key (IdCategory)
-     references CATEGORY;
-
-
--- Index Section
--- _____________ 
-
-create unique index ID_USER_IND
-     on USER (IdUser);
-
-create unique index ID_LIKE_IND
-     on VOTE (IdVote);
-
-create index REF_LIKE_POST_IND
-     on VOTE (IdPost);
-
-create index REF_LIKE_USER_IND
-     on VOTE (IdUser);
-
-create index REF_COMME_POST_IND
-     on COMMENT (IdPost);
-
-create index REF_COMME_USER_IND
-     on COMMENT (IdUser);
-
-create index REF_NOTIF_USER_IND
-     on NOTIFICATION (IdUser);
-
-create unique index ID_CATEGORY_IND
-     on CATEGORY (IdCategory);
-
-create unique index ID_POST_IND
-     on POST (IdPost);
-
-create index REF_POST_USER_IND
-     on POST (IdUser);
-
-create unique index ID_of_IND
-     on of (IdCategory, IdPost);
-
-create index EQU_of_POST_IND
-     on of (IdPost);
-
+     references category(IdCategory);
