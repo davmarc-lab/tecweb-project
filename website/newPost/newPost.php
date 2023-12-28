@@ -5,42 +5,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../colors.css">
     <title>New Post</title>
 </head>
 
 <body>
     <?php
     require_once("../includes/database.php");
-    if (!isset($_SESSION["id"])) {
+    if (!isset($_SESSION["userid"])) {
         // login not done
-        // header("location:../login/login.php");
+        // header("location:../login/login.html");
     }
 
     // login already done
     if (!isset($_POST["submit"])) {
-        print_r($dbh->execQuery("SELECT * FROM utente"));
     ?>
     <div class="container-fluid">
         <!-- vertical navbar -->
         <div class="row d-flex align-items-center">
-            <div class="col-3 bg-info-subtle">
-                <ul class="nav text-center flex-column justify-content-center min-vh-100">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Notifications</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">New Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                </ul>
+            <div class="col-2 bg-info-subtle">
+                <nav class="nav text-center flex-column justify-content-center min-vh-100">
+                    <ul class="list-unstyled">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">New Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Profile</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
             <div class="col-7">
@@ -49,12 +51,12 @@
                     <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="newPostForm">
                         <div class="mb-3">
                             <label for="title" class="form-label">Choose Title:</label>
-                            <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" required />
+                            <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" />
                         </div>
 
                         <div class="mb-3">
                             <label for="files" class="form-label">Choose notes:</label>
-                            <input type="file" class="form-control" name="files" id="files" multiple required/>
+                            <input type="file" class="form-control" name="files" id="files" multiple/>
                         </div>
 
                         <div class="mb-3">
@@ -68,12 +70,12 @@
 
                         <div class="mb-3">
                             <label for="categories">Choose Categories:</label>
-                            <input type="text" class="form-control" name="categories" placeholder="Search categories" id="categories" required/>
+                            <input type="text" class="form-control" name="categories" placeholder="Search categories" id="categories"/>
                         </div>
 
                         <div class="mb-3">
                             <label for="reset" class="form-label" hidden>Clear</label>
-                            <input id="reset" type="reset" class="btn btn-outline-danger" value="Clear" />
+                            <input id="reset" type="reset" class="btn btn-outline-danger confirm-button" value="Clear" />
                             <label for="submit" class="form-label" hidden>Post</label>
                             <input id="submit" type="submit" class="btn btn-outline-success" name="submit" value="Post" />
                         </div>
@@ -83,7 +85,10 @@
         </div>
     </div>
     <?php } else {      // submit already done
-        print_r($dbh->execQuery("SELECT * FROM utente"));
+        print(php_uname());
+        print(password_hash("admin", PASSWORD_DEFAULT));
+        // inserisci i dati nel db
+        // header("location:../homepage.php");
     }?>
 
 
