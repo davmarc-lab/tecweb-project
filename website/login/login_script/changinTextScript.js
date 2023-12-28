@@ -19,5 +19,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Cambia la frase iniziale all'avvio e imposta l'intervallo di cambio
     changePhrase();
-    setInterval(changePhrase, 8000);
+    setInterval(changePhrase, 4000);
 });
