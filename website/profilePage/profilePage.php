@@ -8,25 +8,26 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+    require_once("database.php");
+    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=1")[0];
+    ?>
     <div class="container-fluid overflow-hidden px-0">
         <header class="bg-success bg-gradient text-white py-2">
             <h1 class="fw-normal">Profile</h1>
         </header>
         <main class="p-2">
-            <!--<?/*php $templateParams["user"] as $user */?>-->
             <section class="py-3">
                 <!--<img src="<?php echo $user["icon"]; ?>" class="img-thumbnail" alt="" />-->
                 <a href="editProfile.php" role="button" class="btn btn-outline-success">Edit</a>
             </section>
             <section class="pb-5">
                 <ul class="list-group">
-                    <!--
-                    <li><?/*php echo $user["username"]; */?></li>
-                    <li><?/*php echo $user["name"].$user["surname"]; */?></li>
-                    <li><?/*php echo $user["description"]; */?></li>-->
-                    <li class="my-2">Username</li>
+                    <li class="my-2"><?php echo $user["Username"]; ?></li>
+                    <li class="my-2"><?php echo $user["Name"]." ".$user["Surname"]; ?></li>
+                    <!--<li class="my-2">Username</li>
                     <li class="my-2">Name Surname</li>
-                    <li class="my-2">Description</li>
+                    <li class="my-2">Description</li>-->
                 </ul>
             </section>
             <section>

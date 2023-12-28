@@ -7,32 +7,44 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+    require_once("database.php");
+    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=1")[0];
+    ?>
     <main class="p-4">
         <section>
             <form>
                 <div class="mb-2">
-                    <input type="text" id="inputName" class="form-control" placeholder="Name" />
+                    <label for="inputName">Name:</label>
+                    <input type="text" id="inputName" class="form-control" value="<?php echo $user["Name"]; ?>" />
                 </div>
                 <div class="mb-2">
-                    <input type="text" id="inputSurname" class="form-control" placeholder="Surname" />
+                    <label for="inputSurname">Surname</label>
+                    <input type="text" id="inputSurname" class="form-control" value="<?php echo $user["Surname"]; ?>" />
                 </div>
                 <div class="mb-2">
-                    <input type="text" id="inputCity" class="form-control" placeholder="City" />
+                    <label for="inputCity">City</label>
+                    <input type="text" id="inputCity" class="form-control" value="<?php echo $user["City"]; ?>" />
                 </div>
                 <div class="mb-2">
-                    <input type="date" id="inputDate" class="form-control" placeholder="Birth date" />
+                    <label for="inputDate">Birth date</label>
+                    <input type="date" id="inputDate" class="form-control" value="<?php echo $user["Date"]; ?>" />
                 </div>
                 <div class="mb-2">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" />
+                    <label for="inputEmail">Email</label>
+                    <input type="email" id="inputEmail" class="form-control" value="<?php echo $user["Email"]; ?>" />
                 </div>
                 <div class="mb-2">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" />
+                    <label for="inputPassword">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" value="Password" />
                 </div>
                 <div class="mb-2">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Repeat password" />
+                    <label for="inputPassword">Repeat password</label>
+                    <input type="password" id="inputPassword" class="form-control" value="Repeat password" />
                 </div>
                 <div class="mb-2">
-                    <textarea id="inputDescription" class="form-control" rows="4" placeholder="Description *"></textarea>
+                    <label for="inputDescription">Description *</label>
+                    <textarea id="inputDescription" class="form-control" rows="4" value="<?php echo $user["Description"]; ?>"></textarea>
                 </div>
                 <div class="d-flex">
                     <button type="reset" class="btn btn-outline-danger ms-auto m-2">Cancel</button>
