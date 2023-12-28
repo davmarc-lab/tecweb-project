@@ -9,22 +9,23 @@
 </head>
 <body>
     <?php
-    require_once("database.php");
+    require_once("includes/database.php");
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=1")[0];
     ?>
+    <?php include("includes/navbar.php"); ?>
     <div class="container-fluid overflow-hidden px-0">
         <header class="bg-success bg-gradient text-white py-2">
             <h1 class="fw-normal">Profile</h1>
         </header>
         <main class="p-2">
             <section class="py-3">
-                <!--<img src="<?php echo $user["icon"]; ?>" class="img-thumbnail" alt="" />-->
+                <img src="icon.png" class="img-thumbnail" alt="" />
                 <a href="editProfile.php" role="button" class="btn btn-outline-success">Edit</a>
             </section>
             <section class="pb-5">
                 <ul class="list-group">
-                    <li class="my-2"><?php echo $user["Username"]; ?></li>
-                    <li class="my-2"><?php echo $user["Name"]." ".$user["Surname"]; ?></li>
+                    <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
+                    <li class="my-2"><strong><?php echo $user["Name"]." ".$user["Surname"]; ?></strong></li>
                     <!--<li class="my-2">Username</li>
                     <li class="my-2">Name Surname</li>
                     <li class="my-2">Description</li>-->

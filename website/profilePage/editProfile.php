@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-    require_once("database.php");
+    require_once("includes/database.php");
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=1")[0];
     ?>
     <main class="p-4">
@@ -22,14 +22,10 @@
                     <label for="inputSurname">Surname</label>
                     <input type="text" id="inputSurname" class="form-control" value="<?php echo $user["Surname"]; ?>" />
                 </div>
-                <div class="mb-2">
-                    <label for="inputCity">City</label>
-                    <input type="text" id="inputCity" class="form-control" value="<?php echo $user["City"]; ?>" />
-                </div>
-                <div class="mb-2">
+                <!--<div class="mb-2">
                     <label for="inputDate">Birth date</label>
                     <input type="date" id="inputDate" class="form-control" value="<?php echo $user["Date"]; ?>" />
-                </div>
+                </div>-->
                 <div class="mb-2">
                     <label for="inputEmail">Email</label>
                     <input type="email" id="inputEmail" class="form-control" value="<?php echo $user["Email"]; ?>" />
