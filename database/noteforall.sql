@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 27, 2023 at 07:30 PM
+-- Generation Time: Dec 28, 2023 at 04:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,7 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `IdCategory` int(11) NOT NULL
+  `IdCategory` int(11) NOT NULL,
+  `Description` tinytext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media`
+--
+
+CREATE TABLE `media` (
+  `IdMedia` int(11) NOT NULL,
+  `FileName` tinytext NOT NULL,
+  `Extension` varchar(10) NOT NULL,
+  `FilePath` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -39,6 +53,8 @@ CREATE TABLE `category` (
 
 CREATE TABLE `notification` (
   `IdNotification` int(11) NOT NULL,
+  `Description` tinytext NOT NULL,
+  `IsRead` tinyint(1) NOT NULL,
   `IdUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -50,9 +66,13 @@ CREATE TABLE `notification` (
 
 CREATE TABLE `post` (
   `IdPost` int(11) NOT NULL,
-  `Title` char(1) NOT NULL,
-  `Description` char(1) NOT NULL,
-  `IdUser` int(11) NOT NULL
+  `Title` tinytext NOT NULL,
+  `Description` text DEFAULT NULL,
+  `NumberVote` int(11) NOT NULL,
+  `NumberComment` int(11) NOT NULL,
+  `IdUser` int(11) NOT NULL,
+  `IdMedia` int(11) NOT NULL,
+  `IdPreview` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -75,6 +95,7 @@ CREATE TABLE `post_category` (
 
 CREATE TABLE `userComment` (
   `IdComment` int(11) NOT NULL,
+  `CommentText` text NOT NULL,
   `IdPost` int(11) NOT NULL,
   `IdUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -91,7 +112,9 @@ CREATE TABLE `utente` (
   `Surname` varchar(100) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
-  `Password` varchar(255) NOT NULL
+  `Password` varchar(255) NOT NULL,
+  `Description` tinytext DEFAULT NULL,
+  `IdMedia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -117,6 +140,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`IdCategory`);
 
 --
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`IdMedia`);
+
+--
 -- Indexes for table `notification`
 --
 ALTER TABLE `notification`
@@ -128,7 +157,9 @@ ALTER TABLE `notification`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`IdPost`),
-  ADD KEY `IdUser` (`IdUser`);
+  ADD KEY `IdUser` (`IdUser`),
+  ADD KEY `IdMedia` (`IdMedia`),
+  ADD KEY `IdPreview` (`IdPreview`);
 
 --
 -- Indexes for table `post_category`
@@ -150,7 +181,8 @@ ALTER TABLE `userComment`
 -- Indexes for table `utente`
 --
 ALTER TABLE `utente`
-  ADD PRIMARY KEY (`IdUser`);
+  ADD PRIMARY KEY (`IdUser`),
+  ADD KEY `IdMedia` (`IdMedia`);
 
 --
 -- Indexes for table `vote`
@@ -161,28 +193,56 @@ ALTER TABLE `vote`
   ADD KEY `IdUser` (`IdUser`);
 
 --
--- AUTO_INCREMENT for all tables
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `IdMedia` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `IdNotification` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
   MODIFY `IdPost` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `utente`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `notification`
-  MODIFY `IdNotification` int(11) NOT NULL AUTO_INCREMENT;
-
+--
+-- AUTO_INCREMENT for table `post_category`
+--
 ALTER TABLE `post_category`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `vote`
-  MODIFY `IdVote` int(11) NOT NULL AUTO_INCREMENT;
-
+--
+-- AUTO_INCREMENT for table `userComment`
+--
 ALTER TABLE `userComment`
   MODIFY `IdComment` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `category`
-  MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `utente`
+--
+ALTER TABLE `utente`
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `vote`
+--
+ALTER TABLE `vote`
+  MODIFY `IdVote` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -198,7 +258,9 @@ ALTER TABLE `notification`
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`IdUser`) REFERENCES `utente` (`IdUser`);
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`IdUser`) REFERENCES `utente` (`IdUser`),
+  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`IdMedia`) REFERENCES `media` (`IdMedia`),
+  ADD CONSTRAINT `post_ibfk_3` FOREIGN KEY (`IdPreview`) REFERENCES `media` (`IdMedia`);
 
 --
 -- Constraints for table `post_category`
@@ -213,6 +275,12 @@ ALTER TABLE `post_category`
 ALTER TABLE `userComment`
   ADD CONSTRAINT `userComment_ibfk_1` FOREIGN KEY (`IdPost`) REFERENCES `post` (`IdPost`),
   ADD CONSTRAINT `userComment_ibfk_2` FOREIGN KEY (`IdUser`) REFERENCES `utente` (`IdUser`);
+
+--
+-- Constraints for table `utente`
+--
+ALTER TABLE `utente`
+  ADD CONSTRAINT `utente_ibfk_1` FOREIGN KEY (`IdMedia`) REFERENCES `media` (`IdMedia`);
 
 --
 -- Constraints for table `vote`
