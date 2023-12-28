@@ -161,14 +161,28 @@ ALTER TABLE `vote`
   ADD KEY `IdUser` (`IdUser`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT for all tables
 --
+ALTER TABLE `post`
+  MODIFY `IdPost` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `post_category`
---
+ALTER TABLE `utente`
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `notification`
+  MODIFY `IdNotification` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `post_category`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `vote`
+  MODIFY `IdVote` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `userComment`
+  MODIFY `IdComment` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `category`
+  MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
