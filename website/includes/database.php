@@ -21,7 +21,8 @@ class DataBaseHelper
     {
         $stmt = $this->db->prepare($query);
         $stmt->execute();
-        return $stmt->get_result()->fetch_all($retType);
+        $res = $stmt->get_result();
+        return $res == FALSE ? "" : $res->fetch_all($retType);
     }
 };
 
