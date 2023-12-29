@@ -1,23 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
-    index = 2;
-    // Array di frasi da visualizzare
     const phrases = [
         "Your voice, our platform.",
         "Share. Study. Grow.",
-        "Your story, our community."
+        "Your story, our community.",
+        "Ideas unleashed, knowledge shared.",
+        "Empower your learning journey.",
+        "Notes that spark brilliance.",
+        "Collaborate, learn, achieve.",
+        "Wisdom captured, connections made.",
+        "Elevate your mind, share your notes.",
+        "Inspiration in every annotation.",
+        "Together we learn, together we grow.",
+        "Notes that resonate, ideas that inspire.",
+        "Unleash the power of shared knowledge."
     ];
-
-    // Elemento HTML in cui visualizzare le frasi che cambiano
     const changingTextElement = document.getElementById('changingText');
-
-    // Funzione per cambiare la frase ogni 15 secondi
     function changePhrase() {
-        //const randomIndex = Math.floor(Math.random() * phrases.length);
-        index = ((index + 1) % 3);
-        changingTextElement.textContent = phrases[index];
+        const randomIndex = Math.floor(Math.random() * phrases.length);
+        console.log(randomIndex);
+        changingTextElement.textContent = phrases[randomIndex];
     }
-
-    // Cambia la frase iniziale all'avvio e imposta l'intervallo di cambio
     changePhrase();
     setInterval(changePhrase, 4000);
 });

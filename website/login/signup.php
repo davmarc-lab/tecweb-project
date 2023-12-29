@@ -8,6 +8,9 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Log in</title>
     <script src="login_script/changinTextScript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="login_script/popupErrorSignupScript.js"></script>
+    <script src="login_script/reloadPageScript.js"></script>
 </head>
 
 <body>
@@ -15,12 +18,12 @@
 
         <div class="container-fluid" style="height: 100vh;">
             <div class="row">
-                <div class="col-md-3 d-flex align-items-center justify-content-center"
-                    style="height: 100vh; background-color: #81BDDF;">
+                <div class="col-md-3 d-none d-lg-block d-xl-block d-flex align-items-center justify-content-center"
+                    style="height: 100vh; background-color: #81BDDF; padding-top: 40vh;">
                     <p class="text-center" id="changingText"
                         style="font-family: 'Kaisei Tokumin', sans-serif; font-size: 35px;"></p>
                 </div>
-                <div class="col-md-8 d-flex align-items-center justify-content-center">
+                <div class="col-12 col-md-8 d-flex align-items-center justify-content-center my-5 mx-auto">
                     <!-- signup form -->
                     <form action="login_php/signupQuery.php" method="post" id="signupForm">
                         <div class="row mb-3">
