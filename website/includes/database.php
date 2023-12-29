@@ -26,5 +26,4 @@ class DataBaseHelper
     }
 };
 
-$dbh = new DataBaseHelper("localhost", "root", "", "noteforall", 41062);
-// $dbh = new DataBaseHelper("localhost", "root", "", "noteforall", 3307);
+$dbh = new DataBaseHelper("localhost", "root", "", "noteforall", 3307);
