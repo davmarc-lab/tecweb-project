@@ -22,59 +22,53 @@
                 </div>
                 <div class="col-md-8 d-flex align-items-center justify-content-center">
                     <!-- signup form -->
-                    <form action="#" method="post">
+                    <form action="login_php/signupQuery.php" method="post" id="signupForm">
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <h1>Inserisci i tuoi dati</h1>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#signupName" class="col-form-label" hidden>Name</label>
+                            <label for="signupName" class="col-form-label" hidden>Name</label>
                             <div class="col-md-12">
-                                <input type="text" id="signupName" placeholder="Name" class="form-control" />
+                                <input type="text" id="signupName" name="name" placeholder="Name" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#signupSurname" class="col-form-label" hidden>Surname</label>
+                            <label for="signupSurname" class="col-form-label" hidden>Surname</label>
                             <div class="col-md-12">
-                                <input type="text" id="signupSurname" placeholder="Surname" class="form-control" />
+                                <input type="text" id="signupSurname" name="surname" placeholder="Surname" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#signupCity" class="col-form-label" hidden>City</label>
+                            <label for="signupEmail" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="text" id="signupCity" placeholder="City" class="form-control" />
+                                <input type="email" id="signupEmail" name="email" placeholder="Email" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#signupEmail" class="col-form-label" hidden>Email</label>
+                            <label for="signupUsername" class="col-form-label" hidden>Username</label>
                             <div class="col-md-12">
-                                <input type="email" id="signupEmail" placeholder="Email" class="form-control" />
+                                <input type="text" id="signupUsername" name="username" placeholder="Username" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#signupUsername" class="col-form-label" hidden>Username</label>
+                            <label for="signupPassword" class="col-form-label" hidden>Password</label>
                             <div class="col-md-12">
-                                <input type="text" id="signupUsername" placeholder="Username" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="#signupPassword" class="col-form-label" hidden>Password</label>
-                            <div class="col-md-12">
-                                <input type="password" id="signupPassword" placeholder="Password"
+                                <input type="password" id="signupPassword" name="password" placeholder="Password"
                                     class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#signupPasswordRepeat" class="col-form-label" hidden>Password again</label>
+                            <label for="signupPasswordRepeat" class="col-form-label" hidden>Password again</label>
                             <div class="col-md-12">
-                                <input type="password" id="signupPasswordRepeat" placeholder="Repeat Password"
+                                <input type="password" id="signupPasswordRepeat" name="passwordRepeat" placeholder="Repeat Password"
                                     class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary mb-3">Sign up</button>
+                                <button type="submit" class="btn btn-primary mb-3" value="Post">Sign up</button>
                             </div>
                         </div>
                     </form>

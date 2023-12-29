@@ -8,18 +8,8 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Log in</title>
     <script src="login_script/changinTextScript.js"></script>
-    <style>
-        /* Aggiungi stili CSS per il testo fuori dal form */
-        .text-outside-form {
-            position: absolute;
-            bottom: 50px;
-            /* Distanza dall'onda, regolala secondo le tue esigenze */
-            left: 50%;
-            /* Posizione al centro rispetto alla larghezza */
-            transform: translateX(-50%);
-            /* Centra orizzontalmente */
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="login_script/popupErrorScript.js"></script>
 </head>
 
 <body>
@@ -33,32 +23,32 @@
                 </div>
                 <div class="col-md-8 d-flex align-items-center justify-content-center">
                     <!-- login form -->
-                    <form action="#" method="post">
+                    <form action="login_php/loginQuery.php" method="post">
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <h1>Hai già un account? Accedi</h1>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#loginEmail" class="col-form-label" hidden>Email</label>
+                            <label for="loginEmail" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="email" id="loginEmail" placeholder="Email" class="form-control" />
+                                <input type="email" id="loginEmail" name="email" placeholder="Email" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="#loginPassword" class="col-form-label" hidden>Password</label>
+                            <label for="loginPassword" class="col-form-label" hidden>Password</label>
                             <div class="col-md-12">
-                                <input type="password" id="loginPassword" placeholder="Password" class="form-control" />
+                                <input type="password" id="loginPassword" name="password" placeholder="Password" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary mb-3">Log in</button>
+                                <button type="submit" class="btn btn-primary mb-3" id="bttLogin">Log in</button>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12 text-center">
-                                <p>Non hai un account? <a href="signup.html">Registrati</a></p>
+                                <p>Non hai un account? <a href="signup.php">Registrati</a></p>
                             </div>
                         </div>
                     </form>
