@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 <?php
 function drawNavbar($pageName)
 {
@@ -17,31 +18,31 @@ function drawNavbar($pageName)
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item p-2">
                             <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-                                <img src="../icons/homeIcon.png" class="bi" />
+                                <i class="bi bi-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item p-2">
                             <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-                                <img src="../icons/searchIcon.png" class="bi" />
+                                <i class="bi bi-search"></i>
                                 Search
                             </a>
                         </li>
                         <li class="nav-item p-2">
                             <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-                                <img src="../icons/alarmIcon.png" class="bi" />
+                                <i class="bi bi-bell"></i>
                                 Notification
                             </a>
                         </li>
                         <li class="nav-item p-2">
                             <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-                                <img src="../icons/addIcon.png" class="bi" />
+                                <i class="bi bi-plus-circle"></i>
                                 New Post
                             </a>
                         </li>
                         <li class="nav-item p-2">
-                            <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
-                                <img src="../icons/userIcon.png" class="bi" />
+                            <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="profile/profilePage.php">
+                                <i class="bi bi-person-fill"></i>
                                 Profile
                             </a>
                         </li>

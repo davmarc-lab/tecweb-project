@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
     <title>Document</title>
 </head>
 <body>
     <?php
     require_once("../includes/database.php");
-    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=1")[0];
-    ?>
-    <?php 
+    session_start();
+    if (!isset($_SESSION["userId"])) {
+        // login not done
+        header("location:../login/login.php");
+    }
+    $userId = $_SESSION["userId"];
+    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
+
     include_once("../includes/navbar.php");
     drawNavbar("Profile");
     ?>
@@ -21,13 +27,14 @@
             <div class="row justify-content-between">
                 <section class="col-md-6 col-12">
                     <section class="py-3">
-                        <img src="../icons/icon.png" class="p-2 me-3" alt="" />
+                        <i class="bi bi-person-fill fs-1"></i>
                         <a href="editProfile.php" role="button" class="btn btn-outline-success d-md-none">Edit</a>
                     </section>
                     <section class="pb-5">
                         <ul class="list-group">
                             <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
                             <li class="my-2"><strong><?php echo $user["Name"]." ".$user["Surname"]; ?></strong></li>
+                            <li class="my-2"><strong><?php echo $user["Description"]; ?></strong></li>
                         </ul>
                     </section>
                     <section>
