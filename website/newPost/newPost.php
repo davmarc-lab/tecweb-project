@@ -11,6 +11,7 @@
 <body>
     <?php
     require_once("../includes/database.php");
+    session_start();
     if (!isset($_SESSION["userId"])) {
         // login not done
         header("location:../login/login.php");

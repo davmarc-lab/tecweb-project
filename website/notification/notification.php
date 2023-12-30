@@ -5,11 +5,13 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 	<title>Notification</title>
 </head>
 
 <body>
 	<?php
+	include_once("../includes/utils.php");
 	function printTitle2($text)
 	{
 	?>
@@ -19,23 +21,47 @@
 	<?php
 	}
 
-	function printTextInRectangle($text)
+	function chooseIconClass($type)
 	{
+		switch ($type) {
+			case NotificationType::LIKE->value:
+				return "bi bi-heart";
+				break;
+			case NotificationType::FOLLOWER->value:
+				return "bi bi-hand-thumbs-up";
+				break;
+			case NotificationType::COMMENT->value:
+				return "bi bi-person";
+				break;
+			default:
+				return "bi bi-bell";
+		}
+	}
+
+	function printTextInRectangle($val)
+	{
+		$text = $val["description"];
+		$iconClass = chooseIconClass($val["type"]);
 	?>
-		<div class="container col-10 border border-3 rounded-3 border-dark">
-			<?php echo ($text); ?>
+		<div class="row-2">
+			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-dark p-auto ps-1">
+				<span>
+					<i class="<?php echo ($iconClass); ?>" style="font-size: 1rem;"></i>
+				</span>
+				<?php echo ($text); ?>
+			</div>
 		</div>
 	<?php
 	}
 	require_once("../includes/database.php");
+	session_start();
 	if (!isset($_SESSION["userId"])) {
 		// login not done
 		header("location:../login/login.php");
 	}
 
 	// logged user id
-	// $userId = $_SESSION["userId"];
-	$userId = 2;        // to remove when login page works
+	$userId = $_SESSION["userId"];
 	?>
 
 	<div class="row m-auto mb-4">
@@ -48,7 +74,7 @@
 		<div class="row">
 			<div class="container-fluid">
 				<?php
-				$query = "SELECT n.Description, n.IsRead
+				$query = "SELECT n.Description as description, n.IsRead, n.Type as type
                         FROM notification as n
                         WHERE n.IdUser = $userId";
 				$notif = $dbh->execQuery($query, MYSQLI_ASSOC);
@@ -61,7 +87,7 @@
 
 					// all notification
 					foreach ($notif as $x) :
-						printTextInRectangle($x["Description"]);
+						printTextInRectangle($x);
 					endforeach;
 				}
 
