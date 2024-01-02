@@ -34,7 +34,7 @@
                         <ul class="list-group">
                             <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
                             <li class="my-2"><strong><?php echo $user["Name"]." ".$user["Surname"]; ?></strong></li>
-                            <li class="my-2"><strong><?php echo $user["Description"]; ?></strong></li>
+                            <li class="my-2"><?php echo $user["Description"]; ?></li>
                         </ul>
                     </section>
                     <section>
