@@ -12,6 +12,8 @@
             session_start();
             $_SESSION["userId"] = $res[0]['IdUser'];
             header("location:../../index.php");
+        } else {
+            header("location:../login.php?error=1");
         }
     }  else {
         header("location:../login.php?error=1");
