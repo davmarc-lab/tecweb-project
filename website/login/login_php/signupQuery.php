@@ -22,10 +22,23 @@ if ($password === "") {
         header("location:../signup.php?error=3");
         exit;
     } else {
-        if ($password === $passwordRep) {
-            register($name, $surname, $username, $email, $password);
+        $queryCheck = "SELECT * FROM utente WHERE email = '$email' OR username = '$username';";
+        $res = $dbh->execQuery($queryCheck);
+        $numRows = count($res);
+        if ($numRows > 0) {
+            if ($username == $res[0]['Username']) {
+                header("location:../signup.php?error=4");
+                exit;
+            } else if ($email == $res[0]['Email']) {
+                header("location:../signup.php?error=5");
+                exit;
+            }
         } else {
-            header("location:../signup.php?error=1");
+            if ($password === $passwordRep) {
+                register($name, $surname, $username, $email, $password);
+            } else {
+                header("location:../signup.php?error=1");
+            }
         }
     }
 }
@@ -35,13 +48,10 @@ function register($name, $surname, $username, $email, $password) {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $query = "INSERT INTO utente (Name, Surname, Username, Email, Password) VALUES ('$name', '$surname', '$username', '$email', '$passwordHash');";
     $res = $dbh->execQuery($query);
-    print_r($res);
-    $_SESSION['oldValuesSignup'] = [
-        "name" => "",
-        "surname" => "",
-        "email" => "",
-        "username" => "",
-    ];
+    if (!$res) {
+        header("location:../signup.php?error=4");
+    }
+    unset($_SESSION['oldValuesSignup']);
     header("location:../login.php");
 }
 

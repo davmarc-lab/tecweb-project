@@ -22,34 +22,7 @@ if (!isset($_SESSION['oldValuesSignup'])) {
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap" rel="stylesheet">
     <script src="login_script/changinTextScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const errorParam = urlParams.get('error');
-            if (errorParam === '1') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Le 2 password non corrisponodono',
-                    text: '',
-                });
-            }
-            if (errorParam === '2') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'La password non può essere vuota',
-                    text: '',
-                });
-            }
-            if (errorParam === '3') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'L \'username può contenere solo lettere, numeri e underscore',
-                    text: '',
-                });
-            }
-        });
-    </script>
-    <!-- <script src="login_script/popupErrorSignupScript.js"></script> -->
+    <script src="login_script/popupErrorSignupScript.js"></script>
     <script src="login_script/reloadPageScript.js"></script>
 </head>
 
@@ -84,7 +57,7 @@ if (!isset($_SESSION['oldValuesSignup'])) {
                         <div class="row mb-3">
                             <label for="signupEmail" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="email" id="signupEmail" name="email" placeholder="Email" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['email']); ?>" />
+                                <input type="email" id="signupEmail" name="email" placeholder="Email" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['email']); ?>"  />
                             </div>
                         </div>
                         <div class="row mb-3">

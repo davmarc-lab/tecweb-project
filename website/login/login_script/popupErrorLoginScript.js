@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (errorParam === '1') {
         Swal.fire({
             icon: 'error',
-            title: 'Credenziali non valide',
-            text: 'Riprova o registrati.',
+            title: 'Invalid data, please try again',
+            text: '',
         });
     }
 });
