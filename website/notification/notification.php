@@ -67,12 +67,21 @@
 	<div class="row m-auto mb-4">
 		<?php
 		include_once("../includes/navbar.php");
-		drawNavbar("Notification");
+		$bar = new Navbar("../");
+		$bar->drawNavbar("Notification");
 		?>
 	</div>
 	<main>
 		<div class="row">
 			<div class="container-fluid">
+				<div class="text-center">
+					<h1>
+						<span>
+							<i class="bi bi-alarm pe-2"></i>
+							Your last notifications
+						</span>
+					</h1>
+				</div>
 				<?php
 				$query = "SELECT n.Description as description, n.IsRead, n.Type as type
                         FROM notification as n

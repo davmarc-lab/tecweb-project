@@ -23,7 +23,8 @@
         <div class="row m-auto mb-4">
             <?php
             include_once("../includes/navbar.php");
-            drawNavbar("New Post");
+            $bar = new Navbar("../");
+            $bar->drawNavbar("New Post");
             ?>
         </div>
         <div class="container-fluid">

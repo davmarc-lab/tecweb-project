@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 28, 2023 at 04:45 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jan 02, 2024 at 03:59 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `category` (
   `IdCategory` int(11) NOT NULL,
   `Description` tinytext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -42,8 +42,8 @@ CREATE TABLE `media` (
   `IdMedia` int(11) NOT NULL,
   `FileName` tinytext NOT NULL,
   `Extension` varchar(10) NOT NULL,
-  `FilePath` tinytext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `File` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -53,10 +53,19 @@ CREATE TABLE `media` (
 
 CREATE TABLE `notification` (
   `IdNotification` int(11) NOT NULL,
+  `Type` varchar(50) NOT NULL,
   `Description` tinytext NOT NULL,
   `IsRead` tinyint(1) NOT NULL,
   `IdUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`IdNotification`, `Type`, `Description`, `IsRead`, `IdUser`) VALUES
+(1, '', 'Prova notifica 1', 0, 2),
+(2, 'Like', '@user liked your post', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -73,7 +82,7 @@ CREATE TABLE `post` (
   `IdUser` int(11) NOT NULL,
   `IdMedia` int(11) NOT NULL,
   `IdPreview` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -85,7 +94,7 @@ CREATE TABLE `post_category` (
   `Id` int(11) NOT NULL,
   `IdPost` int(11) NOT NULL,
   `IdCategory` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -98,7 +107,7 @@ CREATE TABLE `userComment` (
   `CommentText` text NOT NULL,
   `IdPost` int(11) NOT NULL,
   `IdUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -115,7 +124,15 @@ CREATE TABLE `utente` (
   `Password` varchar(255) NOT NULL,
   `Description` tinytext DEFAULT NULL,
   `IdMedia` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `utente`
+--
+
+INSERT INTO `utente` (`IdUser`, `Name`, `Surname`, `Username`, `Email`, `Password`, `Description`, `IdMedia`) VALUES
+(2, 'admin', 'super', 'admin', 'admin@nfa.com', '$2y$10$pX.RsB/uooJRrd0KID2BRezUAeZZzRiGMnjPbHfp6ZZ306enNcxJy', 'i\'m the captain now', NULL),
+(3, 'Mario', 'Rossi', 'marros', 'mario.rossi@gmail.com', '$2y$10$m332ogYh5M9IFR4UYkdCIOhp1F1IetMLhjJGB3TYsUwoisgNEqfIi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,7 +144,7 @@ CREATE TABLE `vote` (
   `IdVote` int(11) NOT NULL,
   `IdPost` int(11) NOT NULL,
   `IdUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -182,6 +199,8 @@ ALTER TABLE `userComment`
 --
 ALTER TABLE `utente`
   ADD PRIMARY KEY (`IdUser`),
+  ADD UNIQUE KEY `Username` (`Username`,`Email`),
+  ADD UNIQUE KEY `Username_2` (`Username`,`Email`),
   ADD KEY `IdMedia` (`IdMedia`);
 
 --
@@ -212,7 +231,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `IdNotification` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdNotification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -236,7 +255,7 @@ ALTER TABLE `userComment`
 -- AUTO_INCREMENT for table `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `vote`
