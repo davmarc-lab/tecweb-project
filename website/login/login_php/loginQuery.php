@@ -14,7 +14,6 @@
             header("location:../../index.php");
         }
     }  else {
-        // Utente non trovato, mostra un popup con un messaggio
         header("location:../login.php?error=1");
     }
     

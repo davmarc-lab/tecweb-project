@@ -16,7 +16,10 @@ if (!isset($_SESSION['oldValuesSignup'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Log in</title>
+    <title>Sign up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap" rel="stylesheet">
     <script src="login_script/changinTextScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -56,14 +59,14 @@ if (!isset($_SESSION['oldValuesSignup'])) {
         <div class="container-fluid" style="height: 100vh;">
             <div class="row">
                 <div class="col-md-3 d-none d-lg-block d-xl-block d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #81BDDF; padding-top: 40vh;">
-                    <p class="text-center" id="changingText" style="font-family: 'Kaisei Tokumin', sans-serif; font-size: 35px;"></p>
+                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; text-align: center;" id="changingText"></p>
                 </div>
                 <div class="col-12 col-md-8 d-flex align-items-center justify-content-center my-5 mx-auto">
                     <!-- signup form -->
                     <form action="login_php/signupQuery.php" method="post" id="signupForm">
                         <div class="row mb-3">
                             <div class="col-md-12">
-                                <h1>Inserisci i tuoi dati</h1>
+                                <h1>Sign up to start sharing</h1>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -105,6 +108,11 @@ if (!isset($_SESSION['oldValuesSignup'])) {
                         <div class="row mb-3">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary mb-3" value="Post">Sign up</button>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12 text-center">
+                                <p>Already have an account? <a href="login.php">Log in</a></p>
                             </div>
                         </div>
                     </form>

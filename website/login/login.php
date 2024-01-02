@@ -27,7 +27,7 @@
                     <form action="login_php/loginQuery.php" method="post">
                         <div class="row mb-3">
                             <div class="col-md-12">
-                                <h1>Hai già un account? Accedi</h1>
+                                <h1>Already have an account?</h1>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12 text-center">
-                                <p>Non hai un account? <a href="signup.php">Registrati</a></p>
+                                <p>Don't have an account? <a href="signup.php">Sign up</a></p>
                             </div>
                         </div>
                     </form>
