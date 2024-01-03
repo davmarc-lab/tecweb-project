@@ -31,7 +31,7 @@
             <div class="row col-8 mx-auto d-block">
                 <section>
                     <h2>New Post</h2>
-                    <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="newPostForm">
+                    <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="newPostForm" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="title" class="form-label">Choose Title:</label>
                             <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" /> <!-- required -->
@@ -68,23 +68,52 @@
             </div>
         </div>
     <?php } else {      // submit already done
+        $fileErrors = false;
+        include_once("../includes/utils.php");
+        $targetDir = $HOME_DIR."uploads/";
+
+        if (isset($_FILES["files"])) {
+            foreach ($_FILES["files"]["error"] as $error) {
+                if ($error == 0) {
+                    continue;
+                }
+                $fileErrors = true;
+                // there are errors in file uploading phase
+            }
+        }
+
+        for ($i = 0; $i < sizeof($_FILES["files"]["name"]); $i++) {
+            $fileName = basename($_FILES["files"]["name"][$i]);
+            $targetPath = $targetDir . $fileName;
+
+            if (move_uploaded_file($_FILES["files"]["tmp_name"][$i], $targetPath)) {
+                $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$targetPath')";
+                $res = $dbh->execQuery($query);
+                if ($res == 0)
+                {
+                    echo("Failed INSERT query.");
+                }
+            }
+        }
+        
         $title = $_POST["title"];
-        $files = $_POST["files"];
-        /* print_r($files); */
+        // $files = $_POST["files"];
+
         $preview = $_POST["previewImage"];
         $description = empty($_POST["description"]) ? "" : $_POST["description"];
         $categories = $_POST["categories"];
         /* $idUser = $_SESSION["userId"]; */
-        $idUser = $_SESSION["userid"];
+        $idUser = $_SESSION["userId"];
         $idMedia = 1;       // last id inserted
-        $idPreview = empty($_POST["previewImage"]) ? "NULL" : $_POST["previewImage"];
+        // $idPreview = empty($_POST["previewImage"]) ? "NULL" : $_POST["previewImage"];
+        $idPreview = 1;
 
         // NumberVote and NumberComment are initially 0
         $query = "INSERT INTO post (Title, Description, NumberVote, NumberComment, IdUser, IdMedia, IdPreview) VALUES('$title', '$description', 0, 0, $idUser, $idMedia, $idPreview);";
-        $res = $dbh->execQuery($query);
-        print_r($res);
+        // $res = $dbh->execQuery($query);
+        // print_r($res);
 
-        header("location:../profilePage/profilePage.php");
+        // header("location:../profilePage/profilePage.php");
     } ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
