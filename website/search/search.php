@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <title>Document</title>
 </head>
+<!-- MODIFICA -->
 
 <body>
     <?php
@@ -33,108 +34,57 @@
     if (!isset($_POST['submit'])) {
     ?>
         <div class="container-fluid justify-content-center align-items-center text-center">
-            <div class="row mt-5 d-flex justify-content-center align-items-center text-center">
-                <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="test.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Programmazione 1</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="test.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">OOP</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="test.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">MDP</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5 justify-content-center align-items-center text-center">
-                <div class="col-md-4 col-12 mx-auto mt-0 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="test.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Ricerca operativa</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="test.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Algoritmi e strutture dati</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="test.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Algebra lineare</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php
+            $query = "SELECT * FROM post ORDER BY RAND() LIMIT 9;";
+            $res = $dbh->execQuery($query);
+            printPost($res);
+            ?>
         </div>
     <?php
     } else {
-        unset($_POST['submit']);
-        $searchKey = $_POST['searchText'];
-        $query = "SELECT * FROM post WHERE Title LIKE '%$searchKey%' ORDER BY NumberVote DESC;";
-        $res = $dbh->execQuery($query);
-        $index = 0;
     ?>
         <div class="container-fluid justify-content-center align-items-center text-center">
             <?php
-            foreach ($res as $post) {
-                if ($index == 0) {
-                    echo "<div class=\"row mt-5 d-flex justify-content-center align-items-center text-center\">";
-                }
+            unset($_POST['submit']);
+            $searchKey = $_POST['searchText'];
+            $query = "SELECT * FROM post WHERE Title LIKE '%$searchKey%' ORDER BY NumberVote DESC;";
+            $res = $dbh->execQuery($query);
+            printPost($res);
             ?>
-                <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="test.jpg" class="card-img-top" alt="Image">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $post['Title']; ?></h5>
-                            <p class="card-text"><?php echo $post['Description']; ?></p>
-                            <button class="btn btn-primary">More</button>
-                        </div>
-                    </div>
-                </div>
-        <?php
-                if ($index == 2) {
-                    echo "</div>";
-                }
-                $index = ($index + 1) % 3;
-            }
-        }
-
-        ?>
         </div>
+    <?php
+    }
+    ?>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>
+
+<?php
+function printPost($res)
+{
+    $index = 0;
+    foreach ($res as $post) {
+        if ($index == 0) {
+            echo "<div class=\"row mt-5 d-flex justify-content-center align-items-center text-center\">";
+        }
+?>
+        <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <img src="test.jpg" class="card-img-top" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $post['Title']; ?></h5>
+                    <p class="card-text"><?php echo $post['Description']; ?></p>
+                    <button class="btn btn-primary">More</button>
+                </div>
+            </div>
+        </div>
+<?php
+        if ($index == 2) {
+            echo "</div>";
+        }
+        $index = ($index + 1) % 3;
+    }
+}
+?>
