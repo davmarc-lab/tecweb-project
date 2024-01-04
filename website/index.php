@@ -17,69 +17,59 @@
     if (!isset($_SESSION["userId"])) {
         header("location:login/login.php");
     }
+    require_once("includes/database.php");
     include_once("includes/navbar.php");
     $bar = new Navbar("./");
     $bar->drawNavbar("HomePage");
+    $currId = $_SESSION["userId"];
+    $query = "SELECT post.*
+            FROM post
+            JOIN follow ON post.IdUser = follow.IdDst
+            WHERE follow.IdSrc = '$currId';";
+    $res = $dbh->execQuery($query);
     ?>
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-md-8 justify-content-center">
-                <div class="card border-0 mx-auto mt-2" style="width: 34rem;">
-                    <p>@davide_marchetti66</p>
-                    <img src="search/test.jpg" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-hand-thumbs-up"></i></button>
-                                <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>
-                                <h5 class="card-title">Appunti ingegneria del software</h5>
-                                <p class="card-text">Appunti del corso con il prof Manzi, manca solo la lezione del 28/10</p>
+                <?php
+                foreach ($res as $post) {
+                ?>
+                    <div class="card border-0 mx-auto mt-2" style="width: 34rem;">
+                        <?php
+                            $authorId = $post["IdUser"];
+                            $queryAuthor = "SELECT Username from utente WHERE IdUser = '$authorId';";
+                            $authorUser = $dbh->execQuery($queryAuthor);
+                        ?>
+                        <p>@<?php echo $authorUser[0]["Username"] ?></p>
+                        <img src="search/test.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-hand-thumbs-up"></i></button>
+                                    <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>
+                                    <h5 class="card-title"><?php echo $post["Title"] ?></h5>
+                                    <p class="card-text"><?php echo $post["Description"] ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card border-0 mx-auto mt-2" style="width: 34rem;">
-                    <p>@davide_marchetti66</p>
-                    <img src="search/test.jpg" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-hand-thumbs-up"></i></button>
-                                <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>
-                                <h5 class="card-title">Appunti ingegneria del software</h5>
-                                <p class="card-text">Appunti del corso con il prof Manzi, manca solo la lezione del 28/10</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card border-0 mx-auto mt-2" style="width: 34rem;">
-                    <p>@davide_marchetti66</p>
-                    <img src="search/test.jpg" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-hand-thumbs-up"></i></button>
-                                <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>
-                                <h5 class="card-title">Appunti ingegneria del software</h5>
-                                <p class="card-text">Appunti del corso con il prof Manzi, manca solo la lezione del 28/10</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
 
             <div class="col-md-3">
                 <div class="container position-fixed" style="background: #F5F5F5; height: auto; margin-top: 25vh; padding: 20px; border-radius: 10px;">
-                <div class="container justify-content-center align-items-center">
-                    <h1 style="font-family: 'Thasadith', sans-serif; font-size: 40px; color: #FD7A01;">Suggested profile</h1>
-                    <ul class="list-unstyled">
-                        <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero1</a></li>
-                        <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero2</a></li>
-                        <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero3</a></li>
-                        <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero4</a></li>
-                        <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero5</a></li>
-                    </ul>
-                </div>
+                    <div class="container justify-content-center align-items-center">
+                        <h1 style="font-family: 'Thasadith', sans-serif; font-size: 40px; color: #FD7A01;">Suggested profile</h1>
+                        <ul class="list-unstyled">
+                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero1</a></li>
+                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero2</a></li>
+                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero3</a></li>
+                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero4</a></li>
+                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero5</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
