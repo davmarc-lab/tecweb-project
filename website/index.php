@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Thasadith:wght@700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="likePostScript.js"></script>
     <title>NoteForAll</title>
 </head>
 
@@ -45,7 +47,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-hand-thumbs-up"></i></button>
+                                    <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "d-none" : ""); ?>" style="border: none; background: white;" <?php echo "onClick=\"likePost({$post['IdPost']})\" id=\"bttLike{$post['IdPost']}\"" ?>><i class="bi bi-hand-thumbs-up"></i></button>
+                                    <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "" : "d-none"); ?>" style="border: none; background: white;" <?php echo "onClick=\"dislikePost({$post['IdPost']})\" id=\"bttLikeFill{$post['IdPost']}\"" ?>><i class="bi bi-hand-thumbs-up-fill"></i></button>
                                     <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>
                                     <h5 class="card-title"><?php echo $post["Title"] ?></h5>
                                     <p class="card-text"><?php echo $post["Description"] ?></p>
@@ -84,3 +87,12 @@
 </body>
 
 </html>
+
+<?php 
+    function getClass($dbh, $idPost) {
+        session_start();
+        $query = "SELECT * FROM vote WHERE IdPost = '$idPost' AND IdUser = '{$_SESSION['userId']}';";
+        $res = $dbh->execQuery($query);
+        return count($res) > 0;
+    }
+?>
