@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 02, 2024 at 03:59 PM
+-- Generation Time: Jan 04, 2024 at 04:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,15 +35,41 @@ CREATE TABLE `category` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `follow`
+--
+
+CREATE TABLE `follow` (
+  `Id` int(11) NOT NULL,
+  `IdSrc` int(11) NOT NULL,
+  `IdDst` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `media`
 --
 
 CREATE TABLE `media` (
   `IdMedia` int(11) NOT NULL,
   `FileName` tinytext NOT NULL,
-  `Extension` varchar(10) NOT NULL,
-  `File` longblob NOT NULL
+  `FilePath` tinytext NOT NULL,
+  `Extension` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `media`
+--
+
+INSERT INTO `media` (`IdMedia`, `FileName`, `FilePath`, `Extension`) VALUES
+(1, 'ciao', '', ''),
+(10, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL),
+(11, 'wp_coding.png', '/www/Project/website/uploads/wp_coding.png', NULL),
+(12, 'grub_background.jpg', '/www/Project/website/uploads/grub_background.jpg', NULL),
+(13, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL),
+(14, 'wp_coding.png', '/www/Project/website/uploads/wp_coding.png', NULL),
+(15, 'wp_car.png', '/www/Project/website/uploads/wp_car.png', NULL),
+(16, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -83,6 +109,19 @@ CREATE TABLE `post` (
   `IdMedia` int(11) NOT NULL,
   `IdPreview` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`IdPost`, `Title`, `Description`, `NumberVote`, `NumberComment`, `IdUser`, `IdMedia`, `IdPreview`) VALUES
+(5, 'Analisi 1', 'Appunti di analisi 1', 0, 0, 2, 1, 1),
+(6, 'Analisi 2', 'Appunti di analisi 2', 0, 0, 2, 1, 1),
+(7, 'Analisi 3', 'Appunti di analisi 3 prof Miglio', 0, 0, 2, 1, 1),
+(8, 'Analisi strutturale', 'Approfondimento analisi strutturale', 0, 0, 2, 1, 1),
+(9, 'Analisi e statistica', 'Statistica e analisi economica, prof Caselli', 0, 0, 2, 1, 1),
+(10, 'Analisi 1 primo parziale', 'Appunti di analisi 1 fino al 2 novembre', 0, 0, 2, 1, 1),
+(11, 'Analisi del software', 'Appunti di analisi del software prof Pianini', 0, 0, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -157,6 +196,14 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`IdCategory`);
 
 --
+-- Indexes for table `follow`
+--
+ALTER TABLE `follow`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IdSrc` (`IdSrc`),
+  ADD KEY `IdDst` (`IdDst`);
+
+--
 -- Indexes for table `media`
 --
 ALTER TABLE `media`
@@ -222,10 +269,16 @@ ALTER TABLE `category`
   MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `follow`
+--
+ALTER TABLE `follow`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `IdMedia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdMedia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `notification`
@@ -237,7 +290,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `IdPost` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdPost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `post_category`
@@ -266,6 +319,13 @@ ALTER TABLE `vote`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `follow`
+--
+ALTER TABLE `follow`
+  ADD CONSTRAINT `follow_ibfk_1` FOREIGN KEY (`IdSrc`) REFERENCES `utente` (`IdUser`),
+  ADD CONSTRAINT `follow_ibfk_2` FOREIGN KEY (`IdDst`) REFERENCES `utente` (`IdUser`);
 
 --
 -- Constraints for table `notification`
