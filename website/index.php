@@ -13,6 +13,10 @@
 
 <body>
     <?php
+    session_start();
+    if (!isset($_SESSION["userId"])) {
+        header("location:login/login.php");
+    }
     include_once("includes/navbar.php");
     $bar = new Navbar("./");
     $bar->drawNavbar("HomePage");
