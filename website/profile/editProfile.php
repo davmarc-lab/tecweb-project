@@ -11,15 +11,22 @@
 <body>
     <?php
     require_once("../includes/database.php");
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!isset($_SESSION["userId"])) {
+        // login not done
+        header("location:../login/login.php");
+    }
+    $userId = $_SESSION["userId"];
+    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
     ?>
     <div class="container-fluid overflow-hidden px-0">
         <main>
             <div class="row justify-content-between">
-                <section class="col-md-6 d-none d-md-block">
-                    <?php include_once("profilePage.php"); ?>
-                </section>
                 <section class="col-12 bg-light p-4">
-                    <a href="profilePage.php" role="button" class="btn btn-light d-md-none mb-3">
+                    <a href="profilePage.php" role="button" class="btn btn-light mb-3">
                         <i class="bi bi-arrow-left"></i>
                     </a>
                     <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="editProfileForm">
@@ -44,12 +51,18 @@
                             <input type="email" id="inputEmail" name="email" class="form-control" value="<?php echo $user["Email"]; ?>" />
                         </div>
                         <div class="mb-2">
-                            <label for="inputPassword" class="form-label">Password</label>
-                            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="New password"/>
+                            <label for="inputOldPassword" class="form-label">Old password</label>
+                            <input type="password" id="inputOldPassword" name="oldPassword" class="form-control" placeholder="Old password" />
                         </div>
-                        <div class="mb-2">
-                            <label for="inputRepeatPassword" class="form-label">Repeat password</label>
-                            <input type="password" id="inputRepeatPassword" name="repeatPassword" class="form-control" placeholder="Repeat password"/>
+                        <div class="row g-2">
+                            <div class="col-6 mb-2">
+                                <label class="form-label" for="inputNewPassword">New password</label>
+                                <input type="password" id="inputNewPassword" name="newPassword" class="form-control" placeholder="New password"/>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="inputRepeatPassword">Repeat new password</label>
+                                <input type="password" id="inputRepeatPassword" name="repeatPassword" class="form-control" placeholder="Repeat new password"/>
+                            </div>
                         </div>
                         <div class="mb-2">
                             <label for="inputDescription" class="form-label">Description *</label>
@@ -73,15 +86,18 @@
         $username = $_POST["username"];
         $icon = $_POST["image"];
         $email = $_POST["email"];
-        if (empty($_POST["password"])) {
-            $password = $user["Password"];
-            $finalPassword = $password;
+        if (empty($_POST["oldPassword"])) {
+            header("Location: editProfile.php?error=1");
         } else {
-            $password =  $_POST["password"];
-            $passwordRep = $_POST["repeatPassword"];
-            if ($password === $passwordRep) {
-                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                $finalPassword = $passwordHash;
+            $password =  $_POST["oldPassword"];
+            if (password_verify($password, $user["Password"])) {
+                $newPassword = $_POST["newPassword"];
+                $passwordRep = $_POST["repeatPassword"];
+                if ($newPassword === $passwordRep) {
+                    $finalPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                }
+            } else {
+                header("Location: editProfile.php?error=1");
             }
         }
         $description = empty($_POST["description"]) ? "" : $_POST["description"];

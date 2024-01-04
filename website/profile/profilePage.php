@@ -6,11 +6,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
-    <title>Document</title>
+    <title>Profile</title>
 </head>
 <body>
     <?php
     require_once("../includes/database.php");
+    include_once("../includes/utils.php");
     session_start();
     if (!isset($_SESSION["userId"])) {
         // login not done
@@ -18,9 +19,11 @@
     }
     $userId = $_SESSION["userId"];
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
+    $posts = $dbh->execQuery("SELECT * FROM post WHERE post.IdUser=$userId");
 
     include_once("../includes/navbar.php");
-    drawNavbar("Profile");
+    $navbar = new Navbar("../");
+    $navbar->drawNavbar("Profile");
     ?>
     <div class="container-fluid overflow-hidden px-0">
         <main class="p-2">
@@ -38,45 +41,19 @@
                         </ul>
                     </section>
                     <section>
-                        <?/*php foreach($user["posts"]):*/ ?>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Accordion Item #1
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Accordion Item #2
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Accordion Item #3
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                    </div>
-                                </div>
+                        <?php foreach($posts as $userPost) { ?>
+                        <div class="card border-0 mt-2 p-2" style="width: auto;">
+                            <img src="../search/test.jpg" class="card-img-top rounded" alt="Image">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <?php echo $userPost["Title"]; ?>
+                                </h5>
+                                <p class="card-text">
+                                    <?php echo $userPost["Description"]; ?>
+                                </p>
                             </div>
                         </div>
+                        <?php } ?>
                     </section>
                 </section>
                 <section class="col-5 d-none d-md-block">

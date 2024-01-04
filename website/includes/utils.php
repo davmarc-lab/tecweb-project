@@ -17,4 +17,4 @@ function getHomeDirectory() {
     return implode(DIRECTORY_SEPARATOR, array_slice($parts, 0, $index + 1));
 }
 
-$HOME_DIR = getHomeDirectory() . "/";
+$HOME_DIR = getHomeDirectory() . DIRECTORY_SEPARATOR;
