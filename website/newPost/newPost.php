@@ -10,6 +10,7 @@
 
 <body>
     <?php
+
     require_once("../includes/database.php");
     session_start();
     if (!isset($_SESSION["userId"])) {
@@ -39,12 +40,12 @@
 
                         <div class="mb-3">
                             <label for="files" class="form-label">Choose notes:</label>
-                            <input type="file" class="form-control" name="files[]" id="files" multiple />
+                            <input type="file" class="form-control" name="files" id="files" />
                         </div>
 
                         <div class="mb-3">
                             <label for="preview">Choose preview image:</label>
-                            <input type="file" class="form-control" name="previewImage" id="preview" accept="image/*" />
+                            <input type="file" class="form-control" name="preview" id="preview" accept="image/*" />
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Write Description:</label>
@@ -68,52 +69,67 @@
             </div>
         </div>
     <?php } else {      // submit already done
-        $fileErrors = false;
         include_once("../includes/utils.php");
-        $targetDir = $HOME_DIR."uploads/";
+        $targetDir = $HOME_DIR . "uploads/";
+        $mediaId = 0;
 
-        if (isset($_FILES["files"])) {
-            foreach ($_FILES["files"]["error"] as $error) {
-                if ($error == 0) {
-                    continue;
-                }
-                $fileErrors = true;
-                // there are errors in file uploading phase
-            }
-        }
-
-        for ($i = 0; $i < sizeof($_FILES["files"]["name"]); $i++) {
-            $fileName = basename($_FILES["files"]["name"][$i]);
+        if (isset($_FILES["files"]) && $_FILES["files"]["error"] == 0) {
+            $fileName = basename($_FILES["files"]["name"]);
             $targetPath = $targetDir . $fileName;
 
-            if (move_uploaded_file($_FILES["files"]["tmp_name"][$i], $targetPath)) {
+            if (move_uploaded_file($_FILES["files"]["tmp_name"], $targetPath)) {
                 $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$targetPath')";
                 $res = $dbh->execQuery($query);
-                if ($res == 0)
-                {
-                    echo("Failed INSERT query.");
+                $mediaId = $dbh->getDataBaseController()->insert_id;
+                if ($res == 0) {
+                    echo ("Failed INSERT query.");
                 }
+            } else {
+                echo ("Error UPLOAD, cannot upload the file.");
+            }
+        } else {
+            echo ("Error PREPARE, cannot prepare the file.");
+        }
+
+        $previewId = 0;
+        if ($_FILES["preview"]["size"] == 0)
+        {
+            $previewId = NULL;
+        } else {
+            if (isset($_FILES["preview"]) && $_FILES["preview"]["error"] == 0) {
+                $fileName = basename($_FILES["preview"]["name"]);
+                $targetPath = $targetDir . $fileName;
+    
+                if (move_uploaded_file($_FILES["preview"]["tmp_name"], $targetPath)) {
+                    $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$targetPath')";
+                    $res = $dbh->execQuery($query);
+                    $previewId = $dbh->getDataBaseController()->insert_id;
+                    if ($res == 0) {
+                        echo ("Failed INSERT query.");
+                    }
+                } else {
+                    echo ("Error UPLOAD, cannot upload the file.");
+                }
+            } else {
+                echo ("Error PREPARE, cannot prepare the file.");
             }
         }
-        
-        $title = $_POST["title"];
-        // $files = $_POST["files"];
 
-        $preview = $_POST["previewImage"];
+        $title = $_POST["title"];
         $description = empty($_POST["description"]) ? "" : $_POST["description"];
         $categories = $_POST["categories"];
-        /* $idUser = $_SESSION["userId"]; */
         $idUser = $_SESSION["userId"];
-        $idMedia = 1;       // last id inserted
-        // $idPreview = empty($_POST["previewImage"]) ? "NULL" : $_POST["previewImage"];
-        $idPreview = 1;
+        $idMedia = $mediaId;       // last id inserted
+        $idPreview = $previewId;
 
         // NumberVote and NumberComment are initially 0
-        $query = "INSERT INTO post (Title, Description, NumberVote, NumberComment, IdUser, IdMedia, IdPreview) VALUES('$title', '$description', 0, 0, $idUser, $idMedia, $idPreview);";
-        // $res = $dbh->execQuery($query);
-        // print_r($res);
+        $query = "INSERT INTO post (Title, Description, NumberVote, NumberComment, IdUser, IdMedia" .
+                    ($previewId == NULL ? ")" : ", IdPreview)") .
+                " VALUES('$title', '$description', 0, 0, $idUser, $idMedia" .
+                    ($previewId == NULL ? ");" : ", $idPreview);");
+        $res = $dbh->execQuery($query);
 
-        // header("location:../profilePage/profilePage.php");
+        header("location:../profilePage/profilePage.php");
     } ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
