@@ -85,5 +85,8 @@ function printPost($res)
         }
         $index = ($index + 1) % 3;
     }
+    if ($index != 0) {
+        echo "</div>";
+    }
 }
 ?>
