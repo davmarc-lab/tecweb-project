@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Creato il: Gen 04, 2024 alle 16:02
+-- Creato il: Gen 08, 2024 alle 10:31
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -35,22 +35,49 @@ CREATE TABLE `category` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `follow`
+--
+
+CREATE TABLE `follow` (
+  `Id` int(11) NOT NULL,
+  `IdSrc` int(11) NOT NULL,
+  `IdDst` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `follow`
+--
+
+INSERT INTO `follow` (`Id`, `IdSrc`, `IdDst`) VALUES
+(1, 3, 2),
+(2, 3, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `media`
 --
 
 CREATE TABLE `media` (
   `IdMedia` int(11) NOT NULL,
   `FileName` tinytext NOT NULL,
-  `Extension` varchar(10) NOT NULL,
-  `File` longblob NOT NULL
+  `FilePath` tinytext NOT NULL,
+  `Extension` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `media`
 --
 
-INSERT INTO `media` (`IdMedia`, `FileName`, `Extension`, `File`) VALUES
-(1, 'ciao', '', '');
+INSERT INTO `media` (`IdMedia`, `FileName`, `FilePath`, `Extension`) VALUES
+(1, 'ciao', '', ''),
+(10, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL),
+(11, 'wp_coding.png', '/www/Project/website/uploads/wp_coding.png', NULL),
+(12, 'grub_background.jpg', '/www/Project/website/uploads/grub_background.jpg', NULL),
+(13, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL),
+(14, 'wp_coding.png', '/www/Project/website/uploads/wp_coding.png', NULL),
+(15, 'wp_car.png', '/www/Project/website/uploads/wp_car.png', NULL),
+(16, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -88,21 +115,83 @@ CREATE TABLE `post` (
   `NumberComment` int(11) NOT NULL,
   `IdUser` int(11) NOT NULL,
   `IdMedia` int(11) NOT NULL,
-  `IdPreview` int(11) DEFAULT NULL
+  `IdPreview` int(11) DEFAULT NULL,
+  `Date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `post`
 --
 
-INSERT INTO `post` (`IdPost`, `Title`, `Description`, `NumberVote`, `NumberComment`, `IdUser`, `IdMedia`, `IdPreview`) VALUES
-(5, 'Analisi 1', 'Appunti di analisi 1', 0, 0, 2, 1, 1),
-(6, 'Analisi 2', 'Appunti di analisi 2', 0, 0, 2, 1, 1),
-(7, 'Analisi 3', 'Appunti di analisi 3 prof Miglio', 0, 0, 2, 1, 1),
-(8, 'Analisi strutturale', 'Approfondimento analisi strutturale', 0, 0, 2, 1, 1),
-(9, 'Analisi e statistica', 'Statistica e analisi economica, prof Caselli', 0, 0, 2, 1, 1),
-(10, 'Analisi 1 primo parziale', 'Appunti di analisi 1 fino al 2 novembre', 0, 0, 2, 1, 1),
-(11, 'Analisi del software', 'Appunti di analisi del software prof Pianini', 0, 0, 2, 1, 1);
+INSERT INTO `post` (`IdPost`, `Title`, `Description`, `NumberVote`, `NumberComment`, `IdUser`, `IdMedia`, `IdPreview`, `Date`) VALUES
+(5, 'Analisi 1', 'Appunti di analisi 1', 12, 0, 2, 1, 1, '2024-01-05 11:43:08'),
+(6, 'Analisi 2', 'Appunti di analisi 2', 3, 0, 2, 1, 1, '2024-01-05 11:43:08'),
+(7, 'Analisi 3', 'Appunti di analisi 3 prof Miglio', 0, 0, 2, 1, 1, '2024-01-05 11:43:08'),
+(8, 'Analisi strutturale', 'Approfondimento analisi strutturale', 1, 0, 2, 1, 1, '2024-01-05 11:43:08'),
+(9, 'Analisi e statistica', 'Statistica e analisi economica, prof Caselli', 1, 0, 2, 1, 1, '2024-01-05 11:43:08'),
+(10, 'Analisi 1 primo parziale', 'Appunti di analisi 1 fino al 2 novembre', 0, 0, 2, 1, 1, '2024-01-05 11:43:08'),
+(11, 'Analisi del software', 'Appunti di analisi del software prof Pianini', 1, 0, 2, 1, 1, '2024-01-05 11:43:08'),
+(12, 'Ricerca operativa', 'Appunti di ricerca operativa, prof Boschetti', 1, 0, 4, 1, 1, '2024-01-05 11:43:08'),
+(102, 'Introduzione all\'informatica', 'Appunti del corso introduttivo di informatica', 0, 0, 2, 1, 1, '2023-12-26 10:50:00'),
+(103, 'Analisi Matematica I', 'Appunti del corso di Analisi Matematica I', 0, 0, 2, 1, 1, '2023-12-26 10:50:00'),
+(104, 'Chimica Organica', 'Note sulle reazioni chimiche organiche', 0, 0, 2, 1, 1, '2024-01-01 17:12:20'),
+(105, 'Storia dell\'arte', 'Appunti sulla storia dell\'arte medievale', 0, 0, 2, 1, 1, '2024-01-01 17:12:20'),
+(106, 'Fisica Quantistica', 'Breve introduzione alla fisica quantistica', 0, 0, 4, 1, 1, '2024-01-01 17:12:20'),
+(132, 'Programmazione Java', 'Esercizi e codice Java avanzato', 0, 0, 2, 1, 1, '2023-12-29 09:43:00'),
+(133, 'Filosofia Morale', 'Riflessioni sulla filosofia morale contemporanea', 0, 0, 2, 1, 1, '2024-01-01 17:12:20'),
+(134, 'Economia Politica', 'Analisi delle teorie economiche contemporanee', 0, 0, 4, 1, 1, '2024-01-01 17:12:20'),
+(135, 'Letteratura Inglese', 'Studio dei classici della letteratura inglese', 0, 0, 4, 1, 1, '2024-01-01 17:12:20'),
+(136, 'Algoritmi Avanzati', 'Approfondimento sugli algoritmi avanzati', 0, 0, 2, 1, 1, '2023-12-26 10:50:00'),
+(151, 'Architettura dei Calcolatori', 'Lezioni sull\'architettura dei calcolatori moderni', 0, 0, 2, 1, 1, '2024-01-01 17:12:20'),
+(152, 'Biologia Molecolare', 'Ricerche e scoperte recenti in biologia molecolare', 0, 0, 4, 1, 1, '2024-01-01 17:12:20'),
+(153, 'Cucina Italiana', 'Ricette tradizionali della cucina italiana', 0, 0, 4, 1, 1, '2023-12-29 09:43:00'),
+(154, 'Statistica Applicata', 'Esempi pratici di statistica applicata', 0, 0, 4, 1, 1, '2023-12-29 09:43:00'),
+(155, 'Diritto Internazionale', 'Principi fondamentali del diritto internazionale', 0, 0, 4, 1, 1, '2024-01-01 17:12:20'),
+(156, 'Geografia del Mondo', 'Studio delle principali caratteristiche geografiche globali', 0, 0, 4, 1, 1, '2024-01-01 17:12:20'),
+(157, 'Psicologia Clinica', 'Approfondimenti sulla psicologia clinica contemporanea', 0, 0, 3, 1, 1, '2024-01-01 17:12:20'),
+(158, 'Scienze della Terra', 'Esplorazione delle scienze della terra e della geologia', 0, 0, 3, 1, 1, '2023-12-26 10:50:00'),
+(159, 'Teoria della Musica', 'Lezioni sulla teoria e composizione musicale', 0, 0, 2, 1, 1, '2023-12-29 09:43:00'),
+(160, 'Medicina Preventiva', 'Note sulla medicina preventiva e la salute pubblica', 0, 0, 3, 1, 1, '2023-12-29 09:43:00'),
+(161, 'Ricerca Operativa', 'Metodi avanzati di ricerca operativa', 0, 0, 2, 1, 1, '2023-12-26 10:50:00'),
+(162, 'Ingegneria del Software', 'Approfondimento sull\'ingegneria del software', 0, 0, 2, 1, 1, '2023-12-29 09:43:00'),
+(163, 'Arte Contemporanea', 'Analisi delle tendenze artistiche contemporanee', 0, 0, 2, 1, 1, '2023-12-29 09:43:00'),
+(164, 'Chimica Fisica', 'Studi sulla chimica fisica e le sue applicazioni', 0, 0, 4, 1, 1, '2023-12-29 09:43:00'),
+(165, 'Antropologia Culturale', 'Esplorazione dell\'antropologia culturale', 0, 0, 2, 1, 1, '2023-12-26 10:50:00'),
+(166, 'Economia del Lavoro', 'Analisi dell\'economia del lavoro e delle risorse umane', 0, 0, 2, 1, 1, '2023-12-29 09:43:00'),
+(167, 'Filosofia Politica', 'Riflessioni sulla filosofia politica contemporanea', 0, 0, 2, 1, 1, '2023-12-26 10:50:00'),
+(168, 'Robotica Avanzata', 'Sviluppi recenti nella robotica avanzata', 0, 0, 2, 1, 1, '2024-01-01 17:12:20'),
+(169, 'Teatro Moderno', 'Esplorazione del teatro moderno e contemporaneo', 0, 0, 2, 1, 1, '2023-12-26 10:50:00'),
+(170, 'Linguaggi di Programmazione', 'Studio dei linguaggi di programmazione moderni', 0, 0, 3, 1, 1, '2024-01-01 17:12:20'),
+(201, 'Biologia Cellulare', 'Studio avanzato sulla biologia cellulare con il prof. Rossi', 0, 0, 3, 1, 1, '2023-12-23 08:55:09'),
+(202, 'Economia Aziendale', 'Analisi dei principi dell\'economia aziendale con il prof. Bianchi', 0, 0, 3, 1, 1, '2023-12-23 08:55:09'),
+(203, 'Storia dell\'Informatica', 'Retrospettiva sulla storia dell\'informatica con il prof. Verdi', 0, 0, 3, 1, 1, '2023-12-23 08:55:09'),
+(204, 'Chimica Inorganica', 'Lezioni sulla chimica inorganica avanzata con il prof. Neri', 0, 0, 4, 1, 1, '2023-12-23 08:55:09'),
+(205, 'Psicologia Sperimentale', 'Esperimenti e studi in psicologia sperimentale con la prof. Rossi', 0, 0, 3, 1, 1, '2023-12-23 08:55:09'),
+(206, 'Teoria dei Giochi', 'Approfondimenti sulla teoria dei giochi con il prof. Martini', 0, 0, 2, 1, 1, '2023-12-23 08:55:09'),
+(207, 'Antropologia Forense', 'Analisi forense attraverso l\'antropologia con la prof. Ferrari', 0, 0, 4, 1, 1, '2023-12-23 08:55:09'),
+(208, 'Economia dello Sviluppo', 'Studio dell\'economia dello sviluppo con il prof. Morelli', 0, 0, 3, 1, 1, '2023-12-23 08:55:09'),
+(209, 'Storia della Musica', 'Esplorazione della storia della musica con il prof. Rizzo', 0, 0, 3, 1, 1, '2023-12-23 08:55:09'),
+(210, 'Analisi dei Dati', 'Metodi avanzati di analisi dei dati con il prof. Monti', 0, 0, 4, 1, 1, '2023-12-23 08:55:09'),
+(211, 'Architettura del Paesaggio', 'Lezioni sull\'architettura del paesaggio con il prof. Colombo', 0, 0, 4, 1, 1, '2023-12-23 08:55:09'),
+(212, 'Fisica delle Particelle', 'Ricerche sulla fisica delle particelle con il prof. Galilei', 0, 0, 4, 1, 1, '2023-12-23 08:55:09'),
+(213, 'Filosofia dell\'Estetica', 'Riflessioni sulla filosofia dell\'estetica con il prof. De Luca', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(214, 'Biologia Evoluzionistica', 'Studi avanzati sulla biologia evoluzionistica con la prof. Mancini', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(215, 'Economia della Cultura', 'Analisi dell\'economia della cultura con il prof. Marini', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(216, 'Storia dell\'Asia', 'Esplorazione della storia dell\'Asia con il prof. Kim', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(231, 'Psicologia Sociale', 'Ricerche e studi sulla psicologia sociale con la prof. Russo', 0, 0, 4, 1, 1, '2024-01-02 18:55:09'),
+(232, 'Scienze della Terra Applicata', 'Applicazioni pratiche delle scienze della terra con il prof. Volterra', 0, 0, 4, 1, 1, '2024-01-02 18:55:09'),
+(233, 'Teoria Musicale', 'Lezioni avanzate sulla teoria e composizione musicale con il prof. Beethoven', 0, 0, 4, 1, 1, '2024-01-02 18:55:09'),
+(234, 'Medicina di Emergenza', 'Note sulla medicina di emergenza con la prof. Salvatore', 0, 0, 4, 1, 1, '2024-01-02 18:55:09'),
+(235, 'Analisi delle Reti', 'Studi avanzati sull\'analisi delle reti con il prof. Ferrara', 0, 0, 4, 1, 1, '2024-01-02 18:55:09'),
+(236, 'Ingegneria del Software Avanzata', 'Approfondimento sull\'ingegneria del software avanzata con il prof. Pianini', 0, 0, 4, 1, 1, '2024-01-02 18:55:09'),
+(237, 'Arte Cinematografica', 'Analisi dell\'arte cinematografica con il prof. Leone', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(238, 'Chimica Organica Avanzata', 'Studi avanzati sulla chimica organica con il prof. Carboni', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(239, 'Antropologia Medica', 'Ricerche sull\'antropologia medica con la prof. Bianchi', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(240, 'Economia delle Risorse Umane', 'Analisi dell\'economia delle risorse umane con il prof. Moretti', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(241, 'Filosofia dell\'Etica', 'Riflessioni sulla filosofia dell\'etica con il prof. De Rossi', 0, 0, 2, 1, 1, '2024-01-02 18:55:09'),
+(242, 'Robotica Avanzata Applicata', 'Applicazioni pratiche della robotica avanzata con il prof. Robottini', 0, 0, 4, 1, 1, '2024-01-02 18:55:09'),
+(243, 'Teatro Classico', 'Esplorazione del teatro classico con il prof. Shakespeare', 0, 0, 3, 1, 1, '2024-01-02 18:55:09'),
+(244, 'Linguaggi di Programmazione Avanzati', 'Studio dei linguaggi di programmazione avanzati con il prof. Codice', 0, 0, 4, 1, 1, '2024-01-02 18:55:09');
 
 -- --------------------------------------------------------
 
@@ -153,7 +242,8 @@ CREATE TABLE `utente` (
 INSERT INTO `utente` (`IdUser`, `Name`, `Surname`, `Username`, `Email`, `Password`, `Description`, `IdMedia`) VALUES
 (2, 'admin', 'super', 'admin', 'admin@nfa.com', '$2y$10$pX.RsB/uooJRrd0KID2BRezUAeZZzRiGMnjPbHfp6ZZ306enNcxJy', 'i\'m the captain now', NULL),
 (3, 'Mario', 'Rossi', 'marros', 'mario.rossi@gmail.com', '$2y$10$m332ogYh5M9IFR4UYkdCIOhp1F1IetMLhjJGB3TYsUwoisgNEqfIi', NULL, NULL),
-(8, 'Riccardo', 'Penazzi', 'riki17', 'rp@note.com', '$2y$10$5wmerMVdKeXSZiiuLOHByevoTFVSjJfzpRyefeh/O.jklrgciaEQi', NULL, NULL);
+(4, 'Riccardo', 'Penazzi', 'riki17', 'rp@note.com', '$2y$10$3w5jlZ/8Q2kHYcsfg/co6uhIV5Oi2v9BYJBU7re3/OO07y.RKtcyu', NULL, NULL),
+(5, '', '', '', '', '$2y$10$a590kYK3UJ3Ibbt2X.uBE.IXQCweb7V.VA.JEMGRXbEGQhL4vC1T.', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,6 +258,18 @@ CREATE TABLE `vote` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dump dei dati per la tabella `vote`
+--
+
+INSERT INTO `vote` (`IdVote`, `IdPost`, `IdUser`) VALUES
+(8, 5, 3),
+(9, 6, 3),
+(10, 9, 3),
+(11, 12, 3),
+(12, 11, 3),
+(13, 8, 3);
+
+--
 -- Indici per le tabelle scaricate
 --
 
@@ -176,6 +278,14 @@ CREATE TABLE `vote` (
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`IdCategory`);
+
+--
+-- Indici per le tabelle `follow`
+--
+ALTER TABLE `follow`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IdSrc` (`IdSrc`),
+  ADD KEY `IdDst` (`IdDst`);
 
 --
 -- Indici per le tabelle `media`
@@ -243,10 +353,16 @@ ALTER TABLE `category`
   MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `follow`
+--
+ALTER TABLE `follow`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT per la tabella `media`
 --
 ALTER TABLE `media`
-  MODIFY `IdMedia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdMedia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT per la tabella `notification`
@@ -258,7 +374,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT per la tabella `post`
 --
 ALTER TABLE `post`
-  MODIFY `IdPost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IdPost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- AUTO_INCREMENT per la tabella `post_category`
@@ -276,17 +392,24 @@ ALTER TABLE `usercomment`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `IdVote` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdVote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Limiti per le tabelle scaricate
 --
+
+--
+-- Limiti per la tabella `follow`
+--
+ALTER TABLE `follow`
+  ADD CONSTRAINT `follow_ibfk_1` FOREIGN KEY (`IdSrc`) REFERENCES `utente` (`IdUser`),
+  ADD CONSTRAINT `follow_ibfk_2` FOREIGN KEY (`IdDst`) REFERENCES `utente` (`IdUser`);
 
 --
 -- Limiti per la tabella `notification`
