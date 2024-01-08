@@ -8,7 +8,7 @@ class Navbar {
     private $homePage = "index.php";
     private $searchPage = "search/search.php";
     private $notifPage = "notification/notification.php";
-    private $newPostPage = "newPost/newPost.php";
+    private $newPostPage = "post/newPost.php";
     private $profilePage = "profile/profilePage.php";
 
     public function __construct($homePath) 

@@ -92,14 +92,13 @@
         }
 
         $previewId = 0;
-        if ($_FILES["preview"]["size"] == 0)
-        {
+        if ($_FILES["preview"]["size"] == 0) {
             $previewId = NULL;
         } else {
             if (isset($_FILES["preview"]) && $_FILES["preview"]["error"] == 0) {
                 $fileName = basename($_FILES["preview"]["name"]);
                 $targetPath = $targetDir . $fileName;
-    
+
                 if (move_uploaded_file($_FILES["preview"]["tmp_name"], $targetPath)) {
                     $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$targetPath')";
                     $res = $dbh->execQuery($query);
@@ -124,9 +123,9 @@
 
         // NumberVote and NumberComment are initially 0
         $query = "INSERT INTO post (Title, Description, NumberVote, NumberComment, IdUser, IdMedia" .
-                    ($previewId == NULL ? ")" : ", IdPreview)") .
-                " VALUES('$title', '$description', 0, 0, $idUser, $idMedia" .
-                    ($previewId == NULL ? ");" : ", $idPreview);");
+            ($previewId == NULL ? ")" : ", IdPreview)") .
+            " VALUES('$title', '$description', 0, 0, $idUser, $idMedia" .
+            ($previewId == NULL ? ");" : ", $idPreview);");
         $res = $dbh->execQuery($query);
 
         header("location:../profilePage/profilePage.php");
