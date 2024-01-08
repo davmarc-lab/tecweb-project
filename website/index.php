@@ -34,19 +34,19 @@
     ?>
     <div class="container-fluid mt-3">
         <div class="row">
-            <div class="col-md-8 justify-content-center" id="postContainer">
+            <div class="col-md-8 col-12 justify-content-center" id="postContainer">
                 <?php
                 $counter = 0;
                 foreach ($res as $post) {
                 ?>
-                    <div class="card border-0 mx-auto mt-2" style="width: 34rem;">
+                    <div class="card border-0 mx-auto mt-2" style="max-width: 35rem;">
                         <?php
                             $authorId = $post["IdUser"];
                             $queryAuthor = "SELECT Username from utente WHERE IdUser = '$authorId';";
                             $authorUser = $dbh->execQuery($queryAuthor);
                         ?>
                         <p>@<?php echo $authorUser[0]["Username"] ?></p>
-                        <img src="search/test.jpg" class="card-img-top" alt="">
+                        <img src="search/test.jpg" class="card-img-top img-fluid" alt="">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -70,7 +70,7 @@
                 ?>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 d-none d-sm-block">
                 <div class="container position-fixed" style="background: #F5F5F5; height: auto; margin-top: 25vh; padding: 20px; border-radius: 10px;">
                     <div class="container justify-content-center align-items-center">
                         <h1 style="font-family: 'Thasadith', sans-serif; font-size: 40px; color: #FD7A01;">Suggested profile</h1>
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="col-md-1">
+            <div class="col-md-1 d-none d-sm-block">
                 <div class="container position-fixed" style="background: #FFF; height: 100vh; margin-top: 25vh; padding: 20px;">
                 </div>
             </div>

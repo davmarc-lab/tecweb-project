@@ -5,14 +5,14 @@ $counter = 0;
 $ret = '';
 
 foreach ($_SESSION['homePagePosts'] as $post) {
-    $ret .= '<div class="card border-0 mx-auto mt-2" style="width: 34rem;">';
+    $ret .= '<div class="card border-0 mx-auto mt-2" style="max-width: 35rem;">';
 
     $authorId = $post["IdUser"];
     $queryAuthor = "SELECT Username from utente WHERE IdUser = '$authorId';";
     $authorUser = $dbh->execQuery($queryAuthor);
 
     $ret .= '<p>@' . $authorUser[0]["Username"] . '</p>';
-    $ret .= '<img src="search/test.jpg" class="card-img-top" alt="">';
+    $ret .= '<img src="search/test.jpg" class="card-img-top img-fluid" alt="">';
     $ret .= '<div class="card-body">';
     $ret .= '<div class="row">';
     $ret .= '<div class="col">';
