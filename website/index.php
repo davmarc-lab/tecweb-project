@@ -25,15 +25,18 @@
     $bar->drawNavbar("HomePage");
     $currId = $_SESSION["userId"];
     $query = "SELECT post.*
-            FROM post
-            JOIN follow ON post.IdUser = follow.IdDst
-            WHERE follow.IdSrc = '$currId';";
+        FROM post
+        JOIN follow ON post.IdUser = follow.IdDst
+        WHERE follow.IdSrc = '$currId'
+        ORDER BY post.Date DESC;";
     $res = $dbh->execQuery($query);
+    $_SESSION['homePagePosts'] = $res;
     ?>
     <div class="container-fluid mt-3">
         <div class="row">
-            <div class="col-md-8 justify-content-center">
+            <div class="col-md-8 justify-content-center" id="postContainer">
                 <?php
+                $counter = 0;
                 foreach ($res as $post) {
                 ?>
                     <div class="card border-0 mx-auto mt-2" style="width: 34rem;">
@@ -57,7 +60,13 @@
                         </div>
                     </div>
                 <?php
+                array_shift($_SESSION['homePagePosts']);
+                $counter++;
+                if ($counter == 10) {
+                    break;
                 }
+                }
+                //print_r($_SESSION['homePagePosts']);
                 ?>
             </div>
 
