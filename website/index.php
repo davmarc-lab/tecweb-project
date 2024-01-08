@@ -34,16 +34,16 @@
     ?>
     <div class="container-fluid mt-3">
         <div class="row">
-            <div class="col-md-8 col-12 justify-content-center" id="postContainer">
+            <div class="col-lg-8 col-md-12 col-12 justify-content-center" id="postContainer">
                 <?php
                 $counter = 0;
                 foreach ($res as $post) {
                 ?>
                     <div class="card border-0 mx-auto mt-2" style="max-width: 35rem;">
                         <?php
-                            $authorId = $post["IdUser"];
-                            $queryAuthor = "SELECT Username from utente WHERE IdUser = '$authorId';";
-                            $authorUser = $dbh->execQuery($queryAuthor);
+                        $authorId = $post["IdUser"];
+                        $queryAuthor = "SELECT Username from utente WHERE IdUser = '$authorId';";
+                        $authorUser = $dbh->execQuery($queryAuthor);
                         ?>
                         <p>@<?php echo $authorUser[0]["Username"] ?></p>
                         <img src="search/test.jpg" class="card-img-top img-fluid" alt="">
@@ -60,33 +60,37 @@
                         </div>
                     </div>
                 <?php
-                array_shift($_SESSION['homePagePosts']);
-                $counter++;
-                if ($counter == 10) {
-                    break;
+                    array_shift($_SESSION['homePagePosts']);
+                    $counter++;
+                    if ($counter == 10) {
+                        break;
+                    }
                 }
-                }
-                //print_r($_SESSION['homePagePosts']);
                 ?>
             </div>
 
-            <div class="col-md-3 d-none d-sm-block">
-                <div class="container position-fixed" style="background: #F5F5F5; height: auto; margin-top: 25vh; padding: 20px; border-radius: 10px;">
-                    <div class="container justify-content-center align-items-center">
-                        <h1 style="font-family: 'Thasadith', sans-serif; font-size: 40px; color: #FD7A01;">Suggested profile</h1>
-                        <ul class="list-unstyled">
-                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero1</a></li>
-                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero2</a></li>
-                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero3</a></li>
-                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero4</a></li>
-                            <li class="mt-3"><a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none;">@Profilo_numero5</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-1 d-none d-sm-block">
-                <div class="container position-fixed" style="background: #FFF; height: 100vh; margin-top: 25vh; padding: 20px;">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div style="background: #F5F5F5; position: fixed; top: 30vh; padding: 20px; border-radius: 10px; width: 300px;">
+                    <h1 style="font-family: 'Thasadith', sans-serif; font-size: 30px; color: #FD7A01; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 300px;">Suggested Profile</h1>
+                    <ul class="list-unstyled">
+                        <?php
+                        $queryProfile = "SELECT u.*
+                            FROM utente u
+                            WHERE u.IdUser <> {$_SESSION['userId']}
+                            AND u.IdUser NOT IN (SELECT f.IdDst FROM follow f WHERE f.IdSrc = {$_SESSION['userId']})
+                            ORDER BY RAND()
+                            LIMIT 5;";
+                        $res = $dbh->execQuery($queryProfile);
+                        foreach ($res as $suggested) {
+                        ?>
+                        <li class="mt-3">
+                            <img src="immagine_profilo.jpg" alt="" width="40" height="40">
+                            <a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"]?></a>
+                        </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
                 </div>
             </div>
 
@@ -97,11 +101,12 @@
 
 </html>
 
-<?php 
-    function getClass($dbh, $idPost) {
-        session_start();
-        $query = "SELECT * FROM vote WHERE IdPost = '$idPost' AND IdUser = '{$_SESSION['userId']}';";
-        $res = $dbh->execQuery($query);
-        return count($res) > 0;
-    }
+<?php
+function getClass($dbh, $idPost)
+{
+    session_start();
+    $query = "SELECT * FROM vote WHERE IdPost = '$idPost' AND IdUser = '{$_SESSION['userId']}';";
+    $res = $dbh->execQuery($query);
+    return count($res) > 0;
+}
 ?>
