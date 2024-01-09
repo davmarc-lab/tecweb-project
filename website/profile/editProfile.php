@@ -24,10 +24,13 @@
     ?>
     <div class="container-fluid overflow-hidden px-0">
         <main>
-            <div class="row justify-content-between">
+            <div class="row justify-content-between fix-bottom">
                 <section class="col-12 bg-light p-4">
                     <a href="profilePage.php" role="button" class="btn btn-light mb-3">
                         <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <a href="changePassword.php" role="button" class="btn btn-light mb-3" title="Change password">
+                        <i class="bi bi-gear-fill"></i>
                     </a>
                     <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="editProfileForm">
                         <div class="mb-2">
@@ -51,20 +54,6 @@
                             <input type="email" id="inputEmail" name="email" class="form-control" value="<?php echo $user["Email"]; ?>" />
                         </div>
                         <div class="mb-2">
-                            <label for="inputOldPassword" class="form-label">Old password</label>
-                            <input type="password" id="inputOldPassword" name="oldPassword" class="form-control" placeholder="Old password" />
-                        </div>
-                        <div class="row g-2">
-                            <div class="col-6 mb-2">
-                                <label class="form-label" for="inputNewPassword">New password</label>
-                                <input type="password" id="inputNewPassword" name="newPassword" class="form-control" placeholder="New password"/>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label" for="inputRepeatPassword">Repeat new password</label>
-                                <input type="password" id="inputRepeatPassword" name="repeatPassword" class="form-control" placeholder="Repeat new password"/>
-                            </div>
-                        </div>
-                        <div class="mb-2">
                             <label for="inputDescription" class="form-label">Description *</label>
                             <textarea id="inputDescription" name="description" class="form-control" rows="4" form="editProfileForm"><?php echo $user["Description"]; ?></textarea>
                         </div>
@@ -86,23 +75,9 @@
         $username = $_POST["username"];
         $icon = $_POST["image"];
         $email = $_POST["email"];
-        if (empty($_POST["oldPassword"])) {
-            header("Location: editProfile.php?error=1");
-        } else {
-            $password =  $_POST["oldPassword"];
-            if (password_verify($password, $user["Password"])) {
-                $newPassword = $_POST["newPassword"];
-                $passwordRep = $_POST["repeatPassword"];
-                if ($newPassword === $passwordRep) {
-                    $finalPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-                }
-            } else {
-                header("Location: editProfile.php?error=1");
-            }
-        }
         $description = empty($_POST["description"]) ? "" : $_POST["description"];
         $query = "UPDATE utente 
-            SET Name='$name', Surname='$surname', Username='$username', Email='$email', Password='$finalPassword', Description='$description' 
+            SET Name='$name', Surname='$surname', Username='$username', Email='$email', Description='$description' 
             WHERE utente.IdUser=$userId";
         $res = $dbh->execQuery($query);
         print_r($res);

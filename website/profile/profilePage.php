@@ -42,7 +42,7 @@
                     </section>
                     <section>
                         <?php foreach($posts as $userPost) { ?>
-                        <div class="card border-0 mt-2 p-2" style="width: auto;">
+                        <div class="card border-1 mt-2 p-2" style="width: auto;">
                             <img src="../search/test.jpg" class="card-img-top rounded" alt="Image">
                             <div class="card-body">
                                 <h5 class="card-title">
