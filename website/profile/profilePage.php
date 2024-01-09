@@ -28,37 +28,41 @@
     <div class="container-fluid overflow-hidden px-0">
         <main class="p-2">
             <div class="row justify-content-between">
-                <section class="col-md-6 col-12">
-                    <section class="py-3">
-                        <i class="bi bi-person-fill fs-1"></i>
-                        <a href="editProfile.php" role="button" class="btn btn-outline-success d-md-none">Edit</a>
-                    </section>
-                    <section class="pb-5">
-                        <ul class="list-group">
-                            <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
-                            <li class="my-2"><strong><?php echo $user["Name"]." ".$user["Surname"]; ?></strong></li>
-                            <li class="my-2"><?php echo $user["Description"]; ?></li>
-                        </ul>
-                    </section>
+                <div class="overflow-y-auto overflow-x-hidden col-md-6 col-12">
                     <section>
-                        <?php foreach($posts as $userPost) { ?>
-                        <div class="card border-1 mt-2 p-2" style="width: auto;">
-                            <img src="../search/test.jpg" class="card-img-top rounded" alt="Image">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <?php echo $userPost["Title"]; ?>
-                                </h5>
-                                <p class="card-text">
-                                    <?php echo $userPost["Description"]; ?>
-                                </p>
+                        <section class="py-3">
+                            <i class="bi bi-person-fill fs-1"></i>
+                            <a href="editProfile.php" role="button" class="btn btn-outline-success d-md-none">Edit</a>
+                        </section>
+                        <section class="pb-5">
+                            <ul class="list-group">
+                                <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
+                                <li class="my-2"><strong><?php echo $user["Name"]." ".$user["Surname"]; ?></strong></li>
+                                <li class="my-2"><?php echo $user["Description"]; ?></li>
+                            </ul>
+                        </section>
+                        <section>
+                            <?php foreach($posts as $userPost) { ?>
+                            <div class="card border-1 mt-2 p-2" style="width: auto;">
+                                <img src="../search/test.jpg" class="card-img-top rounded" alt="Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <?php echo $userPost["Title"]; ?>
+                                    </h5>
+                                    <p class="card-text">
+                                        <?php echo $userPost["Description"]; ?>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <?php } ?>
+                            <?php } ?>
+                        </section>
                     </section>
-                </section>
-                <section class="col-5 d-none d-md-block">
-                    <?php include_once("editProfile.php"); ?>
-                </section>
+                </div>
+                <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
+                    <section>
+                        <?php include_once("editProfile.php"); ?>
+                    </section>
+                </div>
             </div>
         </main>
     </div>
