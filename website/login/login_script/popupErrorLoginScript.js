@@ -5,7 +5,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (errorParam === '1') {
         Swal.fire({
             icon: 'error',
-            title: 'Invalid data, please try again',
+            title: 'Invalid username, please try again',
+            text: '',
+        });
+    }
+
+    if (errorParam === '2') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Password and username don\'t match, please try again',
             text: '',
         });
     }

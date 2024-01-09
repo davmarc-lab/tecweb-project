@@ -14,6 +14,8 @@ if ($numRows > 0) {
             $_SESSION["userId"] = $res[0]['IdUser'];
             header("location:../../index.php");
             exit;
+        } else {
+            header("location:../login.php?error=2");
         }
     }
 } else {
