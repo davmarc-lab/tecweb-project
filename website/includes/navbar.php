@@ -1,16 +1,18 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+<?php
+    include_once("utils.php");
+?>
 <?php
 
 
 class Navbar {
     private $homePath;
-    
+    private $logout = "includes/logOut.php";
     private $homePage = "index.php";
     private $searchPage = "search/search.php";
     private $notifPage = "notification/notification.php";
     private $newPostPage = "post/newPost.php";
     private $profilePage = "profile/profilePage.php";
-
+    
     public function __construct($homePath) 
     {
         $this->homePath = $homePath;
@@ -18,7 +20,8 @@ class Navbar {
     
     public function drawNavbar($pageName)
     {
-    ?>
+        ?>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <nav class="navbar sticky-top navbar-expand-md bg-success bg-gradient text-white">
             <div class="container-fluid">
                 <a class="navbar-brand text-white fs-2 p-2" href="#"><?php echo ($pageName); ?></a>
@@ -61,6 +64,14 @@ class Navbar {
                                     <i class="bi bi-person-fill"></i>
                                     Profile
                                 </a>
+                            </li>
+                            <li class="nav-item p-2">
+                                <form action="<?php echo $this->homePath . $this->logout;?>">
+                                    <button type="submit">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        Log out
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>
