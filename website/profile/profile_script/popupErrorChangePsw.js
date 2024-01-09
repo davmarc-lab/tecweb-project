@@ -18,5 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             title: "Passwords do not match! Re-enter the old password.",
             text: '',
         });
+        document.getElementById("insertOld").hidden = true;
+        document.getElementById("insertNew").hidden = false;
     }
 });
