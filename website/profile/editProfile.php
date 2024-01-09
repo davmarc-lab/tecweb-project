@@ -26,9 +26,19 @@
         <main>
             <div class="row justify-content-between fix-bottom">
                 <section class="col-12 bg-light p-4">
-                    <a href="profilePage.php" role="button" class="btn btn-light mb-3">
+                    <a id="backButton" href="profilePage.php" role="button" class="btn btn-light mb-3">
                         <i class="bi bi-arrow-left"></i>
                     </a>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const url = window.location.href;
+                            if (url.includes("profilePage.php")) {
+                                document.getElementById("backButton").hidden = true;
+                            } else {
+                                document.getElementById("backButton").hidden = false;
+                            }
+                        });
+                    </script>
                     <a href="changePassword.php" role="button" class="btn btn-light mb-3" title="Change password">
                         <i class="bi bi-gear-fill"></i>
                     </a>
