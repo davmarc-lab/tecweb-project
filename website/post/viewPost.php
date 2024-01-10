@@ -83,7 +83,15 @@ $infoPost = $dbh->execQuery($query)[0];
             </div>
             <!-- Likes, comment bar -->
             <div class="row">
-
+                <form action="../addComment.php" method="POST">
+                    <div class="form-group">
+                        <label for="textAreaComment" hidden>Insert your comment here</label>
+                        <textarea class="form-control" id="textAreaComment" rows="3" placeholder="Add your comment" name="commentText"></textarea>
+                        <label for="submitComment" hidden>Publish your comment</label>
+                        <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
+                        <input type="hidden" name="idPost" value="<?php echo $infoPost['IdPost']; ?>">
+                    </div>
+                </form>
             </div>
         </section>
     </div>

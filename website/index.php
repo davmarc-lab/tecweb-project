@@ -42,8 +42,6 @@
                         <?php
                         $queryAuthor = "SELECT Username from utente WHERE IdUser = {$post['IdUser']};";
                         $authorUser = $dbh->execQuery($queryAuthor);
-                        $queryNumberComments = "SELECT COUNT(*) AS NumeroCommenti FROM usercomment WHERE IdPost = {$post['IdPost']};";
-                        $numberComments = $dbh->execQuery($queryNumberComments);
                         ?>
                         <p>@<?php echo $authorUser[0]["Username"] ?></p>
                         <img src="search/test.jpg" class="card-img-top img-fluid" alt="">
@@ -51,8 +49,8 @@
                             <div class="row">
                                 <div class="col">
                                     <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "d-none" : ""); ?>" style="border: none; background: white;" <?php echo "onClick=\"likePost({$post['IdPost']})\" id=\"bttLike{$post['IdPost']}\"" ?>><i class="bi bi-hand-thumbs-up"></i></button>
-                                    <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "" : "d-none"); ?>" style="border: none; background: white;" <?php echo "onClick=\"dislikePost({$post['IdPost']})\" id=\"bttLikeFill{$post['IdPost']}\"" ?>><i class="bi bi-hand-thumbs-up-fill"></i></button>
-                                    <span class="badge bg-secondary ms-4"><?php echo $numberComments[0]['NumeroCommenti']?></span>
+                                    <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "" : "d-none"); ?>" style="border: none; background: white;" <?php echo "onClick=\"dislikePost({$post['IdPost']})\" id=\"bttLikeFill{$post['IdPost']}\"" ?>><i class="bi bi-hand-thumbs-up-fill text-primary"></i></button>
+                                    <span class="badge bg-secondary ms-4"><?php echo $post['NumberComment'] ?></span>
                                     <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>
                                     <h5 class="card-title"><?php echo $post["Title"] ?></h5>
                                     <p class="card-text"><?php echo $post["Description"] ?></p>
@@ -60,17 +58,26 @@
                             </div>
                         </div>
                         <?php
-                            $queryComments = "SELECT * FROM usercomment WHERE IdPost = {$post['IdPost']}
+                        $queryComments = "SELECT * FROM usercomment WHERE IdPost = {$post['IdPost']}
                                 ORDER BY IdComment DESC LIMIT 3;";
-                            $comments = $dbh->execQuery($queryComments);
-                            foreach ($comments as $comment) {
-                                $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
-                                $userComment = $dbh->execQuery($queryUserComment);
+                        $comments = $dbh->execQuery($queryComments);
+                        foreach ($comments as $comment) {
+                            $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
+                            $userComment = $dbh->execQuery($queryUserComment);
                         ?>
-                            <p>@<?php echo $userComment[0]['Username']?>: <?php echo $comment['CommentText']?></p>
+                            <p>@<?php echo $userComment[0]['Username'] ?>: <?php echo $comment['CommentText'] ?></p>
                         <?php
-                            }
+                        }
                         ?>
+                        <form action="addComment.php" method="POST">
+                            <div class="form-group">
+                                <label for="textAreaComment" hidden>Insert your comment here</label>
+                                <textarea class="form-control" id="textAreaComment" rows="3" placeholder="Add your comment" name="commentText"></textarea>
+                                <label for="submitComment" hidden>Publish your comment</label>
+                                <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
+                                <input type="hidden" name="idPost" value="<?php echo $post['IdPost']; ?>">
+                            </div>
+                        </form>
                     </div>
                 <?php
                     array_shift($_SESSION['homePagePosts']);
@@ -96,10 +103,10 @@
                         $res = $dbh->execQuery($queryProfile);
                         foreach ($res as $suggested) {
                         ?>
-                        <li class="mt-3">
-                            <img src="immagine_profilo.jpg" alt="" width="40" height="40">
-                            <a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"]?></a>
-                        </li>
+                            <li class="mt-3">
+                                <img src="immagine_profilo.jpg" alt="" width="40" height="40">
+                                <a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"] ?></a>
+                            </li>
                         <?php
                         }
                         ?>
