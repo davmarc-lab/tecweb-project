@@ -1,15 +1,17 @@
-function likePost(id) {
-    console.log(id);
+function likePost(idPost, idUser) {
+    console.log(idPost + " " + idUser);
     $.ajax({
         url: "likePostQuery.php",
         type: "POST",
         data: {
-            postId: id
+            postId: idPost,
+            userId: idUser,
         },
         success: function(response) {
-            var idLike = "bttLike" + id;
-            var idLikeFill = "bttLikeFill" + id;
+            var idLike = "bttLike" + idPost;
+            var idLikeFill = "bttLikeFill" + idPost;
             console.log("Success:", response);
+            console.log("Id: " + idLike);
             document.getElementById(idLike).classList.add('d-none');
             document.getElementById(idLikeFill).classList.remove('d-none');
         },

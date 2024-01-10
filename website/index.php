@@ -48,7 +48,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "d-none" : ""); ?>" style="border: none; background: white;" <?php echo "onClick=\"likePost({$post['IdPost']})\" id=\"bttLike{$post['IdPost']}\"" ?>><i class="bi bi-hand-thumbs-up"></i></button>
+                                    <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "d-none" : ""); ?>" style="border: none; background: white;" onclick="likePost('<?php echo $post['IdPost']?>','<?php echo $post['IdUser']?>')" id="bttLike<?php echo $post['IdPost']?>"><i class="bi bi-hand-thumbs-up"></i></button>
                                     <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "" : "d-none"); ?>" style="border: none; background: white;" <?php echo "onClick=\"dislikePost({$post['IdPost']})\" id=\"bttLikeFill{$post['IdPost']}\"" ?>><i class="bi bi-hand-thumbs-up-fill text-primary"></i></button>
                                     <span class="badge bg-secondary ms-4"><?php echo $post['NumberComment'] ?></span>
                                     <button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>
