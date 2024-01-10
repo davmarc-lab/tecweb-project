@@ -17,4 +17,8 @@ function getHomeDirectory() {
     return implode(DIRECTORY_SEPARATOR, array_slice($parts, 0, $index + 1));
 }
 
+function drawLinkUsername($username, $userId, $targetLink) {
+    return "<a href=\"$targetLink?user=$userId\">@$username</a>";
+}
+
 $HOME_DIR = getHomeDirectory() . DIRECTORY_SEPARATOR;

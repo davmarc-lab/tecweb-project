@@ -1,5 +1,6 @@
 <?php
 require_once("includes/database.php");
+require_once("includes/utils.php");
 session_start();
 $counter = 0;
 $ret = '';
@@ -8,12 +9,12 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     $ret .= '<div class="card border-0 mx-auto mt-2" style="max-width: 35rem;">';
 
     $authorId = $post["IdUser"];
-    $queryAuthor = "SELECT Username from utente WHERE IdUser = '$authorId';";
-    $authorUser = $dbh->execQuery($queryAuthor);
+    $queryAuthor = "SELECT * from utente WHERE IdUser = '$authorId';";
+    $authorUser = $dbh->execQuery($queryAuthor)[0];
     $queryNumberComments = "SELECT COUNT(*) AS NumeroCommenti FROM usercomment WHERE IdPost = {$post['IdPost']};";
     $numberComments = $dbh->execQuery($queryNumberComments);
 
-    $ret .= '<p>@' . $authorUser[0]["Username"] . '</p>';
+    $ret .= '<p>' . drawLinkUsername($authorUser["Username"], $authorId, "profile/profilePage.php") . '</p>';
     $ret .= '<img src="search/test.jpg" class="card-img-top img-fluid" alt="">';
     $ret .= '<div class="card-body">';
     $ret .= '<div class="row">';

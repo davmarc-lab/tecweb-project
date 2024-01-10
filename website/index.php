@@ -21,6 +21,7 @@
     }
     require_once("includes/database.php");
     include_once("includes/navbar.php");
+    include_once("includes/utils.php");
     $bar = new Navbar("./");
     $bar->drawNavbar("HomePage");
     $query = "SELECT post.*
@@ -40,10 +41,10 @@
                 ?>
                     <div class="card border-0 mx-auto mt-4" style="max-width: 35rem;">
                         <?php
-                        $queryAuthor = "SELECT Username from utente WHERE IdUser = {$post['IdUser']};";
-                        $authorUser = $dbh->execQuery($queryAuthor);
+                        $queryAuthor = "SELECT * from utente WHERE IdUser = {$post['IdUser']};";
+                        $authorUser = $dbh->execQuery($queryAuthor)[0];
                         ?>
-                        <p>@<?php echo $authorUser[0]["Username"] ?></p>
+                        <p><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
                         <img src="search/test.jpg" class="card-img-top img-fluid" alt="">
                         <div class="card-body">
                             <div class="row">
@@ -105,7 +106,7 @@
                         ?>
                             <li class="mt-3">
                                 <img src="immagine_profilo.jpg" alt="" width="40" height="40">
-                                <a href="#" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"] ?></a>
+                                <a href="profile/profilePage.php?user=<?php echo($suggested["IdUser"]); ?>" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"] ?></a>
                             </li>
                         <?php
                         }
