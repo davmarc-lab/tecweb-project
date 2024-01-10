@@ -1,10 +1,11 @@
 <?php
-    include_once("utils.php");
+include_once("utils.php");
 ?>
 <?php
 
 
-class Navbar {
+class Navbar
+{
     private $homePath;
     private $logout = "includes/logOut.php";
     private $homePage = "index.php";
@@ -12,16 +13,18 @@ class Navbar {
     private $notifPage = "notification/notification.php";
     private $newPostPage = "post/newPost.php";
     private $profilePage = "profile/profilePage.php";
-    
-    public function __construct($homePath) 
+    private $scriptThemePath = "includes/themeScript.js";
+
+    public function __construct($homePath)
     {
         $this->homePath = $homePath;
     }
-    
+
     public function drawNavbar($pageName)
     {
-        ?>
+?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+        <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
         <nav class="navbar sticky-top navbar-expand-md bg-success bg-gradient text-white">
             <div class="container-fluid">
                 <a class="navbar-brand text-white fs-2 p-2" href="#"><?php echo ($pageName); ?></a>
@@ -36,49 +39,54 @@ class Navbar {
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item p-2">
-                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover"href="<?php echo(($this->homePath) . ($this->homePage)); ?>">
+                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo (($this->homePath) . ($this->homePage)); ?>">
                                     <i class="bi bi-house mb-2" aria-hidden="true"></i>
                                     Home
                                 </a>
                             </li>
                             <li class="nav-item p-2">
-                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo(($this->homePath) . ($this->searchPage)); ?>">
+                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo (($this->homePath) . ($this->searchPage)); ?>">
                                     <i class="bi bi-search mb-2"></i>
                                     Search
                                 </a>
                             </li>
                             <li class="nav-item p-2">
-                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo(($this->homePath) . ($this->notifPage)); ?>">
+                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo (($this->homePath) . ($this->notifPage)); ?>">
                                     <i class="bi bi-bell mb-2"></i>
                                     Notification
                                 </a>
                             </li>
                             <li class="nav-item p-2">
-                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo(($this->homePath) . ($this->newPostPage)); ?>">
+                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo (($this->homePath) . ($this->newPostPage)); ?>">
                                     <i class="bi bi-plus-circle mb-2"></i>
                                     New Post
                                 </a>
                             </li>
                             <li class="nav-item p-2">
-                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo(($this->homePath) . ($this->profilePage)); ?>">
+                                <a class="icon-link icon-link-hover link-dark link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo (($this->homePath) . ($this->profilePage)); ?>">
                                     <i class="bi bi-person-fill mb-2"></i>
                                     Profile
                                 </a>
                             </li>
                             <li class="nav-item p-2">
-                                <form action="<?php echo $this->homePath . $this->logout;?>">
+                                <form action="<?php echo $this->homePath . $this->logout; ?>">
                                     <button type="submit" style="background: none; border: none;">
                                         <i class="bi bi-box-arrow-right"></i>
                                         Log out
                                     </button>
                                 </form>
                             </li>
+                            <li class="nav-item p-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" role="switch" id="switchTheme" onclick="changeTheme()">
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
-    <?php
+<?php
     }
 };
 
