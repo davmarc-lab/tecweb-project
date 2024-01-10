@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="profile_script/followScript.js"></script>
 
     <title>Profile</title>
 </head>
@@ -19,16 +21,16 @@
         // login not done
         header("location:../login/login.php");
     }
-    
+
     $showEdit = true;
-    $userId = $_SESSION["userId"];
-    if (isset($_GET["user"]) && ($userId != $_GET["user"])) {
-        $userId = $_GET["user"];
+    $dstUser = $_SESSION["userId"];
+    if (isset($_GET["user"]) && ($dstUser != $_GET["user"])) {
+        $dstUser = $_GET["user"];
         $showEdit = false;
     }
 
-    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
-    $posts = $dbh->execQuery("SELECT * FROM post WHERE post.IdUser=$userId");
+    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$dstUser")[0];
+    $posts = $dbh->execQuery("SELECT * FROM post WHERE post.IdUser=$dstUser");
 
     include_once("../includes/navbar.php");
     $navbar = new Navbar("../");
@@ -41,7 +43,22 @@
                     <section>
                         <section class="py-3">
                             <i class="bi bi-person-fill fs-1"></i>
-                            <a href="editProfile.php" role="button" class="btn btn-outline-success d-md-none">Edit</a>
+                            <?php
+                            if ($showEdit) {
+                            ?>
+                                <a href="editProfile.php" role="button" class="btn btn-outline-success d-md-none">Edit</a>
+                            <?php
+                            } else {
+                                // checks if the user follow.
+                                $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
+                                        AND IdDst = $dstUser";
+                                $res = $dbh->execQuery($query);
+                            ?>
+                                <a id="followButton" onclick="followUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser); ?>)" role="button" class="btn btn-outline-primary <?php echo(sizeof($res) != 0 ? "d-none" : "") ?>">Follow</a>
+                                <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser); ?>)" role="button" class="btn btn-outline-primary <?php echo(sizeof($res) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                            <?php
+                            }
+                            ?>
                         </section>
                         <section class="pb-5">
                             <ul class="list-group">
@@ -68,13 +85,13 @@
                     </section>
                 </div>
                 <?php
-                    if ($showEdit) {
+                if ($showEdit) {
                 ?>
-                <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
-                    <section>
-                        <?php include_once("editProfile.php"); ?>
-                    </section>
-                </div>
+                    <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
+                        <section>
+                            <?php include_once("editProfile.php"); ?>
+                        </section>
+                    </div>
                 <?php
                 }
                 ?>
