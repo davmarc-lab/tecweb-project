@@ -59,7 +59,7 @@
                         </div>
                         <?php
                         $queryComments = "SELECT * FROM usercomment WHERE IdPost = {$post['IdPost']}
-                                ORDER BY IdComment DESC LIMIT 3;";
+                                ORDER BY IdComment ASC LIMIT 3;";
                         $comments = $dbh->execQuery($queryComments);
                         foreach ($comments as $comment) {
                             $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
