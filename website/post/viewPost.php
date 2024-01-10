@@ -5,7 +5,7 @@
 require_once("../includes/database.php");
 
 // fake post
-$viewPostId = 14;
+$viewPostId = 19;
 
 $query = "SELECT * FROM post WHERE IdPost = $viewPostId;";
 $infoPost = $dbh->execQuery($query)[0];
@@ -56,9 +56,10 @@ $infoPost = $dbh->execQuery($query)[0];
                     $query = "SELECT * FROM media WHERE IdMedia = $previewId;";
                     $previewRes = $dbh->execQuery($query)[0];
                     $previewPath = $previewRes["FilePath"];
+                    print_r($previewPath);
                     $previewName = $previewRes["FileName"];
                 ?>
-                    <img class="img-fluid d-flex" style="width: 200px; height: 200px;" src="<?php echo ($previewPath); ?>" alt="File Preview">
+                    <img class="img-fluid d-flex" style="width: 200px; height: 200px;" src="<?php echo ($previewPath); ?>" alt="File Preview Image">
                 <?php
                 }
 
