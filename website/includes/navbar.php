@@ -67,7 +67,7 @@ class Navbar {
                             </li>
                             <li class="nav-item p-2">
                                 <form action="<?php echo $this->homePath . $this->logout;?>">
-                                    <button type="submit">
+                                    <button type="submit" style="background: none; border: none;">
                                         <i class="bi bi-box-arrow-right"></i>
                                         Log out
                                     </button>
