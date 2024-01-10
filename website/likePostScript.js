@@ -18,17 +18,18 @@ function likePost(idPost, idUser) {
     });
 }
 
-function dislikePost(id) {
-    console.log(id);
+function dislikePost(idPost, idUser) {
+    console.log(idPost);
     $.ajax({
         url: "dislikePostQuery.php",
         type: "POST",
         data: {
-            postId: id
+            postId: idPost,
+            userId: idUser
         },
         success: function(response) {
-            var idLike = "bttLike" + id;
-            var idLikeFill = "bttLikeFill" + id;
+            var idLike = "bttLike" + idPost;
+            var idLikeFill = "bttLikeFill" + idPost;
             console.log("Success:", response);
             document.getElementById(idLike).classList.remove('d-none');
             document.getElementById(idLikeFill).classList.add('d-none');

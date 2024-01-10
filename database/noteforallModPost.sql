@@ -292,8 +292,7 @@ ALTER TABLE `media`
 --
 ALTER TABLE `notification`
   ADD PRIMARY KEY (`IdNotification`),
-  ADD KEY `IdUser` (`IdUser`),
-  ADD KEY `IdTarget` (`IdTarget`);
+  ADD KEY `IdUser` (`IdUser`);
 
 --
 -- Indexes for table `post`
@@ -397,10 +396,7 @@ ALTER TABLE `follow`
 -- Constraints for table `notification`
 --
 ALTER TABLE `notification`
-  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`IdUser`) REFERENCES `utente` (`IdUser`),
-  ADD CONSTRAINT `notification_ibfk_2` FOREIGN KEY (`IdTarget`) REFERENCES `follow` (`Id`),
-  ADD CONSTRAINT `notification_ibfk_3` FOREIGN KEY (`IdTarget`) REFERENCES `vote` (`IdVote`),
-  ADD CONSTRAINT `notification_ibfk_4` FOREIGN KEY (`IdTarget`) REFERENCES `usercomment` (`IdComment`);
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`IdUser`) REFERENCES `utente` (`IdUser`);
 
 --
 -- Constraints for table `post`
