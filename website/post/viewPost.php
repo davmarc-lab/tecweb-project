@@ -59,6 +59,7 @@ $infoPost = $dbh->execQuery($query)[0];
                     $previewRes = $dbh->execQuery($query)[0];
                     $previewPath = $previewRes["FilePath"];
                     $previewName = $previewRes["FileName"];
+                    $previewPath = "../" . $previewPath;
                 ?>
                     <img class="img-fluid d-flex" style="width: 200px; height: 200px;" src="<?php echo ($previewPath); ?>" alt="File Preview Image">
                 <?php

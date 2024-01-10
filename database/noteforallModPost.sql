@@ -72,13 +72,13 @@ CREATE TABLE `media` (
 
 INSERT INTO `media` (`IdMedia`, `FileName`, `FilePath`, `Extension`) VALUES
 (1, 'ciao', '', ''),
-(10, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL),
-(11, 'wp_coding.png', '/www/Project/website/uploads/wp_coding.png', NULL),
-(12, 'grub_background.jpg', '/www/Project/website/uploads/grub_background.jpg', NULL),
-(13, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL),
-(14, 'wp_coding.png', '/www/Project/website/uploads/wp_coding.png', NULL),
-(15, 'wp_car.png', '/www/Project/website/uploads/wp_car.png', NULL),
-(16, 'wp_codequote.jpg', '/www/Project/website/uploads/wp_codequote.jpg', NULL),
+(10, 'wp_codequote.jpg', './uploads/wp_codequote.jpg', NULL),
+(11, 'wp_coding.png', './uploads/wp_coding.png', NULL),
+(12, 'grub_background.jpg', './uploads/grub_background.jpg', NULL),
+(13, 'wp_codequote.jpg', './uploads/wp_codequote.jpg', NULL),
+(14, 'wp_coding.png', './uploads/wp_coding.png', NULL),
+(15, 'wp_car.png', './uploads/wp_car.png', NULL),
+(16, 'wp_codequote.jpg', './uploads/wp_codequote.jpg', NULL),
 (17, 'gl.h', '../uploads/gl.h', NULL),
 (18, 'wp_coding.png', '../uploads/wp_coding.png', NULL);
 

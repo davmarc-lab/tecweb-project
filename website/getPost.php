@@ -11,17 +11,17 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     $authorId = $post["IdUser"];
     $queryAuthor = "SELECT * from utente WHERE IdUser = '$authorId';";
     $authorUser = $dbh->execQuery($queryAuthor)[0];
-    $queryNumberComments = "SELECT COUNT(*) AS NumeroCommenti FROM usercomment WHERE IdPost = {$post['IdPost']};";
-    $numberComments = $dbh->execQuery($queryNumberComments);
+    $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
+    $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
 
     $ret .= '<p>' . drawLinkUsername($authorUser["Username"], $authorId, "profile/profilePage.php") . '</p>';
-    $ret .= '<img src="search/test.jpg" class="card-img-top img-fluid" alt="">';
+    $ret .= '<img src="' . $previewPath . '" class="card-img-top img-fluid" alt="">';
     $ret .= '<div class="card-body">';
     $ret .= '<div class="row">';
     $ret .= '<div class="col">';
     $ret .= '<button type="button" class="btn btn-lg ' . (getClass($dbh, $post['IdPost']) ? "d-none" : "") . '" style="border: none; background: white;" onClick="likePost(' . $post['IdPost'] . ')" id="bttLike' . $post['IdPost'] . '"><i class="bi bi-hand-thumbs-up"></i></button>';
     $ret .= '<button type="button" class="btn btn-lg ' . (getClass($dbh, $post['IdPost']) ? "" : "d-none") . '" style="border: none; background: white;" onClick="dislikePost(' . $post['IdPost'] . ')" id="bttLikeFill' . $post['IdPost'] . '"><i class="bi bi-hand-thumbs-up-fill"></i></button>';
-    $ret .= '<span class="badge bg-secondary ms-4">' . $numberComments[0]['NumeroCommenti'] . '</span>';
+    $ret .= '<span class="badge bg-secondary ms-4">' . $post['NumberComment'] . '</span>';
     $ret .= '<button type="button" class="btn btn-lg" style="border: none; background: white;"><i class="bi bi-chat-left-text"></i></button>';
     $ret .= '<h5 class="card-title">' . $post["Title"] . '</h5>';
     $ret .= '<p class="card-text">' . $post["Description"] . '</p>';

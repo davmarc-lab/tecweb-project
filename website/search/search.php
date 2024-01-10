@@ -36,7 +36,7 @@
             <?php
             $query = "SELECT * FROM post ORDER BY RAND() LIMIT 9;";
             $res = $dbh->execQuery($query);
-            printPost($res);
+            printPost($res, $dbh);
             ?>
         </div>
     <?php
@@ -48,7 +48,7 @@
             $searchKey = $_POST['searchText'];
             $query = "SELECT * FROM post WHERE Title LIKE '%$searchKey%' ORDER BY NumberVote DESC;";
             $res = $dbh->execQuery($query);
-            printPost($res);
+            printPost($res, $dbh);
             ?>
         </div>
     <?php
@@ -61,17 +61,20 @@
 </html>
 
 <?php
-function printPost($res)
+function printPost($res, $dbh)
 {
     $index = 0;
     foreach ($res as $post) {
+        $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
+        $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
+        $previewPath = "../" . $previewPath;
         if ($index == 0) {
             echo "<div class=\"row mt-5 d-flex justify-content-center align-items-center text-center\">";
         }
 ?>
         <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
-                <img src="test.jpg" class="card-img-top" alt="Image">
+                <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $post['Title']; ?></h5>
                     <p class="card-text"><?php echo $post['Description']; ?></p>

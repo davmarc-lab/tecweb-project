@@ -68,9 +68,13 @@
                             </ul>
                         </section>
                         <section>
-                            <?php foreach ($posts as $userPost) { ?>
+                            <?php foreach ($posts as $userPost) { 
+                                $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$userPost['IdPreview']};";
+                                $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
+                                $previewPath = "../" . $previewPath;
+                                ?>
                                 <div class="card border-1 mt-2 p-2" style="width: auto;">
-                                    <img src="../search/test.jpg" class="card-img-top rounded" alt="Image">
+                                    <img src="<?php echo $previewPath?>" class="card-img-top rounded" alt="Image">
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             <?php echo $userPost["Title"]; ?>

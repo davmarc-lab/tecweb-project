@@ -43,9 +43,12 @@
                         <?php
                         $queryAuthor = "SELECT * from utente WHERE IdUser = {$post['IdUser']};";
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
+                        $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
+                        $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
+                        //$previewPath = substr($previewPath, 2);
                         ?>
                         <p><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
-                        <img src="search/test.jpg" class="card-img-top img-fluid" alt="">
+                        <img src="<?php echo $previewPath ?>" class="card-img-top img-fluid" alt="">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
