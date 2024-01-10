@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 
     <title>Profile</title>
 </head>
+
 <body>
     <?php
     require_once("../includes/database.php");
@@ -17,7 +19,14 @@
         // login not done
         header("location:../login/login.php");
     }
+    
+    $showEdit = true;
     $userId = $_SESSION["userId"];
+    if (isset($_GET["user"]) && ($userId != $_GET["user"])) {
+        $userId = $_GET["user"];
+        $showEdit = false;
+    }
+
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
     $posts = $dbh->execQuery("SELECT * FROM post WHERE post.IdUser=$userId");
 
@@ -37,36 +46,43 @@
                         <section class="pb-5">
                             <ul class="list-group">
                                 <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
-                                <li class="my-2"><strong><?php echo $user["Name"]." ".$user["Surname"]; ?></strong></li>
+                                <li class="my-2"><strong><?php echo $user["Name"] . " " . $user["Surname"]; ?></strong></li>
                                 <li class="my-2"><?php echo $user["Description"]; ?></li>
                             </ul>
                         </section>
                         <section>
-                            <?php foreach($posts as $userPost) { ?>
-                            <div class="card border-1 mt-2 p-2" style="width: auto;">
-                                <img src="../search/test.jpg" class="card-img-top rounded" alt="Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <?php echo $userPost["Title"]; ?>
-                                    </h5>
-                                    <p class="card-text">
-                                        <?php echo $userPost["Description"]; ?>
-                                    </p>
+                            <?php foreach ($posts as $userPost) { ?>
+                                <div class="card border-1 mt-2 p-2" style="width: auto;">
+                                    <img src="../search/test.jpg" class="card-img-top rounded" alt="Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <?php echo $userPost["Title"]; ?>
+                                        </h5>
+                                        <p class="card-text">
+                                            <?php echo $userPost["Description"]; ?>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
                             <?php } ?>
                         </section>
                     </section>
                 </div>
+                <?php
+                    if ($showEdit) {
+                ?>
                 <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
                     <section>
                         <?php include_once("editProfile.php"); ?>
                     </section>
                 </div>
+                <?php
+                }
+                ?>
             </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
+
 </html>
