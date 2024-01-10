@@ -83,6 +83,18 @@ $infoPost = $dbh->execQuery($query)[0];
             </div>
             <!-- Likes, comment bar -->
             <div class="row">
+                <?php
+                $queryComments = "SELECT * FROM usercomment WHERE IdPost = {$infoPost['IdPost']}
+                                ORDER BY IdComment ASC;";
+                $comments = $dbh->execQuery($queryComments);
+                foreach ($comments as $comment) {
+                    $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
+                    $userComment = $dbh->execQuery($queryUserComment);
+                ?>
+                    <p>@<?php echo $userComment[0]['Username'] ?>: <?php echo $comment['CommentText'] ?></p>
+                <?php
+                }
+                ?>
                 <form action="../addComment.php" method="POST">
                     <div class="form-group">
                         <label for="textAreaComment" hidden>Insert your comment here</label>
