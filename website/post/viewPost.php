@@ -4,8 +4,10 @@
 <?php
 require_once("../includes/database.php");
 
-// fake post
-$viewPostId = 19;
+if (!isset($_GET["id"])) {
+    header("location: ../index.php");
+}
+$viewPostId = $_GET["id"];
 
 $query = "SELECT * FROM post WHERE IdPost = $viewPostId;";
 $infoPost = $dbh->execQuery($query)[0];
@@ -56,7 +58,6 @@ $infoPost = $dbh->execQuery($query)[0];
                     $query = "SELECT * FROM media WHERE IdMedia = $previewId;";
                     $previewRes = $dbh->execQuery($query)[0];
                     $previewPath = $previewRes["FilePath"];
-                    print_r($previewPath);
                     $previewName = $previewRes["FileName"];
                 ?>
                     <img class="img-fluid d-flex" style="width: 200px; height: 200px;" src="<?php echo ($previewPath); ?>" alt="File Preview Image">

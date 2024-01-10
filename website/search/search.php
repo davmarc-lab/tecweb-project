@@ -75,7 +75,9 @@ function printPost($res)
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $post['Title']; ?></h5>
                     <p class="card-text"><?php echo $post['Description']; ?></p>
-                    <button class="btn btn-primary">More</button>
+                    <a href="../post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>">
+                        <button class="btn btn-primary">More</button>
+                    </a>
                 </div>
             </div>
         </div>
