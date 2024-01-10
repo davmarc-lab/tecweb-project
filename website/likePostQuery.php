@@ -9,7 +9,10 @@ $dbh->execQuery($query);
 $query = "UPDATE post SET NumberVote = NumberVote + 1 WHERE IdPost = '{$_POST['postId']}';";
 $dbh->execQuery($query);
 
+$query = "SELECT Username from utente WHERE IdUser = {$_SESSION['userId']};";
+$username = $dbh->execQuery($query)[0]["Username"];
+
 $tmp = NotificationType::LIKE->value;
-$query = "INSERT INTO notification (Type, Description, IsRead, IdUser) VALUES ('$tmp', '{$_SESSION['userId']} liked your photo', 0, {$_POST['userId']});";
+$query = "INSERT INTO notification (Type, Description, IsRead, IdUser) VALUES ('$tmp', '{$username} liked your photo', 0, {$_POST['userId']});";
 $dbh->execQuery($query);
 ?>
