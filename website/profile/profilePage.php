@@ -38,8 +38,19 @@
     ?>
     <div class="container-fluid overflow-hidden px-0">
         <main class="p-2">
+        <?php
+        if ($showEdit) {
+        ?>
             <div class="row justify-content-between">
                 <div class="overflow-y-auto overflow-x-hidden col-md-6 col-12">
+        <?php
+        } else {
+        ?>
+            <div class="row justify-content-center">
+                <div class="overflow-y-auto overflow-x-hidden col-10">
+        <?php
+        }
+        ?>
                     <section>
                         <section class="py-3">
                             <i class="bi bi-person-fill fs-1"></i>
