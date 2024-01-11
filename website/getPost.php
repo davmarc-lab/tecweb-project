@@ -6,7 +6,7 @@ $counter = 0;
 $ret = '';
 
 foreach ($_SESSION['homePagePosts'] as $post) {
-    $ret .= '<div class="card border-0 mx-auto mt-2" style="max-width: 35rem;">';
+    $ret .= '<div class="card border border-5 border-primary-subtle rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div' . $post['IdPost'] . '>';
 
     $authorId = $post["IdUser"];
     $queryAuthor = "SELECT * from utente WHERE IdUser = '$authorId';";
@@ -39,6 +39,15 @@ foreach ($_SESSION['homePagePosts'] as $post) {
         $userComment = $dbh->execQuery($queryUserComment);
         $ret .= '<p class="border border-success rounded p-1">@' . $userComment[0]['Username'] . ':' . $comment['CommentText'] . '</p>';
     }
+    $ret .= '<form action="addComment.php" method="POST">';
+    $ret .= '<label for="textAreaComment" hidden>Insert your comment here</label>
+            <textarea class="form-control" id="textAreaComment" rows="3" placeholder="Add your comment" name="commentText"></textarea>
+            <label for="submitComment" hidden>Publish your comment</label>
+            <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">';
+    $ret .= '<input type="hidden" name="idPost" value="' . $post['IdPost'] . '">';
+    $ret .= '<input type="hidden" name="locationTo" value="index.php#' . $post['IdPost'] . '">';
+    $ret .= '</div>';
+    $ret .= '</form>';
     $ret .= '</div>';
 
     array_shift($_SESSION['homePagePosts']);
