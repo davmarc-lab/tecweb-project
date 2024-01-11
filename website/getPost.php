@@ -34,7 +34,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     foreach ($comments as $comment) {
         $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
         $userComment = $dbh->execQuery($queryUserComment);
-        $ret .= '<p>@' . $userComment[0]['Username'] . ':' . $comment['CommentText'] . '</p>';
+        $ret .= '<p class="border border-success rounded p-1">@' . $userComment[0]['Username'] . ':' . $comment['CommentText'] . '</p>';
     }
     $ret .= '</div>';
 
