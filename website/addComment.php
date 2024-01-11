@@ -7,5 +7,5 @@ $query = "INSERT INTO usercomment (CommentText, IdPost, IdUser) VALUES ('{$comme
 $dbh->execQuery($query);
 $queryInc = "UPDATE post SET NumberComment = NumberComment + 1 WHERE IdPost = '{$idPost}';";
 $dbh->execQuery($queryInc);
-header("Location:index.php");
+header("Location:" . $_POST['locationTo']);
 ?>

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Thasadith:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="likePostScript.js"></script>
+    <script src="redirectToPost.js" defer></script>
     <title>NoteForAll</title>
 </head>
 
@@ -39,7 +40,7 @@
                 $counter = 0;
                 foreach ($res as $post) {
                 ?>
-                    <div class="card border-0 mx-auto mt-4" style="max-width: 35rem;">
+                    <div class="card border border-5 border-primary-subtle rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
                         <?php
                         $queryAuthor = "SELECT * from utente WHERE IdUser = {$post['IdUser']};";
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
@@ -59,7 +60,7 @@
                                     <a href="post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>" class="float-end">
                                         <button class="btn btn-primary">More</button>
                                     </a>
-                                    <h5 class="card-title"><?php echo $post["Title"] ?></h5>
+                                    <h5 class="card-title"><?php echo $post["Title"] ?></h5>        
                                     <p class="card-text"><?php echo $post["Description"] ?></p>
                                 </div>
                             </div>
@@ -72,7 +73,7 @@
                             $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
                             $userComment = $dbh->execQuery($queryUserComment);
                         ?>
-                            <p class="border border-success rounded p-1">@<?php echo $userComment[0]['Username'] ?>: <?php echo $comment['CommentText'] ?></p>
+                            <p class="border border-success rounded-pill p-1">@<?php echo $userComment[0]['Username'] ?>: <?php echo $comment['CommentText'] ?></p>
                         <?php
                         }
                         ?>
@@ -83,6 +84,7 @@
                                 <label for="submitComment" hidden>Publish your comment</label>
                                 <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
                                 <input type="hidden" name="idPost" value="<?php echo $post['IdPost']; ?>">
+                                <input type="hidden" name="locationTo" value="index.php#<?php echo $post['IdPost']?>">
                             </div>
                         </form>
                     </div>
