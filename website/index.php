@@ -83,6 +83,7 @@
                                 <label for="submitComment" hidden>Publish your comment</label>
                                 <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
                                 <input type="hidden" name="idPost" value="<?php echo $post['IdPost']; ?>">
+                                <input type="hidden" name="locationTo" value="index.php">
                             </div>
                         </form>
                     </div>

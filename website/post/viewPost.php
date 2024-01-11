@@ -103,6 +103,7 @@ $infoPost = $dbh->execQuery($query)[0];
                         <label for="submitComment" hidden>Publish your comment</label>
                         <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
                         <input type="hidden" name="idPost" value="<?php echo $infoPost['IdPost']; ?>">
+                        <input type="hidden" name="locationTo" value="post/viewPost.php?id=<?php echo $viewPostId; ?>">
                     </div>
                 </form>
             </div>
