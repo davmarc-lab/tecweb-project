@@ -53,6 +53,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
+                                    <span class="badge bg-secondary ms-4"><?php echo $post['NumberVote'] ?></span>
                                     <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "d-none" : ""); ?>" style="border: none;" onclick="likePost('<?php echo $post['IdPost'] ?>','<?php echo $post['IdUser'] ?>')" id="bttLike<?php echo $post['IdPost'] ?>"><i class="bi bi-hand-thumbs-up"></i></button>
                                     <button type="button" class="btn btn-lg <?php echo (getClass($dbh, $post['IdPost']) ? "" : "d-none"); ?>" style="border: none;" onclick="dislikePost('<?php echo $post['IdPost'] ?>','<?php echo $post['IdUser'] ?>')" id="bttLikeFill<?php echo $post['IdPost'] ?>"><i class="bi bi-hand-thumbs-up-fill text-primary"></i></button>
                                     <span class="badge bg-secondary ms-4"><?php echo $post['NumberComment'] ?></span>

@@ -14,6 +14,7 @@ function likePost(idPost, idUser) {
             console.log("Id: " + idLike);
             document.getElementById(idLike).classList.add('d-none');
             document.getElementById(idLikeFill).classList.remove('d-none');
+            location.reload();
         },
     });
 }
@@ -33,6 +34,7 @@ function dislikePost(idPost, idUser) {
             console.log("Success:", response);
             document.getElementById(idLike).classList.remove('d-none');
             document.getElementById(idLikeFill).classList.add('d-none');
+            location.reload();
         },
     });
 }
