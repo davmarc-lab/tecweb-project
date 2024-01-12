@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Creato il: Gen 12, 2024 alle 13:51
+-- Creato il: Gen 12, 2024 alle 16:52
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -82,8 +82,14 @@ INSERT INTO `media` (`IdMedia`, `FileName`, `FilePath`, `Extension`) VALUES
 (14, 'wp_coding.png', './uploads/wp_coding.png', NULL),
 (15, 'wp_car.png', './uploads/wp_car.jpg', NULL),
 (16, 'wp_codequote.jpg', './uploads/wp_codequote.jpg', NULL),
-(17, 'gl.h', '../uploads/gl.h', NULL),
-(18, 'wp_coding.png', '../uploads/wp_coding.png', NULL);
+(17, 'gl.h', './uploads/gl.h', NULL),
+(18, 'wp_coding.png', './uploads/wp_coding.png', NULL),
+(19, 'immagine_profilo.jpg', './uploads/immagine_profilo.jpg', NULL),
+(20, 'ExitTask.png', './uploads/ExitTask.png', NULL),
+(21, 'sand.png', './uploads/sand.png', NULL),
+(22, 'tree.png', './uploads/tree.png', NULL),
+(23, 'wall.png', './uploads/wall.png', NULL),
+(24, 'New Piskel (1).png', './uploads/New Piskel (1).png', NULL);
 
 -- --------------------------------------------------------
 
@@ -282,6 +288,7 @@ CREATE TABLE `utente` (
   `Name` varchar(100) NOT NULL,
   `Surname` varchar(100) NOT NULL,
   `NumberFollower` int(11) NOT NULL,
+  `NumberPost` int(11) NOT NULL,
   `Username` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `Password` varchar(255) NOT NULL,
@@ -293,18 +300,28 @@ CREATE TABLE `utente` (
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`IdUser`, `Name`, `Surname`, `NumberFollower`, `Username`, `Email`, `Password`, `Description`, `IdMedia`) VALUES
-(2, 'admin', 'super', 1, 'admin', 'admin@nfa.com', '$2y$10$pX.RsB/uooJRrd0KID2BRezUAeZZzRiGMnjPbHfp6ZZ306enNcxJy', 'i\'m the captain now', NULL),
-(3, 'Mario', 'Rossi', 0, 'marros', 'mario.rossi@gmail.com', '$2y$10$m332ogYh5M9IFR4UYkdCIOhp1F1IetMLhjJGB3TYsUwoisgNEqfIi', NULL, NULL),
-(4, 'Riccardo', 'Penazzi', 2, 'riki17', 'rp@note.com', '$2y$10$3w5jlZ/8Q2kHYcsfg/co6uhIV5Oi2v9BYJBU7re3/OO07y.RKtcyu', NULL, NULL),
-(6, 'Davide', 'Marchetti', 0, 'davmarc', 'davide.marchetti6@studio.unibo.it', '$2y$10$5AhtSA..GFsbdymHMDvAOu6.akHphl62/4g4yva.Kg1KIaGxkd9qO', NULL, NULL),
-(7, 'Filippo', 'Pracucci', 1, 'filprac', 'filippo.pracucci@studio.unibo.it', '$2y$10$8gv5SAgVq0dBH9lUM9Fy9udWWpUMIjXlgBPpjMBQx0sy7FjU3.wLq', NULL, NULL),
-(8, 'Luigi', 'Bianchi', 0, 'luibia', 'luigi.bianchi@nfa.com', '$2y$10$4xUD3Mog7NStE.Z94sfSdOpSe.PEKZMuvArFw7gxc1hb7qSzPuFMm', NULL, NULL),
-(9, 'Lisa', 'Simpson', 1, 'lisasimp', 'lisa.simpson@springfield.com', '$2y$10$9wuiYeOHnKkNN7dpb32Aa.F6FZsap7BGi65z50BD1G33bw187j5Zi', NULL, NULL),
-(10, 'Bart', 'Simposon', 1, 'bartsimp', 'bart.simpson@springfield.com', '$2y$10$4un/oGXOIOXRqBjzNFdVoOz72x4KDL47iHldAhcGM89cdk1EEzlUi', NULL, NULL),
-(11, 'Federica', 'Neri', 0, 'fedeneri', 'fedeneri@email.com', '$2y$10$4nNzcZRJqgoruVNp8ypB4O2hz.s4LyWLnT.VRa6aLpl7BOmf7HKpK', NULL, NULL),
-(12, 'Ludovica', 'Pellegrini', 0, 'ludopelle', 'ludopelle@email.com', '$2y$10$aZjdTwGCz1svh56wWRd7ue0Z7DqM5ZVgnVYYlAVODeIWfLMoDH1wC', NULL, NULL),
-(13, 'Giacomo', 'Verdi', 0, 'giaverdi', 'giaverdi@email.com', '$2y$10$EHY59h7MzKcOFgeIIiyb/O9I64X9a9epBhO0rlPYcBnxpKPVienLK', NULL, NULL);
+INSERT INTO `utente` (`IdUser`, `Name`, `Surname`, `NumberFollower`, `NumberPost`, `Username`, `Email`, `Password`, `Description`, `IdMedia`) VALUES
+(2, 'admin', 'super', 1, 0, 'admin', 'admin@nfa.com', '$2y$10$pX.RsB/uooJRrd0KID2BRezUAeZZzRiGMnjPbHfp6ZZ306enNcxJy', 'i\'m the captain now', 19),
+(3, 'Mario', 'Rossi', 0, 0, 'marros', 'mario.rossi@gmail.com', '$2y$10$m332ogYh5M9IFR4UYkdCIOhp1F1IetMLhjJGB3TYsUwoisgNEqfIi', NULL, 19),
+(4, 'Riccardo', 'Penazzi', 2, 0, 'riki17', 'rp@note.com', '$2y$10$3w5jlZ/8Q2kHYcsfg/co6uhIV5Oi2v9BYJBU7re3/OO07y.RKtcyu', NULL, 19),
+(6, 'Davide', 'Marchetti', 0, 0, 'davmarc', 'davide.marchetti6@studio.unibo.it', '$2y$10$5AhtSA..GFsbdymHMDvAOu6.akHphl62/4g4yva.Kg1KIaGxkd9qO', NULL, 19),
+(7, 'Filippo', 'Pracucci', 1, 0, 'filprac', 'filippo.pracucci@studio.unibo.it', '$2y$10$8gv5SAgVq0dBH9lUM9Fy9udWWpUMIjXlgBPpjMBQx0sy7FjU3.wLq', NULL, 19),
+(8, 'Luigi', 'Bianchi', 0, 0, 'luibia', 'luigi.bianchi@nfa.com', '$2y$10$4xUD3Mog7NStE.Z94sfSdOpSe.PEKZMuvArFw7gxc1hb7qSzPuFMm', NULL, 19),
+(9, 'Lisa', 'Simpson', 1, 0, 'lisasimp', 'lisa.simpson@springfield.com', '$2y$10$9wuiYeOHnKkNN7dpb32Aa.F6FZsap7BGi65z50BD1G33bw187j5Zi', NULL, 19),
+(10, 'Bart', 'Simposon', 1, 0, 'bartsimp', 'bart.simpson@springfield.com', '$2y$10$4un/oGXOIOXRqBjzNFdVoOz72x4KDL47iHldAhcGM89cdk1EEzlUi', NULL, 19),
+(11, 'Federica', 'Neri', 0, 0, 'fedeneri', 'fedeneri@email.com', '$2y$10$4nNzcZRJqgoruVNp8ypB4O2hz.s4LyWLnT.VRa6aLpl7BOmf7HKpK', NULL, 19),
+(12, 'Ludovica', 'Pellegrini', 0, 0, 'ludopelle', 'ludopelle@email.com', '$2y$10$aZjdTwGCz1svh56wWRd7ue0Z7DqM5ZVgnVYYlAVODeIWfLMoDH1wC', NULL, 19),
+(13, 'Giacomo', 'Verdi', 0, 0, 'giaverdi', 'giaverdi@email.com', '$2y$10$EHY59h7MzKcOFgeIIiyb/O9I64X9a9epBhO0rlPYcBnxpKPVienLK', NULL, 19),
+(14, 'Gianni', 'Gialli', 0, 0, 'giangial', 'giannigialli@email.com', '$2y$10$BPojrnHq72Qn8xkn180iyO29V4Kn0MG1m8e0NuqjGbJcxUH7kxeji', NULL, 19),
+(15, 'Giulia', 'Violi', 0, 0, 'giuvioli', 'giuvioli@email.com', '$2y$10$UEHRr6gyyIRndRJrJv9xBuEU9wviFr/.z9ee9O7IBnBqVjw9V86G6', NULL, 19),
+(16, 'Elisa', 'Arancioni', 0, 0, 'eliaranc', 'eliarancioni@email.com', '$2y$10$g0R5b.81DSK1nXFlTHeUvOLh5QK1Z9e0HDM1HSf09RSmSqiousq.a', NULL, 19),
+(28, 'a', 'a', 0, 0, 'ssasssaax', 'csksks@jss', '$2y$10$6ztD/MdiuDRIRj6myw0VXuycM/5fSSOQ1fPo5OZ2m99mp51vt06Ta', NULL, 19),
+(29, 'Devis', 'Mari', 0, 0, 'demar', 'devismari@email.com', '$2y$10$egxwlKMrIyLizIEij780oeqTzvoES6EKmmysezW2LzyddspwMAPla', NULL, 20),
+(30, 'Giacomo', 'Spina', 0, 0, 'giaspina', 'giaspina@email.com', '$2y$10$KmK94gpuvjjrf/.PsZF9ROoJ2c4XuEDnuxmlkAYB0ORTmQMQYy.zi', NULL, 22),
+(31, 'Annalisa', 'Libro', 0, 0, 'annalibro', 'annalibro@email.com', '$2y$10$0xwnr6wXvBmMARoPXbPoiuGNHT5rAnNU/Ow6JHfLSnSCeImAfl5aW', NULL, 22),
+(32, 'Giovanni', 'Bianchi', 0, 0, 'giobia', 'giobia@email.com', '$2y$10$v.xjgQf52Zge8CydcwjrL.Cha.v.iuoPg4BBHfpxjoDaDvouSMpKi', NULL, 23),
+(33, 'Alberto', 'Tastiera', 0, 0, 'albitast', 'albitast@email.com', '$2y$10$.O1OrmWK26T8Ntoe5wz6NumMMf2AmKYAjswlPM1gOL89lRok4VdFe', NULL, 24),
+(35, 'Francesca', 'Pianta', 0, 0, 'frapianta', 'frapianta@email.com', '$2y$10$gHnTztZ85BQphNHF61caoOssyJLiXzjS2ZzJWAqAIgzWq/9D4tIhO', NULL, 19);
 
 -- --------------------------------------------------------
 
@@ -415,7 +432,7 @@ ALTER TABLE `follow`
 -- AUTO_INCREMENT per la tabella `media`
 --
 ALTER TABLE `media`
-  MODIFY `IdMedia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `IdMedia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT per la tabella `notification`
@@ -439,7 +456,7 @@ ALTER TABLE `usercomment`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT per la tabella `vote`
