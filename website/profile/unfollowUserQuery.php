@@ -16,4 +16,7 @@
     $tmp = NotificationType::FOLLOWER->value;
     $query = "DELETE from notification WHERE Type = '{$tmp}' AND IdUser = {$dstUser} AND IdTarget = {$followId};";
     $dbh->execQuery($query);
+
+    $query = "UPDATE utente SET NumberFollower = NumberFollower - 1 WHERE IdUser = '{$dstUser}';";
+    $dbh->execQuery($query);
 ?>

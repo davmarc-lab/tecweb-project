@@ -13,6 +13,8 @@
 
     $tmp = NotificationType::FOLLOWER->value;
     $query = "INSERT INTO notification (Type, Description, IsRead, IdUser, IdTarget) VALUES ('$tmp', '{$username} started following you', 0, {$dstUser}, {$targetId});";
-    print_r($query);
+    $dbh->execQuery($query);
+
+    $query = "UPDATE utente SET NumberFollower = NumberFollower + 1 WHERE IdUser = '{$dstUser}';";
     $dbh->execQuery($query);
 ?>

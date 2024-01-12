@@ -14,8 +14,11 @@ function followUser(srcUser, dstUser) {
             dstUser: dstUser
         },
         success: function (response) {
+            console.log("SUCCESSO");
             document.getElementById("unfollowButton").classList.remove("d-none");
             document.getElementById("followButton").classList.add("d-none");
+            location.reload();
+            console.log("SUCCESSO");
         },
     });
 }
@@ -38,6 +41,7 @@ function unfollowUser(srcUser, dstUser) {
         success: function (response) {
             document.getElementById("unfollowButton").classList.add("d-none");
             document.getElementById("followButton").classList.remove("d-none");
+            location.reload();
         },
     });
 }
