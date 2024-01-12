@@ -1,7 +1,6 @@
 <?php
 session_start();
 if (!isset($_SESSION['oldValueLogin'])) {
-    print_r("vecchi valori signup NON sono settati");
     $_SESSION['oldValueLogin'] = [
         "username" => "",
     ];

@@ -6,7 +6,7 @@ $counter = 0;
 $ret = '';
 
 foreach ($_SESSION['homePagePosts'] as $post) {
-    $ret .= '<div class="card border border-5 border-primary-subtle rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div' . $post['IdPost'] . '>';
+    $ret .= '<div class="card border border-5 border-primary-subtle rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div' . $post['IdPost'] . '">';
 
     $authorId = $post["IdUser"];
     $queryAuthor = "SELECT * from utente WHERE IdUser = '$authorId';";
@@ -15,7 +15,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
 
     $ret .= '<p>' . drawLinkUsername($authorUser["Username"], $authorId, "profile/profilePage.php") . '</p>';
-    $ret .= '<img src="' . $previewPath . '" class="card-img-top img-fluid" alt="">';
+     $ret .= '<img src="' . $previewPath . '" class="card-img-top img-fluid" alt="">';
     $ret .= '<div class="card-body">';
     $ret .= '<div class="row">';
     $ret .= '<div class="col">';
@@ -37,7 +37,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     foreach ($comments as $comment) {
         $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
         $userComment = $dbh->execQuery($queryUserComment);
-        $ret .= '<p class="border border-success rounded p-1">@' . $userComment[0]['Username'] . ':' . $comment['CommentText'] . '</p>';
+        $ret .= '<p class="border border-success rounded p-1">' . drawLinkUsername($userComment[0]['Username'], $comment['IdUser'], "profile/profilePage.php") . ':' . $comment['CommentText'] . '</p>';
     }
     $ret .= '<form action="addComment.php" method="POST">';
     $ret .= '<label for="textAreaComment" hidden>Insert your comment here</label>
