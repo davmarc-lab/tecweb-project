@@ -79,7 +79,7 @@
             $targetPath = $targetDir . $fileName;
 
             if (move_uploaded_file($_FILES["files"]["tmp_name"], $targetPath)) {
-                $mediaPath = "../" . $uploadDir . $fileName;
+                $mediaPath = $uploadDir . $fileName;
                 $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$mediaPath')";
                 $res = $dbh->execQuery($query);
                 $mediaId = $dbh->getDataBaseController()->insert_id;
@@ -102,7 +102,7 @@
                 $targetPath = $targetDir . $fileName;
 
                 if (move_uploaded_file($_FILES["preview"]["tmp_name"], $targetPath)) {
-                    $mediaPath = "../" . $uploadDir . $fileName;
+                    $mediaPath = $uploadDir . $fileName;
                     $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$mediaPath')";
                     $res = $dbh->execQuery($query);
                     $previewId = $dbh->getDataBaseController()->insert_id;
