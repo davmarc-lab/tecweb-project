@@ -36,9 +36,13 @@ if ($password === "") {
             }
         } else {
             if ($password === $passwordRep) {
-                $uploadDir = "uploads/";
-                $targetDir = $HOME_DIR . $uploadDir;
-                $mediaId = insertImage($uploadDir, $targetDir);
+                if (isset($_POST['files'])) {
+                    $uploadDir = "uploads/";
+                    $targetDir = $HOME_DIR . $uploadDir;
+                    $mediaId = insertImage($uploadDir, $targetDir);
+                } else {
+                    $mediaId = 19;
+                }
                 register($name, $surname, $username, $email, $password, $mediaId);
             } else {
                 header("location:../signup.php?error=1");
