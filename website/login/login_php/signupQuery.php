@@ -72,7 +72,7 @@ function insertImage($uploadDir, $targetDir) {
         $fileName = basename($_FILES["files"]["name"]);
         $targetPath = $targetDir . $fileName;
         if (move_uploaded_file($_FILES["files"]["tmp_name"], $targetPath)) {
-            $mediaPath = "../" . $uploadDir . $fileName;
+            $mediaPath = $uploadDir . $fileName;
             $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$mediaPath')";
             $res = $dbh->execQuery($query);
             $mediaId = mysqli_insert_id($dbh->getDataBaseController());
