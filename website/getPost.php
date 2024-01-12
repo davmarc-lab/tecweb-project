@@ -46,6 +46,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
             <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">';
     $ret .= '<input type="hidden" name="idPost" value="' . $post['IdPost'] . '">';
     $ret .= '<input type="hidden" name="locationTo" value="index.php#' . $post['IdPost'] . '">';
+    $ret .= '<input type="hidden" name="userDst" value="' . $post['IdUser'] . '">';
     $ret .= '</div>';
     $ret .= '</form>';
     $ret .= '</div>';
