@@ -27,7 +27,7 @@ class Navbar
         <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
         <nav class="navbar sticky-top navbar-expand-md bg-success bg-gradient text-white">
             <div class="container-fluid">
-                <a class="navbar-brand text-white fs-2 p-2" href="#"><?php echo ($pageName); ?></a>
+                <p class="navbar-brand text-white fs-2 p-2 m-0" href="#"><?php echo ($pageName); ?></p>
                 <button class="navbar-toggler p-2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -40,11 +40,12 @@
 
 	function printTextInRectangle($val)
 	{
-		$text = $val["description"];
-		$iconClass = chooseIconClass($val["type"]);
+		$text = $val["Description"];
+		$iconClass = chooseIconClass($val["Type"]);
+		$isRead = $val["IsRead"];
 	?>
 		<div class="row-2">
-			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-dark p-auto ps-1">
+			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-<?php echo($isRead ? "dark" : "danger"); ?> p-auto ps-1">
 				<span>
 					<i class="<?php echo ($iconClass); ?>" style="font-size: 1rem;"></i>
 				</span>
@@ -83,9 +84,10 @@
 					</h1>
 				</div>
 				<?php
-				$query = "SELECT n.Description as description, n.IsRead, n.Type as type
+				$query = "SELECT *
                         FROM notification as n
-                        WHERE n.IdUser = $userId";
+                        WHERE n.IdUser = $userId
+						ORDER BY IdNotification DESC";
 				$notif = $dbh->execQuery($query, MYSQLI_ASSOC);
 
 				// no notifications available
@@ -99,6 +101,11 @@
 						printTextInRectangle($x);
 					endforeach;
 				}
+				// update IsRead col
+				$query = "UPDATE notification
+						SET IsRead = 1
+						WHERE IdUser = $userId;";
+				$dbh->execQuery($query);
 
 				?>
 			</div>
