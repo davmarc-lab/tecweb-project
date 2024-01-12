@@ -1,8 +1,11 @@
 <?php
+session_start();
 require_once("../../includes/database.php");
 $key = $_POST['email'];
 $password = $_POST['password'];
-
+$_SESSION['oldValueLogin'] = [
+    "username" => $key,
+];
 $query = "SELECT * FROM utente WHERE Email='$key' OR Username='$key';";
 $res = $dbh->execQuery($query);
 $numRows = count($res);
@@ -12,6 +15,7 @@ if ($numRows > 0) {
         if (password_verify($password, $dbPassword)) {
             session_start();
             $_SESSION["userId"] = $res[0]['IdUser'];
+            unset($_SESSION['oldValueLogin']);
             header("location:../../index.php");
             exit;
         } else {

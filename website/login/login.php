@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['oldValueLogin'])) {
+    print_r("vecchi valori signup NON sono settati");
+    $_SESSION['oldValueLogin'] = [
+        "username" => "",
+    ];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +44,7 @@
                         <div class="row mb-3">
                             <label for="loginEmail" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="text" id="loginEmail" name="email" placeholder="Email or username" class="form-control" />
+                                <input type="text" id="loginEmail" name="email" placeholder="Email or username" class="form-control" value="<?php echo empty($_SESSION['oldValueLogin']['username']) ? "" : htmlspecialchars($_SESSION['oldValueLogin']['username']) ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">

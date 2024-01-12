@@ -52,6 +52,7 @@ function register($name, $surname, $username, $email, $password) {
         header("location:../signup.php?error=4");
     }
     unset($_SESSION['oldValuesSignup']);
+    $_SESSION['oldValueLogin']['username'] = $username;
     header("location:../login.php");
 }
 
