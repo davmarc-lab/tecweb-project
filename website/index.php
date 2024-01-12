@@ -8,13 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Thasadith:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="includes/darkTheme.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="likePostScript.js"></script>
     <script src="redirectToPost.js" defer></script>
     <title>NoteForAll</title>
 </head>
 
-<body>
+<body id="index-id">
     <?php
     session_start();
     if (!isset($_SESSION["userId"])) {
@@ -40,7 +41,7 @@
                 $counter = 0;
                 foreach ($res as $post) {
                 ?>
-                    <div class="card border border-5 border-primary-subtle rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
+                    <div class="card border border-5 rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
                         <?php
                         $queryAuthor = "SELECT * from utente WHERE IdUser = {$post['IdUser']};";
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
@@ -48,7 +49,7 @@
                         $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
                         //$previewPath = substr($previewPath, 2);
                         ?>
-                        <p><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
+                        <p id="index-post-user-id"><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
                         <img src="<?php echo $previewPath ?>" class="card-img-top img-fluid" alt="">
                         <div class="card-body">
                             <div class="row">
@@ -101,7 +102,7 @@
             </div>
 
             <div class="col-lg-3 d-none d-lg-block">
-                <div style="background: #F5F5F5; position: fixed; top: 30vh; padding: 20px; border-radius: 10px; width: 300px;">
+                <div id="suggested-profile-id" style="position: fixed; top: 30vh; padding: 20px; border-radius: 10px; width: 300px;">
                     <h1 style="font-family: 'Thasadith', sans-serif; font-size: 30px; color: #FD7A01; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 300px;">Suggested Profile</h1>
                     <ul class="list-unstyled">
                         <?php
@@ -116,7 +117,7 @@
                         ?>
                             <li class="mt-3">
                                 <img src="immagine_profilo.jpg" alt="" width="40" height="40">
-                                <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>" style="font-family: 'Thasadith', sans-serif; font-size: 25px; color: black; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"] ?></a>
+                                <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>" style="font-family: 'Thasadith', sans-serif; font-size: 25px; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"] ?></a>
                             </li>
                         <?php
                         }

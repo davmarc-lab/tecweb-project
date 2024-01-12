@@ -1,0 +1,50 @@
+@media (prefers-color-scheme: dark) {
+   #suggested-profile-id, #edit-profile-box-id {
+        background-color: rgb(27, 61, 61);
+    }
+
+    #suggested-profile-id a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #suggested-profile-id a:hover {
+        color: #198754;
+    }
+
+    .nav-item a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background-color: #006f3c;
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #198754;
+    }
+
+    #index-post-user-id a {
+        color: #006f3c;
+    }
+
+    #index-post-user-id a:hover {
+        color: #198754;
+    }
+
+
+    #postContainer {
+        border-color: #198754;
+    }
+
+    a[role="button"]:not(#profile-summary a[role="button"]) {
+        background-color: transparent;
+    }
+
+    a[role="button"]:hover :not(#profile-summary a[role="button"]){
+        background-color: darkslategray;
+    }
+}

@@ -1,5 +1,5 @@
 function changeTheme() {
-    var elem = document.body;
+    var elem = document.documentElement;
     elem.dataset.bsTheme = elem.dataset.bsTheme == "light" ? "dark" : "light";
     
     document.cookie = "theme=" + elem.dataset.bsTheme + "; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var themeCookie = getCookie("theme");
     var switchElem = document.getElementById("switchTheme");
     if (themeCookie) {
-        document.body.dataset.bsTheme = themeCookie;
+        document.documentElement.dataset.bsTheme = themeCookie;
         if (themeCookie == "light") {
             switchElem.checked = false;
         } else {

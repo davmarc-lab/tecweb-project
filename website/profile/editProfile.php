@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../includes/darkTheme.css">
     <script src="profile_script/editProfileResize.js"></script>
 
     <title>Document</title>
@@ -12,6 +13,7 @@
 <body>
     <?php
     require_once("../includes/database.php");
+
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -25,12 +27,12 @@
     ?>
     <div class="container-fluid overflow-hidden px-0">
         <main>
-            <div class="row justify-content-between fix-bottom">
-                <section class="col-12 bg-light p-4">
-                    <a id="backButton" href="profilePage.php" role="button" class="btn btn-light mb-3">
+            <div id="edit-profile-box-id" class="row justify-content-between fix-bottom">
+                <section class="col-12 p-4">
+                    <a id="backButton" href="profilePage.php" role="button" class="btn mb-3">
                         <i class="bi bi-arrow-left"></i>
                     </a>
-                    <a href="changePassword.php" role="button" class="btn btn-light mb-3" title="Change password">
+                    <a id="change-password-button" href="changePassword.php" role="button" class="btn mb-3" title="Change password">
                         <i class="bi bi-gear-fill"></i>
                     </a>
                     <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="editProfileForm">
@@ -60,9 +62,9 @@
                         </div>
                         <div class="d-flex">
                             <label for="reset" class="form-label" hidden>Cancel</label>
-                            <input id="reset" type="reset" class="btn btn-outline-danger ms-auto m-2" value="Cancel"/>
+                            <input id="reset" type="reset" class="btn btn-danger ms-auto m-2" value="Cancel"/>
                             <label for="submit" class="form-label" hidden>Save</label>
-                            <input id="submit" type="submit" class="btn btn-outline-success m-2" name="submit" value="Save"/>
+                            <input id="submit" type="submit" class="btn btn-success m-2" name="submit" value="Save"/>
                         </div>
                     </form>
                 </section>
