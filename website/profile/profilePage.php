@@ -53,7 +53,11 @@
         ?>
                     <section>
                         <section class="py-3">
-                            <i class="bi bi-person-fill fs-1"></i>
+                            <?php
+                                $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
+                                $previewPath = $dbh->execQuery($query)[0]['FilePath'];
+                            ?>
+                            <img src="<?php echo $previewPath?>" alt="" height="60px" width="60px">
                             <?php
                             if ($showEdit) {
                             ?>

@@ -36,7 +36,7 @@ if (!isset($_SESSION['oldValuesSignup'])) {
                 </div>
                 <div class="col-12 col-md-8 d-flex align-items-center justify-content-center my-5 mx-auto">
                     <!-- signup form -->
-                    <form action="login_php/signupQuery.php" method="post" id="signupForm">
+                    <form action="login_php/signupQuery.php" method="post" id="signupForm" enctype="multipart/form-data">
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <h1>Sign up to start sharing</h1>
@@ -64,6 +64,12 @@ if (!isset($_SESSION['oldValuesSignup'])) {
                             <label for="signupUsername" class="col-form-label" hidden>Username</label>
                             <div class="col-md-12">
                                 <input type="text" id="signupUsername" name="username" placeholder="Username" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['username']); ?>" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="signupImage" class="col-form-label" hidden>Profile icon</label>
+                            <div class="col-md-12">
+                                <input type="file" id="signupImage" name="files" class="form-control" accept="image/*" />
                             </div>
                         </div>
                         <div class="row mb-3">

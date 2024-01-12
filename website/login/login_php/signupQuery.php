@@ -1,5 +1,6 @@
 <?php
 require_once("../../includes/database.php");
+include_once("../../includes/utils.php");
 session_start();
 $name = $_POST['name'];
 $surname = $_POST['surname'];
@@ -35,7 +36,10 @@ if ($password === "") {
             }
         } else {
             if ($password === $passwordRep) {
-                register($name, $surname, $username, $email, $password);
+                $uploadDir = "uploads/";
+                $targetDir = $HOME_DIR . $uploadDir;
+                $mediaId = insertImage($uploadDir, $targetDir);
+                register($name, $surname, $username, $email, $password, $mediaId);
             } else {
                 header("location:../signup.php?error=1");
             }
@@ -43,10 +47,11 @@ if ($password === "") {
     }
 }
 
-function register($name, $surname, $username, $email, $password) {
+function register($name, $surname, $username, $email, $password, $mediaId)
+{
     global $dbh;
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $query = "INSERT INTO utente (Name, Surname, Username, Email, Password) VALUES ('$name', '$surname', '$username', '$email', '$passwordHash');";
+    $query = "INSERT INTO utente (Name, Surname, Username, Email, Password, IdMedia) VALUES ('$name', '$surname', '$username', '$email', '$passwordHash', '$mediaId');";
     $res = $dbh->execQuery($query);
     if (!$res) {
         header("location:../signup.php?error=4");
@@ -56,8 +61,30 @@ function register($name, $surname, $username, $email, $password) {
     header("location:../login.php");
 }
 
-function isNotValid($test) {
-    return preg_match('/^[a-zA-Z0-9_]*$/', $test) === 0;
+function insertImage($uploadDir, $targetDir) {
+    global $dbh;
+    $mediaId = 0;
+    if (isset($_FILES["files"]) && $_FILES["files"]["error"] == 0) {
+        $fileName = basename($_FILES["files"]["name"]);
+        $targetPath = $targetDir . $fileName;
+        if (move_uploaded_file($_FILES["files"]["tmp_name"], $targetPath)) {
+            $mediaPath = "../" . $uploadDir . $fileName;
+            $query = "INSERT INTO media (FileName, FilePath) VALUES('$fileName', '$mediaPath')";
+            $res = $dbh->execQuery($query);
+            $mediaId = mysqli_insert_id($dbh->getDataBaseController());
+            if ($res == 0) {
+                echo ("Failed INSERT query.");
+            }
+            return $mediaId;
+        } else {
+            echo ("Error UPLOAD, cannot upload the file.");
+        }
+    } else {
+        echo ("Error PREPARE, cannot prepare the file.");
+    }
 }
 
-?>
+function isNotValid($test)
+{
+    return preg_match('/^[a-zA-Z0-9_]*$/', $test) === 0;
+}
