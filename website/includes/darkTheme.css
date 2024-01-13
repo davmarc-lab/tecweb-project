@@ -9,7 +9,8 @@
     }
 
     #suggested-profile-id a:hover {
-        color: #198754;
+        /* color: #198754; */
+        text-decoration: underline;
     }
 
     .nav-item a {
@@ -23,12 +24,13 @@
         border: none;
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover, .btn-primary:hover:active {
         background-color: #198754;
     }
 
     #index-post-user-id a {
-        color: #006f3c;
+        color: white;
+        text-decoration: none;
     }
 
     #index-post-user-id a:hover {
@@ -40,11 +42,7 @@
         border-color: #198754;
     }
 
-    a[role="button"]:not(#profile-summary a[role="button"]) {
-        background-color: transparent;
-    }
-
-    a[role="button"]:hover :not(#profile-summary a[role="button"]){
+    a[role="button"]:hover:not(#profile-summary a[role="button"]){
         background-color: darkslategray;
     }
 }

@@ -117,7 +117,7 @@
                         ?>
                             <li class="mt-3">
                                 <img src="immagine_profilo.jpg" alt="" width="40" height="40">
-                                <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>" style="font-family: 'Thasadith', sans-serif; font-size: 25px; text-decoration: none; width: 300px;">@<?php echo $suggested["Username"] ?></a>
+                                <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>" style="font-family: 'Thasadith', sans-serif; font-size: 25px; width: 300px;">@<?php echo $suggested["Username"] ?></a>
                             </li>
                         <?php
                         }

@@ -17,6 +17,7 @@ $infoPost = $dbh->execQuery($query)[0];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../includes/darkTheme.css">
     <title>NFA - <?php echo ($infoPost["Title"]); ?></title>
 </head>
 
@@ -32,8 +33,11 @@ $infoPost = $dbh->execQuery($query)[0];
         ?>
     </div>
 
-    <div class="container-fluid col-8 mx-auto py-auto py-3 d-block bg-success">
+    <div class="container-fluid col-8 mx-auto py-auto py-3 d-block">
         <!-- post section -->
+        <a id="backButton" href="javascript: history.go(-1)" role="button" class="btn mb-3">
+            <i class="bi bi-arrow-left"></i>
+        </a>
         <section>
             <!-- write the post title -->
             <div class="row justify-content-start">

@@ -93,7 +93,7 @@
                                 $previewPath = "../" . $previewPath;
                                 ?>
                                 <div class="card border-1 mt-2 p-2" style="width: auto;">
-                                    <img src="<?php echo $previewPath?>" class="card-img-top rounded" alt="Image">
+                                    <img src="<?php echo $previewPath?>" class="card-img-top rounded" alt="Preview image">
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             <?php echo $userPost["Title"]; ?>
@@ -101,6 +101,9 @@
                                         <p class="card-text">
                                             <?php echo $userPost["Description"]; ?>
                                         </p>
+                                        <a href="../post/viewPost.php?id=<?php echo ($userPost["IdPost"]); ?>">
+                                            <button class="btn btn-primary">More</button>
+                                        </a>
                                     </div>
                                 </div>
                             <?php } ?>

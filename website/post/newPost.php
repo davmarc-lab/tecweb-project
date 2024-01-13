@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../includes/darkTheme.css">
     <title>New Post</title>
 </head>
 
@@ -59,9 +60,9 @@
 
                         <div class="mb-3">
                             <label for="reset" class="form-label" hidden>Clear</label>
-                            <input id="reset" type="reset" class="btn btn-outline-danger confirm-button" value="Clear" />
+                            <input id="reset" type="reset" class="btn btn-danger confirm-button" value="Clear" />
                             <label for="submit" class="form-label" hidden>Post</label>
-                            <input id="submit" type="submit" class="btn btn-outline-success" name="submit" value="Post" />
+                            <input id="submit" type="submit" class="btn btn-success" name="submit" value="Post" />
                         </div>
                     </form>
                 </section>
