@@ -1,0 +1,114 @@
+#suggested-profile-id, #edit-profile-box-id {
+    background-color: lightgray;
+}
+
+#suggested-profile-id a {
+    color: black;
+    text-decoration: none;
+}
+
+#suggested-profile-id a:hover {
+    color: #198754;
+}
+
+.nav-item a {
+    color: black;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #006f3c;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover, .btn-primary:hover:active {
+    background-color: #198754;
+}
+
+#index-post-user-id a {
+    color: black;
+    text-decoration: none;
+}
+
+#index-post-user-id a:hover {
+    color: #198754;
+}
+
+.card {
+    border-color: lightslategray;
+}
+
+a[role="button"]:not(.btn-primary, .btn-utility) {
+    background-color: transparent;
+    color: #198754;
+    border-color: #198754;
+}
+
+a[role="button"]:hover:not(.btn-primary, .btn-utility) {
+    background-color: #198754;
+    color: white;
+}
+
+a[role="button"]:hover:not(#profile-summary a[role="button"]){
+    background-color: rgb(193, 196, 198);
+}
+
+
+html[data-bs-theme = "dark"] {
+   #suggested-profile-id, #edit-profile-box-id {
+        background-color: rgb(27, 61, 61);
+    }
+
+    #suggested-profile-id a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #suggested-profile-id a:hover {
+        text-decoration: underline;
+    }
+
+    .nav-item a {
+        color: white;
+        text-decoration: none;
+    }
+
+    [role="button"]:not(.btn-primary, .btn-utility) {
+        background-color: #006f3c;
+        color: white;
+        border-color: #006f3c;
+    }
+    
+    a[role="button"]:hover:not(.btn-primary, .btn-utility) {
+        background-color: #198754;
+        border-color: #198754;
+    }
+
+    .btn-primary {
+        background-color: #006f3c;
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover, .btn-primary:hover:active {
+        background-color: #198754;
+    }
+
+    #index-post-user-id a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #index-post-user-id a:hover {
+        color: #198754;
+    }
+
+    .card {
+        border-color: lightgray;
+    }
+
+    a[role="button"]:hover:not(#profile-summary a[role="button"]){
+        background-color: darkslategray;
+    }
+}

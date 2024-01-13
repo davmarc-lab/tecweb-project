@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../includes/darkTheme.css">
+    <link rel="stylesheet" href="../includes/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="profile_script/followScript.js"></script>
 
@@ -62,7 +62,7 @@
                             <?php
                             if ($showEdit) {
                             ?>
-                                <a href="editProfile.php" role="button" class="btn btn-success d-md-none ms-2">Edit</a>
+                                <a href="editProfile.php" role="button" class="btn d-md-none ms-2">Edit</a>
                             <?php
                             } else {
                                 // checks if the user follow.
@@ -72,8 +72,8 @@
                                 $query = "SELECT NumberFollower from utente WHERE IdUser = $dstUser";
                                 $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
                             ?>
-                                <a id="followButton" onclick="followUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser); ?>)" role="button" class="btn btn-primary ms-2 <?php echo(sizeof($res) != 0 ? "d-none" : "") ?>">Follow</a>
-                                <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser); ?>)" role="button" class="btn btn-primary ms-2 <?php echo(sizeof($res) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                                <a id="followButton" onclick="followUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser); ?>)" role="button" class="btn ms-2 <?php echo(sizeof($res) != 0 ? "d-none" : "") ?>">Follow</a>
+                                <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser); ?>)" role="button" class="btn ms-2 <?php echo(sizeof($res) == 0 ? "d-none" : "") ?>">Unfollow</a>
                                 <h2 style="display: inline-block; margin-left: 40px;">Follower: <?php echo $numFollower ?></h2>
                             <?php
                             }

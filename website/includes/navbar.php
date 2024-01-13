@@ -24,7 +24,7 @@ class Navbar
     {
 ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="darkTheme.css">
+        <link rel="stylesheet" href="style.css">
         <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
         <nav class="navbar sticky-top navbar-expand-md bg-success bg-gradient text-white">
             <div class="container-fluid">
@@ -80,6 +80,9 @@ class Navbar
                             <li class="nav-item p-2">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" role="switch" id="switchTheme" onclick="changeTheme()">
+                                    <span id="theme-icon">
+                                        <i class="bi bi-brightness-high"></i>
+                                    </span>
                                 </div>
                             </li>
                         </ul>

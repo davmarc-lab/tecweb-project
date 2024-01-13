@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Thasadith:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="includes/darkTheme.css">
+    <link rel="stylesheet" href="includes/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="likePostScript.js"></script>
     <script src="redirectToPost.js" defer></script>
@@ -36,12 +36,12 @@
     ?>
     <div class="container-fluid mt-3">
         <div class="row">
-            <div class="col-lg-8 col-md-12 col-12 justify-content-center" id="postContainer">
+            <div class="col-lg-8 col-md-12 col-12 justify-content-center">
                 <?php
                 $counter = 0;
                 foreach ($res as $post) {
                 ?>
-                    <div class="card border border-5 rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
+                    <div class="card border-1 rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
                         <?php
                         $queryAuthor = "SELECT * from utente WHERE IdUser = {$post['IdUser']};";
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
