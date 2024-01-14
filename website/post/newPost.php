@@ -43,7 +43,7 @@
 
                         <div class="mb-3">
                             <label for="files" class="form-label">Choose notes:</label>
-                            <input type="file" class="form-control" name="files" id="files" />
+                            <input type="file" class="form-control" name="files" id="files" /> <!-- required -->
                         </div>
 
                         <div class="mb-3">
@@ -64,18 +64,21 @@
                                 <div class="dropdown-menu" aria-labelledby="categoryDropdown">
                                     <input type="text" name="categorySearch" id="categorySearch" class="form-control" placeholder="Search" />
                                     <?php
-                                        $query = "SELECT * FROM category";
-                                        $categories = $dbh->execQuery($query);
+                                    $query = "SELECT * FROM category";
+                                    $categories = $dbh->execQuery($query);
 
-                                        foreach ($categories as $cat) {
-                                            ?>
-                                                <a class="dropdown-item" value="<?php echo($cat["IdCategory"]); ?>"><?php echo($cat["Description"]); ?></a>
-                                            <?php
-                                        }
+                                    foreach ($categories as $cat) {
+                                    ?>
+                                        <a class="dropdown-item" value="<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
+                                    <?php
+                                    }
                                     ?>
                                 </div>
-                                <input type="hidden" id="selectedCategory" name="category" value="None" />
+                                <input type="hidden" id="selectedCategory" name="category" />
                             </div>
+                            <span class="badge rounded-pill text-bg-primary d-none" id="category-badge">
+                                <p class="m-0" id="category-description"></p>
+                            </span>
                         </div>
 
                         <div class="mb-3">
@@ -140,16 +143,20 @@
 
         $title = $_POST["title"];
         $description = empty($_POST["description"]) ? "" : $_POST["description"];
-        $categories = $_POST["categories"];
         $idUser = $_SESSION["userId"];
         $idMedia = $mediaId;       // last id inserted
         $idPreview = $previewId;
+        $idCategory = isset($_POST["category"]) ? $_POST["category"] : NULL;
 
         // NumberVote and NumberComment are initially 0
         $query = "INSERT INTO post (Title, Description, NumberVote, NumberComment, IdUser, IdMedia" .
-            ($previewId == NULL ? ")" : ", IdPreview)") .
+            ($previewId == NULL ? "" : ", IdPreview") .
+            ($idCategory == NULL ? "" : ", IdCategory") .
+            ")" .
             " VALUES('$title', '$description', 0, 0, $idUser, $idMedia" .
-            ($previewId == NULL ? ");" : ", $idPreview);");
+            ($previewId == NULL ? "" : ", $idPreview") .
+            ($idCategory == NULL ? "" : ", $idCategory") .
+            ");";
         $res = $dbh->execQuery($query);
 
         header("location:../profile/profilePage.php");
