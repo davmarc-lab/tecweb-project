@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../includes/style.css">
     <script src="profile_script/editProfileResize.js"></script>
+    <script src="../includes/themeScript.js"></script>
 
     <title>Document</title>
 </head>
