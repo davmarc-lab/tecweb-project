@@ -36,4 +36,10 @@ $("document").ready(function () {
             categoryDescription.innerHTML = this.innerHTML;
         });
     });
+
+    let resetButton = document.getElementById("reset");
+    $(resetButton).on('click', function() {
+        categoryBadge.classList.add("d-none");
+        categoryDescription.innerHTML = "";
+    })
 });
