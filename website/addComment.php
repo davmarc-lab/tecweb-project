@@ -15,5 +15,6 @@ $username = $dbh->execQuery($query)[0]["Username"];
 $tmp = NotificationType::COMMENT->value;
 $query = "INSERT INTO notification (Type, Description, IsRead, IdUser) VALUES ('$tmp', '{$username} added a comment to your post', 0, $usrDst);";
 $dbh->execQuery($query);
+sendEmailNotification(getUserMail($dbh, $usrDst), "You have a new comment on your post", "{$username} added a comment to your post: {$comment}");
 header("Location:" . $_POST['locationTo']);
 ?>

@@ -17,4 +17,9 @@
 
     $query = "UPDATE utente SET NumberFollower = NumberFollower + 1 WHERE IdUser = '{$dstUser}';";
     $dbh->execQuery($query);
+    
+   /*  if (!checkUserOnline($dbh, $_POST['userId'])) {
+        mail("penazziriccardo17@gmail.com", "You have a new follower", "{$username} started following you");
+    } */
+    sendEmailNotification(getUserMail($dbh, $dstUser), "You have a new follower", "{$username} started following you");
 ?>

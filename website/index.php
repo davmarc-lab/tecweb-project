@@ -30,7 +30,7 @@
         FROM post
         JOIN follow ON post.IdUser = follow.IdDst
         WHERE follow.IdSrc = {$_SESSION['userId']}
-        ORDER BY post.Date DESC;";
+        ORDER BY post.Date ASC;";
     $res = $dbh->execQuery($query);
     $_SESSION['homePagePosts'] = $res;
     ?>
