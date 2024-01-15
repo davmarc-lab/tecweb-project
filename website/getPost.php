@@ -15,7 +15,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
 
     $ret .= '<p>' . drawLinkUsername($authorUser["Username"], $authorId, "profile/profilePage.php") . '</p>';
-     $ret .= '<img src="' . $previewPath . '" class="card-img-top img-fluid" alt="">';
+    $ret .= '<img src="' . $previewPath . '" class="card-img-top img-fluid" alt="">';
     $ret .= '<div class="card-body">';
     $ret .= '<div class="row">';
     $ret .= '<div class="col">';

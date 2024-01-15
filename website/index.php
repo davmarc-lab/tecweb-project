@@ -82,9 +82,9 @@
                         $comments = $dbh->execQuery($queryComments);
                         foreach ($comments as $comment) {
                             $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
-                            $userComment = $dbh->execQuery($queryUserComment);
+                            $userComment = $dbh->execQuery($queryUserComment)[0]["Username"];
                         ?>
-                            <p class="border border-success rounded-pill p-1">@<?php echo $userComment[0]['Username'] ?>: <?php echo $comment['CommentText'] ?></p>
+                            <p class="border border-success rounded-pill p-1"><?php echo (drawLinkUsername($userComment, $comment["IdUser"], "profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
                         <?php
                         }
                         ?>

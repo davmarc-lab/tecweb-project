@@ -18,7 +18,7 @@ function getHomeDirectory() {
 }
 
 function drawLinkUsername($username, $userId, $targetLink) {
-    return "<a class=\"text-decoration-none\" href=\"$targetLink?user=$userId\">@$username</a>";
+    return "<a href=\"$targetLink?user=$userId\">@$username</a>";
 }
 
 function insertImage($dbh, $uploadDir, $targetDir) {
@@ -29,6 +29,7 @@ function insertImage($dbh, $uploadDir, $targetDir) {
     $mediaId = 0;
     if (isset($_FILES["files"]) && $_FILES["files"]["error"] == 0) {
         $fileName = basename($_FILES["files"]["name"]);
+        $fileName = date("Ymd") . date("His") . $fileName;
         $targetPath = $targetDir . $fileName;
         if (move_uploaded_file($_FILES["files"]["tmp_name"], $targetPath)) {
             $mediaPath = $uploadDir . $fileName;
@@ -48,3 +49,15 @@ function insertImage($dbh, $uploadDir, $targetDir) {
 }
 
 $HOME_DIR = getHomeDirectory() . DIRECTORY_SEPARATOR;
+
+function checkUserOnline($dbh, $id) {
+    $query = "SELECT * FROM onlineusers WHERE IdUser = '{$id}';";
+    $res = $dbh->execQuery($query);
+    return count($res) > 0;
+}
+
+function getUserMail($dbh, $id) {
+    $query = "SELECT Email FROM utente WHERE IdUser = '{$id}';";
+    $res = $dbh->execQuery($query);
+    return $res[0]['Email'];
+}
