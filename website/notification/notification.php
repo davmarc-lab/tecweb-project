@@ -46,7 +46,7 @@
 		$isRead = $val["IsRead"];
 	?>
 		<div class="row-2">
-			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-<?php echo($isRead ? "dark" : "danger"); ?> p-auto ps-1">
+			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-<?php echo($isRead ? "secondary" : "danger"); ?> p-auto ps-1">
 				<span>
 					<i class="<?php echo ($iconClass); ?>" style="font-size: 1rem;"></i>
 				</span>
@@ -64,18 +64,13 @@
 
 	// logged user id
 	$userId = $_SESSION["userId"];
+	include_once("../includes/navbar.php");
+	$bar = new Navbar("../");
+	$bar->drawNavbar("Notification");
 	?>
-
-	<div class="row m-auto mb-4">
-		<?php
-		include_once("../includes/navbar.php");
-		$bar = new Navbar("../");
-		$bar->drawNavbar("Notification");
-		?>
-	</div>
 	<main>
-		<div class="row">
-			<div class="container-fluid">
+		<div class="container-fluid overflow-x-hidden">
+			<div class="row my-4">
 				<div class="text-center">
 					<h1>
 						<span>
@@ -84,6 +79,8 @@
 						</span>
 					</h1>
 				</div>
+			</div>
+			<div class="row mb-4">
 				<?php
 				$query = "SELECT *
                         FROM notification as n
