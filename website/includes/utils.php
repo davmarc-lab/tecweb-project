@@ -50,6 +50,11 @@ function insertImage($dbh, $uploadDir, $targetDir) {
 
 $HOME_DIR = getHomeDirectory() . DIRECTORY_SEPARATOR;
 
+function getHomeDirectoryValue() {
+    $HOME_DIR = getHomeDirectory() . DIRECTORY_SEPARATOR;
+    return $HOME_DIR;
+}
+
 function checkUserOnline($dbh, $id) {
     $query = "SELECT * FROM onlineusers WHERE IdUser = '{$id}';";
     $res = $dbh->execQuery($query);
