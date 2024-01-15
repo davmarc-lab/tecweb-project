@@ -82,15 +82,15 @@
 				<?php
 				$query = "SELECT *
                         FROM notification as n
-                        WHERE n.IdUser = $userId
+                        WHERE n.IdUser = $userId AND n.IsRead = 0
 						ORDER BY IdNotification DESC";
 				$notif = $dbh->execQuery($query, MYSQLI_ASSOC);
 
 				// no notifications available
 				if (empty($notif)) {
-					printTitle2("You have 0 notification.");
+					printTitle2("You have 0 new notification.");
 				} else {
-					printTitle2("You have " . sizeof($notif) . " notification" . (sizeof($notif) > 1 ? "s." : "."));
+					printTitle2("You have " . sizeof($notif) . " new notification" . (sizeof($notif) > 1 ? "s." : "."));
 
 					// all notification
 					foreach ($notif as $x) :
