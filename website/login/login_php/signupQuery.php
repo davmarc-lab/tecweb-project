@@ -40,6 +40,7 @@ if ($password === "") {
                     $uploadDir = "uploads/";
                     $targetDir = $HOME_DIR . $uploadDir;
                     $mediaId = insertImage($dbh, $uploadDir, $targetDir);
+                    unset($_FILES["files"]);
                 } else {
                     $mediaId = 19;
                 }

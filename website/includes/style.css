@@ -47,15 +47,6 @@ a:hover:not(a[role="button"]) {
     background-color: rgb(193, 196, 198);
 }
 
-#index-post-user-id a {
-    color: black;
-    text-decoration: none;
-}
-
-#index-post-user-id a:hover {
-    color: #198754;
-}
-
 .card {
     border-color: lightslategray;
 }
@@ -71,7 +62,7 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility) {
     color: white;
 }
 
-a[role="button"]:hover:not(#profile-summary a[role="button"]){
+a[role="button"]:hover:not(.btn-following){
     background-color: rgb(193, 196, 198);
 }
 
@@ -136,21 +127,12 @@ html[data-bs-theme = "dark"] {
         color: white;
         background-color: darkslategray;
     }
-    
-    #index-post-user-id a {
-        color: white;
-        text-decoration: none;
-    }
-
-    #index-post-user-id a:hover {
-        color: #198754;
-    }
 
     .card {
         border-color: lightgray;
     }
 
-    a[role="button"]:hover:not(#profile-summary a[role="button"]){
+    a[role="button"]:hover:not(.btn-following){
         background-color: darkslategray;
     }
 }

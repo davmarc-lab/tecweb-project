@@ -154,8 +154,8 @@ if (array_key_exists('morePost', $_POST)) {
                         $pathFollow = "'../profile/followUserQuery.php'";
                         $pathUnfollow = "'../profile/unfollowUserQuery.php'";
                         ?>
-                        <a id="followButton" onclick="followUser(<?php echo $_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathFollow; ?>)" role="button" class="btn btn-outline-primary <?php echo (sizeof($test) != 0 ? "d-none" : "") ?>">Follow</a>
-                        <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-outline-primary <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                        <a id="followButton" onclick="followUser(<?php echo $_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathFollow; ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) != 0 ? "d-none" : "") ?>">Follow</a>
+                        <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
                     </td>
                 </tr>
             <?php

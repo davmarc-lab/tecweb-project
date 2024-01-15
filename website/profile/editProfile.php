@@ -26,6 +26,7 @@
     }
     $userId = $_SESSION["userId"];
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
+    unset($_FILES["files"]);
     ?>
     <div class="container-fluid overflow-hidden p-3">
         <main>
@@ -80,18 +81,11 @@
         $username = $_POST["username"];
         $email = $_POST["email"];
         $description = empty($_POST["description"]) ? NULL : $_POST["description"];
+        $mediaId = $dbh->execQuery("SELECT IdMedia FROM utente WHERE IdUser='$userId';")[0]["IdMedia"];
         if (isset($_FILES["files"])) {
             $uploadDir = "uploads/";
             $targetDir = $HOME_DIR . $uploadDir;
-            $checkExistance = "SELECT IdMedia FROM media WHERE FileName='{$_FILES['files']['name']}';";
-            $dbImage = $dbh->execQuery($checkExistance);
-            if (count($dbImage) > 0) {
-                $mediaId = $dbImage[0]["IdMedia"];
-            } else {
-                $mediaId = insertImage($dbh, $uploadDir, $targetDir);
-            }
-        } else {
-            $mediaId = $dbh->execQuery("SELECT IdMedia FROM utente WHERE IdUser='$userId';");
+            $mediaId = insertImage($dbh, $uploadDir, $targetDir);
         }
         $query = "UPDATE utente 
             SET Name='$name', Surname='$surname', Username='$username', Email='$email', Description='$description', IdMedia='$mediaId' 

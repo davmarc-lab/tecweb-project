@@ -53,7 +53,7 @@
         }
         ?>
                     <section class="px-3">
-	                    <section id="profile-summary" class="pt-3">
+	                    <section  class="pt-3">
         	                <?php
                 	        $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
                             $previewPath = $dbh->execQuery($query)[0]['FilePath'];
@@ -74,8 +74,8 @@
                                 $pathFollow = "'followUserQuery.php'";
                                 $pathUnfollow = "'unfollowUserQuery.php'";
                             ?>
-                                <a id="followButton" onclick="followUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathFollow); ?>)" role="button" class="btn ms-2 <?php echo(sizeof($res) != 0 ? "d-none" : "") ?>">Follow</a>
-                                <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathUnfollow); ?>)" role="button" class="btn ms-2 <?php echo(sizeof($res) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                                <a id="followButton" onclick="followUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathFollow); ?>)" role="button" class="btn btn-following ms-2 <?php echo(sizeof($res) != 0 ? "d-none" : "") ?>">Follow</a>
+                                <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following ms-2 <?php echo(sizeof($res) == 0 ? "d-none" : "") ?>">Unfollow</a>
                                 <h2 style="display: inline-block; margin-left: 40px;">Follower: <?php echo $numFollower ?></h2>
                             <?php
                             }
