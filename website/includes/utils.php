@@ -66,3 +66,9 @@ function getUserMail($dbh, $id) {
     $res = $dbh->execQuery($query);
     return $res[0]['Email'];
 }
+
+function sendEmailNotification($dst, $subject, $message) {
+    $from = "noteforall2@gmail.com";
+    $headers = ['From' => $from];
+    mail($dst, $subject, $message, $headers);
+}
