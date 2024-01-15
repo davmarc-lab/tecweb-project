@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="../includes/style.css">
     <script src="categoryScript.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="scrollableMenu.css">
     <title>New Post</title>
 </head>
 
@@ -63,16 +64,18 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="categoryDropdown">
                                     <input type="text" name="categorySearch" id="categorySearch" class="form-control" placeholder="Search" />
-                                    <?php
-                                    $query = "SELECT * FROM category";
-                                    $categories = $dbh->execQuery($query);
+                                    <div class="scrollable-menu">
+                                        <?php
+                                        $query = "SELECT * FROM category";
+                                        $categories = $dbh->execQuery($query);
 
-                                    foreach ($categories as $cat) {
-                                    ?>
-                                        <a class="dropdown-item" value="<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
-                                    <?php
-                                    }
-                                    ?>
+                                        foreach ($categories as $cat) {
+                                        ?>
+                                            <a class="dropdown-item" value="<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                                 <input type="hidden" id="selectedCategory" name="category" />
                             </div>
