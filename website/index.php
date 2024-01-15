@@ -96,7 +96,6 @@
                                 <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
                                 <input type="hidden" name="idPost" value="<?php echo $post['IdPost']; ?>">
                                 <input type="hidden" name="locationTo" value="index.php#<?php echo $post['IdPost']?>">
-                                <input type="hidden" name="userDst" value="<?php echo $post['IdUser']?>">
                             </div>
                         </form>
                     </div>
