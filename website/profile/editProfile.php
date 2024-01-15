@@ -88,7 +88,7 @@
             if (count($dbImage) > 0) {
                 $mediaId = $dbImage[0]["IdMedia"];
             } else {
-                $mediaId = insertImage($uploadDir, $targetDir);
+                $mediaId = insertImage($dbh, $uploadDir, $targetDir);
             }
         } else {
             $mediaId = $dbh->execQuery("SELECT IdMedia FROM utente WHERE IdUser='$userId';");

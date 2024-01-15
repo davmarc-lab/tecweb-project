@@ -21,8 +21,11 @@ function drawLinkUsername($username, $userId, $targetLink) {
     return "<a class=\"text-decoration-none\" href=\"$targetLink?user=$userId\">@$username</a>";
 }
 
-function insertImage($uploadDir, $targetDir) {
-    global $dbh;
+function insertImage($dbh, $uploadDir, $targetDir) {
+    session_start();
+    $_SESSION["debug"] = [
+        "chiamata" => "ok", 
+    ];
     $mediaId = 0;
     if (isset($_FILES["files"]) && $_FILES["files"]["error"] == 0) {
         $fileName = basename($_FILES["files"]["name"]);

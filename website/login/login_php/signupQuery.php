@@ -36,10 +36,10 @@ if ($password === "") {
             }
         } else {
             if ($password === $passwordRep) {
-                if (isset($_POST['files'])) {
+                if (isset($_FILES['files'])) {
                     $uploadDir = "uploads/";
                     $targetDir = $HOME_DIR . $uploadDir;
-                    $mediaId = insertImage($uploadDir, $targetDir);
+                    $mediaId = insertImage($dbh, $uploadDir, $targetDir);
                 } else {
                     $mediaId = 19;
                 }
