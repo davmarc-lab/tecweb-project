@@ -52,13 +52,13 @@
         <?php
         }
         ?>
-                    <section>
-                        <section id="profile-summary" class="py-3">
-                            <?php
-                                $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
-                                $previewPath = $dbh->execQuery($query)[0]['FilePath'];
+                    <section class="px-3">
+	                    <section id="profile-summary" class="pt-3">
+        	                <?php
+                	        $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
+                            $previewPath = $dbh->execQuery($query)[0]['FilePath'];
                             ?>
-                            <img src="../<?php echo $previewPath?>" alt="" height="60px" width="60px">
+                            <img src="../<?php echo $previewPath?>" alt="" class="rounded rounded-5" height="70px" width="70px" />
                             <?php
                             if ($showEdit) {
                             ?>

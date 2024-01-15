@@ -41,15 +41,24 @@
                 $counter = 0;
                 foreach ($res as $post) {
                 ?>
-                    <div class="card border-1 rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
+                    <div class="card border-1 rounded mx-auto m-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
                         <?php
                         $queryAuthor = "SELECT * from utente WHERE IdUser = {$post['IdUser']};";
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
+                        $queryIcon = "SELECT FilePath from media WHERE IdMedia = {$authorUser['IdMedia']};";
+                        $previewPathIcon = $dbh->execQuery($queryIcon)[0]['FilePath'];
                         $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
                         $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
                         //$previewPath = substr($previewPath, 2);
                         ?>
-                        <p id="index-post-user-id"><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="<?php echo $previewPathIcon?>" alt="" class="rounded rounded-5" height="30px" width="30px" />
+                            </div>
+                            <div class="col-3 pt-1">
+                                <p id="index-post-user-id"><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
+                            </div>
+                        </div>
                         <img src="<?php echo $previewPath ?>" class="card-img-top img-fluid" alt="">
                         <div class="card-body">
                             <div class="row">
@@ -114,9 +123,11 @@
                             LIMIT 5;";
                         $res = $dbh->execQuery($queryProfile);
                         foreach ($res as $suggested) {
+                            $querySuggestedIcon = "SELECT FilePath from media WHERE IdMedia = {$suggested['IdMedia']};";
+                            $previewPathSuggestedIcon = $dbh->execQuery($querySuggestedIcon)[0]['FilePath'];
                         ?>
                             <li class="mt-3">
-                                <img src="immagine_profilo.jpg" alt="" width="40" height="40">
+                                <img src="<?php echo $previewPathSuggestedIcon; ?>" alt="" class="rounded rounded-5" width="40" height="40">
                                 <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>" style="font-family: 'Thasadith', sans-serif; font-size: 25px; width: 300px;">@<?php echo $suggested["Username"] ?></a>
                             </li>
                         <?php

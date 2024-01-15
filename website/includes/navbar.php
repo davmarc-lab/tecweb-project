@@ -81,7 +81,7 @@ class Navbar
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" role="switch" id="switch-theme" onclick="changeTheme()">
                                     <span id="theme-icon">
-                                        <i class="bi bi-brightness-high"></i>
+                                        <i class="bi bi-brightness-high-fill"></i>
                                     </span>
                                 </div>
                             </li>

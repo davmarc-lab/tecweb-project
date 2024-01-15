@@ -14,6 +14,7 @@
 <body>
     <?php
     require_once("../includes/database.php");
+    include_once("../includes/utils.php");
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -26,7 +27,7 @@
     $userId = $_SESSION["userId"];
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
     ?>
-    <div class="container-fluid overflow-hidden px-0">
+    <div class="container-fluid overflow-hidden p-3">
         <main>
             <div id="edit-profile-box-id" class="row justify-content-between fix-bottom">
                 <section class="col-12 p-4">
@@ -36,10 +37,10 @@
                     <a id="change-password-button" href="changePassword.php" role="button" class="btn btn-utility mb-3" title="Change password">
                         <i class="bi bi-gear-fill"></i>
                     </a>
-                    <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="editProfileForm">
+                    <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="editProfileForm" enctype="multipart/form-data">
                         <div class="mb-2">
                             <label for="inputImage" class="form-label">Upload new icon:</label>
-                            <input type="file" name="image" id="inputImage" accept="image/*" class="form-control">
+                            <input type="file" name="files" id="inputImage" accept="image/*" class="form-control" />
                         </div>
                         <div class="mb-2">
                             <label for="inputName" class="form-label">Name:</label>
@@ -77,14 +78,27 @@
         $name = $_POST["name"];
         $surname = $_POST["surname"];
         $username = $_POST["username"];
-        $icon = $_POST["image"];
         $email = $_POST["email"];
-        $description = empty($_POST["description"]) ? "" : $_POST["description"];
+        $description = empty($_POST["description"]) ? NULL : $_POST["description"];
+        if (isset($_FILES["files"])) {
+            $uploadDir = "uploads/";
+            $targetDir = $HOME_DIR . $uploadDir;
+            $checkExistance = "SELECT IdMedia FROM media WHERE FileName={$_FILES['files']['name']};";
+            $dbImage = $dbh->execQuery($checkExistance);
+            if (count($dbImage) > 0) {
+                $mediaId = $dbImage[0]["IdMedia"];
+            } else {
+                $mediaId = insertImage($uploadDir, $targetDir);
+            }
+        } else {
+            $mediaId = $dbh->execQuery("SELECT IdMedia FROM utente WHERE IdUser='$userId';");
+        }
         $query = "UPDATE utente 
-            SET Name='$name', Surname='$surname', Username='$username', Email='$email', Description='$description' 
-            WHERE utente.IdUser=$userId";
+            SET Name='$name', Surname='$surname', Username='$username', Email='$email', Description='$description', IdMedia='$mediaId' 
+            WHERE utente.IdUser='$userId'";
         $res = $dbh->execQuery($query);
         print_r($res);
+        unset($_FILES["files"]);
 
         echo "<meta http-equiv='refresh' content='0'>";
     } ?>

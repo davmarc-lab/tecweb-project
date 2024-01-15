@@ -95,7 +95,7 @@ function printPost($res, $dbh)
             echo "<div class=\"row mt-5 d-flex justify-content-center align-items-center text-center\">";
         }
 ?>
-        <div class="col-md-4 col-12 mx-auto mt-5 d-flex justify-content-center">
+        <div class="col-md-4 col-12 mx-auto my-5 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
                 <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Image">
                 <div class="card-body">

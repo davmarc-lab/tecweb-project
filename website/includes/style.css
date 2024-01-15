@@ -11,6 +11,16 @@
     color: #198754;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #198754;
+    text-decoration: none;
+}
+
 .nav-item a {
     color: black;
     text-decoration: none;
@@ -69,12 +79,22 @@ html[data-bs-theme = "dark"] {
         text-decoration: underline;
     }
 
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #198754;
+        text-decoration: none;
+    }
+
     .nav-item a {
         color: white;
         text-decoration: none;
     }
 
-    [role="button"]:not(.btn-primary, .btn-utility) {
+    a[role="button"]:not(.btn-primary, .btn-utility) {
         background-color: #006f3c;
         color: white;
         border-color: #006f3c;
