@@ -6,7 +6,7 @@ $counter = 0;
 $ret = '';
 
 foreach ($_SESSION['homePagePosts'] as $post) {
-    $ret .= '<div class="card border border-5 border-primary-subtle rounded mx-auto mt-4 p-3" style="max-width: 35rem;" id="div' . $post['IdPost'] . '">';
+    $ret .= '<div class="card rounded mx-auto my-4 p-3" style="max-width: 35rem;" id="div' . $post['IdPost'] . '">';
 
     $authorId = $post["IdUser"];
     $queryAuthor = "SELECT * from utente WHERE IdUser = '$authorId';";
@@ -21,7 +21,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     $ret .= '<div class="col">';
     $ret .= '<button type="button" class="btn btn-lg ' . (getClass($dbh, $post['IdPost']) ? "d-none" : "") . '" style="border: none;" onClick="likePost(' . $post['IdPost'] . ')" id="bttLike' . $post['IdPost'] . '"><i class="bi bi-hand-thumbs-up"></i></button>';
     $ret .= '<button type="button" class="btn btn-lg ' . (getClass($dbh, $post['IdPost']) ? "" : "d-none") . '" style="border: none;" onClick="dislikePost(' . $post['IdPost'] . ')" id="bttLikeFill' . $post['IdPost'] . '"><i class="bi bi-hand-thumbs-up-fill"></i></button>';
-    $ret .= '<span class="badge bg-secondary ms-4">' . $post['NumberComment'] . '</span>';
+    $ret .= '<span class="badge ms-4">' . $post['NumberComment'] . '</span>';
     $ret .= '<button type="button" class="btn btn-lg" style="border: none;"><i class="bi bi-chat-left-text"></i></button>';
     $ret .= '<a href="post/viewPost.php?id=' . $post["IdPost"] . '" class="float-end">';
     $ret .= '<button class="btn btn-primary">More</button>';
@@ -37,7 +37,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     foreach ($comments as $comment) {
         $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
         $userComment = $dbh->execQuery($queryUserComment);
-        $ret .= '<p class="border border-success rounded p-1">' . drawLinkUsername($userComment[0]['Username'], $comment['IdUser'], "profile/profilePage.php") . ':' . $comment['CommentText'] . '</p>';
+        $ret .= '<p class="border rounded p-1">' . drawLinkUsername($userComment[0]['Username'], $comment['IdUser'], "profile/profilePage.php") . ':' . $comment['CommentText'] . '</p>';
     }
     $ret .= '<form action="addComment.php" method="POST">';
     $ret .= '<label for="textAreaComment" hidden>Insert your comment here</label>
