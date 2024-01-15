@@ -12,7 +12,10 @@
 
 <body>
 	<?php
+	session_start();
 	include_once("../includes/utils.php");
+	include_once("../includes/database.php");
+	updateLastSeen($dbh, $_SESSION["userId"]);
 	function printTitle2($text)
 	{
 	?>
@@ -55,8 +58,6 @@
 		</div>
 	<?php
 	}
-	require_once("../includes/database.php");
-	session_start();
 	if (!isset($_SESSION["userId"])) {
 		// login not done
 		header("location:../login/login.php");

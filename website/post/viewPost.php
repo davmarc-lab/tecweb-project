@@ -2,9 +2,10 @@
 <html lang="en">
 
 <?php
+session_start();
 require_once("../includes/database.php");
 include_once("../includes/utils.php");
-
+updateLastSeen($dbh, $_SESSION["userId"]);
 if (!isset($_GET["id"])) {
     header("location: ../index.php");
 }
@@ -23,9 +24,6 @@ $infoPost = $dbh->execQuery($query)[0];
 </head>
 
 <body>
-    <?php
-    session_start();
-    ?>
     <div class="row m-auto mb-4">
         <?php
         include_once("../includes/navbar.php");

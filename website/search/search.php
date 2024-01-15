@@ -18,6 +18,7 @@
     include_once("../includes/navbar.php");
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
+    updateLastSeen($dbh, $_SESSION["userId"]);
     $bar = new Navbar("../");
     $bar->drawNavbar("Search");
     ?>

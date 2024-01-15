@@ -24,6 +24,7 @@
     require_once("includes/database.php");
     include_once("includes/navbar.php");
     include_once("includes/utils.php");
+    updateLastSeen($dbh, $_SESSION["userId"]);
     $bar = new Navbar("./");
     $bar->drawNavbar("HomePage");
     $query = "SELECT post.*

@@ -56,9 +56,9 @@ function getHomeDirectoryValue() {
 }
 
 function checkUserOnline($dbh, $id) {
-    $query = "SELECT * FROM onlineusers WHERE IdUser = '{$id}';";
-    $res = $dbh->execQuery($query);
-    return count($res) > 0;
+    $query = "SELECT *, IFNULL(TIMESTAMPDIFF(MINUTE, lastseen, NOW()), -1) AS diff_minutes FROM utente WHERE IdUser = $id AND (lastseen IS NULL OR TIMESTAMPDIFF(MINUTE, lastseen, NOW()) > 15)";
+    $test = $dbh->execQuery($query);
+    return (!(count($test) > 0) || $test == -1);
 }
 
 function getUserMail($dbh, $id) {
@@ -71,4 +71,13 @@ function sendEmailNotification($dst, $subject, $message) {
     $from = "noteforall2@gmail.com";
     $headers = ['From' => $from];
     mail($dst, $subject, $message, $headers);
+}
+
+function updateLastSeen($dbh, $id, $delete = -1) {
+    if ($delete == -1) {
+        $query = "UPDATE utente SET lastseen = NOW() WHERE IdUser = $id";
+    } else {
+        $query = "UPDATE utente SET lastseen = NULL WHERE IdUser = $id";
+    }
+    $dbh->execQuery($query);
 }

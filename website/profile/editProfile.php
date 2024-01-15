@@ -15,10 +15,10 @@
     <?php
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
-
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+    updateLastSeen($dbh, $_SESSION["userId"]);
 
     if (!isset($_SESSION["userId"])) {
         // login not done

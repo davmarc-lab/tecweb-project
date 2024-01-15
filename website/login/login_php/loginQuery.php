@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("../../includes/database.php");
+require_once("../../includes/utils.php");
 $key = $_POST['email'];
 $password = $_POST['password'];
 $_SESSION['oldValueLogin'] = [
@@ -15,6 +16,7 @@ if ($numRows > 0) {
         if (password_verify($password, $dbPassword)) {
             session_start();
             $_SESSION["userId"] = $res[0]['IdUser'];
+            updateLastSeen($dbh, $_SESSION["userId"]);
             unset($_SESSION['oldValueLogin']);
             header("location:../../index.php");
             exit;

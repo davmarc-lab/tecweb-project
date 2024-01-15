@@ -15,9 +15,10 @@
 
 <body>
     <?php
+    session_start();
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
-    session_start();
+    updateLastSeen($dbh, $_SESSION["userId"]);
     if (!isset($_SESSION["userId"])) {
         // login not done
         header("location:../login/login.php");
