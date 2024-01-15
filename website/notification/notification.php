@@ -30,13 +30,10 @@
 		switch ($type) {
 			case NotificationType::LIKE->value:
 				return "bi bi-heart";
-				break;
 			case NotificationType::FOLLOWER->value:
 				return "bi bi-hand-thumbs-up";
-				break;
 			case NotificationType::COMMENT->value:
 				return "bi bi-person";
-				break;
 			default:
 				return "bi bi-bell";
 		}

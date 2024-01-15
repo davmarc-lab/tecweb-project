@@ -18,8 +18,7 @@ $tmp = NotificationType::LIKE->value;
 $query = "INSERT INTO notification (Type, Description, IsRead, IdUser, IdTarget) VALUES ('$tmp', '{$username} liked your photo', 0, {$_POST['userId']}, {$targetId});";
 $dbh->execQuery($query);
 
-/* if (!checkUserOnline($dbh, $_POST['userId'])) {
-    mail(getUserMail($dbh, $_POST['userId']), "You received a new like", "{$username} liked your photo");
-} */
-sendEmailNotification(getUserMail($dbh, $_POST['userId']), "You received a new like", "{$username} liked your photo");
+if (!checkUserOnline($dbh, $_POST['userId'])) {
+    sendEmailNotification(getUserMail($dbh, $_POST['userId']), "You received a new like", "{$username} liked your photo");
+}
 ?>
