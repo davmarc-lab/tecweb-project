@@ -36,7 +36,7 @@
     ?>
     <div class="container-fluid mt-3">
         <div class="row">
-            <div class="col-lg-8 col-md-12 col-12 justify-content-center">
+            <div class="col-lg-8 col-md-12 col-12 justify-content-center" id="postContainer">
                 <?php
                 $counter = 0;
                 foreach ($res as $post) {

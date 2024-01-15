@@ -7,13 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../includes/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../profile/profile_script/followScript.js"></script>
     <title>Document</title>
 </head>
 
 <body>
     <?php
+    session_start();
     include_once("../includes/navbar.php");
     require_once("../includes/database.php");
+    include_once("../includes/utils.php");
     $bar = new Navbar("../");
     $bar->drawNavbar("Search");
     ?>
@@ -43,14 +47,32 @@
     <?php
     } else {
     ?>
-        <div class="container-fluid justify-content-center align-items-center text-center">
+        <div class="container-fluid">
             <?php
             unset($_POST['submit']);
             $searchKey = $_POST['searchText'];
+            $query = "SELECT * FROM utente WHERE Username LIKE '%$searchKey%' ORDER BY NumberFollower DESC;";
+            $res = $dbh->execQuery($query);
+            if ($res) {
+            ?>
+                <div class="row mt-4 justify-content-center">
+                    <div class="container col-md-8">
+                        <?php
+                        printProfile($dbh, $res);
+                        ?>
+                    </div>
+                </div>
+            <?php
+            }
+            $searchKey = $_POST['searchText'];
             $query = "SELECT * FROM post WHERE Title LIKE '%$searchKey%' ORDER BY NumberVote DESC;";
             $res = $dbh->execQuery($query);
-            printPost($res, $dbh);
             ?>
+            <div class="row justify-content-center align-items-center text-center">
+                <?php
+                printPost($res, $dbh);
+                ?>
+            </div>
         </div>
     <?php
     }
@@ -94,5 +116,62 @@ function printPost($res, $dbh)
     if ($index != 0) {
         echo "</div>";
     }
+}
+?>
+
+<?php
+function printProfile($dbh, $res)
+{
+    print_r("Sono printProf");
+$limit = true;
+if (array_key_exists('morePost', $_POST)) {
+    $limit = false;
+}
+?>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">Username</th>
+                <th class="text-center" scope="col">Posts</th>
+                <th class="text-center" scope="col">Follower</th>
+                <th class="text-center" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $counter = 0;
+            foreach ($res as $user) {
+            ?>
+                <tr>
+                    <td class="text-center" scope="row"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></th>
+                    <td class="text-center"><?php echo $user['NumberPost'] ?></td>
+                    <td class="text-center"><?php echo $user['NumberFollower'] ?></td>
+                    <td class="text-center">
+                        <?php
+                        $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
+                                        AND IdDst = {$user['IdUser']}";
+                        $test = $dbh->execQuery($query);
+                        $pathFollow = "'../profile/followUserQuery.php'";
+                        $pathUnfollow = "'../profile/unfollowUserQuery.php'";
+                        ?>
+                        <a id="followButton" onclick="followUser(<?php echo $_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathFollow; ?>)" role="button" class="btn btn-outline-primary <?php echo (sizeof($test) != 0 ? "d-none" : "") ?>">Follow</a>
+                        <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-outline-primary <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                    </td>
+                </tr>
+            <?php
+            $counter++;
+            if ($limit) {
+                if ($counter == 3) {
+                    break;  
+                }
+            }
+            }
+            ?>
+        </tbody>
+    </table>
+    <form action="" method="POST">
+        <input type="submit" name="morePost" class="btn btn-primary" value="View more">
+    </form>
+<?php
 }
 ?>

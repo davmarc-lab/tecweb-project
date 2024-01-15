@@ -1,4 +1,5 @@
-function followUser(srcUser, dstUser) {
+function followUser(srcUser, dstUser, path) {
+    console.log(path);
     // shouldn't enter in this condition because the button is hidden.
     if (srcUser == dstUser) {
         console.log("Cannot follow yourself!");
@@ -7,23 +8,21 @@ function followUser(srcUser, dstUser) {
 
     // follow user
     $.ajax({
-        url: "followUserQuery.php",
+        url: path,
         type: "POST",
         data: {
             srcUser: srcUser,
             dstUser: dstUser
         },
         success: function (response) {
-            console.log("SUCCESSO");
             document.getElementById("unfollowButton").classList.remove("d-none");
             document.getElementById("followButton").classList.add("d-none");
             location.reload();
-            console.log("SUCCESSO");
         },
     });
 }
 
-function unfollowUser(srcUser, dstUser) {
+function unfollowUser(srcUser, dstUser, path) {
     // shouldn't enter in this condition because the button is hidden.
     if (srcUser == dstUser) {
         console.log("Cannot follow yourself!");
@@ -32,7 +31,7 @@ function unfollowUser(srcUser, dstUser) {
 
     // unfollow user
     $.ajax({
-        url: "unfollowUserQuery.php",
+        url: path,
         type: "POST",
         data: {
             srcUser: srcUser,
