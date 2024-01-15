@@ -123,56 +123,43 @@ function printPost($res, $dbh)
 <?php
 function printProfile($dbh, $res)
 {
-    print_r("Sono printProf");
-$limit = true;
-if (array_key_exists('morePost', $_POST)) {
-    $limit = false;
-}
 ?>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">Username</th>
-                <th class="text-center" scope="col">Posts</th>
-                <th class="text-center" scope="col">Follower</th>
-                <th class="text-center" scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $counter = 0;
-            foreach ($res as $user) {
-            ?>
+    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td class="text-center" scope="row"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></th>
-                    <td class="text-center"><?php echo $user['NumberPost'] ?></td>
-                    <td class="text-center"><?php echo $user['NumberFollower'] ?></td>
-                    <td class="text-center">
-                        <?php
-                        $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
-                                        AND IdDst = {$user['IdUser']}";
-                        $test = $dbh->execQuery($query);
-                        $pathFollow = "'../profile/followUserQuery.php'";
-                        $pathUnfollow = "'../profile/unfollowUserQuery.php'";
-                        ?>
-                        <a id="followButton" onclick="followUser(<?php echo $_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathFollow; ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) != 0 ? "d-none" : "") ?>">Follow</a>
-                        <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
-                    </td>
+                    <th class="text-center" scope="col">Username</th>
+                    <th class="text-center d-none d-md-table-cell" scope="col">Posts</th>
+                    <th class="text-center d-none d-md-table-cell" scope="col">Follower</th>
+                    <th class="text-center" scope="col"></th>
                 </tr>
-            <?php
-            $counter++;
-            if ($limit) {
-                if ($counter == 3) {
-                    break;  
+            </thead>
+            <tbody>
+                <?php
+                foreach ($res as $user) {
+                ?>
+                    <tr>
+                        <td class="text-center" scope="row"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></th>
+                        <td class="text-center d-none d-md-table-cell"><?php echo $user['NumberPost'] ?></td>
+                        <td class="text-center d-none d-md-table-cell"><?php echo $user['NumberFollower'] ?></td>
+                        <td class="text-center">
+                            <?php
+                            $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
+                                        AND IdDst = {$user['IdUser']}";
+                            $test = $dbh->execQuery($query);
+                            $pathFollow = "'../profile/followUserQuery.php'";
+                            $pathUnfollow = "'../profile/unfollowUserQuery.php'";
+                            ?>
+                            <a id="followButton" onclick="followUser(<?php echo $_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathFollow; ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) != 0 ? "d-none" : "") ?>">Follow</a>
+                            <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                        </td>
+                    </tr>
+                <?php
                 }
-            }
-            }
-            ?>
-        </tbody>
-    </table>
-    <form action="" method="POST">
-        <input type="submit" name="morePost" class="btn btn-primary" value="View more">
-    </form>
+                ?>
+            </tbody>
+        </table>
+    </div>
 <?php
 }
 ?>
