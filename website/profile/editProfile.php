@@ -31,7 +31,7 @@
         <main>
             <div id="edit-profile-box-id" class="row justify-content-between fix-bottom">
                 <section class="col-12 p-4">
-                    <a id="back-button" href="profilePage.php" role="button" class="btn btn-utility mb-3">
+                    <a id="back-button" href="profilePage.php" role="button" class="btn btn-utility mb-3" title="Go back">
                         <i class="bi bi-arrow-left"></i>
                     </a>
                     <a id="change-password-button" href="changePassword.php" role="button" class="btn btn-utility mb-3" title="Change password">
@@ -83,7 +83,7 @@
         if (isset($_FILES["files"])) {
             $uploadDir = "uploads/";
             $targetDir = $HOME_DIR . $uploadDir;
-            $checkExistance = "SELECT IdMedia FROM media WHERE FileName={$_FILES['files']['name']};";
+            $checkExistance = "SELECT IdMedia FROM media WHERE FileName='{$_FILES['files']['name']}';";
             $dbImage = $dbh->execQuery($checkExistance);
             if (count($dbImage) > 0) {
                 $mediaId = $dbImage[0]["IdMedia"];

@@ -1,9 +1,4 @@
-<?php
-include_once("utils.php");
-?>
-<?php
-
-
+<?php 
 class Navbar
 {
     private $homePath;
@@ -14,6 +9,7 @@ class Navbar
     private $newPostPage = "post/newPost.php";
     private $profilePage = "profile/profilePage.php";
     private $scriptThemePath = "includes/themeScript.js";
+    private $style = "includes/style.css";
 
     public function __construct($homePath)
     {
@@ -24,7 +20,8 @@ class Navbar
     {
 ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="style.css">
+        <?php include_once("utils.php"); ?>
+        <link rel="stylesheet" href="<?php echo (($HOME_DIR)  . ($this->style)); ?>">
         <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
         <nav class="navbar sticky-top navbar-expand-md bg-success bg-gradient text-white">
             <div class="container-fluid">
