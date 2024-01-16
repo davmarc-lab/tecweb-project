@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="likePostScript.js"></script>
     <script src="redirectToPost.js" defer></script>
+    <script src="addCommentScript.js"></script>
     <title>NoteForAll</title>
 </head>
 
@@ -25,6 +26,7 @@
     include_once("includes/navbar.php");
     include_once("includes/utils.php");
     updateLastSeen($dbh, $_SESSION["userId"]);
+    unsetSearchKey();
     $bar = new Navbar("./");
     $bar->drawNavbar("HomePage");
     $query = "SELECT post.*
@@ -42,7 +44,7 @@
                 $counter = 0;
                 foreach ($res as $post) {
                 ?>
-                    <div class="card border-1 rounded mx-auto m-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost']?>">
+                    <div class="card border-1 rounded mx-auto m-4 p-3" style="max-width: 35rem;" id="div<?php echo $post['IdPost'] ?>">
                         <?php
                         $queryAuthor = "SELECT * from utente WHERE IdUser = {$post['IdUser']};";
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
@@ -50,11 +52,10 @@
                         $previewPathIcon = $dbh->execQuery($queryIcon)[0]['FilePath'];
                         $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
                         $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
-                        //$previewPath = substr($previewPath, 2);
                         ?>
                         <div class="row">
                             <div class="col-1">
-                                <img src="<?php echo $previewPathIcon?>" alt="" class="rounded rounded-5" height="30px" width="30px" />
+                                <img src="<?php echo $previewPathIcon ?>" alt="" class="rounded rounded-5" height="30px" width="30px" />
                             </div>
                             <div class="col-3 pt-1">
                                 <p id="index-post-user-id"><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
@@ -72,7 +73,7 @@
                                     <a href="post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>" class="float-end">
                                         <button class="btn btn-primary">More</button>
                                     </a>
-                                    <h5 class="card-title"><?php echo $post["Title"] ?></h5>        
+                                    <h5 class="card-title"><?php echo $post["Title"] ?></h5>
                                     <p class="card-text"><?php echo $post["Description"] ?></p>
                                 </div>
                             </div>

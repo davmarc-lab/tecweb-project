@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../includes/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../profile/profile_script/followScript.js"></script>
+    <script src="searchScript.js"></script>
     <title>Document</title>
 </head>
 
@@ -24,19 +25,17 @@
     ?>
     <div class="container-fluid">
         <div class="row mt-5">
-            <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="POST">
-                <div class="input-group">
-                    <label for="searchText" class="visually-hidden">Search</label>
-                    <input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search" aria-describedby="searchIcon" />
-                    <button type="submit" class="btn btn-outline-secondary" id="searchButton" name="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </form>
+            <div class="input-group">
+                <label for="searchText" class="visually-hidden">Search</label>
+                <input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search" aria-describedby="searchIcon" />
+                <button type="" class="btn btn-outline-secondary" id="searchButton" name="submit" onclick="searchResult()">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
         </div>
     </div>
     <?php
-    if (!isset($_POST['submit'])) {
+    if (!isset($_SESSION["search_result"]["post"])) {
     ?>
         <div class="container-fluid justify-content-center align-items-center text-center">
             <?php
@@ -49,29 +48,18 @@
     } else {
     ?>
         <div class="container-fluid">
-            <?php
-            unset($_POST['submit']);
-            $searchKey = $_POST['searchText'];
-            $query = "SELECT * FROM utente WHERE Username LIKE '%$searchKey%' ORDER BY NumberFollower DESC;";
-            $res = $dbh->execQuery($query);
-            if ($res) {
-            ?>
                 <div class="row mt-4 justify-content-center">
                     <div class="container col-md-8">
                         <?php
-                        printProfile($dbh, $res);
+                        printProfile($dbh, $_SESSION["search_result"]["profile"]);
                         ?>
                     </div>
                 </div>
-            <?php
-            }
-            $searchKey = $_POST['searchText'];
-            $query = "SELECT * FROM post WHERE Title LIKE '%$searchKey%' ORDER BY NumberVote DESC;";
-            $res = $dbh->execQuery($query);
-            ?>
             <div class="row justify-content-center align-items-center text-center">
                 <?php
-                printPost($res, $dbh);
+                printPost($_SESSION["search_result"]["post"], $dbh);
+                /* unset($_SESSION["search_result"]["post"]);
+                unset($_SESSION["search_result"]["profile"]); */
                 ?>
             </div>
         </div>

@@ -19,6 +19,7 @@
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
     updateLastSeen($dbh, $_SESSION["userId"]);
+    unsetSearchKey();
     if (!isset($_SESSION["userId"])) {
         // login not done
         header("location:../login/login.php");

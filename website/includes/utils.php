@@ -81,3 +81,10 @@ function updateLastSeen($dbh, $id, $delete = -1) {
     }
     $dbh->execQuery($query);
 }
+
+function unsetSearchKey() {
+    if (isset($_SESSION["search_result"]["post"])) {
+        unset($_SESSION["search_result"]["post"]);
+        unset($_SESSION["search_result"]["profile"]);
+    }
+}

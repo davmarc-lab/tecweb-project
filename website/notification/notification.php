@@ -16,6 +16,7 @@
 	include_once("../includes/utils.php");
 	include_once("../includes/database.php");
 	updateLastSeen($dbh, $_SESSION["userId"]);
+	unsetSearchKey();
 	function printTitle2($text)
 	{
 	?>
@@ -46,7 +47,7 @@
 		$isRead = $val["IsRead"];
 	?>
 		<div class="row-2">
-			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-<?php echo($isRead ? "secondary" : "danger"); ?> p-auto ps-1">
+			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-<?php echo ($isRead ? "secondary" : "danger"); ?> p-auto ps-1">
 				<span>
 					<i class="<?php echo ($iconClass); ?>" style="font-size: 1rem;"></i>
 				</span>
@@ -91,12 +92,18 @@
 					printTitle2("You have 0 new notification.");
 				} else {
 					printTitle2("You have " . sizeof($notif) . " new notification" . (sizeof($notif) > 1 ? "s." : "."));
-
-					// all notification
-					foreach ($notif as $x) :
-						printTextInRectangle($x);
-					endforeach;
 				}
+
+				$query = "SELECT *
+                        FROM notification as n
+                        WHERE n.IdUser = $userId
+						ORDER BY IdNotification DESC";
+				$notif = $dbh->execQuery($query, MYSQLI_ASSOC);
+				// all notification
+				foreach ($notif as $x) :
+					printTextInRectangle($x);
+				endforeach;
+
 				// update IsRead col
 				$query = "UPDATE notification
 						SET IsRead = 1
