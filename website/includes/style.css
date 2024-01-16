@@ -47,8 +47,8 @@ a:hover:not(a[role="button"]) {
     background-color: rgb(193, 196, 198);
 }
 
-.card {
-    border-color: lightslategray;
+.card, #view-post {
+    border-color: lightslategray !important;
 }
 
 a[role="button"]:not(.btn-primary, .btn-utility) {
@@ -128,8 +128,8 @@ html[data-bs-theme = "dark"] {
         background-color: darkslategray;
     }
 
-    .card {
-        border-color: lightgray;
+    .card, #view-post {
+        border-color: lightgray !important;
     }
 
     a[role="button"]:hover:not(.btn-following){
