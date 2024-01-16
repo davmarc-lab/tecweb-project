@@ -38,6 +38,7 @@
                 <section>
                     <h2>New Post</h2>
                     <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="newPostForm" enctype="multipart/form-data">
+
                         <div class="mb-3">
                             <label for="title" class="form-label">Choose Title:</label>
                             <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" /> <!-- required -->
@@ -63,16 +64,19 @@
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Choose category
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="categoryDropdown">
-                                    <input type="text" name="categorySearch" id="categorySearch" class="form-control" placeholder="Search" />
-                                    <div class="scrollable-menu">
+                                <div class="dropdown-menu p-1" aria-labelledby="categoryDropdown">
+                                    <div class="container d-flex">
+                                        <input type="text" name="categorySearch" id="categorySearch" class="form-control" placeholder="Search/Create" />
+                                        <a class="btn btn-utility btn-secondary ms-1" role="button" id="create-ctg-btn">Create</a>
+                                    </div>
+                                    <div class="container mt-2 scrollable-menu">
                                         <?php
                                         $query = "SELECT * FROM category";
                                         $categories = $dbh->execQuery($query);
 
                                         foreach ($categories as $cat) {
                                         ?>
-                                            <a class="dropdown-item" value="<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
+                                            <a class="dropdown-item btn-primary rounded my-1" role="button" value="<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
                                         <?php
                                         }
                                         ?>
