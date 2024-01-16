@@ -158,11 +158,12 @@
         $idCategory = isset($_POST["category"]) ? $_POST["category"] : NULL;
 
         // NumberVote and NumberComment are initially 0
-        $query = "INSERT INTO post (Title, Description, NumberVote, NumberComment, IdUser, IdMedia" .
+        $currentDate = date("Y-m-d H:i:s");
+        $query = "INSERT INTO post (Date, Title, Description, NumberVote, NumberComment, IdUser, IdMedia" .
             ($previewId == NULL ? "" : ", IdPreview") .
             ($idCategory == NULL ? "" : ", IdCategory") .
             ")" .
-            " VALUES('$title', '$description', 0, 0, $idUser, $idMedia" .
+            " VALUES('$currentDate', '$title', '$description', 0, 0, $idUser, $idMedia" .
             ($previewId == NULL ? "" : ", $idPreview") .
             ($idCategory == NULL ? "" : ", $idCategory") .
             ");";
