@@ -1,5 +1,4 @@
 function likePost(idPost, idUser) {
-    console.log(idPost + " " + idUser);
     $.ajax({
         url: "likePostQuery.php",
         type: "POST",
@@ -10,17 +9,25 @@ function likePost(idPost, idUser) {
         success: function(response) {
             var idLike = "bttLike" + idPost;
             var idLikeFill = "bttLikeFill" + idPost;
-            console.log("Success:", response);
-            console.log("Id: " + idLike);
             document.getElementById(idLike).classList.add('d-none');
             document.getElementById(idLikeFill).classList.remove('d-none');
-            location.reload();
+            $.ajax({
+                url: "getVoteNumber.php",
+                type: "GET",
+                data: {
+                    postId: idPost
+                },
+                success: function(response) {
+                    console.log(response);
+                    var idVote = "vote_indicator" + idPost;
+                    document.getElementById(idVote).textContent = parseInt(response, 10);
+                }
+            });
         },
     });
 }
 
 function dislikePost(idPost, idUser) {
-    console.log(idPost);
     $.ajax({
         url: "dislikePostQuery.php",
         type: "POST",
@@ -31,10 +38,20 @@ function dislikePost(idPost, idUser) {
         success: function(response) {
             var idLike = "bttLike" + idPost;
             var idLikeFill = "bttLikeFill" + idPost;
-            console.log("Success:", response);
             document.getElementById(idLike).classList.remove('d-none');
             document.getElementById(idLikeFill).classList.add('d-none');
-            location.reload();
+            $.ajax({
+                url: "getVoteNumber.php",
+                type: "GET",
+                data: {
+                    postId: idPost
+                },
+                success: function(response) {
+                    console.log(response);
+                    var idVote = "vote_indicator" + idPost;
+                    document.getElementById(idVote).textContent = parseInt(response, 10);
+                }
+            });
         },
     });
 }

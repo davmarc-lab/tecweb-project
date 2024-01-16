@@ -19,9 +19,10 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     $ret .= '<div class="card-body">';
     $ret .= '<div class="row">';
     $ret .= '<div class="col">';
+    $ret .= '<p class="badge bg-secondary ms-4" id="vote_indicator' . $post['IdPost'] . '">' . $post['NumberVote'] . '</p>';
     $ret .= '<button type="button" class="btn btn-lg ' . (getClass($dbh, $post['IdPost']) ? "d-none" : "") . '" style="border: none;" onClick="likePost(' . $post['IdPost'] . ')" id="bttLike' . $post['IdPost'] . '"><i class="bi bi-hand-thumbs-up"></i></button>';
-    $ret .= '<button type="button" class="btn btn-lg ' . (getClass($dbh, $post['IdPost']) ? "" : "d-none") . '" style="border: none;" onClick="dislikePost(' . $post['IdPost'] . ')" id="bttLikeFill' . $post['IdPost'] . '"><i class="bi bi-hand-thumbs-up-fill"></i></button>';
-    $ret .= '<span class="badge ms-4">' . $post['NumberComment'] . '</span>';
+    $ret .= '<button type="button" class="btn btn-lg ' . (getClass($dbh, $post['IdPost']) ? "" : "d-none") . '" style="border: none;" onClick="dislikePost(' . $post['IdPost'] . ')" id="bttLikeFill' . $post['IdPost'] . '"><i class="bi bi-hand-thumbs-up-fill text-primary"></i></button>';
+    $ret .= '<p class="badge bg-secondary badge ms-4">' . $post['NumberComment'] . '</p>';
     $ret .= '<button type="button" class="btn btn-lg" style="border: none;"><i class="bi bi-chat-left-text"></i></button>';
     $ret .= '<a href="post/viewPost.php?id=' . $post["IdPost"] . '" class="float-end">';
     $ret .= '<button class="btn btn-primary">More</button>';
