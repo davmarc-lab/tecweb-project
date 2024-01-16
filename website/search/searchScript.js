@@ -18,28 +18,15 @@ function searchResult() {
             filters: filters
         },
         success: function(response) {
+            console.log(response);
             location.reload();
         }
     });
 }
 
-/* var input = document.getElementById("search-text");
-
-// Execute a function when the user presses a key on the keyboard
-input.addEventListener("keypress", function(event) {
-  // If the user presses the "Enter" key on the keyboard
-  if (event.key === "Enter") {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("searchButton").click();
-  }
-});
- */
-function handle(e){
-    if(e.keyCode === 13){
-        e.preventDefault(); // Ensure it is only this code that runs
-
-        alert("Enter was pressed was presses");
+let input = document.getElementById("search-text");
+input.addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+        searchResult();
     }
-}
+});

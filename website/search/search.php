@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../includes/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../profile/profile_script/followScript.js"></script>
-    <script src="searchScript.js"></script>
+    <script src="searchScript.js" defer></script>
     <script src="categoryFilter.js" type="text/javascript"></script>
     <title>Document</title>
 </head>
@@ -76,15 +76,15 @@
                 <div class="row mt-4 justify-content-center">
                     <div class="container col-md-8">
                         <?php
-                        printProfile($dbh, $_SESSION["search_result"]["profile"]);
+                        if (!empty($_SESSION["search_result"]["profile"])) {
+                            printProfile($dbh, $_SESSION["search_result"]["profile"]);
+                        }
                         ?>
                     </div>
                 </div>
             <div class="row justify-content-center align-items-center text-center">
                 <?php
                 printPost($_SESSION["search_result"]["post"], $dbh);
-                /* unset($_SESSION["search_result"]["post"]);
-                unset($_SESSION["search_result"]["profile"]); */
                 ?>
             </div>
         </div>
