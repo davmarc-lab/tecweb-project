@@ -75,6 +75,7 @@ $infoPost = $dbh->execQuery($query)[0];
                     $mediaRes = $dbh->execQuery($query)[0];
                     $mediaPath = $mediaRes["FilePath"];
                     $mediaName = $mediaRes["FileName"];
+                    $mediaPath = "../" . $mediaPath;
 
                     ?>
                     <!-- write the media and download link -->
