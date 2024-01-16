@@ -47,10 +47,13 @@ if (!isset($_SESSION['oldValueLogin'])) {
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="loginPassword" class="col-form-label" hidden>Password</label>
+                            <label for="login-password" class="col-form-label" hidden>Password</label>
                             <div class="col-md-12">
-                                <input type="password" id="loginPassword" name="password" placeholder="Password" class="form-control" />
-                                <input type="checkbox" onclick="showHide()" class="mb-5" /> Show Password
+                                <input type="password" id="login-password" name="password" placeholder="Password" class="form-control" />
+                                <label for="show-password" class="mb-5">
+                                    <input type="checkbox" id="show-password" class="mb-5" />
+                                    Show Password
+                                </label>
                             </div>
                         </div>
                         <div class="row mb-3">

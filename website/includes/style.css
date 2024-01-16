@@ -78,6 +78,27 @@ a[role="button"]:hover:not(.btn-following){
     border: none !important;
 }
 
+a.dropdown-toggle {
+    background-color: transparent !important;
+    color: #198754 !important;
+    border-color: #198754 !important;
+}
+
+a.dropdown-toggle:hover {
+    background-color: #006f3c !important;
+    color: white !important;
+    border-color: #006f3c !important;
+}
+
+#cookie-notify {
+    background-color: darkslategray;
+    color: white;
+}
+
+#ok-button {
+    background-color: whitesmoke;
+    color: black;
+}
 
 /* Dark theme */
 html[data-bs-theme = "dark"] {
@@ -159,5 +180,27 @@ html[data-bs-theme = "dark"] {
         background-color: #198754 !important;
         color: white !important;
         border: none !important;
+    }
+
+    a.dropdown-toggle {
+        background-color: transparent !important;
+        color: #198754 !important;
+        border-color: #198754 !important;
+    }
+
+    a.dropdown-toggle:hover {
+        background-color: #006f3c !important;
+        color: white !important;
+        border-color: #006f3c !important;
+    }
+
+    #cookie-notify {
+        background-color: lightgray;
+        color: black;
+    }
+
+    #ok-button {
+        background-color: darkslategray;
+        color: white;
     }
 }
