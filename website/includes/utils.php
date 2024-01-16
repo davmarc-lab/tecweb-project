@@ -21,6 +21,10 @@ function drawLinkUsername($username, $userId, $targetLink) {
     return "<a href=\"$targetLink?user=$userId\">@$username</a>";
 }
 
+function drawLinkUsernameDropdown($username, $userId, $targetLink) {
+    return "<a class=\"dropdown-item\" href=\"$targetLink?user=$userId\">@$username</a>";
+}
+
 function insertImage($dbh, $uploadDir, $targetDir) {
     session_start();
     $_SESSION["debug"] = [
