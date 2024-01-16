@@ -72,6 +72,14 @@ a[role="button"]:hover:not(.btn-following){
     border-color: #198754 !important;
 }
 
+.dropdown-item:hover {
+    background-color: #198754 !important;
+    color: white !important;
+    border: none !important;
+}
+
+
+/* Dark theme */
 html[data-bs-theme = "dark"] {
    #suggested-profile-id, #edit-profile-box-id {
         background-color: rgb(27, 61, 61);
@@ -145,5 +153,11 @@ html[data-bs-theme = "dark"] {
         color: #198754;
         background-color: transparent;
         border-color: #198754 !important;
+    }
+
+    .dropdown-item:hover {
+        background-color: #198754 !important;
+        color: white !important;
+        border: none !important;
     }
 }

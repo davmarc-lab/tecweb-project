@@ -27,8 +27,8 @@
     <div class="container-fluid">
         <div class="row mt-5">
             <div class="input-group">
-                <label for="searchText" class="visually-hidden">Search</label>
-                <input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search" aria-describedby="searchIcon" />
+                <label for="search-text" class="visually-hidden">Search</label>
+                <input type="text" id="search-text" name="search-text" class="form-control" placeholder="Search" aria-describedby="searchIcon" />
                 <button type="" class="btn btn-outline-secondary" id="searchButton" name="submit" onclick="searchResult()">
                     <i class="bi bi-search"></i>
                 </button>
