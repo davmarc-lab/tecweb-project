@@ -33,7 +33,7 @@ $infoPost = $dbh->execQuery($query)[0];
     </div>
 
     <div class="container-fluid col-8 mx-auto py-auto py-3 d-block">
-        <div class="border rounded border-success p-3">
+        <div id="view-post" class="border rounded p-3">
             <!-- post section -->
             <a id="back-button" href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3">
                 <i class="bi bi-arrow-left"></i>
@@ -96,8 +96,10 @@ $infoPost = $dbh->execQuery($query)[0];
                         $queryUserComment = "SELECT * from utente WHERE IdUser = {$comment['IdUser']};";
                         $userComment = $dbh->execQuery($queryUserComment)[0];
                     ?>
-                        <div class="border border-success rounded-pill p-auto m-1">
-                            <p class="p-auto m-0"><?php echo(drawLinkUsername($userComment["Username"], $userComment["IdUser"], "../profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
+                        <div class="me-2">
+                            <div class="border border-success rounded-pill p-auto my-2">
+                                <p class="px-2 m-0"><?php echo(drawLinkUsername($userComment["Username"], $userComment["IdUser"], "../profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
+                            </div>
                         </div>
                     <?php
                     }
