@@ -21,7 +21,7 @@ class Navbar
 ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <?php include_once("utils.php"); ?>
-        <link rel="stylesheet" href="<?php echo (($HOME_DIR)  . ($this->style)); ?>">
+        <link rel="stylesheet" href="<?php echo (getHomeDirectoryValue()  . ($this->style)); ?>">
         <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
         <nav class="navbar sticky-top navbar-expand-md bg-success bg-gradient text-white">
             <div class="container-fluid">
@@ -29,7 +29,7 @@ class Navbar
                 <button class="navbar-toggler p-2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
+                <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><?php echo ($pageName); ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
