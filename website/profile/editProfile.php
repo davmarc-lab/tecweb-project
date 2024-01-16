@@ -26,7 +26,6 @@
     }
     $userId = $_SESSION["userId"];
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
-    unset($_FILES["files"]);
     ?>
     <div class="container-fluid overflow-hidden p-3">
         <main>

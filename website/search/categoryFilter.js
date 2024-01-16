@@ -35,7 +35,7 @@ $("document").ready(function () {
 
             // Take te badge span
             categoryBadges.innerHTML += 
-                "<span class='selected-badge badge rounded-pill text-bg-primary m-2' style='width: fit-content;' id='selected-badge" + j  + "'>" +
+                "<span class='selected-badge badge border rounded-pill m-2' style='width: fit-content;' id='selected-badge" + j  + "'>" +
                 "<p class='m-0' id='category-description" + j + "'></p></span>";
             let categoryDescription = document.getElementById("category-description" + j);
             categoryDescription.innerHTML = item.innerHTML;
@@ -48,6 +48,8 @@ $("document").ready(function () {
         categoryBadges.innerHTML = "";
         dropdownItems.forEach(function (item) {
             item.hidden = false;
+            item.classList.remove('active');
         });
+        location.reload();
     })
 });

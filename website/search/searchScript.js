@@ -1,13 +1,13 @@
 function searchResult() {
     console.log("Sono lo script js");
-    let input = document.getElementById("searchText");
+    let input = document.getElementById("search-text");
     if (input != null) {
         console.log("Input non è null");
     }
     let key = input.value;
     console.log(key);
     let items = Array.from(document.getElementsByClassName("dropdown-item active"));
-    const filters = [];
+    let filters = [];
     items.forEach(e => filters.push(e.getAttribute("value")));
     console.log(filters);
     $.ajax({
@@ -23,7 +23,7 @@ function searchResult() {
     });
 }
 
-/* var input = document.getElementById("searchText");
+/* var input = document.getElementById("search-text");
 
 // Execute a function when the user presses a key on the keyboard
 input.addEventListener("keypress", function(event) {
