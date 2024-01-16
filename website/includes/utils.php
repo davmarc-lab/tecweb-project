@@ -88,3 +88,19 @@ function unsetSearchKey() {
         unset($_SESSION["search_result"]["profile"]);
     }
 }
+
+function getCategory($dbh, $post) {
+    if ($post['IdCategory'] != NULL) {
+        $queryCategory = "SELECT Description FROM category WHERE IdCategory = {$post['IdCategory']};";
+        $category = $dbh->execQuery($queryCategory)[0]["Description"];
+    } else {
+        $category = NULL;
+    }
+    return $category;
+}
+
+function getAllCategories($dbh) {
+    $query = "SELECT DISTINCT(IdCategory), Description FROM category";
+    $categories = $dbh->execQuery($query);
+    return $categories;
+}

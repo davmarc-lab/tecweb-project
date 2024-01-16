@@ -6,11 +6,16 @@ function searchResult() {
     }
     let key = input.value;
     console.log(key);
+    let items = Array.from(document.getElementsByClassName("dropdown-item active"));
+    const filters = [];
+    items.forEach(e => filters.push(e.getAttribute("value")));
+    console.log(filters);
     $.ajax({
         url: "createArrayRes.php",
         type: "POST",
         data: {
-            key: key
+            key: key,
+            filters: filters
         },
         success: function(response) {
             location.reload();

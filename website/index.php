@@ -50,8 +50,14 @@
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
                         $queryIcon = "SELECT FilePath from media WHERE IdMedia = {$authorUser['IdMedia']};";
                         $previewPathIcon = $dbh->execQuery($queryIcon)[0]['FilePath'];
-                        $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
-                        $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
+                        if ($post['IdPreview'] != NULL) {
+                            $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
+                            $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
+                            $empty = "false";
+                        } else {
+                            $empty = "true";
+                        }
+                        $category = getCategory($dbh, $post);
                         ?>
                         <div class="row">
                             <div class="col-1">
@@ -61,8 +67,24 @@
                                 <p id="index-post-user-id"><?php echo (drawLinkUsername($authorUser["Username"], $authorUser["IdUser"], "profile/profilePage.php")); ?></p>
                             </div>
                         </div>
-                        <img src="<?php echo $previewPath ?>" class="card-img-top img-fluid" alt="">
+                        <?php
+                        if ($empty !== "true") {
+                        ?>
+                            <img src="<?php echo $previewPath ?>" class="card-img-top img-fluid" alt="">
+                        <?php
+                        }
+                        ?>
                         <div class="card-body">
+                            <p><i><?php echo substr($post["Date"], 0, 10); ?></i></p>
+                            <?php
+                            if ($category !== NULL) {
+                            ?>
+                                <span class="badge rounded-pill text-bg-primary d-none" id="category-badge">
+                                    <p class="m-0"><?php echo $category; ?></p>
+                                </span>
+                            <?php
+                            }
+                            ?>
                             <div class="row">
                                 <div class="col">
                                     <p class="badge bg-secondary ms-4" id="vote_indicator<?php echo $post['IdPost'] ?>"><?php echo $post['NumberVote'] ?></p>

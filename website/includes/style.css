@@ -66,6 +66,11 @@ a[role="button"]:hover:not(.btn-following){
     background-color: rgb(193, 196, 198);
 }
 
+.rounded-pill:not(.border-success) {
+    color: #198754;
+    background-color: transparent;
+    border-color: #198754 !important;
+}
 
 html[data-bs-theme = "dark"] {
    #suggested-profile-id, #edit-profile-box-id {
@@ -134,5 +139,11 @@ html[data-bs-theme = "dark"] {
 
     a[role="button"]:hover:not(.btn-following){
         background-color: darkslategray;
+    }
+
+    .rounded-pill:not(.border-success) {
+        color: #198754;
+        background-color: transparent;
+        border-color: #198754 !important;
     }
 }

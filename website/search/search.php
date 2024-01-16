@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../profile/profile_script/followScript.js"></script>
     <script src="searchScript.js"></script>
+    <script src="categoryFilter.js" type="text/javascript"></script>
     <title>Document</title>
 </head>
 
@@ -32,6 +33,30 @@
                     <i class="bi bi-search"></i>
                 </button>
             </div>
+            <div class="row mt-4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose categories
+                    </button>
+                    <div class="dropdown-menu p-1" aria-labelledby="categoryDropdown">
+                        <div class="container d-flex">
+                            <input type="text" name="categorySearch" id="categorySearch" class="form-control" placeholder="Search category" />
+                            <a class="btn btn-utility btn-secondary ms-1" role="button" id="reset">Clear</a>
+                        </div>
+                        <div class="container mt-2 scrollable-menu">
+                            <?php
+                            $categories = getAllCategories($dbh);
+                            foreach ($categories as $cat) {
+                            ?>
+                                <a class="dropdown-item btn-primary rounded my-1" role="button" value="<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div id="selected-categories"></div>
+                </div>
+            <div id="category-badges"></div>
         </div>
     </div>
     <?php
@@ -77,16 +102,28 @@ function printPost($res, $dbh)
 {
     $index = 0;
     foreach ($res as $post) {
-        $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
-        $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
-        $previewPath = "../" . $previewPath;
+        if ($post['IdPreview'] != NULL) {
+            $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
+            $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
+            $previewPath = "../" . $previewPath;
+            $empty = "false";
+        } else {
+            $empty = "true";
+        }
+        
         if ($index == 0) {
             echo "<div class=\"row mt-5 d-flex justify-content-center align-items-center text-center\">";
         }
 ?>
         <div class="col-md-4 col-12 mx-auto my-5 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
-                <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Image">
+                <?php
+                if ($empty !== "true") {
+                ?>
+                    <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Image">
+                <?php
+                }
+                ?>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $post['Title']; ?></h5>
                     <p class="card-text"><?php echo $post['Description']; ?></p>

@@ -33,7 +33,7 @@
     }
 
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$dstUser")[0];
-    $posts = $dbh->execQuery("SELECT * FROM post WHERE post.IdUser=$dstUser");
+    $posts = $dbh->execQuery("SELECT * FROM post WHERE post.IdUser=$dstUser ORDER BY post.Date DESC");
 
     include_once("../includes/navbar.php");
     $navbar = new Navbar("../");
@@ -91,14 +91,37 @@
                             </ul>
                         </section>
                         <section>
-                            <?php foreach ($posts as $userPost) { 
-                                $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$userPost['IdPreview']};";
-                                $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
-                                $previewPath = "../" . $previewPath;
-                                ?>
+                            <?php
+                            foreach ($posts as $userPost) {
+                                if ($userPost['IdPreview'] != NULL) {
+                                    $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$userPost['IdPreview']};";
+                                    $previewPath = $dbh->execQuery($queryPreview)[0]["FilePath"];
+                                    $previewPath = "../" . $previewPath;
+                                    $empty = "false";
+                                } else {
+                                    $empty = "true";
+                                }
+                                $category = getCategory($dbh, $userPost);
+                            ?>
                                 <div class="card border-1 mt-2 p-2" style="width: auto;">
-                                    <img src="<?php echo $previewPath?>" class="card-img-top rounded" alt="Preview image">
+                                    <?php
+                                    if ($empty !== "true") {
+                                    ?>
+                                        <img src="<?php echo $previewPath?>" class="card-img-top rounded" alt="Preview image">
+                                    <?php
+                                    }
+                                    ?>
                                     <div class="card-body">
+                                        <p><i><?php echo substr($userPost["Date"], 0, 10); ?></i></p>
+                                        <?php
+                                        if ($category !== NULL) {
+                                        ?>
+                                            <span class="badge border rounded-pill mb-2" id="category-badge">
+                                                <?php echo $category; ?>
+                                            </span>
+                                        <?php
+                                        }
+                                        ?>
                                         <h5 class="card-title">
                                             <?php echo $userPost["Title"]; ?>
                                         </h5>
@@ -110,7 +133,9 @@
                                         </a>
                                     </div>
                                 </div>
-                            <?php } ?>
+                            <?php
+                            }
+                            ?>
                         </section>
                     </section>
                 </div>
