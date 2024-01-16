@@ -42,17 +42,33 @@
 
 	function printTextInRectangle($val)
 	{
+		global $dbh;
 		$text = $val["Description"];
 		$iconClass = chooseIconClass($val["Type"]);
 		$isRead = $val["IsRead"];
+		if ($val["Type"] == NotificationType::COMMENT->value) {
+			$query = "SELECT IdPost from usercomment WHERE IdComment = '{$val['IdTarget']}';";
+		} else if ($val["Type"] == NotificationType::LIKE->value) {
+			$query = "SELECT IdPost from vote WHERE IdVote = '{$val['IdTarget']}';";
+		} else {
+			$query = "SELECT IdSrc from follow WHERE Id = '{$val['IdTarget']}';";
+		}
+		$result = $dbh->execQuery($query);
+		if ($val["Type"] == NotificationType::COMMENT->value || $val["Type"] == NotificationType::LIKE->value) {
+			$path = "../post/viewPost.php?id=" . $result[0]['IdPost'];
+		} else {
+			$path = "../profile/profilePage.php?user=" . $result[0]['IdSrc'];
+		}
 	?>
 		<div class="row-2">
-			<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-<?php echo ($isRead ? "secondary" : "danger"); ?> p-auto ps-1">
-				<span>
-					<i class="<?php echo ($iconClass); ?>" style="font-size: 1rem;"></i>
-				</span>
-				<?php echo ($text); ?>
-			</div>
+			<a href="<?php echo $path ?>">
+				<div class="container col-10 m-auto my-3 border border-3 rounded-3 border-<?php echo ($isRead ? "secondary" : "danger"); ?> p-auto ps-1">
+					<span>
+						<i class="<?php echo ($iconClass); ?>" style="font-size: 1rem;"></i>
+					</span>
+					<?php echo ($text); ?>
+				</div>
+			</a>
 		</div>
 	<?php
 	}
