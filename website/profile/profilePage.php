@@ -8,8 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../includes/style.css">
-    <script src="profile_script/followScript.js"></script>
-
+    <script src="../includes/followScript.js"></script>
     <title>Profile</title>
 </head>
 
@@ -77,8 +76,7 @@
                                         $pathFollow = "'followUserQuery.php'";
                                         $pathUnfollow = "'unfollowUserQuery.php'";
                                     ?>
-                                        <a id="follow-button" onclick="followUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathFollow); ?>)" role="button" class="btn btn-following ms-2 <?php echo (sizeof($res) != 0 ? "d-none" : "") ?>">Follow</a>
-                                        <a id="unfollow-button" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following ms-2 <?php echo (sizeof($res) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                                        <a id="dstuser-<?php echo $dstUser ?>" role="button" class="btn btn-following ms-2"><?php echo (sizeof($res) != 0 ? "Unfollow" : "Follow") ?></a>
                                     <?php
                                     }
                                     $query = "SELECT NumberFollower from utente WHERE IdUser = $dstUser";

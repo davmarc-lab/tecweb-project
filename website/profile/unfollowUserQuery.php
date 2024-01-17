@@ -2,7 +2,7 @@
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
 
-    $srcUser = $_POST["srcUser"];
+    $srcUser = $_SESSION["userId"];
     $dstUser = $_POST['dstUser'];
 
     // find correct follow id

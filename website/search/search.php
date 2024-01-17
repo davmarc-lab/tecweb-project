@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../includes/style.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../profile/profile_script/followScript.js"></script>
     <script src="searchScript.js" defer></script>
     <script src="categoryFilter.js" type="text/javascript"></script>
+    <script src="../includes/followScript.js"></script>
     <title>Document</title>
 </head>
 
@@ -182,9 +182,7 @@ function printProfile($dbh, $res)
                             $pathFollow = "'../profile/followUserQuery.php'";
                             $pathUnfollow = "'../profile/unfollowUserQuery.php'";
                             ?>
-                            <a id="dstuser-<?php echo $user['IdUser']?>" role="button" class="btn btn-following follow-button">Follow</a>
-                            <a id="unfollow-button" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
-                        </td>
+                            <a id="dstuser-<?php echo $user['IdUser']?>" role="button" class="btn btn-following"><?php echo (sizeof($test) != 0 ? "Unfollow" : "Follow") ?></a>
                     </tr>
                 <?php
                 }

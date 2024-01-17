@@ -1,8 +1,9 @@
 <?php
+    session_start();
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
 
-    $srcUser = $_POST['srcUser'];
+    $srcUser = $_SESSION["userId"];
     $dstUser = $_POST['dstUser'];
     $query = "INSERT INTO follow (IdSrc, IdDst) VALUES ($srcUser, $dstUser);";
     $dbh->execQuery($query);
