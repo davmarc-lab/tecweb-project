@@ -55,6 +55,15 @@ function addVote(postId) {
     });
 }
 
+function createCommentElement(userId, username, text) {
+    let pComment = document.createElement("p");
+    pComment.classList = "border border-success rounded text-break p-1";
+    let linkUsername = drawLinkUsernameElement(userId, username);
+    pComment.appendChild(linkUsername);
+    pComment.innerHTML += " : " + text;
+    return pComment;
+}
+
 $("document").ready(function () {
     if (posts != null) {
         // Load the posts in the container
@@ -298,27 +307,86 @@ $("document").ready(function () {
                     });
 
                     if (username != null) {
-                        let pComment = document.createElement("p");
-                        pComment.classList = "border border-success rounded text-break p-1";
-                        let linkUsername = drawLinkUsernameElement(current["IdUser"], username);
-                        pComment.appendChild(linkUsername);
-                        pComment.innerHTML += " : " + current["CommentText"];
-                        divComments.appendChild(pComment);
+                        let newComment = createCommentElement(current["IdUser"], username, current["CommentText"]);
+                        divComments.appendChild(newComment);
                     }
-                    
-                    // append text area
-                    
                 }
-
-                divPost.appendChild(divComments);
             }
 
+            // append user comment div
+            let divUserComment = document.createElement("div");
+            divUserComment.classList.add("form-group");
 
-            // foreach commenti
-            // ,...
-            // bottone.addEventListener --- comment
+            // add input for the user
+            let areaComment = document.createElement("textarea");
+            areaComment.classList = "form-control textAreaComment";
+            areaComment.setAttribute("id", "text-area-comment");
+            areaComment.setAttribute("rows", 3);
+            areaComment.setAttribute("cols", 20);
+            areaComment.setAttribute("placeholder", "Add your comment");
+            areaComment.setAttribute("name", "commentText");
+            divUserComment.appendChild(areaComment);
 
-            // 
+            // add submit button
+            let btnSendComment = document.createElement("button");
+            btnSendComment.classList = "btn btn-primary mt-3 float-end";
+            btnSendComment.innerHTML = "Comment";
+            btnSendComment.setAttribute("aria-disabled", true);
+            btnSendComment.classList.add("disabled");
+
+            // add event listener to comment
+            btnSendComment.addEventListener('click', function () {
+                // add comment to the database
+                let textComment = areaComment.value;
+                $.ajax({
+                    async: false,
+                    url: "postQuery/addComment.php",
+                    type: "POST",
+                    data: {
+                        idPost: post["IdPost"],
+                        textComment: textComment,
+                    },
+                });
+
+                // update pCommentNumber
+                pCommentNumber.innerHTML = Number(pCommentNumber.innerHTML) + 1;
+
+                // update comments
+                let currentComments = divComments;
+                // get current user info
+                let user = null;
+                $.ajax({
+                    async: false,
+                    url: "postQuery/getCurrentUser.php",
+                    type: "POST",
+                    success: function (response) {
+                        user = JSON.parse(response);
+                    },
+                });
+
+                divComments.insertBefore(createCommentElement(user["IdUser"], user["Username"], areaComment.value),
+                    divComments.children[0]);
+                if (divComments.childElementCount > 3) {
+                    divComments.removeChild(divComments.children[3]);
+                }
+                // clear textarea
+                areaComment.value = "";
+            });
+
+            areaComment.addEventListener('input', function () {
+                if (this.value.length <= 0) {
+                    btnSendComment.setAttribute("aria-disabled", true);
+                    btnSendComment.classList.add("disabled");
+                } else {
+                    btnSendComment.setAttribute("aria-disabled", false);
+                    btnSendComment.classList.remove("disabled");
+                }
+            });
+
+            divUserComment.appendChild(btnSendComment);
+            divComments.appendChild(divUserComment);
+
+            divPost.appendChild(divComments);
 
             // Last instruction
             postsContainer.appendChild(divPost);

@@ -46,7 +46,7 @@
         <div class="row">
             <!-- all post loaded -->
             <div class="col-lg-8 col-md-12 col-12 justify-content-center" id="posts-container">
-                
+                <!-- 10 gia messi -->
             </div>
 
             <!-- suggested profile -->
