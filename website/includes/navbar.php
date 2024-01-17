@@ -23,19 +23,19 @@ class Navbar
         <?php include_once("utils.php"); ?>
         <link rel="stylesheet" href="<?php echo (getHomeDirectoryValue()  . ($this->style)); ?>">
         <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
-        <nav class="navbar sticky-top navbar-expand-md bg-success bg-gradient text-white">
+        <nav class="navbar sticky-top navbar-expand-md">
             <div class="container-fluid">
-                <p class="navbar-brand text-white fs-2 p-2 m-0"><?php echo ($pageName); ?></p>
+                <p class="navbar-brand fs-2 p-2 m-0"><?php echo ($pageName); ?></p>
                 <button class="navbar-toggler p-2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="navbarOffcanvasLg">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><?php echo ($pageName); ?></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mt-1">
                             <li class="nav-item p-2">
                                 <a class="icon-link icon-link-hover link-underline-opacity-0 link-underline-opacity-75-hover" href="<?php echo (($this->homePath) . ($this->homePage)); ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
