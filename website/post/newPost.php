@@ -110,6 +110,7 @@
 
         if (isset($_FILES["files"]) && $_FILES["files"]["error"] == 0) {
             $fileName = basename($_FILES["files"]["name"]);
+            $fileName = str_replace(" ", "_", $fileName);
             $targetPath = $targetDir . $fileName;
 
             if (move_uploaded_file($_FILES["files"]["tmp_name"], $targetPath)) {
@@ -133,6 +134,7 @@
         } else {
             if (isset($_FILES["preview"]) && $_FILES["preview"]["error"] == 0) {
                 $fileName = basename($_FILES["preview"]["name"]);
+                $fileName = str_replace(" ", "_", $fileName);
                 $targetPath = $targetDir . $fileName;
 
                 if (move_uploaded_file($_FILES["preview"]["tmp_name"], $targetPath)) {

@@ -148,7 +148,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // append user profile page link to row div
             let divUser = document.createElement("div");
-            divUser.classList = "col-3 pt-1";
+            divUser.classList = "col mx-2 pt-1";
             let pUser = document.createElement("p");
             pUser.setAttribute("id", "index-post-user-id");
             pUser.appendChild(drawLinkUsernameElement(author["IdUser"], author["Username"]));
