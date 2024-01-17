@@ -1,21 +1,11 @@
-const NUMBER_POST = 10;
+const NUMBER_POST_ON_LOAD = 10;
+
 const profilePage = "profile/profilePage.php";
 const viewPostPage = "post/viewPost.php";
 
-let posts = null;
-let postInfo = null;
+const postsContainer = document.getElementById("posts-container");
 
-$.ajax({
-    async: false,
-    url: "postQuery/getPosts.php",
-    type: "POST",
-    data: {
-        limit: NUMBER_POST,
-    },
-    success: function (response) {
-        posts = JSON.parse(response);
-    }
-});
+let counter = 0;
 
 /**
  * This method creates an element taht on click link to post author profile page.
@@ -64,11 +54,47 @@ function createCommentElement(userId, username, text) {
     return pComment;
 }
 
+let lastPos = 0;
+
 $("document").ready(function () {
+    counter = 0;
+    counter = appendPostToContainer(NUMBER_POST_ON_LOAD);
+
+    window.addEventListener('scroll', function () {
+        let currentPos = this.window.scrollY || this.document.documentElement.scrollTop;
+        
+        if (currentPos - lastPos < 1000) {
+            // appends new post to the main container
+            counter = appendPostToContainer(10);
+
+            // non carica gli ultimi 10 problema di indici penso condizioni del for
+
+            // update lastpos
+            lastPos = currentPos;
+        }
+    });
+});
+
+let posts = null;
+let postInfo = null;
+
+$.ajax({
+    async: false,
+    url: "postQuery/getPosts.php",
+    type: "POST",
+    success: function (response) {
+        posts = JSON.parse(response);
+    }
+});
+
+function appendPostToContainer(numPostToLoad) {
+    
+    console.log(posts);
     if (posts != null) {
+        let currentCounter = counter;
+
         // Load the posts in the container
-        let postsContainer = document.getElementById("posts-container");
-        for (i = 0; i < posts.length; i++) {
+        for (i = currentCounter; i <= numPostToLoad + currentCounter + 1 && currentCounter < posts.length; i++) {
             let post = posts[i];
 
             let divPost = document.createElement("div");
@@ -390,10 +416,9 @@ $("document").ready(function () {
 
             // Last instruction
             postsContainer.appendChild(divPost);
+            counter++;
         }
     }
-});
-
-function drawPost(idPost) {
-
+    
+    return counter;
 }

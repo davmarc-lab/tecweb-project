@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="likePostScript.js"></script>
     <script src="redirectToPost.js" defer></script>
-    <script src="getPosts.js" type="text/javascript"></script>
+    <script src="getPosts.js" type="text/javascript" defer></script>
     <link rel="stylesheet" href="postStyle.css">
     <title>NoteForAll</title>
 </head>

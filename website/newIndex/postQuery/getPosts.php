@@ -1,8 +1,13 @@
 <?php
+session_start();
 require_once("../../includes/database.php");
-$limit = $_POST["limit"];
-$query = "SELECT * FROM post LIMIT $limit";
+$idUser = $_SESSION["userId"];
+
+$query = "SELECT post.*
+        FROM post
+        JOIN follow ON post.IdUser = follow.IdDst
+        WHERE follow.IdSrc = $idUser
+        ORDER BY post.Date ASC;";
 $res = $dbh->execQuery($query, MYSQLI_ASSOC);
-// this line work
-echo(json_encode($res));
-?>
+
+echo (json_encode($res));
