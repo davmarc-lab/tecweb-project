@@ -21,7 +21,20 @@ function drawLinkUsernameElement(userId, username) {
     return link;
 }
 
-function removeVote(postId) {
+function vote(postId, increment) {
+    console.log(postId + " " + increment);
+    $.ajax({
+        async: false,
+        url: "postQuery/incrementLike.php",
+        type: "POST",
+        data: {
+            idPost: postId,
+            increment: increment,
+        },
+    });
+}
+
+/* function removeVote(postId) {
     $.ajax({
         async: false,
         url: "postQuery/incrementLike.php",
@@ -43,7 +56,7 @@ function addVote(postId) {
             increment: 1,
         },
     });
-}
+} */
 
 function createCommentElement(userId, username, text) {
     let pComment = document.createElement("p");
@@ -162,8 +175,13 @@ function appendPostToContainer(numPostToLoad) {
             // add date and category
             let pDatePost = document.createElement("p");
             pDatePost.setAttribute("id", "show-date");
-            date = post["Date"].substr(0, 10);
-            pDatePost.innerHTML = date;
+            date = post["Date"];
+            if (date == null) {
+                pDatePost.innerHTML = "";
+            } else {
+                date = date.substr(0, 10);
+                pDatePost.innerHTML = date;
+            }
             divCardBody.appendChild(pDatePost);
 
             let idPostCategory = post["IdCategory"];
@@ -237,19 +255,22 @@ function appendPostToContainer(numPostToLoad) {
                     likeIcon.classList.remove("bi-hand-thumbs-up-fill");
                     likeIcon.classList.remove("text-primary");
                     likeIcon.classList.add("bi-hand-thumbs-up");
-                    removeVote(post["IdPost"]);
+                    //removeVote(post["IdPost"]);
+                    vote(post["IdPost"], -1);
                     increment = -1;
                 } else {
                     // like action
                     likeIcon.classList.add("bi-hand-thumbs-up-fill");
                     likeIcon.classList.add("text-primary");
                     likeIcon.classList.remove("bi-hand-thumbs-up");
-                    addVote(post["IdPost"]);
+                    //addVote(post["IdPost"]);
+                    vote(post["IdPost"], 1);
                     increment = 1;
                 }
                 // update the like number from the current value
                 pVoteNumber.innerHTML = Number(pVoteNumber.innerHTML) + increment;
             });
+
 
             // append the vote number and the like button
             divCardCol.appendChild(pVoteNumber);
