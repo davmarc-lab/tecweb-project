@@ -12,9 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="likePostScript.js"></script>
     <script src="redirectToPost.js" defer></script>
-    <script src="addCommentScript.js"></script>
     <script src="includes/cookieScript.js" type="text/javascript"></script>
-    <script src="includes/script.js"></script>
     <title>NoteForAll</title>
 </head>
 
@@ -81,7 +79,7 @@
                             <?php
                             if ($category !== NULL) {
                             ?>
-                                <span class="badge rounded-pill text-bg-primary d-none" id="category-badge">
+                                <span class="badge rounded-pill text-bg-primary" id="category-badge">
                                     <p class="m-0"><?php echo $category; ?></p>
                                 </span>
                             <?php
@@ -110,14 +108,14 @@
                             $queryUserComment = "SELECT Username from utente WHERE IdUser = {$comment['IdUser']};";
                             $userComment = $dbh->execQuery($queryUserComment)[0]["Username"];
                         ?>
-                            <p class="border border-success rounded-pill p-1"><?php echo (drawLinkUsername($userComment, $comment["IdUser"], "profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
+                            <p class="border border-success rounded p-1"><?php echo (drawLinkUsername($userComment, $comment["IdUser"], "profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
                         <?php
                         }
                         ?>
                         <form action="addComment.php" method="POST">
                             <div class="form-group">
                                 <label for="textAreaComment" hidden>Insert your comment here</label>
-                                <textarea class="form-control" id="textAreaComment" rows="3" placeholder="Add your comment" name="commentText"></textarea>
+                                <textarea class="form-control textAreaComment" id="textAreaComment" rows="3" cols="20" placeholder="Add your comment" name="commentText"></textarea>
                                 <label for="submitComment" hidden>Publish your comment</label>
                                 <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
                                 <input type="hidden" name="idPost" value="<?php echo $post['IdPost']; ?>">
@@ -128,9 +126,9 @@
                 <?php
                     array_shift($_SESSION['homePagePosts']);
                     $counter++;
-                    if ($counter == 10) {
+                    /* if ($counter == 1) {
                         break;
-                    }
+                    } */
                 }
                 ?>
             </div>

@@ -32,7 +32,7 @@ $infoPost = $dbh->execQuery($query)[0];
         ?>
     </div>
 
-    <div class="container-fluid col-8 mx-auto py-auto py-3 d-block">
+    <div class="container-fluid col-12 col-md-8 mx-auto py-auto py-3 d-block">
         <div id="view-post" class="border rounded p-3">
             <!-- post section -->
             <a id="back-button" href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3">
@@ -66,7 +66,7 @@ $infoPost = $dbh->execQuery($query)[0];
                         $previewName = $previewRes["FileName"];
                         $previewPath = "../" . $previewPath;
                     ?>
-                        <img class="img-fluid d-flex" style="width: 200px; height: 200px;" src="<?php echo ($previewPath); ?>" alt="File Preview Image">
+                        <img class="img-fluid" src="<?php echo ($previewPath); ?>" alt="File Preview Image">
                     <?php
                     }
 
@@ -80,7 +80,7 @@ $infoPost = $dbh->execQuery($query)[0];
 
                     ?>
                     <!-- write the media and download link -->
-                    <span class="col-6 justify-content-end">
+                    <span class="col-6 mt-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                             <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z" />
                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
@@ -99,8 +99,8 @@ $infoPost = $dbh->execQuery($query)[0];
                         $userComment = $dbh->execQuery($queryUserComment)[0];
                     ?>
                         <div class="me-2">
-                            <div class="border border-success rounded-pill p-auto my-2">
-                                <p class="px-2 m-0"><?php echo(drawLinkUsername($userComment["Username"], $userComment["IdUser"], "../profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
+                            <div class="border border-success rounded p-auto my-2">
+                                <p class="p-2 text-break m-0"><?php echo(drawLinkUsername($userComment["Username"], $userComment["IdUser"], "../profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
                             </div>
                         </div>
                     <?php

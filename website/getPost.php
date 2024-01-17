@@ -42,7 +42,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
     }
     $ret .= '<form action="addComment.php" method="POST">';
     $ret .= '<label for="textAreaComment" hidden>Insert your comment here</label>
-            <textarea class="form-control" id="textAreaComment" rows="3" placeholder="Add your comment" name="commentText"></textarea>
+            <textarea class="form-control textAreaComment" id="textAreaComment" rows="3" placeholder="Add your comment" name="commentText"></textarea>
             <label for="submitComment" hidden>Publish your comment</label>
             <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">';
     $ret .= '<input type="hidden" name="idPost" value="' . $post['IdPost'] . '">';
@@ -54,7 +54,7 @@ foreach ($_SESSION['homePagePosts'] as $post) {
 
     array_shift($_SESSION['homePagePosts']);
     $counter++;
-    if ($counter == 2) {
+    if ($counter == 1) {
         break;
     }
 }
