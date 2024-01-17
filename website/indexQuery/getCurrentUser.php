@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../includes/database.php");
+require_once("../includes/database.php");
 $idUser = $_SESSION["userId"];
 
 // author of the post

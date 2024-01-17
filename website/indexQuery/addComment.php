@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("../../includes/database.php");
-require_once("../../includes/utils.php");
+require_once("../includes/database.php");
+require_once("../includes/utils.php");
 
 $idPost = $_POST["idPost"];
 $idUser = $_SESSION["userId"];

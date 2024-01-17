@@ -1,5 +1,5 @@
 <?php
-require_once("../../includes/database.php");
+require_once("../includes/database.php");
 $idCategory = $_POST["idCategory"];
 
 $query = "SELECT * FROM category WHERE IdCategory = $idCategory";

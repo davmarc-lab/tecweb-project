@@ -36,6 +36,8 @@
                 unset($_POST["repeatPassword"]);
                 header("location: changePassword.php?error=2");
             }
+        } else {
+            echo("NON DEVI PREMERE INVIO!");
         }
     }
 ?>

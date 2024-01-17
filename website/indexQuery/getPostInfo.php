@@ -1,5 +1,5 @@
 <?php
-require_once("../../includes/database.php");
+require_once("../includes/database.php");
 $idUser = $_POST["idUser"];
 $idPreview = $_POST["idPreview"];
 

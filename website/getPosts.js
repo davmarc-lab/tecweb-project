@@ -16,7 +16,7 @@ let counter = 0;
  */
 function drawLinkUsernameElement(userId, username) {
     let link = document.createElement("a");
-    link.setAttribute("href", "../" + profilePage + "?user=" + userId);
+    link.setAttribute("href", profilePage + "?user=" + userId);
     link.innerHTML = "@" + username;
     return link;
 }
@@ -24,7 +24,7 @@ function drawLinkUsernameElement(userId, username) {
 function vote(postId, increment) {
     $.ajax({
         async: false,
-        url: "postQuery/incrementLike.php",
+        url: "indexQuery/incrementLike.php",
         type: "POST",
         data: {
             idPost: postId,
@@ -36,7 +36,7 @@ function vote(postId, increment) {
 /* function removeVote(postId) {
     $.ajax({
         async: false,
-        url: "postQuery/incrementLike.php",
+        url: "indexQuery/incrementLike.php",
         type: "POST",
         data: {
             idPost: postId,
@@ -48,7 +48,7 @@ function vote(postId, increment) {
 function addVote(postId) {
     $.ajax({
         async: false,
-        url: "postQuery/incrementLike.php",
+        url: "indexQuery/incrementLike.php",
         type: "POST",
         data: {
             idPost: postId,
@@ -90,7 +90,7 @@ let postInfo = null;
 
 $.ajax({
     async: false,
-    url: "postQuery/getPosts.php",
+    url: "indexQuery/getPosts.php",
     type: "POST",
     success: function (response) {
         posts = JSON.parse(response);
@@ -113,7 +113,7 @@ function appendPostToContainer(numPostToLoad) {
             let idPreview = post["IdPreview"];
             $.ajax({
                 async: false,
-                url: "postQuery/getPostInfo.php",
+                url: "indexQuery/getPostInfo.php",
                 type: "POST",
                 data: {
                     idUser: post["IdUser"],
@@ -137,7 +137,7 @@ function appendPostToContainer(numPostToLoad) {
             let divProfileImage = document.createElement("div");
             divProfileImage.classList = "col-1";
             let imgProfile = document.createElement("img");
-            imgProfile.setAttribute("src", "../" + pathImgAuthor);
+            imgProfile.setAttribute("src", pathImgAuthor);
             imgProfile.setAttribute("height", "30px");
             imgProfile.setAttribute("width", "30px");
 
@@ -158,7 +158,7 @@ function appendPostToContainer(numPostToLoad) {
             // add image preview to the post div
             if (pathPostPreview != "") {
                 let imgPreview = document.createElement("img");
-                imgPreview.setAttribute("src", "../" + pathPostPreview);
+                imgPreview.setAttribute("src", pathPostPreview);
                 imgPreview.classList = "card-img-top img-fluid";
                 divPost.appendChild(imgPreview);
             }
@@ -185,7 +185,7 @@ function appendPostToContainer(numPostToLoad) {
                 let category = null;
                 $.ajax({
                     async: false,
-                    url: "postQuery/getCategory.php",
+                    url: "indexQuery/getCategory.php",
                     type: "POST",
                     data: {
                         idCategory: idPostCategory,
@@ -227,7 +227,7 @@ function appendPostToContainer(numPostToLoad) {
             let numberVote = post["NumberVote"];
             $.ajax({
                 async: false,
-                url: "postQuery/getVoteInfo.php",
+                url: "indexQuery/getVoteInfo.php",
                 type: "POST",
                 data: {
                     idPost: post["IdPost"],
@@ -287,7 +287,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // append link to viewPost page
             let linkPost = document.createElement("a");
-            linkPost.setAttribute("href", "../" + viewPostPage + "?id=" + post["IdPost"]);
+            linkPost.setAttribute("href", viewPostPage + "?id=" + post["IdPost"]);
             linkPost.classList.add("float-end");
             let linkButton = document.createElement("button");
             linkButton.classList = "btn btn-primary";
@@ -319,7 +319,7 @@ function appendPostToContainer(numPostToLoad) {
             if (post["NumberComment"] > 0) {
                 $.ajax({
                     async: false,
-                    url: "postQuery/getComments.php",
+                    url: "indexQuery/getComments.php",
                     type: "POST",
                     data: {
                         idPost: post["IdPost"],
@@ -338,7 +338,7 @@ function appendPostToContainer(numPostToLoad) {
                     // get user from comment
                     $.ajax({
                         async: false,
-                        url: "postQuery/getSourceComment.php",
+                        url: "indexQuery/getSourceComment.php",
                         type: "POST",
                         data: {
                             idUser: current["IdUser"],
@@ -382,7 +382,7 @@ function appendPostToContainer(numPostToLoad) {
                 let textComment = areaComment.value;
                 $.ajax({
                     async: false,
-                    url: "postQuery/addComment.php",
+                    url: "indexQuery/addComment.php",
                     type: "POST",
                     data: {
                         idPost: post["IdPost"],
@@ -399,7 +399,7 @@ function appendPostToContainer(numPostToLoad) {
                 let user = null;
                 $.ajax({
                     async: false,
-                    url: "postQuery/getCurrentUser.php",
+                    url: "indexQuery/getCurrentUser.php",
                     type: "POST",
                     success: function (response) {
                         user = JSON.parse(response);
