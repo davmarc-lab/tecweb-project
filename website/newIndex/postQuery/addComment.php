@@ -8,10 +8,10 @@ $idUser = $_SESSION["userId"];
 $text = $_POST["textComment"];
 
 // author of the post
-$query = "SELECT u.IdUser, u.Username as IdUser FROM utente as u, post as p WHERE p.IdUser = u.IdUser AND p.IdPost = $idPost;";
+$query = "SELECT u.IdUser as IdUser, u.Username as Username FROM utente as u, post as p WHERE p.IdUser = u.IdUser AND p.IdPost = $idPost;";
 $result = $dbh->execQuery($query);
-$usrDst = $result[0]["IdUser"];
 $username = $result[0]["Username"];
+$usrDst = $result[0]["IdUser"];
 
 $query = "INSERT INTO usercomment (CommentText, IdPost, IdUser) VALUES ('{$text}', $idPost, $idUser);";
 $dbh->execQuery($query);
