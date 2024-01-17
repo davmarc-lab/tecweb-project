@@ -3,6 +3,9 @@
 
 <?php
 session_start();
+if (!isset($_SESSION["userId"])) {
+    header("location:../login/login.php");
+}
 require_once("../includes/database.php");
 include_once("../includes/utils.php");
 updateLastSeen($dbh, $_SESSION["userId"]);

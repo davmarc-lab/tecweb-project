@@ -13,6 +13,9 @@
 <body>
 	<?php
 	session_start();
+	if (!isset($_SESSION["userId"])) {
+        header("location:../login/login.php");
+    }
 	include_once("../includes/utils.php");
 	include_once("../includes/database.php");
 	updateLastSeen($dbh, $_SESSION["userId"]);

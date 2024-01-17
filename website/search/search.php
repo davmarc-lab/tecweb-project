@@ -17,6 +17,9 @@
 <body>
     <?php
     session_start();
+    if (!isset($_SESSION["userId"])) {
+        header("location:../login/login.php");
+    }
     include_once("../includes/navbar.php");
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
