@@ -8,10 +8,6 @@ nav {
     color: white;
 }
 
-.btn.btn-close {
-    color: white !important;
-}
-
 #suggested-profile-id, #edit-profile-box-id {
     background-color: lightgray;
 }
@@ -114,7 +110,7 @@ a.dropdown-toggle:hover {
     color: black;
 }
 
-#show-date {
+.show-date {
     font-style: italic;
 }
 
@@ -231,7 +227,7 @@ html[data-bs-theme = "dark"] {
         color: white;
     }
 
-    #show-date {
+    .show-date {
         font-style: italic;
     }
 }

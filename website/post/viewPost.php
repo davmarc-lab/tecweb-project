@@ -38,7 +38,7 @@ $infoPost = $dbh->execQuery($query)[0];
     <div class="container-fluid col-12 col-md-8 mx-auto py-auto py-3 d-block">
         <div id="view-post" class="border rounded p-3">
             <!-- post section -->
-            <a id="back-button" href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3" title="Go back">
+            <a href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3" title="Go back">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
                 </svg>
@@ -56,7 +56,7 @@ $infoPost = $dbh->execQuery($query)[0];
                         <p>
                             <?php echo ($infoPost["Description"]); ?>
                         </p>
-                        <p id="show-date"><?php echo substr($infoPost["Date"], 0, 10); ?></p>
+                        <p class="show-date"><?php echo substr($infoPost["Date"], 0, 10); ?></p>
                     </div>
                 </div>
                 <div class="row col-11 mx-auto d-flex align-items-center">

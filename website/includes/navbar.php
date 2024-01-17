@@ -21,7 +21,7 @@ class Navbar
 ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <?php include_once("utils.php"); ?>
-        <link rel="stylesheet" href="<?php echo (getHomeDirectoryValue()  . ($this->style)); ?>">
+        <link rel="stylesheet" href="<?php echo ($this->homePath  . ($this->style)); ?>">
         <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
         <nav class="navbar sticky-top navbar-expand-md">
             <div class="container-fluid">
@@ -32,7 +32,7 @@ class Navbar
                 <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="navbarOffcanvasLg">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><?php echo ($pageName); ?></h5>
-                        <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mt-1">

@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../includes/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="../includes/style.css" />
+    <script src="profile_script/editProfileResize.js"></script>
     <script src="../includes/followScript.js"></script>
     <title>Profile</title>
 </head>
@@ -58,10 +59,12 @@
                                     $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
                                     $previewPath = $dbh->execQuery($query)[0]['FilePath'];
                                     ?>
-                                     <a id="back-button" href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3">
-                                        <i class="bi bi-arrow-left"></i>
+                                     <a href="javascript: history.go(-1)" role="button" class="btn btn-utility back-button mb-3" title="Go back">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                                        </svg>
                                     </a>
-                                    <img src="../<?php echo $previewPath ?>" alt="" class="rounded rounded-5" height="70px" width="70px" />
+                                    <img src="../<?php echo $previewPath ?>" alt="" class="rounded rounded-5" style="height: 70px; width: 70px;" />
                                     <?php
                                     if ($showEdit) {
                                         unsetSearchKey();
@@ -84,7 +87,7 @@
                                     ?>
                                     <div class="row row-cols-2 my-3 d-flex">
                                         <div class="dropdown">
-                                            <a class="btn btn-secondary dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a class="btn btn-secondary dropdown-toggle border" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Follower: <?php echo $numFollower ?>
                                             </a>
                                             <?php
@@ -113,7 +116,7 @@
                                         </div>
 
                                         <div class="dropdown col-2">
-                                            <a class="btn btn-secondary dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a class="btn btn-secondary dropdown-toggle border" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <?php
                                                 $query = "SELECT COUNT(*) AS NumFollowing FROM follow WHERE IdSrc = '$dstUser';";
                                                 $numFollowed = $dbh->execQuery($query)[0]['NumFollowing']
@@ -179,11 +182,11 @@
                                             }
                                             ?>
                                             <div class="card-body">
-                                                <p id="show-date"><?php echo substr($userPost["Date"], 0, 10); ?></p>
+                                                <p class="show-date"><?php echo substr($userPost["Date"], 0, 10); ?></p>
                                                 <?php
                                                 if ($category !== NULL) {
                                                 ?>
-                                                    <span class="badge border rounded-pill mb-2" id="category-badge">
+                                                    <span class="badge border rounded-pill mb-2">
                                                         <?php echo $category; ?>
                                                     </span>
                                                 <?php
@@ -195,8 +198,8 @@
                                                 <p class="card-text">
                                                     <?php echo $userPost["Description"]; ?>
                                                 </p>
-                                                <a href="../post/viewPost.php?id=<?php echo ($userPost["IdPost"]); ?>">
-                                                    <button class="btn btn-primary">More</button>
+                                                <a href="../post/viewPost.php?id=<?php echo ($userPost["IdPost"]); ?>" class="btn btn-primary" role="button">
+                                                    View Post
                                                 </a>
                                             </div>
                                         </div>
@@ -211,7 +214,7 @@
                             ?>
                                 <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
                                     <section>
-                                        <?php include_once("editProfile.php"); ?>
+                                        <?php include_once("editProfileContent.php"); ?>
                                     </section>
                                 </div>
                             <?php
