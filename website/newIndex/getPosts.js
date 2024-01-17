@@ -22,7 +22,6 @@ function drawLinkUsernameElement(userId, username) {
 }
 
 function vote(postId, increment) {
-    console.log(postId + " " + increment);
     $.ajax({
         async: false,
         url: "postQuery/incrementLike.php",
@@ -75,12 +74,10 @@ $("document").ready(function () {
 
     window.addEventListener('scroll', function () {
         let currentPos = this.window.scrollY || this.document.documentElement.scrollTop;
-        
-        if (currentPos - lastPos < 1000) {
+        // everytime it scroll 1000 units refresh the posts
+        if (currentPos - lastPos > 1000 && counter < posts.length) {
             // appends new post to the main container
             counter = appendPostToContainer(10);
-
-            // non carica gli ultimi 10 problema di indici penso condizioni del for
 
             // update lastpos
             lastPos = currentPos;
@@ -102,12 +99,10 @@ $.ajax({
 
 function appendPostToContainer(numPostToLoad) {
     
-    console.log(posts);
     if (posts != null) {
         let currentCounter = counter;
-
         // Load the posts in the container
-        for (i = currentCounter; i <= numPostToLoad + currentCounter + 1 && currentCounter < posts.length; i++) {
+        for (i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length; i++) {
             let post = posts[i];
 
             let divPost = document.createElement("div");
@@ -440,6 +435,6 @@ function appendPostToContainer(numPostToLoad) {
             counter++;
         }
     }
-    
+        
     return counter;
 }
