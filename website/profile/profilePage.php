@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../includes/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="profile_script/followScript.js"></script>
 
     <title>Profile</title>
@@ -71,79 +71,82 @@
                                         $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
                                         AND IdDst = $dstUser";
                                         $res = $dbh->execQuery($query);
-                                        $query = "SELECT NumberFollower from utente WHERE IdUser = $dstUser";
-                                        $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
                                         $pathFollow = "'followUserQuery.php'";
                                         $pathUnfollow = "'unfollowUserQuery.php'";
                                     ?>
                                         <a id="followButton" onclick="followUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathFollow); ?>)" role="button" class="btn btn-following ms-2 <?php echo (sizeof($res) != 0 ? "d-none" : "") ?>">Follow</a>
                                         <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $dstUser . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following ms-2 <?php echo (sizeof($res) == 0 ? "d-none" : "") ?>">Unfollow</a>
-                                        <div class="row row-cols-2 my-3 d-flex">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Follower: <?php echo $numFollower ?>
-                                                </a>
-                                                <?php
-                                                $query = "SELECT u.IdUser, u.Username, u.IdMedia
+                                    <?php
+                                    }
+                                    $query = "SELECT NumberFollower from utente WHERE IdUser = $dstUser";
+                                    $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
+                                    ?>
+                                    <div class="row row-cols-2 my-3 d-flex">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Follower: <?php echo $numFollower ?>
+                                            </a>
+                                            <?php
+                                            $query = "SELECT u.IdUser, u.Username, u.IdMedia
                                                     FROM follow AS f
                                                     JOIN utente AS u ON f.IdSrc = u.IdUser
                                                     WHERE f.IdDst = '{$dstUser}';";
-                                                $followerList = $dbh->execQuery($query);
-                                                ?>
-                                                <ul class="dropdown-menu" style="width: 300px;">
-                                                    <?php
-                                                    foreach ($followerList as $follower) {
-                                                    ?>
-                                                        <?php
-                                                        $query = "SELECT FilePath from media WHERE IdMedia = '{$follower['IdMedia']}';";
-                                                        $path = $dbh->execQuery($query)[0]['FilePath'];
-                                                        ?>
-                                                        <li class="d-flex align-items-center mt-3 ms-2">
-                                                            <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                                            <?php echo drawLinkUsernameDropdown($follower['Username'], $follower['IdUser'], "profilePage.php") ?>
-                                                        </li>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </ul>
-                                            </div>
-
-                                            <div class="dropdown col-2">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <?php
-                                                    $query = "SELECT COUNT(*) AS NumFollowing FROM follow WHERE IdSrc = '$dstUser';";
-                                                    $numFollowed = $dbh->execQuery($query)[0]['NumFollowing']
-                                                    ?>
-                                                    Followed: <?php echo $numFollowed ?>
-                                                </a>
+                                            $followerList = $dbh->execQuery($query);
+                                            ?>
+                                            <ul class="dropdown-menu" style="width: 300px;">
                                                 <?php
-                                                $query = "SELECT u.IdUser, u.Username, u.IdMedia
+                                                foreach ($followerList as $follower) {
+                                                ?>
+                                                    <?php
+                                                    $query = "SELECT FilePath from media WHERE IdMedia = '{$follower['IdMedia']}';";
+                                                    $path = $dbh->execQuery($query)[0]['FilePath'];
+                                                    ?>
+                                                    <li class="d-flex align-items-center mt-3 ms-2">
+                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                                        <?php echo drawLinkUsernameDropdown($follower['Username'], $follower['IdUser'], "profilePage.php") ?>
+                                                    </li>
+                                                <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
+
+                                        <div class="dropdown col-2">
+                                            <a class="btn btn-secondary dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <?php
+                                                $query = "SELECT COUNT(*) AS NumFollowing FROM follow WHERE IdSrc = '$dstUser';";
+                                                $numFollowed = $dbh->execQuery($query)[0]['NumFollowing']
+                                                ?>
+                                                Followed: <?php echo $numFollowed ?>
+                                            </a>
+                                            <?php
+                                            $query = "SELECT u.IdUser, u.Username, u.IdMedia
                                                 FROM follow AS f
                                                 JOIN utente AS u ON f.IdDst = u.IdUser
                                                 WHERE f.IdSrc = '$dstUser';";
-                                                $followedList = $dbh->execQuery($query);
+                                            $followedList = $dbh->execQuery($query);
+                                            ?>
+                                            <ul class="dropdown-menu" style="width: 300px;">
+                                                <?php
+                                                foreach ($followedList as $followed) {
                                                 ?>
-                                                <ul class="dropdown-menu" style="width: 300px;">
                                                     <?php
-                                                    foreach ($followedList as $followed) {
+                                                    $query = "SELECT FilePath from media WHERE IdMedia = '{$followed['IdMedia']}';";
+                                                    $path = $dbh->execQuery($query)[0]['FilePath'];
                                                     ?>
-                                                        <?php
-                                                        $query = "SELECT FilePath from media WHERE IdMedia = '{$followed['IdMedia']}';";
-                                                        $path = $dbh->execQuery($query)[0]['FilePath'];
-                                                        ?>
-                                                        <li class="d-flex align-items-center mt-3 ms-2">
-                                                            <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                                            <?php echo drawLinkUsernameDropdown($followed['Username'], $followed['IdUser'], "profilePage.php") ?>
-                                                        </li>
                                                     <?php
-                                                    }
                                                     ?>
-                                                </ul>
-                                            </div>
+                                                    <li class="d-flex align-items-center mt-3 ms-2">
+                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                                        <?php echo drawLinkUsernameDropdown($followed['Username'], $followed['IdUser'], "profilePage.php") ?>
+                                                    </li>
+                                                <?php
+                                                }
+                                                ?>
+                                            </ul>
                                         </div>
-                                    <?php
-                                    }
-                                    ?>
+                                    </div>
+
                                 </section>
                                 <section class="pb-5">
                                     <ul class="list-group list-unstyled">
@@ -216,7 +219,8 @@
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 
 </html>
