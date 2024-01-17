@@ -21,7 +21,7 @@ class Navbar
 ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <?php include_once("utils.php"); ?>
-        <link rel="stylesheet" href="<?php echo ($this->homePath  . ($this->style)); ?>">
+        <link rel="stylesheet" href="<?php echo ($this->homePath . ($this->style)); ?>">
         <script src="<?php echo (($this->homePath) . ($this->scriptThemePath)); ?>"></script>
         <nav class="navbar sticky-top navbar-expand-md">
             <div class="container-fluid">
