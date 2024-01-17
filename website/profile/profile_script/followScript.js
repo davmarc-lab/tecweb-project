@@ -15,8 +15,8 @@ function followUser(srcUser, dstUser, path) {
             dstUser: dstUser
         },
         success: function (response) {
-            document.getElementById("unfollowButton").classList.remove("d-none");
-            document.getElementById("followButton").classList.add("d-none");
+            document.getElementById("unfollow-button").classList.remove("d-none");
+            document.getElementById("follow-button").classList.add("d-none");
             location.reload();
         },
     });
@@ -38,8 +38,8 @@ function unfollowUser(srcUser, dstUser, path) {
             dstUser: dstUser
         },
         success: function (response) {
-            document.getElementById("unfollowButton").classList.add("d-none");
-            document.getElementById("followButton").classList.remove("d-none");
+            document.getElementById("unfollow-button").classList.add("d-none");
+            document.getElementById("follow-button").classList.remove("d-none");
             location.reload();
         },
     });

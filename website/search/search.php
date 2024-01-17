@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../includes/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="../includes/style.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../profile/profile_script/followScript.js"></script>
     <script src="searchScript.js" defer></script>
@@ -32,18 +32,21 @@
             <div class="input-group">
                 <label for="search-text" class="visually-hidden">Search</label>
                 <input type="text" id="search-text" name="search-text" class="form-control" placeholder="Search" aria-describedby="searchIcon" />
-                <button type="" class="btn btn-outline-secondary" id="searchButton" name="submit" onclick="searchResult()">
-                    <i class="bi bi-search"></i>
+                <button class="btn btn-outline-secondary" id="search-button" name="submit" onclick="searchResult()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
                 </button>
             </div>
             <div class="row mt-4">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose categories
                     </button>
                     <div class="dropdown-menu p-1" aria-labelledby="categoryDropdown">
                         <div class="container d-flex">
-                            <input type="text" name="categorySearch" id="categorySearch" class="form-control" placeholder="Search category" />
+                            <label for="category-search" hidden>Choose zero or one or many categories</label>
+                            <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search category" />
                             <a class="btn btn-utility btn-secondary ms-1" role="button" id="reset">Clear</a>
                         </div>
                         <div class="container mt-2 scrollable-menu">
@@ -59,23 +62,23 @@
                     </div>
                     <div id="selected-categories"></div>
                 </div>
-            <div id="category-badges"></div>
+                <div id="category-badges"></div>
+            </div>
         </div>
-    </div>
-    <?php
-    if (!isset($_SESSION["search_result"]["post"])) {
-    ?>
-        <div class="container-fluid justify-content-center align-items-center text-center">
-            <?php
-            $query = "SELECT * FROM post ORDER BY RAND() LIMIT 9;";
-            $res = $dbh->execQuery($query);
-            printPost($res, $dbh);
-            ?>
-        </div>
-    <?php
-    } else {
-    ?>
-        <div class="container-fluid">
+        <?php
+        if (!isset($_SESSION["search_result"]["post"])) {
+        ?>
+            <div class="container-fluid justify-content-center align-items-center text-center">
+                <?php
+                $query = "SELECT * FROM post ORDER BY RAND() LIMIT 9;";
+                $res = $dbh->execQuery($query);
+                printPost($res, $dbh);
+                ?>
+            </div>
+        <?php
+        } else {
+        ?>
+            <div class="container-fluid">
                 <div class="row mt-4 justify-content-center">
                     <div class="container col-md-8">
                         <?php
@@ -85,17 +88,17 @@
                         ?>
                     </div>
                 </div>
-            <div class="row justify-content-center align-items-center text-center">
-                <?php
-                printPost($_SESSION["search_result"]["post"], $dbh);
-                ?>
+                <div class="row justify-content-center align-items-center text-center">
+                    <?php
+                    printPost($_SESSION["search_result"]["post"], $dbh);
+                    ?>
+                </div>
             </div>
-        </div>
-    <?php
-    }
-    ?>
+        <?php
+        }
+        ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>
@@ -114,7 +117,7 @@ function printPost($res, $dbh)
         } else {
             $empty = true;
         }
-        
+
         if ($index == 0) {
             echo "<div class=\"row mt-5 d-flex justify-content-center align-items-center text-center\">";
         }
@@ -124,7 +127,7 @@ function printPost($res, $dbh)
                 <?php
                 if (!$empty) {
                 ?>
-                    <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Image">
+                    <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Post preview">
                 <?php
                 }
                 ?>
@@ -132,7 +135,7 @@ function printPost($res, $dbh)
                     <h5 class="card-title"><?php echo $post['Title']; ?></h5>
                     <p class="card-text"><?php echo $post['Description']; ?></p>
                     <a href="../post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>">
-                        <button class="btn btn-primary">More</button>
+                        <button class="btn btn-primary">View post</button>
                     </a>
                 </div>
             </div>
@@ -168,7 +171,7 @@ function printProfile($dbh, $res)
                 foreach ($res as $user) {
                 ?>
                     <tr>
-                        <td class="text-center" scope="row"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></th>
+                        <td class="text-center"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></td>
                         <td class="text-center d-none d-md-table-cell"><?php echo $user['NumberPost'] ?></td>
                         <td class="text-center d-none d-md-table-cell"><?php echo $user['NumberFollower'] ?></td>
                         <td class="text-center">
@@ -179,8 +182,8 @@ function printProfile($dbh, $res)
                             $pathFollow = "'../profile/followUserQuery.php'";
                             $pathUnfollow = "'../profile/unfollowUserQuery.php'";
                             ?>
-                            <a id="followButton" onclick="followUser(<?php echo $_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathFollow; ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) != 0 ? "d-none" : "") ?>">Follow</a>
-                            <a id="unfollowButton" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
+                            <a id="dstuser-<?php echo $user['IdUser']?>" role="button" class="btn btn-following follow-button">Follow</a>
+                            <a id="unfollow-button" onclick="unfollowUser(<?php echo ($_SESSION['userId'] . ', ' . $user['IdUser'] . ', ' . $pathUnfollow); ?>)" role="button" class="btn btn-following <?php echo (sizeof($test) == 0 ? "d-none" : "") ?>">Unfollow</a>
                         </td>
                     </tr>
                 <?php
