@@ -1,5 +1,6 @@
 const NUMBER_POST = 10;
 const profilePage = "profile/profilePage.php";
+const viewPostPage = "post/viewPost.php";
 
 let posts = null;
 let postInfo = null;
@@ -66,16 +67,16 @@ $("document").ready(function () {
             divPost.setAttribute("id", "post-" + post["IdPost"]);
 
             // Post info query
+            let idPreview = post["IdPreview"];
             $.ajax({
                 async: false,
                 url: "postQuery/getPostInfo.php",
                 type: "POST",
                 data: {
                     idUser: post["IdUser"],
-                    idPreview: post["IdPreview"],
+                    idPreview: idPreview > 0 ? idPreview : -1,
                 },
                 success: function (response) {
-                    // posts = JSON.parse(response);
                     if (response != null) {
                         postInfo = JSON.parse(response);
                     }
@@ -112,14 +113,52 @@ $("document").ready(function () {
             divRow.appendChild(divUser);
 
             // add image preview to the post div
-            let imgPreview = document.createElement("img");
-            imgPreview.setAttribute("src", "../" + pathPostPreview);
-            imgPreview.classList = "card-img-top img-fluid";
-            divPost.appendChild(imgPreview);
+            if (pathPostPreview != "") {
+                let imgPreview = document.createElement("img");
+                imgPreview.setAttribute("src", "../" + pathPostPreview);
+                imgPreview.classList = "card-img-top img-fluid";
+                divPost.appendChild(imgPreview);
+            }
 
             // appends all elements to diCardCol, after to the others div
             let divCardBody = document.createElement("div");
             divCardBody.classList = "card-body";
+
+            // add date and category
+            let pDatePost = document.createElement("p");
+            pDatePost.setAttribute("id", "show-date");
+            date = post["Date"].substr(0, 10);
+            pDatePost.innerHTML = date;
+            divCardBody.appendChild(pDatePost);
+
+            let idPostCategory = post["IdCategory"];
+            if (idPostCategory != null) {
+                // the post has category
+                let category = null;
+                $.ajax({
+                    async: false,
+                    url: "postQuery/getCategory.php",
+                    type: "POST",
+                    data: {
+                        idCategory: idPostCategory,
+                    },
+                    success: function (response) {
+                        category = JSON.parse(response);
+                    },
+                });
+                // category info taken
+                let spanCategory = document.createElement("span");
+                spanCategory.setAttribute("id", "category-badge");
+                spanCategory.classList = "badge border rounded-pill text-bg-primary";
+                let pCat = document.createElement("p");
+                pCat.classList.add("m-0");
+                pCat.innerHTML = category["Description"];
+
+                spanCategory.appendChild(pCat);
+                divCardBody.appendChild(spanCategory);
+            }
+
+            // append div
             let divCardRow = document.createElement("div");
             divCardRow.classList = "row";
             let divCardCol = document.createElement("div");
@@ -177,17 +216,103 @@ $("document").ready(function () {
                 pVoteNumber.innerHTML = Number(pVoteNumber.innerHTML) + increment;
             });
 
-
             // append the vote number and the like button
             divCardCol.appendChild(pVoteNumber);
             divCardCol.appendChild(likeButton);
+
+            // append comment number to divcardcol
+            let pCommentNumber = document.createElement("p");
+            pCommentNumber.classList = "badge bg-secondary ms-4";
+            pCommentNumber.innerHTML = post["NumberComment"];
+            divCardCol.appendChild(pCommentNumber);
+
+            // append commment icon
+            let btnComment = document.createElement("button");
+            btnComment.classList = "btn btn-lg border-0";
+            let commentIcon = document.createElement("i");
+            commentIcon.classList = "bi bi-chat-left-text";
+            btnComment.appendChild(commentIcon);
+            divCardCol.appendChild(btnComment);
+
+            // append link to viewPost page
+            let linkPost = document.createElement("a");
+            linkPost.setAttribute("href", "../" + viewPostPage + "?id=" + post["IdPost"]);
+            linkPost.classList.add("float-end");
+            let linkButton = document.createElement("button");
+            linkButton.classList = "btn btn-primary";
+            linkButton.innerHTML = "More";
+            linkPost.appendChild(linkButton);
+            divCardCol.appendChild(linkPost);
+
+            // append post title and description
+            let titlePost = document.createElement("h5");
+            titlePost.classList.add("card-title");
+            titlePost.innerHTML = post["Title"];
+            divCardCol.appendChild(titlePost);
+
+            let descriptionPost = document.createElement("p");
+            descriptionPost.classList.add("card-text");
+            descriptionPost.innerHTML = post["Description"];
+            divCardCol.appendChild(descriptionPost);
 
             // prepare all the elements of the card
             divCardRow.appendChild(divCardCol);
             divCardBody.appendChild(divCardRow);
             divPost.appendChild(divCardBody);
 
-            // let divComment = document.createElement("div");
+            // append container for the comments
+            let divComments = document.createElement("div");
+            divComments.classList = "container m-0";
+
+            let comments = null;
+            if (post["NumberComment"] > 0) {
+                $.ajax({
+                    async: false,
+                    url: "postQuery/getComments.php",
+                    type: "POST",
+                    data: {
+                        idPost: post["IdPost"],
+                    },
+                    success: function (response) {
+                        comments = JSON.parse(response);
+                    }
+                });
+            }
+
+            // if there are comments append them
+            if (comments != null) {
+                for (j = 0; j < comments.length && j < 3; j++) {
+                    let current = comments[j];
+                    let username = null;
+                    // get user from comment
+                    $.ajax({
+                        async: false,
+                        url: "postQuery/getSourceComment.php",
+                        type: "POST",
+                        data: {
+                            idUser: current["IdUser"],
+                        },
+                        success: function (response) {
+                            username = response;
+                        }
+                    });
+
+                    if (username != null) {
+                        let pComment = document.createElement("p");
+                        pComment.classList = "border border-success rounded text-break p-1";
+                        let linkUsername = drawLinkUsernameElement(current["IdUser"], username);
+                        pComment.appendChild(linkUsername);
+                        pComment.innerHTML += " : " + current["CommentText"];
+                        divComments.appendChild(pComment);
+                    }
+                    
+                    // append text area
+                    
+                }
+
+                divPost.appendChild(divComments);
+            }
+
 
             // foreach commenti
             // ,...

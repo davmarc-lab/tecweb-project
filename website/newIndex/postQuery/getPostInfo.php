@@ -10,8 +10,11 @@ $idProfile = $author["IdMedia"];
 $query = "SELECT * FROM media WHERE IdMedia = $idProfile";
 $mediaPath = $dbh->execQuery($query, MYSQLI_ASSOC)[0]["FilePath"];
 
-$query = "SELECT * FROM media WHERE IdMedia = $idPreview";
-$previewPath = $dbh->execQuery($query, MYSQLI_ASSOC)[0]["FilePath"];
+$previewPath = "";
+if ($idPreview >= 0) {
+    $query = "SELECT * FROM media WHERE IdMedia = $idPreview";
+    $previewPath = $dbh->execQuery($query, MYSQLI_ASSOC)[0]["FilePath"];
+}
 
 // prepare the json to be sent to javascript
 echo("[ ". json_encode($author) . " , ");
