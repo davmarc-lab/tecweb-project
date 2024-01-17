@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("../../includes/database.php");
+require_once("../../includes/utils.php");
 $idUser = $_SESSION["userId"];
 $idPost = $_POST["idPost"];
 $increment = $_POST["increment"];
@@ -17,6 +18,18 @@ if ($increment > 0) {
 
     $query = "SELECT Username from utente WHERE IdUser = $idUser;";
     $username = $dbh->execQuery($query)[0]["Username"];
+
+    $query = "SELECT IdUser from post WHERE IdPost = '{$idPost}'";
+    $idDst = $dbh->execQuery($query)[0]["IdUser"];
+
+    $tmp = NotificationType::LIKE->value;
+    $query = "INSERT INTO notification (Type, Description, IsRead, IdUser, IdTarget) VALUES ('$tmp', '{$username} liked your post', 0, $idDst, {$targetId});";
+    $dbh->execQuery($query);
+
+    if (!checkUserOnline($dbh, $idDst)) {
+        sendEmailNotification(getUserMail($dbh, $idDst), "You received a new like", "{$username} liked your post");
+    }
+
     $res = "INCREMENT";
 } else {
     // need to delete the vote
@@ -28,6 +41,14 @@ if ($increment > 0) {
 
     $query = "UPDATE post SET NumberVote = NumberVote - 1 WHERE IdPost = $idPost;";
     $dbh->execQuery($query);
+
+    $query = "SELECT IdUser from post WHERE IdPost = '{$idPost}'";
+    $idDst = $dbh->execQuery($query)[0]["IdUser"];
+
+    $tmp = NotificationType::LIKE->value;
+    $query = "DELETE from notification WHERE Type = '{$tmp}' AND IdUser = '{$idDst}' AND IdTarget = '{$idVote}';";
+    $dbh->execQuery($query);
+
     $res = "DELETED";
 }
 print_r($res);
