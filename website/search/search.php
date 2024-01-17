@@ -102,13 +102,14 @@ function printPost($res, $dbh)
 {
     $index = 0;
     foreach ($res as $post) {
+        $empty = false;
         if ($post['IdPreview'] != NULL) {
             $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
             $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
             $previewPath = "../" . $previewPath;
-            $empty = "false";
+            $empty = false;
         } else {
-            $empty = "true";
+            $empty = true;
         }
         
         if ($index == 0) {
@@ -118,7 +119,7 @@ function printPost($res, $dbh)
         <div class="col-md-4 col-12 mx-auto my-5 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
                 <?php
-                if ($empty !== "true") {
+                if (!$empty) {
                 ?>
                     <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Image">
                 <?php

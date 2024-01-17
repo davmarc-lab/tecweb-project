@@ -50,12 +50,13 @@
                         $authorUser = $dbh->execQuery($queryAuthor)[0];
                         $queryIcon = "SELECT FilePath from media WHERE IdMedia = {$authorUser['IdMedia']};";
                         $previewPathIcon = $dbh->execQuery($queryIcon)[0]['FilePath'];
+                        $empty = false;
                         if ($post['IdPreview'] != NULL) {
                             $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
                             $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
-                            $empty = "false";
+                            $empty = false;
                         } else {
-                            $empty = "true";
+                            $empty = true;
                         }
                         $category = getCategory($dbh, $post);
                         ?>
@@ -68,7 +69,7 @@
                             </div>
                         </div>
                         <?php
-                        if ($empty !== "true") {
+                        if (!$empty) {
                         ?>
                             <img src="<?php echo $previewPath ?>" class="card-img-top img-fluid" alt="">
                         <?php
@@ -79,7 +80,7 @@
                             <?php
                             if ($category !== NULL) {
                             ?>
-                                <span class="badge rounded-pill text-bg-primary" id="category-badge">
+                                <span class="badge border rounded-pill text-bg-primary" id="category-badge">
                                     <p class="m-0"><?php echo $category; ?></p>
                                 </span>
                             <?php

@@ -161,19 +161,20 @@
                                 <section>
                                     <?php
                                     foreach ($posts as $userPost) {
+                                        $empty = false;
                                         if ($userPost['IdPreview'] != NULL) {
                                             $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$userPost['IdPreview']};";
                                             $previewPath = $dbh->execQuery($queryPreview)[0]["FilePath"];
                                             $previewPath = "../" . $previewPath;
-                                            $empty = "false";
+                                            $empty = false;
                                         } else {
-                                            $empty = "true";
+                                            $empty = true;
                                         }
                                         $category = getCategory($dbh, $userPost);
                                     ?>
                                         <div class="card border-1 mt-2 p-2" style="width: auto;">
                                             <?php
-                                            if ($empty !== "true") {
+                                            if (!$empty) {
                                             ?>
                                                 <img src="<?php echo $previewPath ?>" class="card-img-top rounded" alt="Preview image">
                                             <?php

@@ -67,8 +67,8 @@ a[role="button"]:hover:not(.btn-following){
 }
 
 .rounded-pill:not(.border-success) {
-    color: #198754;
-    background-color: transparent;
+    color: #198754 !important;
+    background-color: transparent !important;
     border-color: #198754 !important;
 }
 
@@ -177,8 +177,8 @@ html[data-bs-theme = "dark"] {
     }
 
     .rounded-pill:not(.border-success) {
-        color: #198754;
-        background-color: transparent;
+        color: #198754 !important;
+        background-color: transparent !important;
         border-color: #198754 !important;
     }
 
