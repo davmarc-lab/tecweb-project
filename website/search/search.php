@@ -160,10 +160,10 @@ function printProfile($dbh, $res)
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th class="text-center" scope="col">Username</th>
-                    <th class="text-center d-none d-md-table-cell" scope="col">Posts</th>
-                    <th class="text-center d-none d-md-table-cell" scope="col">Follower</th>
-                    <th class="text-center" scope="col"></th>
+                    <th class="text-center" scope="col" id="username">Username</th>
+                    <th class="text-center d-none d-md-table-cell" scope="col" id="number-post">Posts</th>
+                    <th class="text-center d-none d-md-table-cell" scope="col" id="number-follower">Follower</th>
+                    <th class="text-center" scope="col" id="btt-follow"></th>
                 </tr>
             </thead>
             <tbody>
@@ -171,10 +171,10 @@ function printProfile($dbh, $res)
                 foreach ($res as $user) {
                 ?>
                     <tr>
-                        <td class="text-center"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></td>
-                        <td class="text-center d-none d-md-table-cell"><?php echo $user['NumberPost'] ?></td>
-                        <td class="text-center d-none d-md-table-cell"><?php echo $user['NumberFollower'] ?></td>
-                        <td class="text-center">
+                        <td class="text-center" headers="username"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></td>
+                        <td class="text-center d-none d-md-table-cell" headers="number-post"><?php echo $user['NumberPost'] ?></td>
+                        <td class="text-center d-none d-md-table-cell" headers="number-follower"><?php echo $user['NumberFollower'] ?></td>
+                        <td class="text-center" headers="btt-follow">
                             <?php
                             $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
                                         AND IdDst = {$user['IdUser']}";
