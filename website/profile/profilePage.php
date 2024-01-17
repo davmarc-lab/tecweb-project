@@ -19,7 +19,6 @@
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
     updateLastSeen($dbh, $_SESSION["userId"]);
-    unsetSearchKey();
     if (!isset($_SESSION["userId"])) {
         // login not done
         header("location:../login/login.php");
@@ -60,9 +59,13 @@
                                     $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
                                     $previewPath = $dbh->execQuery($query)[0]['FilePath'];
                                     ?>
+                                     <a id="back-button" href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3">
+                                        <i class="bi bi-arrow-left"></i>
+                                    </a>
                                     <img src="../<?php echo $previewPath ?>" alt="" class="rounded rounded-5" height="70px" width="70px" />
                                     <?php
                                     if ($showEdit) {
+                                        unsetSearchKey();
                                     ?>
                                         <a href="editProfile.php" role="button" class="btn d-md-none ms-2">Edit</a>
                                     <?php
