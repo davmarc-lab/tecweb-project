@@ -67,7 +67,8 @@
                                 </button>
                                 <div class="dropdown-menu p-1" aria-labelledby="categoryDropdown">
                                     <div class="container d-flex">
-                                        <input type="text" name="categorySearch" id="categorySearch" class="form-control" placeholder="Search/Create" />
+                                        <label for="category-search" hidden>Search categories</label>
+                                        <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search/Create" />
                                         <a class="btn btn-utility btn-secondary ms-1" role="button" id="create-ctg-btn">Create</a>
                                     </div>
                                     <div class="container mt-2 scrollable-menu">
@@ -83,10 +84,10 @@
                                         ?>
                                     </div>
                                 </div>
-                                <input type="hidden" id="selectedCategory" name="category" />
+                                <input type="hidden" id="selected-category" name="category" />
                             </div>
-                            <span class="badge rounded-pill text-bg-primary d-none" id="category-badge">
-                                <p class="m-0" id="category-description"></p>
+                            <span class="badge border rounded-pill text-bg-primary d-none" id="category-badge">
+                                <span class="m-0" id="category-description"></span>
                             </span>
                         </div>
 

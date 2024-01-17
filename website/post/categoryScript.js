@@ -2,7 +2,7 @@ $("document").ready(function () {
 
     // Create category script
     let createButton = document.getElementById("create-ctg-btn");
-    let elem = document.getElementById("categorySearch");
+    let elem = document.getElementById("category-search");
 
     // Disable create category button at start
     if (typeof elem.value === "string" && elem.value.length === 0) {
@@ -36,7 +36,7 @@ $("document").ready(function () {
 
     // Add event listener to handle dropdown item selection
     let dropdownItems = document.querySelectorAll('.dropdown-item');
-    let value = document.getElementById("selectedCategory");
+    let value = document.getElementById("selected-category");
 
     dropdownItems.forEach(function (item) {
         item.addEventListener('click', function () {
