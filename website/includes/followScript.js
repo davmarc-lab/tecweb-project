@@ -2,9 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".btn-following").forEach(function (btt) {
         btt.addEventListener("click", function () {
             let bttId = btt.id;
-            console.log(bttId);
             let dst = bttId.replace("dstuser-", "");
-            console.log(dst);
             let userId = 0;
             if (btt.textContent === "Follow") {
                 $.ajax({

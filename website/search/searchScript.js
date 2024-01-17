@@ -1,5 +1,4 @@
 function searchResult() {
-    console.log("Sono lo script js");
     let input = document.getElementById("search-text");
     if (input != null) {
         console.log("Input non è null");
@@ -29,4 +28,12 @@ input.addEventListener('keyup', (e) => {
     if (e.keyCode === 13) {
         searchResult();
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".btn-search").forEach(function (btt) {
+        btt.addEventListener("click", function () {
+            searchResult();
+        });
+    });
 });
