@@ -100,6 +100,12 @@ a.dropdown-toggle:hover {
     color: black;
 }
 
+#show-date {
+    font-style: italic;
+}
+
+
+
 /* Dark theme */
 html[data-bs-theme = "dark"] {
    #suggested-profile-id, #edit-profile-box-id {
@@ -202,5 +208,9 @@ html[data-bs-theme = "dark"] {
     #ok-button {
         background-color: darkslategray;
         color: white;
+    }
+
+    #show-date {
+        font-style: italic;
     }
 }

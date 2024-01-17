@@ -177,7 +177,7 @@
                                             }
                                             ?>
                                             <div class="card-body">
-                                                <p><i><?php echo substr($userPost["Date"], 0, 10); ?></i></p>
+                                                <p id="show-date"><?php echo substr($userPost["Date"], 0, 10); ?></p>
                                                 <?php
                                                 if ($category !== NULL) {
                                                 ?>

@@ -51,6 +51,7 @@ $infoPost = $dbh->execQuery($query)[0];
                         <p>
                             <?php echo ($infoPost["Description"]); ?>
                         </p>
+                        <p id="show-date"><?php echo substr($infoPost["Date"], 0, 10); ?></p>
                     </div>
                 </div>
                 <div class="row col-11 mx-auto d-flex align-items-center">
