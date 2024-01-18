@@ -100,7 +100,7 @@
         ?>
     </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>
@@ -140,13 +140,13 @@ function printPost($res, $dbh)
                 <div class="card-body">
                     <p class="show-date"><?php echo substr($post["Date"], 0, 10); ?></p>
                     <?php
-                        if ($category !== NULL) {
+                    if ($category !== NULL) {
                     ?>
                         <span class="badge border rounded-pill mb-2">
                             <?php echo $category ?>
                         </span>
                     <?php
-                        }
+                    }
                     ?>
                     <h5 class="card-title mt-2"><?php echo $post['Title']; ?></h5>
                     <p class="card-text"><?php echo substr($post['Description'], 0, 100); ?>
@@ -193,13 +193,16 @@ function printProfile($dbh, $res)
                         <td class="text-center d-none d-md-table-cell" headers="number-follower"><?php echo $user['NumberFollower'] ?></td>
                         <td class="text-center" headers="btt-follow">
                             <?php
-                            $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
+                            if ($user["IdUser"] !== $_SESSION["userId"]) {
+                                $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
                                         AND IdDst = {$user['IdUser']}";
-                            $test = $dbh->execQuery($query);
-                            $pathFollow = "'../profile/followUserQuery.php'";
-                            $pathUnfollow = "'../profile/unfollowUserQuery.php'";
+                                $test = $dbh->execQuery($query);
                             ?>
-                            <a id="dstuser-<?php echo $user['IdUser'] ?>" role="button" class="btn btn-following"><?php echo (sizeof($test) != 0 ? "Unfollow" : "Follow") ?></a>
+                                <a id="dstuser-<?php echo $user['IdUser'] ?>" role="button" class="btn btn-following"><?php echo (sizeof($test) != 0 ? "Unfollow" : "Follow") ?></a>
+                            <?php
+                            }
+                            ?>
+                        </td>
                     </tr>
                 <?php
                 }
