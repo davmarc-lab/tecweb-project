@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="../includes/style.css">
     <script src="categoryScript.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="scrollableMenu.css">
+    <link rel="stylesheet" href="../includes/scrollableMenu.css">
     <title>New Post</title>
 </head>
 
@@ -38,7 +38,7 @@
             <div class="row col-12 col-lg-8 mx-auto d-block">
                 <section>
                     <h2>New Post</h2>
-                    <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="newPostForm" enctype="multipart/form-data">
+                    <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="new-post-form" enctype="multipart/form-data">
 
                         <div class="mb-3">
                             <label for="title" class="form-label">Choose Title:</label>
@@ -56,20 +56,20 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Write Description:</label>
-                            <textarea class="form-control" name="description" id="description" cols="50" rows="6" form="newPostForm" placeholder="Description..."></textarea>
+                            <textarea class="form-control" name="description" id="description" cols="50" rows="6" form="new-post-form" placeholder="Description..."></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label for="categoryDropdown">Select category:</label>
+                            <label for="category-dropdown">Select category:</label>
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Choose category
                                 </button>
                                 <div class="dropdown-menu p-1" aria-labelledby="categoryDropdown">
                                     <div class="container d-flex">
                                         <label for="category-search" hidden>Search categories</label>
                                         <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search/Create" />
-                                        <a class="btn btn-utility btn-secondary ms-1" role="button" id="create-ctg-btn">Create</a>
+                                        <a class="btn btn-utility-contrast btn-secondary ms-1" role="button" id="create-ctg-btn">Create</a>
                                     </div>
                                     <div class="container mt-2 scrollable-menu">
                                         <?php

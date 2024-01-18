@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../includes/style.css" />
+    <link rel="stylesheet" href="../includes/scrollableMenu.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="searchScript.js" defer></script>
     <script src="categoryFilter.js" type="text/javascript"></script>

@@ -1,3 +1,7 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 nav {
     background-color: #447957 !important;
     color: white !important;
@@ -31,7 +35,7 @@ nav {
 }
 
 .suggested-profile a:hover {
-    color: #198754;
+    color: #198754 !important;
 }
 
 .suggested-profile > h1 {
@@ -69,13 +73,13 @@ a:hover:not(a[role="button"]) {
     background-color: #198754;
 }
 
-.btn-secondary {
+.btn-secondary, .btn-utility-contrast {
     color: black;
-    background-color: white;
+    background-color: transparent;
     border-color: black;
 }
 
-.btn-secondary:hover, .btn-secondary:focus {
+.btn-secondary:hover, .btn-secondary:focus, .btn-utility-contrast:hover {
     color: black;
     background-color: rgb(193, 196, 198);
 }
@@ -97,10 +101,6 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
 
 .btn-utility {
     color: white;
-}
-
-.btn-utility-contrast {
-    color: black;
 }
 
 a[role="button"]:hover:not(.btn-following){
@@ -150,18 +150,22 @@ a.dropdown-toggle:hover {
 /* Dark theme */
 html[data-bs-theme = "dark"] {
 
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
     nav {
         background-color: #447957 !important;
         color: white;
     }
 
     .suggested-profile a {
-        color: white;
-        text-decoration: none;
+        color: white !important;
+        text-decoration: none !important;
     }
 
     .suggested-profile a:hover {
-        color: #198754;
+        color: #198754 !important;
     }
 
     .suggested-profile > h1 {
@@ -216,13 +220,13 @@ html[data-bs-theme = "dark"] {
         color: white;
     }
 
-    .btn-secondary {
+    .btn-secondary, .btn-utility-contrast {
         color: white;
         background-color: transparent;
         border-color: white;
     }
     
-    .btn-secondary:hover, .btn-secondary:focus {
+    .btn-secondary:hover, .btn-secondary:focus, .btn-utility-contrast:hover {
         color: white;
         background-color: darkslategray;
     }
@@ -237,10 +241,6 @@ html[data-bs-theme = "dark"] {
 
     .btn-utility {
         color: black;
-    }
-    
-    .btn-utility-contrast {
-        color: white;
     }
 
     .rounded-pill:not(.border-success) {
