@@ -45,180 +45,186 @@
             ?>
                 <div class="row justify-content-between">
                     <div class="overflow-y-auto overflow-x-hidden col-md-6 col-12">
-                    <?php
-                } else {
-                    ?>
-                        <div class="row justify-content-center">
-                            <div class="overflow-y-auto overflow-x-hidden col-10">
-                            <?php
-                        }
-                            ?>
-                            <section class="px-3">
-                                <section class="pt-3">
-                                    <?php
-                                    $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
-                                    $previewPath = $dbh->execQuery($query)[0]['FilePath'];
-                                    ?>
-                                     <a href="javascript: history.go(-1)" role="button" class="btn btn-utility back-button mb-3" title="Go back">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                                        </svg>
-                                    </a>
-                                    <img src="../<?php echo $previewPath ?>" alt="" class="rounded rounded-5" style="height: 70px; width: 70px;" />
-                                    <?php
-                                    if ($showEdit) {
-                                        unsetSearchKey();
-                                    ?>
-                                        <a href="editProfile.php" role="button" class="btn d-md-none ms-2">Edit</a>
-                                    <?php
-                                    } else {
-                                        // checks if the user follow.
-                                        $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
-                                        AND IdDst = $dstUser";
-                                        $res = $dbh->execQuery($query);
-                                    ?>
-                                        <a id="dstuser-<?php echo $dstUser ?>" role="button" class="btn btn-following ms-2"><?php echo (sizeof($res) != 0 ? "Unfollow" : "Follow") ?></a>
-                                    <?php
-                                    }
-                                    $query = "SELECT NumberFollower from utente WHERE IdUser = $dstUser";
-                                    $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
-                                    ?>
-                                    <div class="row row-cols-2 my-3 d-flex">
-                                        <div class="dropdown">
-                                            <a class="btn btn-secondary dropdown-toggle border" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Follower: <?php echo $numFollower ?>
-                                            </a>
-                                            <?php
-                                            $query = "SELECT u.IdUser, u.Username, u.IdMedia
-                                                    FROM follow AS f
-                                                    JOIN utente AS u ON f.IdSrc = u.IdUser
-                                                    WHERE f.IdDst = '{$dstUser}';";
-                                            $followerList = $dbh->execQuery($query);
-                                            ?>
-                                            <ul class="dropdown-menu" style="width: 300px;">
-                                                <?php
-                                                foreach ($followerList as $follower) {
-                                                ?>
-                                                    <?php
-                                                    $query = "SELECT FilePath from media WHERE IdMedia = '{$follower['IdMedia']}';";
-                                                    $path = $dbh->execQuery($query)[0]['FilePath'];
-                                                    ?>
-                                                    <li class="d-flex align-items-center mt-3 ms-2">
-                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                                        <?php echo drawLinkUsernameDropdown($follower['Username'], $follower['IdUser'], "profilePage.php") ?>
-                                                    </li>
-                                                <?php
-                                                }
-                                                ?>
-                                            </ul>
-                                        </div>
-
-                                        <div class="dropdown col-2">
-                                            <a class="btn btn-secondary dropdown-toggle border" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <?php
-                                                $query = "SELECT COUNT(*) AS NumFollowing FROM follow WHERE IdSrc = '$dstUser';";
-                                                $numFollowed = $dbh->execQuery($query)[0]['NumFollowing']
-                                                ?>
-                                                Followed: <?php echo $numFollowed ?>
-                                            </a>
-                                            <?php
-                                            $query = "SELECT u.IdUser, u.Username, u.IdMedia
-                                                FROM follow AS f
-                                                JOIN utente AS u ON f.IdDst = u.IdUser
-                                                WHERE f.IdSrc = '$dstUser';";
-                                            $followedList = $dbh->execQuery($query);
-                                            ?>
-                                            <ul class="dropdown-menu" style="width: 300px;">
-                                                <?php
-                                                foreach ($followedList as $followed) {
-                                                ?>
-                                                    <?php
-                                                    $query = "SELECT FilePath from media WHERE IdMedia = '{$followed['IdMedia']}';";
-                                                    $path = $dbh->execQuery($query)[0]['FilePath'];
-                                                    ?>
-                                                    <?php
-                                                    ?>
-                                                    <li class="d-flex align-items-center mt-3 ms-2">
-                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                                        <?php echo drawLinkUsernameDropdown($followed['Username'], $followed['IdUser'], "profilePage.php") ?>
-                                                    </li>
-                                                <?php
-                                                }
-                                                ?>
-                                            </ul>
-                                        </div>
+            <?php
+            } else {
+            ?>
+                <div class="row justify-content-center">
+                    <div class="overflow-y-auto overflow-x-hidden col-10">
+            <?php
+            }
+            ?>
+                        <section class="px-3">
+                            <section class="pt-3">
+                                <?php
+                                if (!$showEdit) {
+                                ?>
+                                    <div class="text-left">
+                                        <a href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3" title="Go back">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                                            </svg>
+                                        </a>
                                     </div>
-
-                                </section>
-                                <section class="pb-5">
-                                    <ul class="list-group list-unstyled">
-                                        <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
-                                        <li class="my-2"><strong><?php echo $user["Name"] . " " . $user["Surname"]; ?></strong></li>
-                                        <li class="my-2"><?php echo $user["Description"]; ?></li>
-                                    </ul>
-                                </section>
-                                <section>
-                                    <?php
-                                    foreach ($posts as $userPost) {
-                                        $empty = false;
-                                        if ($userPost['IdPreview'] != NULL) {
-                                            $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$userPost['IdPreview']};";
-                                            $previewPath = $dbh->execQuery($queryPreview)[0]["FilePath"];
-                                            $previewPath = "../" . $previewPath;
-                                            $empty = false;
-                                        } else {
-                                            $empty = true;
-                                        }
-                                        $category = getCategory($dbh, $userPost);
-                                    ?>
-                                        <div class="card border-1 mt-2 p-2" style="width: auto;">
+                                <?php
+                                }
+                                $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
+                                $previewPath = $dbh->execQuery($query)[0]['FilePath'];
+                                ?>
+                                <img src="../<?php echo $previewPath ?>" alt="" class="rounded rounded-5" style="height: 70px; width: 70px;" />
+                                <?php
+                                if ($showEdit) {
+                                    unsetSearchKey();
+                                ?>
+                                    <a href="editProfile.php" role="button" class="btn d-md-none ms-2">Edit</a>
+                                <?php
+                                } else {
+                                    // checks if the user follow.
+                                    $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
+                                    AND IdDst = $dstUser";
+                                    $res = $dbh->execQuery($query);
+                                ?>
+                                    <a id="dstuser-<?php echo $dstUser ?>" role="button" class="btn btn-following ms-2"><?php echo (sizeof($res) != 0 ? "Unfollow" : "Follow") ?></a>
+                                <?php
+                                }
+                                $query = "SELECT NumberFollower from utente WHERE IdUser = $dstUser";
+                                $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
+                                ?>
+                                <div class="row row-cols-2 my-3 d-flex">
+                                    <div class="dropdown">
+                                        <a class="btn btn-secondary dropdown-toggle border" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Follower: <?php echo $numFollower ?>
+                                        </a>
+                                        <?php
+                                        $query = "SELECT u.IdUser, u.Username, u.IdMedia
+                                                FROM follow AS f
+                                                JOIN utente AS u ON f.IdSrc = u.IdUser
+                                                WHERE f.IdDst = '{$dstUser}';";
+                                        $followerList = $dbh->execQuery($query);
+                                        ?>
+                                        <ul class="dropdown-menu" style="width: 300px;">
                                             <?php
-                                            if (!$empty) {
+                                            foreach ($followerList as $follower) {
                                             ?>
-                                                <img src="<?php echo $previewPath ?>" class="card-img-top rounded" alt="Preview image">
+                                                <?php
+                                                $query = "SELECT FilePath from media WHERE IdMedia = '{$follower['IdMedia']}';";
+                                                $path = $dbh->execQuery($query)[0]['FilePath'];
+                                                ?>
+                                                <li class="d-flex align-items-center mt-3 ms-2">
+                                                    <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                                    <?php echo drawLinkUsernameDropdown($follower['Username'], $follower['IdUser'], "profilePage.php") ?>
+                                                </li>
                                             <?php
                                             }
                                             ?>
-                                            <div class="card-body">
-                                                <p class="show-date"><?php echo substr($userPost["Date"], 0, 10); ?></p>
+                                        </ul>
+                                    </div>
+
+                                    <div class="dropdown col-2">
+                                        <a class="btn btn-secondary dropdown-toggle border" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <?php
+                                            $query = "SELECT COUNT(*) AS NumFollowing FROM follow WHERE IdSrc = '$dstUser';";
+                                            $numFollowed = $dbh->execQuery($query)[0]['NumFollowing']
+                                            ?>
+                                            Followed: <?php echo $numFollowed ?>
+                                        </a>
+                                        <?php
+                                        $query = "SELECT u.IdUser, u.Username, u.IdMedia
+                                            FROM follow AS f
+                                            JOIN utente AS u ON f.IdDst = u.IdUser
+                                            WHERE f.IdSrc = '$dstUser';";
+                                        $followedList = $dbh->execQuery($query);
+                                        ?>
+                                        <ul class="dropdown-menu" style="width: 300px;">
+                                            <?php
+                                            foreach ($followedList as $followed) {
+                                            ?>
                                                 <?php
-                                                if ($category !== NULL) {
+                                                $query = "SELECT FilePath from media WHERE IdMedia = '{$followed['IdMedia']}';";
+                                                $path = $dbh->execQuery($query)[0]['FilePath'];
                                                 ?>
-                                                    <span class="badge border rounded-pill mb-2">
-                                                        <?php echo $category; ?>
-                                                    </span>
                                                 <?php
-                                                }
                                                 ?>
-                                                <h5 class="card-title">
-                                                    <?php echo $userPost["Title"]; ?>
-                                                </h5>
-                                                <p class="card-text">
-                                                    <?php echo $userPost["Description"]; ?>
-                                                </p>
-                                                <a href="../post/viewPost.php?id=<?php echo ($userPost["IdPost"]); ?>" class="btn btn-primary" role="button">
-                                                    View Post
-                                                </a>
-                                            </div>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
-                                </section>
-                            </section>
-                            </div>
-                            <?php
-                            if ($showEdit) {
-                            ?>
-                                <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
-                                    <section>
-                                        <?php include_once("editProfileContent.php"); ?>
-                                    </section>
+                                                <li class="d-flex align-items-center mt-3 ms-2">
+                                                    <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                                    <?php echo drawLinkUsernameDropdown($followed['Username'], $followed['IdUser'], "profilePage.php") ?>
+                                                </li>
+                                            <?php
+                                            }
+                                            ?>
+                                        </ul>
+                                    </div>
                                 </div>
-                            <?php
-                            }
-                            ?>
+
+                            </section>
+                            <section class="pb-5">
+                                <ul class="list-group list-unstyled">
+                                    <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
+                                    <li class="my-2"><strong><?php echo $user["Name"] . " " . $user["Surname"]; ?></strong></li>
+                                    <li class="my-2"><?php echo $user["Description"]; ?></li>
+                                </ul>
+                            </section>
+                            <section>
+                                <?php
+                                foreach ($posts as $userPost) {
+                                    $empty = false;
+                                    if ($userPost['IdPreview'] != NULL) {
+                                        $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$userPost['IdPreview']};";
+                                        $previewPath = $dbh->execQuery($queryPreview)[0]["FilePath"];
+                                        $previewPath = "../" . $previewPath;
+                                        $empty = false;
+                                    } else {
+                                        $empty = true;
+                                    }
+                                    $category = getCategory($dbh, $userPost);
+                                ?>
+                                    <div class="card border-1 mt-2 p-2" style="width: auto;">
+                                        <?php
+                                        if (!$empty) {
+                                        ?>
+                                            <img src="<?php echo $previewPath ?>" class="card-img-top rounded" alt="Preview image">
+                                        <?php
+                                        }
+                                        ?>
+                                        <div class="card-body">
+                                            <p class="show-date"><?php echo substr($userPost["Date"], 0, 10); ?></p>
+                                            <?php
+                                            if ($category !== NULL) {
+                                            ?>
+                                                <span class="badge border rounded-pill mb-2">
+                                                    <?php echo $category; ?>
+                                                </span>
+                                            <?php
+                                            }
+                                            ?>
+                                            <h5 class="card-title">
+                                                <?php echo $userPost["Title"]; ?>
+                                            </h5>
+                                            <p class="card-text">
+                                                <?php echo $userPost["Description"]; ?>
+                                            </p>
+                                            <a href="../post/viewPost.php?id=<?php echo ($userPost["IdPost"]); ?>" class="btn btn-primary" role="button">
+                                                View Post
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </section>
+                        </section>
+                    </div>
+                    <?php
+                    if ($showEdit) {
+                    ?>
+                        <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
+                            <section>
+                                <?php include_once("editProfileContent.php"); ?>
+                            </section>
                         </div>
+                    <?php
+                    }
+                    ?>
+                </div>
         </main>
     </div>
 
