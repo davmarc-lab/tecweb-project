@@ -23,7 +23,6 @@ function drawLinkUsernameElement(userId, username) {
 
 function vote(postId, increment) {
     $.ajax({
-        async: false,
         url: "indexQuery/incrementLike.php",
         type: "POST",
         data: {
@@ -32,30 +31,6 @@ function vote(postId, increment) {
         },
     });
 }
-
-/* function removeVote(postId) {
-    $.ajax({
-        async: false,
-        url: "indexQuery/incrementLike.php",
-        type: "POST",
-        data: {
-            idPost: postId,
-            increment: -1,
-        },
-    });
-}
-
-function addVote(postId) {
-    $.ajax({
-        async: false,
-        url: "indexQuery/incrementLike.php",
-        type: "POST",
-        data: {
-            idPost: postId,
-            increment: 1,
-        },
-    });
-} */
 
 function createCommentElement(userId, username, text) {
     let pComment = document.createElement("p");
@@ -106,7 +81,7 @@ function appendPostToContainer(numPostToLoad) {
             let post = posts[i];
 
             let divPost = document.createElement("div");
-            divPost.classList = "card border-1 rounded mx-auto m-4 p-3 single-post";
+            divPost.classList = "card post-card border border-1 rounded mx-auto m-4 p-3 single-post";
             divPost.setAttribute("id", "post-" + post["IdPost"]);
 
             // Post info query
@@ -135,11 +110,10 @@ function appendPostToContainer(numPostToLoad) {
 
             // creates profile image div in the row div
             let divProfileImage = document.createElement("div");
-            divProfileImage.classList = "col-1";
+            divProfileImage.classList = "col-1 me-2";
             let imgProfile = document.createElement("img");
             imgProfile.setAttribute("src", pathImgAuthor);
-            imgProfile.setAttribute("height", "30px");
-            imgProfile.setAttribute("width", "30px");
+            imgProfile.classList.add("rounded-circle");
 
             // append profile image to row div
             divProfileImage.appendChild(imgProfile);
@@ -148,7 +122,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // append user profile page link to row div
             let divUser = document.createElement("div");
-            divUser.classList = "col mx-2 pt-1";
+            divUser.classList = "col mx-3 pt-2";
             let pUser = document.createElement("p");
             pUser.setAttribute("id", "index-post-user-id");
             pUser.appendChild(drawLinkUsernameElement(author["IdUser"], author["Username"]));
@@ -169,7 +143,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // add date and category
             let pDatePost = document.createElement("p");
-            pDatePost.setAttribute("id", "show-date");
+            pDatePost.classList.add("show-date");
             date = post["Date"];
             if (date == null) {
                 pDatePost.innerHTML = "";
@@ -366,7 +340,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // add input for the user
             let areaComment = document.createElement("textarea");
-            areaComment.classList = "form-control textAreaComment";
+            areaComment.classList = "form-control";
             areaComment.setAttribute("id", "text-area-comment");
             areaComment.setAttribute("rows", 3);
             areaComment.setAttribute("cols", 20);

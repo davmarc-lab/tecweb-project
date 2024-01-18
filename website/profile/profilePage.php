@@ -70,7 +70,7 @@
                                     $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
                                     $previewPath = $dbh->execQuery($query)[0]['FilePath'];
                                     ?>
-                                    <img src="../<?php echo $previewPath ?>" alt="" class="rounded rounded-5" style="height: 70px; width: 70px;" />
+                                    <img src="../<?php echo $previewPath ?>" alt="" class="rounded profile-page-icon rounded-5" />
                                     <?php
                                     if ($showEdit) {
                                         unsetSearchKey();
@@ -101,7 +101,7 @@
                                                 WHERE f.IdDst = '{$dstUser}';";
                                             $followerList = $dbh->execQuery($query);
                                             ?>
-                                            <ul class="dropdown-menu" style="width: 300px;">
+                                            <ul class="dropdown-menu">
                                                 <?php
                                                 foreach ($followerList as $follower) {
                                                 ?>
@@ -110,7 +110,7 @@
                                                     $path = $dbh->execQuery($query)[0]['FilePath'];
                                                     ?>
                                                     <li class="d-flex align-items-center mt-3 ms-2">
-                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2">
                                                         <?php echo drawLinkUsernameDropdown($follower['Username'], $follower['IdUser'], "profilePage.php") ?>
                                                     </li>
                                                 <?php
@@ -134,7 +134,7 @@
                                             WHERE f.IdSrc = '$dstUser';";
                                             $followedList = $dbh->execQuery($query);
                                             ?>
-                                            <ul class="dropdown-menu" style="width: 300px;">
+                                            <ul class="dropdown-menu">
                                                 <?php
                                                 foreach ($followedList as $followed) {
                                                 ?>
@@ -145,7 +145,7 @@
                                                     <?php
                                                     ?>
                                                     <li class="d-flex align-items-center mt-3 ms-2">
-                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                                        <img src="../<?php echo $path ?>" alt="" class="rounded-circle me-2">
                                                         <?php echo drawLinkUsernameDropdown($followed['Username'], $followed['IdUser'], "profilePage.php") ?>
                                                     </li>
                                                 <?php
@@ -178,7 +178,7 @@
                                         }
                                         $category = getCategory($dbh, $userPost);
                                     ?>
-                                        <div class="card border-1 mt-2 p-2">
+                                        <div class="card post-card border-1 mt-2 p-2">
                                             <?php
                                             if (!$empty) {
                                             ?>

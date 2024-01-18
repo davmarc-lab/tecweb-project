@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
 
 body:not(.signup-body, .login-body) {
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: Helvetica, Arial, sans-serif !important;
 }
 
 #changing-text {
@@ -21,6 +21,10 @@ body:not(.signup-body, .login-body) {
     width: 100%;
     height: 20%;
     z-index: -1;
+}
+
+.table-responsive {
+    max-height: 300px;
 }
 
 nav {
@@ -53,6 +57,8 @@ nav {
 .suggested-profile a {
     color: white !important;
     text-decoration: none !important;
+    font-family: 'Thasadith', sans-serif !important;
+    font-size: 20px;
 }
 
 .suggested-profile a:hover {
@@ -105,6 +111,10 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     background-color: rgb(193, 196, 198);
 }
 
+.card:not(.post-card) {
+    width: 18rem;
+}
+
 .card, #view-post {
     border-color: lightslategray !important;
 }
@@ -132,6 +142,10 @@ a[role="button"]:hover:not(.btn-following){
     color: white !important;
     background-color: #198754 !important;
     border-color: transparent !important;
+}
+
+.dropwdown-menu {
+    width: 300px;
 }
 
 .dropdown-item:hover {
@@ -163,7 +177,22 @@ a.dropdown-toggle:hover {
 }
 
 .show-date {
-    font-style: italic;
+    font-style: italic !important;
+}
+
+.rounded-circle {
+    width: 40px;
+    height: 40px;
+}
+
+.profile-page-icon {
+    height: 70px;
+    width: 70px;
+}
+
+.logout-button {
+    background: none;
+    border: none;
 }
 
 
@@ -180,9 +209,15 @@ html[data-bs-theme = "dark"] {
         color: white;
     }
 
+    .table-responsive {
+        max-height: 300px;
+    }
+
     .suggested-profile a {
         color: white !important;
         text-decoration: none !important;
+        font-family: 'Thasadith', sans-serif !important;
+    font-size: 20px;
     }
 
     .suggested-profile a:hover {
@@ -252,6 +287,10 @@ html[data-bs-theme = "dark"] {
         background-color: darkslategray;
     }
 
+    .card:not(.post-card) {
+        width: 18rem;
+    }
+
     .card, #view-post {
         border-color: lightgray !important;
     }
@@ -268,6 +307,10 @@ html[data-bs-theme = "dark"] {
         color: #45A55F !important;
         background-color: transparent !important;
         border-color: #45A55F !important;
+    }
+
+    .dropwdown-menu {
+        width: 300px;
     }
 
     .dropdown-item:hover {
@@ -299,6 +342,21 @@ html[data-bs-theme = "dark"] {
     }
 
     .show-date {
-        font-style: italic;
+        font-style: italic !important;
+    }
+
+    .rounded-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-page-icon {
+        height: 70px;
+        width: 70px;
+    }
+
+    .logout-button {
+        background: none;
+        border: none;
     }
 }

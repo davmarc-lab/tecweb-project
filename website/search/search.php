@@ -127,7 +127,7 @@ function printPost($res, $dbh)
         $username = $dbh->execQuery($query)[0]["Username"];
 ?>
         <div class="col-md-4 col-12 mx-auto my-5 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <p class="m-1"><?php echo drawLinkUsername($username, $post["IdUser"], "../profile/profilePage.php") ?></p>
                 <?php
                 if (!$empty) {
@@ -173,7 +173,7 @@ function printPost($res, $dbh)
 function printProfile($dbh, $res)
 {
 ?>
-    <div class="table-responsive overflow-y-auto" style="max-height: 300px;">
+    <div class="table-responsive overflow-y-auto">
         <table class="table table-striped">
             <thead>
                 <tr>

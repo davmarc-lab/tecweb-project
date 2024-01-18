@@ -52,8 +52,8 @@
                         <textarea id="input-description" name="description" class="form-control" rows="4" form="edit-profile-form"><?php echo $user["Description"]; ?></textarea>
                     </div>
                     <div class="d-flex">
-                        <label for="reset" class="form-label" hidden>Cancel</label>
-                        <input id="reset" type="reset" class="btn btn-danger ms-auto m-2" value="Cancel" />
+                        <label for="reset" class="form-label" hidden>Clear</label>
+                        <input id="reset" type="reset" class="btn btn-danger ms-auto m-2" value="Clear" />
                         <label for="submit" class="form-label" hidden>Save</label>
                         <input id="submit" type="submit" class="btn btn-success m-2" name="submit" value="Save" />
                     </div>

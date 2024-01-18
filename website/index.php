@@ -64,8 +64,8 @@
                             $previewPathSuggestedIcon = $dbh->execQuery($querySuggestedIcon)[0]['FilePath'];
                         ?>
                             <li class="mt-3">
-                                <img src="<?php echo "" . $previewPathSuggestedIcon; ?>" alt="" class="rounded rounded-5" width="40" height="40">
-                                <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>" style="font-family: 'Thasadith', sans-serif; font-size: 25px; width: 300px;">@<?php echo $suggested["Username"] ?></a>
+                                <img src="<?php echo "" . $previewPathSuggestedIcon; ?>" alt="" class="rounded rounded-circle rounded-5">
+                                <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>">@<?php echo $suggested["Username"] ?></a>
                             </li>
                         <?php
                         }
