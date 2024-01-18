@@ -21,8 +21,10 @@ $infoPost = $dbh->execQuery($query)[0];
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../includes/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="../includes/style.css" />
+    <script src="commentScript.js"></script>
     <title>NFA - <?php echo ($infoPost["Title"]); ?></title>
 </head>
 
@@ -40,7 +42,7 @@ $infoPost = $dbh->execQuery($query)[0];
             <!-- post section -->
             <a href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3" title="Go back">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                 </svg>
             </a>
             <section>
@@ -71,7 +73,7 @@ $infoPost = $dbh->execQuery($query)[0];
                         $previewName = $previewRes["FileName"];
                         $previewPath = "../" . $previewPath;
                     ?>
-                        <img class="img-fluid" src="<?php echo ($previewPath); ?>" alt="File Preview Image">
+                        <img class="img-fluid col-8 mx-auto" src="<?php echo ($previewPath); ?>" alt="File Preview Image">
                     <?php
                     }
 
@@ -93,34 +95,35 @@ $infoPost = $dbh->execQuery($query)[0];
                         <a class="link-offset-2" href="<?php echo ($mediaPath) ?>" download><?php echo ($mediaName); ?></a>
                     </span>
                 </div>
-                <!-- Likes, comment bar -->
-                <div class="row mt-3">
-                    <?php
-                    $queryComments = "SELECT * FROM usercomment WHERE IdPost = {$infoPost['IdPost']}
+                <hr>
+                <!-- Comment bar -->
+                <div class="row mt-3" id="comments-row">
+                    <div class="form-group" id="comment-input">
+                        <label for="comment-text" hidden>Insert your comment here</label>
+                        <textarea class="form-control" id="comment-text" rows="3" placeholder="Add your comment" name="commentText"></textarea>
+                        <label for="comment-button" hidden>Publish your comment</label>
+                        <button id="comment-button" class="btn btn-primary mt-3 float-end">Comment</button>
+                    </div>
+                    <div clas="mt-1 mb-0" id="comments-area">
+                        <?php
+                        $queryComments = "SELECT * FROM usercomment WHERE IdPost = {$infoPost['IdPost']}
                                 ORDER BY IdComment ASC;";
-                    $comments = $dbh->execQuery($queryComments);
-                    foreach ($comments as $comment) {
-                        $queryUserComment = "SELECT * from utente WHERE IdUser = {$comment['IdUser']};";
-                        $userComment = $dbh->execQuery($queryUserComment)[0];
-                    ?>
-                        <div class="me-2">
-                            <div class="border border-success rounded p-auto my-2">
-                                <p class="p-2 text-break m-0"><?php echo(drawLinkUsername($userComment["Username"], $userComment["IdUser"], "../profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
+                        $comments = $dbh->execQuery($queryComments);
+                        $comments = array_reverse($comments);
+                        foreach ($comments as $comment) {
+                            $queryUserComment = "SELECT * from utente WHERE IdUser = {$comment['IdUser']};";
+                            $userComment = $dbh->execQuery($queryUserComment)[0];
+                        ?>
+                            <div class="me-2 mt-3">
+                                <div class="border border-success rounded p-auto">
+                                    <p class="p-2 text-break m-0"><?php echo (drawLinkUsername($userComment["Username"], $userComment["IdUser"], "../profile/profilePage.php")); ?>: <?php echo $comment['CommentText'] ?></p>
+                                </div>
                             </div>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <form action="../addComment.php" method="POST">
-                        <div class="form-group">
-                            <label for="textAreaComment" hidden>Insert your comment here</label>
-                            <textarea class="form-control" id="textAreaComment" rows="3" placeholder="Add your comment" name="commentText"></textarea>
-                            <label for="submitComment" hidden>Publish your comment</label>
-                            <input type="submit" value="Comment" id="submitComment" class="btn btn-primary mt-3 float-end">
-                            <input type="hidden" name="idPost" value="<?php echo $infoPost['IdPost']; ?>">
-                            <input type="hidden" name="locationTo" value="post/viewPost.php?id=<?php echo $viewPostId; ?>">
-                        </div>
-                    </form>
+                        <?php
+                        }
+                        ?>
+
+                    </div>
                 </div>
             </section>
         </div>
