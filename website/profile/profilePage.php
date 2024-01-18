@@ -76,8 +76,6 @@
                                         $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
                                         AND IdDst = $dstUser";
                                         $res = $dbh->execQuery($query);
-                                        $pathFollow = "'followUserQuery.php'";
-                                        $pathUnfollow = "'unfollowUserQuery.php'";
                                     ?>
                                         <a id="dstuser-<?php echo $dstUser ?>" role="button" class="btn btn-following ms-2"><?php echo (sizeof($res) != 0 ? "Unfollow" : "Follow") ?></a>
                                     <?php
