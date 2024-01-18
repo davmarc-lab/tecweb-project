@@ -18,7 +18,6 @@ if ($numRows > 0) {
             $_SESSION["userId"] = $res[0]['IdUser'];
             updateLastSeen($dbh, $_SESSION["userId"]);
             unset($_SESSION['oldValueLogin']);
-            sendEmailNotification(getUserMail($dbh, $_SESSION["userId"]), "Warning", "Hello, someone logged in your account with this IP {$_SERVER['REMOTE_ADDR']}, is not you?");
             header("location:../../index.php");
             exit;
         } else {

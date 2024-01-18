@@ -133,7 +133,8 @@ function printPost($res, $dbh)
                 ?>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $post['Title']; ?></h5>
-                    <p class="card-text"><?php echo $post['Description']; ?></p>
+                    <p class="card-text"><?php echo substr($post['Description'], 0, 100); ?>
+                        <?php echo strlen($post['Description']) > 100 ? '...' : ''; ?></p>
                     <a href="../post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>">
                         <button class="btn btn-primary">View post</button>
                     </a>
@@ -182,7 +183,7 @@ function printProfile($dbh, $res)
                             $pathFollow = "'../profile/followUserQuery.php'";
                             $pathUnfollow = "'../profile/unfollowUserQuery.php'";
                             ?>
-                            <a id="dstuser-<?php echo $user['IdUser']?>" role="button" class="btn btn-following"><?php echo (sizeof($test) != 0 ? "Unfollow" : "Follow") ?></a>
+                            <a id="dstuser-<?php echo $user['IdUser'] ?>" role="button" class="btn btn-following"><?php echo (sizeof($test) != 0 ? "Unfollow" : "Follow") ?></a>
                     </tr>
                 <?php
                 }
