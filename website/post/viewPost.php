@@ -25,6 +25,7 @@ $infoPost = $dbh->execQuery($query)[0];
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="../includes/style.css" />
     <script src="commentScript.js"></script>
+    <script src="likeScript.js"></script>
     <title>NFA - <?php echo ($infoPost["Title"]); ?></title>
 </head>
 
@@ -40,11 +41,20 @@ $infoPost = $dbh->execQuery($query)[0];
     <div class="container-fluid col-12 col-md-8 mx-auto py-auto py-3 d-block">
         <div id="view-post" class="border rounded p-3">
             <!-- post section -->
-            <a href="javascript: history.go(-1)" role="button" class="btn btn-utility-contrast mb-3" title="Go back">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-                </svg>
-            </a>
+            <div class="row">
+                <a href="javascript: history.go(-1)" role="button" class="btn btn-utility-contrast mb-3 col-2" title="Go back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                    </svg>
+                </a>
+                <?php
+                $query = "SELECT Username from member WHERE IdUser = '{$infoPost["IdUser"]}';";
+                $username = $dbh->execQuery($query)[0]["Username"];
+                ?>
+                <p class="col mt-2 ms-1">
+                    <?php echo drawLinkUsername($username, $infoPost["IdUser"], "../profile/profilePage.php") ?>
+                </p>
+            </div>
             <section>
                 <!-- write the post title -->
                 <div class="row justify-content-start">
@@ -97,12 +107,19 @@ $infoPost = $dbh->execQuery($query)[0];
                 </div>
                 <hr>
                 <!-- Comment bar -->
+
                 <div class="row mt-3" id="comments-row">
-                    <div class="form-group" id="comment-input">
+                    <div class="form-group align-items-center" id="comment-input">
                         <label for="comment-text" hidden>Insert your comment here</label>
                         <textarea class="form-control" id="comment-text" rows="3" placeholder="Add your comment" name="commentText"></textarea>
                         <label for="comment-button" hidden>Publish your comment</label>
                         <button id="comment-button" class="btn btn-primary mt-3 float-end">Comment</button>
+                        <?php
+                        $query = "SELECT IdVote from vote WHERE IdUser = {$_SESSION["userId"]} AND IdPost = {$infoPost['IdPost']};";
+                        $res = $dbh->execQuery($query);
+                        ?>
+                        <button type="button" class="btn btn-lg float-end mt-2 like-btn" id="btnlike-<?php echo $infoPost['IdPost'] ?>"><i class="bi <?php echo (count($res) > 0 ? "bi-hand-thumbs-up-fill" : "bi-hand-thumbs-up") ?>"></i></button>
+                        <p class="badge bg-secondary mt-4 float-end" id="vote-indicator"><?php echo $infoPost['NumberVote'] ?></p>
                     </div>
                     <div clas="mt-1 mb-0" id="comments-area">
                         <?php

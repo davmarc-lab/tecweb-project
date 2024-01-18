@@ -224,7 +224,6 @@ function appendPostToContainer(numPostToLoad) {
                     likeIcon.classList.remove("bi-hand-thumbs-up-fill");
                     likeIcon.classList.remove("text-primary");
                     likeIcon.classList.add("bi-hand-thumbs-up");
-                    //removeVote(post["IdPost"]);
                     vote(post["IdPost"], -1);
                     increment = -1;
                 } else {
@@ -232,7 +231,6 @@ function appendPostToContainer(numPostToLoad) {
                     likeIcon.classList.add("bi-hand-thumbs-up-fill");
                     likeIcon.classList.add("text-primary");
                     likeIcon.classList.remove("bi-hand-thumbs-up");
-                    //addVote(post["IdPost"]);
                     vote(post["IdPost"], 1);
                     increment = 1;
                 }
