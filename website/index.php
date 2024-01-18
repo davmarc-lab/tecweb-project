@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Thasadith:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="includes/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="includes/cookieScript.js"></script>
     <script src="getPosts.js" defer></script>
     <link rel="stylesheet" href="postStyle.css">
     <title>NoteForAll</title>
@@ -21,7 +22,7 @@
     if (!isset($_SESSION["userId"])) {
         header("location: login/login.php");
     }
-    
+
     require_once("includes/database.php");
     include_once("includes/navbar.php");
     include_once("includes/utils.php");
@@ -73,8 +74,19 @@
                     </ul>
                 </div>
             </div>
-
         </div>
+        <?php
+        if (!isset($_COOKIE["user" . $_SESSION["userId"]])) {
+        ?>
+            <div class="row">
+                <div id="cookie-notify" class="fixed-bottom col-12">
+                    <p><strong>This site uses technical cookies to improve the user experience</strong></p>
+                    <button id="ok-button">Ok</button>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
