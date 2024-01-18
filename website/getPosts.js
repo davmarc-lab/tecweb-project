@@ -102,7 +102,7 @@ function appendPostToContainer(numPostToLoad) {
     if (posts != null) {
         let currentCounter = counter;
         // Load the posts in the container
-        for (i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length; i++) {
+        for (let i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length; i++) {
             let post = posts[i];
 
             let divPost = document.createElement("div");
@@ -337,7 +337,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // if there are comments append them
             if (comments != null) {
-                for (j = 0; j < comments.length && j < 3; j++) {
+                for (let j = 0; j < comments.length && j < 3; j++) {
                     let current = comments[j];
                     let username = null;
                     // get user from comment
