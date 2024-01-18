@@ -408,7 +408,7 @@ function appendPostToContainer(numPostToLoad) {
 
                 divComments.insertBefore(createCommentElement(user["IdUser"], user["Username"], areaComment.value),
                     divComments.children[0]);
-                if (divComments.childElementCount > 3) {
+                if (divComments.childElementCount > 4) {
                     divComments.removeChild(divComments.children[3]);
                 }
                 // clear textarea
