@@ -155,6 +155,9 @@
 
         $title = $_POST["title"];
         $description = empty($_POST["description"]) ? "" : $_POST["description"];
+        $description = str_replace("\\", "\\\\", $description);
+        $description = str_replace("'", "\\'", $description);
+        print_r($description);
         $idUser = $_SESSION["userId"];
         $idMedia = $mediaId;       // last id inserted
         $idPreview = $previewId;
