@@ -9,8 +9,6 @@ function main() {
     canvas.width = canvasParent.clientWidth;
     canvas.height = canvasParent.clientHeight;
 
-    console.log(canvas.width + ", " + canvas.height);
-
     var gl = canvas.getContext("webgl");
 
     if (!gl) {
@@ -94,7 +92,6 @@ function main() {
         gl.uniform1f(timeLoc, timeStamp * 0.0004);
 
         let dimLoc = gl.getUniformLocation(program, "blockDim");
-        console.log(canvas.clientWidth + ", " + canvas.clientHeight);
         gl.uniform2fv(dimLoc, new Float32Array([canvas.clientWidth, canvas.clientHeight]));
     }
 }

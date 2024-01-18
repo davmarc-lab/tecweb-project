@@ -18,7 +18,6 @@ $("document").ready(function () {
     $(elem).on('input', function () {
         // Enable create button if text not empty
         if (typeof elem.value === "string" && elem.value.length === 0) {
-            console.log("Empty");
             createButton.setAttribute("aria-disabled", true);
             createButton.classList.add("disabled");
         } else {
