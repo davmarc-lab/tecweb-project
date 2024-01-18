@@ -16,9 +16,7 @@ if (!isset($_SESSION['oldValuesSignup'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../includes/style.css">
     <script src="login_script/changinTextScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="login_script/popupErrorSignupScript.js"></script>
@@ -26,13 +24,13 @@ if (!isset($_SESSION['oldValuesSignup'])) {
     <title>Sign up</title>
 </head>
 
-<body>
+<body class="signup-body">
     <section>
 
-        <div class="container-fluid" style="height: 100vh;">
+        <div class="container-fluid vh-100">
             <div class="row">
-                <div class="col-md-3 d-none d-lg-block d-xl-block d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #81BDDF; padding-top: 40vh;">
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; text-align: center;" id="changing-text"></p>
+                <div class="col-md-3 d-none d-lg-block d-flex align-items-center justify-content-center vh-100 side-panel">
+                    <p id="changing-text"></p>
                 </div>
                 <div class="col-12 col-md-8 d-flex align-items-center justify-content-center my-5 mx-auto">
                     <!-- signup form -->
@@ -98,7 +96,7 @@ if (!isset($_SESSION['oldValuesSignup'])) {
                 </div>
             </div>
         </div>
-        <div class="fixed-bottom" style="width: 100%; height: 20%; z-index: -1;">
+        <div class="fixed-bottom waves">
             <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path fill="#81BDDF" fill-opacity="1" d="M0,256L48,256C96,256,192,256,288,229.3C384,203,480,149,576,149.3C672,149,768,203,864,218.7C960,235,1056,213,1152,192C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
                 </path>

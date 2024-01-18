@@ -1,5 +1,26 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+@import url("https://fonts.googleapis.com");
+@import url("https://fonts.gstatic.com");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
+
+body:not(.signup-body, .login-body) {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+#changing-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    text-align: center; 
+}
+
+.side-panel {
+    background-color: #81BDDF;
+    padding-top: 40vh;
+}
+
+.waves {
+    width: 100%;
+    height: 20%;
+    z-index: -1;
 }
 
 nav {
@@ -48,12 +69,12 @@ nav {
     width: 300px;
 }
 
-a:not(a[role="button"]) {
+a:not(a[role="button"], .signup-body a, .login-body a) {
     color: black;
     text-decoration: none;
 }
 
-a:hover:not(a[role="button"]) {
+a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     color: #447957;
     text-decoration: none;
 }
@@ -63,13 +84,13 @@ a:hover:not(a[role="button"]) {
     text-decoration: none !important;
 }
 
-.btn-primary, .view-post {
+.btn-primary:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post {
     background-color: #006f3c !important;
     color: white !important;
     border: none !important;
 }
 
-.btn-primary:hover, .btn-primary:hover:active, .view-post:hover {
+.btn-primary:hover:not(.signup-body .btn-primary, .login-body .btn-primary), .btn-primary:hover:active, .view-post:hover {
     background-color: #198754 !important;
 }
 

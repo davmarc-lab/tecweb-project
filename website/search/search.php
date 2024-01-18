@@ -173,7 +173,7 @@ function printPost($res, $dbh)
 function printProfile($dbh, $res)
 {
 ?>
-    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+    <div class="table-responsive overflow-y-auto" style="max-height: 300px;">
         <table class="table table-striped">
             <thead>
                 <tr>

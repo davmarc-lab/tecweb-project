@@ -14,9 +14,7 @@ if (!isset($_SESSION['oldValueLogin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../includes/style.css">
     <script src="login_script/changinTextScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="login_script/popupErrorLoginScript.js"></script>
@@ -25,12 +23,12 @@ if (!isset($_SESSION['oldValueLogin'])) {
     <title>Log in</title>
 </head>
 
-<body>
+<body class="login-body">
     <section>
-        <div class="container-fluid" style="height: 100vh;">
+        <div class="container-fluid vh-100">
             <div class="row">
-                <div class="col-md-3 d-none d-lg-block d-xl-block d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #81BDDF; padding-top: 40vh;">
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; text-align: center;" id="changing-text"></p>
+                <div class="col-md-3 d-none d-lg-block d-flex align-items-center justify-content-center vh-100 side-panel">
+                    <p id="changing-text"></p>
                 </div>
                 <div class="col-12 col-md-8 d-flex align-items-center justify-content-center my-5 mx-auto">
                     <!-- login form -->
@@ -70,7 +68,7 @@ if (!isset($_SESSION['oldValueLogin'])) {
                 </div>
             </div>
         </div>
-        <div class="fixed-bottom" style="width: 100%; height: 20%; z-index: -1;">
+        <div class="fixed-bottom waves">
             <canvas id="square"></canvas>
 
             <script id="vertex-shader" type="x-shader/x-vertex">
@@ -101,7 +99,7 @@ if (!isset($_SESSION['oldValueLogin'])) {
                 varying vec4 v_color;
 
                 #define PI 3.14
-                
+
                 void main() {
                     vec3 color = vec3(v_color.rgb);
     
