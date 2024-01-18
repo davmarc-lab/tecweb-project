@@ -49,8 +49,8 @@
 
             <!-- suggested profile -->
             <div class="col-lg-3 d-none d-lg-block">
-                <div id="suggested-profile-id" style="position: fixed; top: 30vh; padding: 20px; border-radius: 10px; width: 300px; background-color: #303030;">
-                    <h1 style="font-family: 'Thasadith', sans-serif; font-size: 30px; color: #FEAB5D; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 300px;">Suggested Profile</h1>
+                <div class="suggested-profile">
+                    <h1>Suggested Profile</h1>
                     <ul class="list-unstyled">
                         <?php
                         $queryProfile = "SELECT u.*

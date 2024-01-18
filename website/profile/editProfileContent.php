@@ -14,7 +14,7 @@
     $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
     ?>
     <div class="container-fluid overflow-hidden p-3">
-        <div id="edit-profile-box-id" class="row justify-content-between fix-bottom">
+        <div class="row justify-content-between fix-bottom edit-profile-box">
             <section class="col-12 p-4">
                 <a id="edit-back-button" href="profilePage.php" role="button" class="btn btn-utility mb-3" title="Go back">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">

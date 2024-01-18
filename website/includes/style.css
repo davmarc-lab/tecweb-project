@@ -8,17 +8,40 @@ nav {
     color: white;
 }
 
-#suggested-profile-id, #edit-profile-box-id {
-    background-color: lightgray;
+.suggested-profile {
+    background-color: #303030;
 }
 
-#suggested-profile-id a {
-    color: black;
-    text-decoration: none;
+.suggested-profile {
+    position: fixed;
+    top: 30vh;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
 }
 
-#suggested-profile-id a:hover {
+.edit-profile-box {
+    background-color: #303030;
+    color: white;
+}
+
+.suggested-profile a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.suggested-profile a:hover {
     color: #198754;
+}
+
+.suggested-profile > h1 {
+    color: #FEAB5D;
+    font-size: 30px;
+    font-family: 'Thasadith', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px;
 }
 
 a:not(a[role="button"]) {
@@ -61,15 +84,23 @@ a:hover:not(a[role="button"]) {
     border-color: lightslategray !important;
 }
 
-a[role="button"]:not(.btn-primary, .btn-utility) {
+a[role="button"]:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     background-color: #006f3c !important;
     color: white !important;
     border-color: #006f3c !important;
 }
 
-a[role="button"]:hover:not(.btn-primary, .btn-utility) {
+a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     background-color: #198754 !important;
     color: white !important;
+}
+
+.btn-utility {
+    color: white;
+}
+
+.btn-utility-contrast {
+    color: black;
 }
 
 a[role="button"]:hover:not(.btn-following){
@@ -124,17 +155,28 @@ html[data-bs-theme = "dark"] {
         color: white;
     }
 
-   #suggested-profile-id, #edit-profile-box-id {
-        background-color: rgb(27, 61, 61);
-    }
-
-    #suggested-profile-id a {
+    .suggested-profile a {
         color: white;
         text-decoration: none;
     }
 
-    #suggested-profile-id a:hover {
-        text-decoration: underline;
+    .suggested-profile a:hover {
+        color: #198754;
+    }
+
+    .suggested-profile > h1 {
+        color: #FEAB5D;
+        font-size: 30px;
+        font-family: 'Thasadith', sans-serif;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 300px;
+    }
+
+    .edit-profile-box {
+        background-color: lightgray;
+        color: black;
     }
 
     a:not(a[role="button"]) {
@@ -152,13 +194,13 @@ html[data-bs-theme = "dark"] {
         text-decoration: none !important;
     }
 
-    a[role="button"]:not(.btn-primary, .btn-utility) {
+    a[role="button"]:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
         background-color: #006f3c !important;
         color: white !important;
         border-color: #006f3c !important;
     }
     
-    a[role="button"]:hover:not(.btn-primary, .btn-utility) {
+    a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
         background-color: #45A55F !important;
         border-color: #45A55F !important;
     }
@@ -190,7 +232,15 @@ html[data-bs-theme = "dark"] {
     }
 
     a[role="button"]:hover:not(.btn-following){
-        background-color: darkslategray;
+        background-color: gray;
+    }
+
+    .btn-utility {
+        color: black;
+    }
+    
+    .btn-utility-contrast {
+        color: white;
     }
 
     .rounded-pill:not(.border-success) {
