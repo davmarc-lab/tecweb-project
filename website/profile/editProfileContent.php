@@ -11,7 +11,7 @@
         header("location:../login/login.php");
     }
     $userId = $_SESSION["userId"];
-    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
+    $user = $dbh->execQuery("SELECT * FROM member WHERE member.IdUser=$userId")[0];
     ?>
     <div class="container-fluid overflow-hidden p-3">
         <div class="row justify-content-between fix-bottom edit-profile-box">
@@ -68,15 +68,15 @@
         $username = $_POST["username"];
         $email = $_POST["email"];
         $description = empty($_POST["description"]) ? NULL : $_POST["description"];
-        $mediaId = $dbh->execQuery("SELECT IdMedia FROM utente WHERE IdUser='$userId';")[0]["IdMedia"];
+        $mediaId = $dbh->execQuery("SELECT IdMedia FROM member WHERE IdUser='$userId';")[0]["IdMedia"];
         if ($_FILES["files"]["size"] != 0) {
             $uploadDir = "uploads/";
             $targetDir = $HOME_DIR . $uploadDir;
             $mediaId = insertImage($dbh, $uploadDir, $targetDir);
         }
-        $query = "UPDATE utente 
+        $query = "UPDATE member 
             SET Name='$name', Surname='$surname', Username='$username', Email='$email', Description='$description', IdMedia='$mediaId' 
-            WHERE utente.IdUser='$userId'";
+            WHERE member.IdUser='$userId'";
         $res = $dbh->execQuery($query);
         unset($_FILES["files"]);
 

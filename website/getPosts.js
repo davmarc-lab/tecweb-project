@@ -303,7 +303,12 @@ function appendPostToContainer(numPostToLoad) {
 
             let descriptionPost = document.createElement("p");
             descriptionPost.classList.add("card-text");
-            descriptionPost.innerHTML = post["Description"];
+            let textDescription = post["Description"];
+            if (textDescription.length > 200) {
+                textDescription = textDescription.substr(0, 200);
+                textDescription += "...";
+            } 
+            descriptionPost.innerHTML = textDescription;
             divCardCol.appendChild(descriptionPost);
 
             // prepare all the elements of the card

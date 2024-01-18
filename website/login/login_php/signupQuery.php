@@ -23,7 +23,7 @@ if ($password === "") {
         header("location:../signup.php?error=3");
         exit;
     } else {
-        $queryCheck = "SELECT * FROM utente WHERE email = '$email' OR username = '$username';";
+        $queryCheck = "SELECT * FROM member WHERE email = '$email' OR username = '$username';";
         $res = $dbh->execQuery($queryCheck);
         $numRows = count($res);
         if ($numRows > 0) {
@@ -56,7 +56,7 @@ function register($name, $surname, $username, $email, $password, $mediaId)
 {
     global $dbh;
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $query = "INSERT INTO utente (Name, Surname, Username, Email, Password, IdMedia) VALUES ('$name', '$surname', '$username', '$email', '$passwordHash', '$mediaId');";
+    $query = "INSERT INTO member (Name, Surname, Username, Email, Password, IdMedia) VALUES ('$name', '$surname', '$username', '$email', '$passwordHash', '$mediaId');";
     $res = $dbh->execQuery($query);
     if (!$res) {
         header("location:../signup.php?error=4");

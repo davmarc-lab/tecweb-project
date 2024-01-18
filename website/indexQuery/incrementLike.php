@@ -16,7 +16,7 @@ if ($increment > 0) {
     $query = "UPDATE post SET NumberVote = NumberVote + 1 WHERE IdPost = $idPost;";
     $dbh->execQuery($query);
 
-    $query = "SELECT Username from utente WHERE IdUser = $idUser;";
+    $query = "SELECT Username from member WHERE IdUser = $idUser;";
     $username = $dbh->execQuery($query)[0]["Username"];
 
     $query = "SELECT IdUser from post WHERE IdPost = '{$idPost}'";

@@ -3,7 +3,7 @@ require_once("../includes/database.php");
 $idUser = $_POST["idUser"];
 $idPreview = $_POST["idPreview"];
 
-$query = "SELECT * FROM utente WHERE IdUser = $idUser";
+$query = "SELECT * FROM member WHERE IdUser = $idUser";
 $author = $dbh->execQuery($query, MYSQLI_ASSOC)[0];
 
 $idProfile = $author["IdMedia"];

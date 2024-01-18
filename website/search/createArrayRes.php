@@ -9,7 +9,7 @@
         $filters = [];
     }
     if (strlen($searchKey) > 0) {
-        $query = "SELECT * FROM utente WHERE Username LIKE '%$searchKey%' ORDER BY NumberFollower DESC;";
+        $query = "SELECT * FROM member WHERE Username LIKE '%$searchKey%' ORDER BY NumberFollower DESC;";
         $_SESSION["search_result"]["profile"] = $dbh->execQuery($query);
     } else {
         $_SESSION["search_result"]["profile"] = [];

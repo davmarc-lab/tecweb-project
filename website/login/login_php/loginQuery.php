@@ -7,7 +7,7 @@ $password = $_POST['password'];
 $_SESSION['oldValueLogin'] = [
     "username" => $key,
 ];
-$query = "SELECT * FROM utente WHERE Email='$key' OR Username='$key';";
+$query = "SELECT * FROM member WHERE Email='$key' OR Username='$key';";
 $res = $dbh->execQuery($query);
 $numRows = count($res);
 if ($numRows > 0) {

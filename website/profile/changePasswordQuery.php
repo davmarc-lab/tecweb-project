@@ -9,7 +9,7 @@
         header("location:../login/login.php");
     }
     $userId = $_SESSION["userId"];
-    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$userId")[0];
+    $user = $dbh->execQuery("SELECT * FROM member WHERE member.IdUser=$userId")[0];
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST["submitOld"])) {
@@ -27,7 +27,7 @@
             $passwordRep = $_POST["repeatPassword"];
             if ($newPassword === $passwordRep) {
                 $finalPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-                $query = "UPDATE utente SET Password = '$finalPassword' WHERE IdUser='$userId'";
+                $query = "UPDATE member SET Password = '$finalPassword' WHERE IdUser='$userId'";
                 $res = $dbh->execQuery($query);
 
                 header("location: profilePage.php");

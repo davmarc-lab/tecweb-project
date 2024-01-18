@@ -111,7 +111,7 @@ $infoPost = $dbh->execQuery($query)[0];
                         $comments = $dbh->execQuery($queryComments);
                         $comments = array_reverse($comments);
                         foreach ($comments as $comment) {
-                            $queryUserComment = "SELECT * from utente WHERE IdUser = {$comment['IdUser']};";
+                            $queryUserComment = "SELECT * from member WHERE IdUser = {$comment['IdUser']};";
                             $userComment = $dbh->execQuery($queryUserComment)[0];
                         ?>
                             <div class="me-2 mt-3">

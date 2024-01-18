@@ -31,7 +31,7 @@
         $showEdit = false;
     }
 
-    $user = $dbh->execQuery("SELECT * FROM utente WHERE utente.IdUser=$dstUser")[0];
+    $user = $dbh->execQuery("SELECT * FROM member WHERE member.IdUser=$dstUser")[0];
     $posts = $dbh->execQuery("SELECT * FROM post WHERE post.IdUser=$dstUser ORDER BY post.Date DESC");
 
     include_once("../includes/navbar.php");
@@ -59,7 +59,7 @@
                                 if (!$showEdit) {
                                 ?>
                                     <div class="text-left">
-                                        <a href="javascript: history.go(-1)" role="button" class="btn btn-utility mb-3" title="Go back">
+                                        <a href="javascript: history.go(-1)" role="button" class="btn btn-utility-contrast mb-3 btn-back" title="Go back">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
                                             </svg>
@@ -86,7 +86,7 @@
                                     <a id="dstuser-<?php echo $dstUser ?>" role="button" class="btn btn-following ms-2"><?php echo (sizeof($res) != 0 ? "Unfollow" : "Follow") ?></a>
                                 <?php
                                 }
-                                $query = "SELECT NumberFollower from utente WHERE IdUser = $dstUser";
+                                $query = "SELECT NumberFollower from member WHERE IdUser = $dstUser";
                                 $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
                                 ?>
                                 <div class="row row-cols-2 my-3 d-flex">
@@ -97,7 +97,7 @@
                                         <?php
                                         $query = "SELECT u.IdUser, u.Username, u.IdMedia
                                                 FROM follow AS f
-                                                JOIN utente AS u ON f.IdSrc = u.IdUser
+                                                JOIN member AS u ON f.IdSrc = u.IdUser
                                                 WHERE f.IdDst = '{$dstUser}';";
                                         $followerList = $dbh->execQuery($query);
                                         ?>
@@ -130,7 +130,7 @@
                                         <?php
                                         $query = "SELECT u.IdUser, u.Username, u.IdMedia
                                             FROM follow AS f
-                                            JOIN utente AS u ON f.IdDst = u.IdUser
+                                            JOIN member AS u ON f.IdDst = u.IdUser
                                             WHERE f.IdSrc = '$dstUser';";
                                         $followedList = $dbh->execQuery($query);
                                         ?>
