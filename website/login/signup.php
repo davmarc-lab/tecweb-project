@@ -32,56 +32,56 @@ if (!isset($_SESSION['oldValuesSignup'])) {
         <div class="container-fluid" style="height: 100vh;">
             <div class="row">
                 <div class="col-md-3 d-none d-lg-block d-xl-block d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #81BDDF; padding-top: 40vh;">
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; text-align: center;" id="changingText"></p>
+                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; text-align: center;" id="changing-text"></p>
                 </div>
                 <div class="col-12 col-md-8 d-flex align-items-center justify-content-center my-5 mx-auto">
                     <!-- signup form -->
-                    <form action="login_php/signupQuery.php" method="post" id="signupForm" enctype="multipart/form-data">
+                    <form action="login_php/signupQuery.php" method="post" id="signup-form" enctype="multipart/form-data">
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <h1>Sign up to start sharing</h1>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="signupName" class="col-form-label" hidden>Name</label>
+                            <label for="signup-name" class="col-form-label" hidden>Name</label>
                             <div class="col-md-12">
-                                <input type="text" id="signupName" name="name" placeholder="Name" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['name']); ?>" />
+                                <input type="text" id="signup-name" name="name" placeholder="Name" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['name']); ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="signupSurname" class="col-form-label" hidden>Surname</label>
+                            <label for="signup-username" class="col-form-label" hidden>Surname</label>
                             <div class="col-md-12">
-                                <input type="text" id="signupSurname" name="surname" placeholder="Surname" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['surname']); ?>" />
+                                <input type="text" id="signup-username" name="surname" placeholder="Surname" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['surname']); ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="signupEmail" class="col-form-label" hidden>Email</label>
+                            <label for="signup-email" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="email" id="signupEmail" name="email" placeholder="Email" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['email']); ?>" />
+                                <input type="email" id="signup-email" name="email" placeholder="Email" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['email']); ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="signupUsername" class="col-form-label" hidden>Username</label>
+                            <label for="signup-username" class="col-form-label" hidden>Username</label>
                             <div class="col-md-12">
-                                <input type="text" id="signupUsername" name="username" placeholder="Username" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['username']); ?>" />
+                                <input type="text" id="signup-username" name="username" placeholder="Username" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['username']); ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="signupImage" class="col-form-label" hidden>Profile icon</label>
+                            <label for="signup-image" class="col-form-label" hidden>Profile icon</label>
                             <div class="col-md-12">
-                                <input type="file" id="signupImage" name="files" class="form-control" accept="image/*" />
+                                <input type="file" id="signup-image" name="files" class="form-control" accept="image/*" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="signupPassword" class="col-form-label" hidden>Password</label>
+                            <label for="signup-password-" class="col-form-label" hidden>Password</label>
                             <div class="col-md-12">
-                                <input type="password" id="signupPassword" name="password" placeholder="Password" class="form-control" />
+                                <input type="password" id="signup-password-" name="password" placeholder="Password" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="signupPasswordRepeat" class="col-form-label" hidden>Password again</label>
+                            <label for="signup-password-repeat" class="col-form-label" hidden>Password again</label>
                             <div class="col-md-12">
-                                <input type="password" id="signupPasswordRepeat" name="passwordRepeat" placeholder="Repeat Password" class="form-control" />
+                                <input type="password" id="signup-password-repeat" name="passwordRepeat" placeholder="Repeat Password" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-3">

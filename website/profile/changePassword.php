@@ -46,10 +46,10 @@
                                 <h1>Change your password</h1>
                             </div>
                         </div>
-                        <div id="insertOld">
-                            <label for="inputOldPassword" class="form-label">Old password</label>
+                        <div id="insert-old">
+                            <label for="input-old-password" class="form-label">Old password</label>
                             <div class="input-group mb-2">
-                                <input type="password" id="inputOldPassword" name="oldPassword" class="form-control password-field" placeholder="Old password" />
+                                <input type="password" id="input-old-password" name="oldPassword" class="form-control password-field" placeholder="Old password" />
                                 <span class="input-group-text toggle-password">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
@@ -57,13 +57,13 @@
                                     </svg>
                                 </span>
                             </div>
-                            <label for="submitOld" class="form-label" hidden>Change</label>
-                            <input id="submitOld" type="submit" class="btn btn-primary m-2" name="submitOld" value="Change" />
+                            <label for="submit-old" class="form-label" hidden>Change</label>
+                            <input id="submit-old" type="submit" class="btn btn-primary m-2" name="submitOld" value="Change" />
                         </div>
-                        <div id="insertNew" hidden>
-                            <label class="form-label" for="inputNewPassword">New password</label>
+                        <div id="insert-new" hidden>
+                            <label class="form-label" for="input-new-Password">New password</label>
                             <div class="input-group mb-2">
-                                <input type="password" id="inputNewPassword" name="newPassword" class="form-control password-field" placeholder="New password" />
+                                <input type="password" id="input-new-Password" name="newPassword" class="form-control password-field" placeholder="New password" />
                                 <span class="input-group-text toggle-password">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
@@ -71,9 +71,9 @@
                                     </svg>
                                 </span>
                             </div>
-                            <label class="form-label" for="inputRepeatPassword">Repeat new password</label>
+                            <label class="form-label" for="input-repeat-password">Repeat new password</label>
                             <div class="input-group mb-2">
-                                <input type="password" id="inputRepeatPassword" name="repeatPassword" class="form-control password-field" placeholder="Repeat new password" />
+                                <input type="password" id="input-repeat-password" name="repeatPassword" class="form-control password-field" placeholder="Repeat new password" />
                                 <span class="input-group-text toggle-password">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />

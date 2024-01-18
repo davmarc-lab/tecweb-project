@@ -26,12 +26,12 @@ class Navbar
         <nav class="navbar sticky-top navbar-expand-md">
             <div class="container-fluid">
                 <p class="navbar-brand fs-2 p-2 m-0"><?php echo ($pageName); ?></p>
-                <button class="navbar-toggler p-2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
+                <button class="navbar-toggler p-2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar-off-canvas-lg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="navbarOffcanvasLg">
+                <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="navbar-off-canvas-lg">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><?php echo ($pageName); ?></h5>
+                        <h5 class="offcanvas-title" id="off-canvas-navbar-label"><?php echo ($pageName); ?></h5>
                         <button type="button" class="btn btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">

@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let urlParams = new URLSearchParams(window.location.search);
     let errorParam = urlParams.get("error");
     if (errorParam === "0") {
-        document.getElementById("insertOld").hidden = true;
-        document.getElementById("insertNew").hidden = false;
+        document.getElementById("insert-old").hidden = true;
+        document.getElementById("insert-new").hidden = false;
     }
     if (errorParam === "1") {
         Swal.fire({
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             title: "Passwords do not match! Re-enter the old password.",
             text: '',
         });
-        document.getElementById("insertOld").hidden = true;
-        document.getElementById("insertNew").hidden = false;
+        document.getElementById("insert-old").hidden = true;
+        document.getElementById("insert-new").hidden = false;
     }
 });

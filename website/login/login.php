@@ -30,7 +30,7 @@ if (!isset($_SESSION['oldValueLogin'])) {
         <div class="container-fluid" style="height: 100vh;">
             <div class="row">
                 <div class="col-md-3 d-none d-lg-block d-xl-block d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #81BDDF; padding-top: 40vh;">
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; text-align: center;" id="changingText"></p>
+                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; text-align: center;" id="changing-text"></p>
                 </div>
                 <div class="col-12 col-md-8 d-flex align-items-center justify-content-center my-5 mx-auto">
                     <!-- login form -->
@@ -41,9 +41,9 @@ if (!isset($_SESSION['oldValueLogin'])) {
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="loginEmail" class="col-form-label" hidden>Email</label>
+                            <label for="login-email" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="text" id="loginEmail" name="email" placeholder="Email or username" class="form-control" value="<?php echo empty($_SESSION['oldValueLogin']['username']) ? "" : htmlspecialchars($_SESSION['oldValueLogin']['username']) ?>" />
+                                <input type="text" id="login-email" name="email" placeholder="Email or username" class="form-control" value="<?php echo empty($_SESSION['oldValueLogin']['username']) ? "" : htmlspecialchars($_SESSION['oldValueLogin']['username']) ?>" />
                             </div>
                         </div>
                         <div class="row mb-3">

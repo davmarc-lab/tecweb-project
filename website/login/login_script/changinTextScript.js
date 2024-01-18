@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "Notes that resonate, ideas that inspire.",
         "Unleash the power of shared knowledge."
     ];
-    const changingTextElement = document.getElementById('changingText');
+    const changingTextElement = document.getElementById('changing-text');
     function changePhrase() {
         const randomIndex = Math.floor(Math.random() * phrases.length);
         changingTextElement.textContent = phrases[randomIndex];
