@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let userId = 0;
             if (btt.textContent === "Follow") {
                 $.ajax({
+                    async: false,
                     url: "../profile/followUserQuery.php",
                     type: "POST",
                     data: {
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             } else {
                 $.ajax({
+                    async: false,
                     url: "../profile/unfollowUserQuery.php",
                     type: "POST",
                     data: {
