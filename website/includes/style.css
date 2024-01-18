@@ -63,14 +63,14 @@ a:hover:not(a[role="button"]) {
     text-decoration: none !important;
 }
 
-.btn-primary {
-    background-color: #006f3c;
-    color: white;
-    border: none;
+.btn-primary, .view-post {
+    background-color: #006f3c !important;
+    color: white !important;
+    border: none !important;
 }
 
-.btn-primary:hover, .btn-primary:hover:active {
-    background-color: #198754;
+.btn-primary:hover, .btn-primary:hover:active, .view-post:hover {
+    background-color: #198754 !important;
 }
 
 .btn-secondary, .btn-utility-contrast {

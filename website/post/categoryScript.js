@@ -48,7 +48,7 @@ $("document").ready(function () {
             this.classList.add('active');
 
             // Set the value of the hidden input
-            let selectedValue = this.getAttribute("value");
+            let selectedValue = String(this.id).split("-").pop();
             value.setAttribute("value", selectedValue);
 
             // Set the badge value
@@ -68,7 +68,7 @@ $("document").ready(function () {
             success: function (response) {
                 categoryBadge.classList.remove("d-none");
                 categoryDescription.innerHTML = elem.value;
-                value.setAttribute("value", response);
+                value.setAttribute("id", response);
             }
         });
     });

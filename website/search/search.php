@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../includes/scrollableMenu.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="searchScript.js" defer></script>
-    <script src="categoryFilter.js" type="text/javascript"></script>
+    <script src="categoryFilter.js"></script>
     <script src="../includes/followScript.js"></script>
     <title>Document</title>
 </head>
@@ -32,7 +32,7 @@
         <div class="row mt-5">
             <div class="input-group">
                 <label for="search-text" class="visually-hidden">Search</label>
-                <input type="text" id="search-text" name="search-text" class="form-control" placeholder="Search" aria-describedby="searchIcon" />
+                <input type="text" id="search-text" name="search-text" class="form-control" placeholder="Search" aria-describedby="search-button" />
                 <button class="btn btn-outline-secondary btn-search" id="search-button" name="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -44,7 +44,7 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose categories
                     </button>
-                    <div class="dropdown-menu p-1" aria-labelledby="categoryDropdown">
+                    <div class="dropdown-menu p-1" aria-labelledby="category-dropdown">
                         <div class="container d-flex">
                             <label for="category-search" hidden>Choose zero or one or many categories</label>
                             <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search category" />
@@ -55,7 +55,7 @@
                             $categories = getAllCategories($dbh);
                             foreach ($categories as $cat) {
                             ?>
-                                <a class="dropdown-item btn-primary rounded my-1" role="button" value="<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
+                                <a class="dropdown-item btn-primary rounded my-1" role="button" id="cat-<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
                             <?php
                             }
                             ?>
@@ -98,6 +98,7 @@
         <?php
         }
         ?>
+    </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
@@ -150,8 +151,8 @@ function printPost($res, $dbh)
                     <h5 class="card-title mt-2"><?php echo $post['Title']; ?></h5>
                     <p class="card-text"><?php echo substr($post['Description'], 0, 100); ?>
                         <?php echo strlen($post['Description']) > 100 ? '...' : ''; ?></p>
-                    <a href="../post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>">
-                        <button class="btn btn-primary">View post</button>
+                    <a href="../post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>" role="button" class="btn btn-primary view-post">
+                        View post
                     </a>
                 </div>
             </div>

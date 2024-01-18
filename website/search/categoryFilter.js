@@ -1,7 +1,7 @@
 $("document").ready(function () {
 
     // Create category script
-    let elem = document.getElementById("categorySearch");
+    let elem = document.getElementById("category-search");
 
     // Add event listener for the input search
     $(elem).on('input', function () {
@@ -27,7 +27,8 @@ $("document").ready(function () {
             this.hidden = true;
 
             // Set the value of the hidden input
-            let selectedValue = this.getAttribute("value");
+            let selectedValue = String(this.id).split("-").pop();
+            console.log(selectedValue);
             values.innerHTML += "<input type='hidden' id='selected-category" + i + "' name='category' />";
             let value = document.getElementById("selected-category" + i);
             value.setAttribute("value", selectedValue);

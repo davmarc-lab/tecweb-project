@@ -290,8 +290,8 @@ function appendPostToContainer(numPostToLoad) {
             linkPost.setAttribute("href", viewPostPage + "?id=" + post["IdPost"]);
             linkPost.classList.add("float-end");
             let linkButton = document.createElement("button");
-            linkButton.classList = "btn btn-primary";
-            linkButton.innerHTML = "More";
+            linkButton.classList = "btn btn-primary view-post";
+            linkButton.innerHTML = "View Post";
             linkPost.appendChild(linkButton);
             divCardCol.appendChild(linkPost);
 
