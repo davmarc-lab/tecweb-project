@@ -35,7 +35,7 @@
             ?>
         </div>
         <div class="container-fluid">
-            <div class="row col-8 mx-auto d-block">
+            <div class="row col-12 col-lg-8 mx-auto d-block">
                 <section>
                     <h2>New Post</h2>
                     <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="newPostForm" enctype="multipart/form-data">
