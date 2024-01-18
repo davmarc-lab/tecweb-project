@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+require_once("../includes/database.php");
+session_start();
+
+$showEdit = true;
+$dstUser = $_SESSION["userId"];
+if (isset($_GET["user"]) && ($dstUser != $_GET["user"])) {
+    $dstUser = $_GET["user"];
+    $showEdit = false;
+}
+$query = "SELECT * FROM member WHERE IdUser = $dstUser";
+$username = $dbh->execQuery($query)[0]["Username"];
+?>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,13 +24,12 @@
     <link rel="stylesheet" href="../includes/style.css" />
     <script src="profile_script/editProfileResize.js"></script>
     <script src="../includes/followScript.js"></script>
-    <title>Profile</title>
+    <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
+    <title>NFA - <?php echo($username); ?></title>
 </head>
 
 <body>
     <?php
-    session_start();
-    require_once("../includes/database.php");
     include_once("../includes/utils.php");
     if (!isset($_SESSION["userId"])) {
         // login not done

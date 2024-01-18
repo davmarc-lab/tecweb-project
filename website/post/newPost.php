@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../includes/style.css" />
     <script src="categoryScript.js"></script>
     <link rel="stylesheet" href="../includes/scrollableMenu.css">
-    <title>New Post</title>
+    <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
+    <title>NFA - New Post</title>
 </head>
 
 <body>

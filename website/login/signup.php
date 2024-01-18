@@ -21,7 +21,8 @@ if (!isset($_SESSION['oldValuesSignup'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="login_script/popupErrorSignupScript.js"></script>
     <script src="login_script/reloadPageScript.js"></script>
-    <title>Sign up</title>
+    <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
+    <title>NFA - Sign up</title>
 </head>
 
 <body class="signup-body">

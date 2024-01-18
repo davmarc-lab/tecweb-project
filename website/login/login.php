@@ -20,7 +20,8 @@ if (!isset($_SESSION['oldValueLogin'])) {
     <script src="login_script/popupErrorLoginScript.js"></script>
     <script src="login_script/reloadPageScript.js"></script>
     <script src="login_script/showHidePassword.js"></script>
-    <title>Log in</title>
+    <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
+    <title>NFA - Log in</title>
 </head>
 
 <body class="login-body">

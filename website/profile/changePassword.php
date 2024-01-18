@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="profile_script/popupErrorChangePsw.js"></script>
     <script src="profile_script/passwordVisibility.js"></script>
+    <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
     <script>
         // remove event when enter key is pressed
         $(document).keypress(
@@ -22,7 +23,7 @@
             });
     </script>
 
-    <title>Change password</title>
+    <title>NFA - Change password</title>
 </head>
 
 <body>

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="../includes/style.css" />
     <script src="profile_script/editProfileResize.js"></script>
     <script src="../includes/themeScript.js"></script>
-
-    <title>Edit Profile</title>
+    <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
+    <title>NFA - Edit Profile</title>
 </head>
 
 <body>

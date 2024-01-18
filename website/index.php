@@ -13,6 +13,7 @@
     <script src="includes/cookieScript.js"></script>
     <script src="getPosts.js" defer></script>
     <link rel="stylesheet" href="postStyle.css">
+    <link rel="icon" href="nfa-icon.png" type="image/x-icon" />
     <title>NoteForAll</title>
 </head>
 

@@ -12,7 +12,8 @@
     <script src="searchScript.js" defer></script>
     <script src="categoryFilter.js"></script>
     <script src="../includes/followScript.js"></script>
-    <title>Document</title>
+    <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
+    <title>NFA - Search</title>
 </head>
 
 <body>
