@@ -41,13 +41,13 @@ if (!isset($_SESSION['oldValueLogin'])) {
                         <div class="row mb-3">
                             <label for="login-email" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="text" id="login-email" name="email" placeholder="Email or username" class="form-control" value="<?php echo empty($_SESSION['oldValueLogin']['username']) ? "" : htmlspecialchars($_SESSION['oldValueLogin']['username']) ?>" />
+                                <input type="text" id="login-email" name="email" placeholder="Email or username" class="form-control" value="<?php echo empty($_SESSION['oldValueLogin']['username']) ? "" : htmlspecialchars($_SESSION['oldValueLogin']['username']) ?>" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="login-password" class="col-form-label" hidden>Password</label>
                             <div class="col-md-12">
-                                <input type="password" id="login-password" name="password" placeholder="Password" class="form-control" />
+                                <input type="password" id="login-password" name="password" placeholder="Password" class="form-control" required/>
                                 <label for="show-password" class="mb-5">
                                     <input type="checkbox" id="show-password" class="mb-5" />
                                     Show Password

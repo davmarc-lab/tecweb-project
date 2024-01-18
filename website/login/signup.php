@@ -43,25 +43,25 @@ if (!isset($_SESSION['oldValuesSignup'])) {
                         <div class="row mb-3">
                             <label for="signup-name" class="col-form-label" hidden>Name</label>
                             <div class="col-md-12">
-                                <input type="text" id="signup-name" name="name" placeholder="Name" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['name']); ?>" />
+                                <input type="text" id="signup-name" name="name" placeholder="Name" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['name']); ?>" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="signup-username" class="col-form-label" hidden>Surname</label>
                             <div class="col-md-12">
-                                <input type="text" id="signup-username" name="surname" placeholder="Surname" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['surname']); ?>" />
+                                <input type="text" id="signup-username" name="surname" placeholder="Surname" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['surname']); ?>" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="signup-email" class="col-form-label" hidden>Email</label>
                             <div class="col-md-12">
-                                <input type="email" id="signup-email" name="email" placeholder="Email" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['email']); ?>" />
+                                <input type="email" id="signup-email" name="email" placeholder="Email" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['email']); ?>" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="signup-username" class="col-form-label" hidden>Username</label>
                             <div class="col-md-12">
-                                <input type="text" id="signup-username" name="username" placeholder="Username" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['username']); ?>" />
+                                <input type="text" id="signup-username" name="username" placeholder="Username" class="form-control" value="<?php echo htmlspecialchars($_SESSION['oldValuesSignup']['username']); ?>" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -73,13 +73,13 @@ if (!isset($_SESSION['oldValuesSignup'])) {
                         <div class="row mb-3">
                             <label for="signup-password-" class="col-form-label" hidden>Password</label>
                             <div class="col-md-12">
-                                <input type="password" id="signup-password-" name="password" placeholder="Password" class="form-control" />
+                                <input type="password" id="signup-password-" name="password" placeholder="Password" class="form-control" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="signup-password-repeat" class="col-form-label" hidden>Password again</label>
                             <div class="col-md-12">
-                                <input type="password" id="signup-password-repeat" name="passwordRepeat" placeholder="Repeat Password" class="form-control" />
+                                <input type="password" id="signup-password-repeat" name="passwordRepeat" placeholder="Repeat Password" class="form-control" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
