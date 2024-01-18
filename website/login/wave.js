@@ -2,39 +2,39 @@
 
 function main() {
     // Get A WebGL context
-    /** @type {HTMLCanvasElement} */
-    var canvas = document.getElementById("square");
-    var canvasParent = canvas.parentElement;
+    let canvas = document.getElementById("square");
+    let canvasParent = canvas.parentElement;
 
     canvas.width = canvasParent.clientWidth;
     canvas.height = canvasParent.clientHeight;
 
-    var gl = canvas.getContext("webgl");
+    let gl = canvas.getContext("webgl");
 
     if (!gl) {
         return;
     }
 
     // setup GLSL program
-    var program = webglUtils.createProgramFromScripts(gl, ["vertex-shader", "fragment-shader"]);
+    let program = webglUtils.createProgramFromScripts(gl, ["vertex-shader", "fragment-shader"]);
 
     // look up where the vertex data needs to go.
-    var positionLocation = gl.getAttribLocation(program, "a_position");
+    let positionLocation = gl.getAttribLocation(program, "a_position");
 
     // lookup uniforms
-    var matrixLocation = gl.getUniformLocation(program, "u_matrix");
+    let matrixLocation = gl.getUniformLocation(program, "u_matrix");
 
     // Create a buffer for the positions.
-    var positionBuffer = gl.createBuffer();
+    let positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     // Set Geometry.
     setGeometry(gl, gl.canvas.clientWidth, gl.canvas.clientHeight);
 
+    // Set square Model.
+    let translation = [gl.canvas.clientWidth / 2, 0];
+    let angleInRadians = 0;
+    let scale = [1, 1];
 
-    var translation = [gl.canvas.clientWidth / 2, 0];
-    var angleInRadians = 0;
-    var scale = [1, 1];
-
+    // Load new frame.
     requestAnimationFrame(drawScene);
 
     // Draw the scene.
@@ -57,16 +57,16 @@ function main() {
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
         // Tell the position attribute how to get data out of positionBuffer (ARRAY_BUFFER)
-        var size = 2;          // 2 components per iteration
-        var type = gl.FLOAT;   // the data is 32bit floats
-        var normalize = false; // don't normalize the data
-        var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
-        var offset = 0;        // start at the beginning of the buffer
+        let size = 2;          // 2 components per iteration
+        let type = gl.FLOAT;   // the data is 32bit floats
+        let normalize = false; // don't normalize the data
+        let stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
+        let offset = 0;        // start at the beginning of the buffer
         gl.vertexAttribPointer(
             positionLocation, size, type, normalize, stride, offset);
 
         // Compute the matrix
-        var matrix = m3.projection(gl.canvas.clientWidth, gl.canvas.clientHeight);
+        let matrix = m3.projection(gl.canvas.clientWidth, gl.canvas.clientHeight);
         matrix = m3.translate(matrix, translation[0], translation[1]);
         matrix = m3.rotate(matrix, angleInRadians);
         matrix = m3.scale(matrix, scale[0], scale[1]);
@@ -75,9 +75,9 @@ function main() {
         gl.uniformMatrix3fv(matrixLocation, false, matrix);
 
         // Draw the geometry.
-        var primitiveType = gl.TRIANGLES;
-        var offset = 0;
-        var count = 6;
+        let primitiveType = gl.TRIANGLES;
+        offset = 0;
+        let count = 6;
 
         gl.drawArrays(primitiveType, offset, count);
 
@@ -87,6 +87,7 @@ function main() {
         requestAnimationFrame(drawScene);
     }
 
+    // Sends every frame the time to shader.
     function loop(timeStamp) {
         let timeLoc = gl.getUniformLocation(program, "a_time");
         gl.uniform1f(timeLoc, timeStamp * 0.0004);
@@ -98,8 +99,6 @@ function main() {
 
 
 // Fill the buffer with the values that define a rectangle.
-// Note, will put the values in whatever buffer is currently
-// bound to the ARRAY_BUFFER bind point
 function setGeometry(gl, b, h) {
     gl.bufferData(
         gl.ARRAY_BUFFER,

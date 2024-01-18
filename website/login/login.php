@@ -71,11 +71,6 @@ if (!isset($_SESSION['oldValueLogin'])) {
             </div>
         </div>
         <div class="fixed-bottom" style="width: 100%; height: 20%; z-index: -1;">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#81BDDF" fill-opacity="1" d="M0,256L48,256C96,256,192,256,288,229.3C384,203,480,149,576,149.3C672,149,768,203,864,218.7C960,235,1056,213,1152,192C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-                </path>
-            </svg> -->
-            <!-- missing script on resize -->
             <canvas id="square"></canvas>
 
             <script id="vertex-shader" type="x-shader/x-vertex">
@@ -106,7 +101,6 @@ if (!isset($_SESSION['oldValueLogin'])) {
                 varying vec4 v_color;
 
                 #define PI 3.14
-
                 
                 void main() {
                     vec3 color = vec3(v_color.rgb);

@@ -42,12 +42,12 @@
 
                         <div class="mb-3">
                             <label for="title" class="form-label">Choose Title:</label>
-                            <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" /> <!-- required -->
+                            <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" required/> 
                         </div>
 
                         <div class="mb-3">
                             <label for="files" class="form-label">Choose notes:</label>
-                            <input type="file" class="form-control" name="files" id="files" /> <!-- required -->
+                            <input type="file" class="form-control" name="files" id="files" required/>
                         </div>
 
                         <div class="mb-3">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Write Description:</label>
-                            <textarea class="form-control" name="description" id="description" cols="50" rows="6" form="new-post-form" placeholder="Description..."></textarea>
+                            <textarea class="form-control" name="description" id="description" cols="50" rows="6" form="new-post-form" placeholder="Description..." required></textarea>
                         </div>
 
                         <div class="mb-3">
