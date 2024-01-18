@@ -18,11 +18,11 @@
     session_start();
     require_once("../includes/database.php");
     include_once("../includes/utils.php");
-    updateLastSeen($dbh, $_SESSION["userId"]);
     if (!isset($_SESSION["userId"])) {
         // login not done
-        header("location:../login/login.php");
+        header("location: ../login/login.php");
     }
+    updateLastSeen($dbh, $_SESSION["userId"]);
 
     $showEdit = true;
     $dstUser = $_SESSION["userId"];
@@ -44,11 +44,11 @@
             if ($showEdit) {
             ?>
                 <div class="row justify-content-between">
-                    <div class="overflow-y-auto overflow-x-hidden col-md-6 col-12">
+                    <div class="overflow-y-auto overflow-x-hidden col-lg-6 col-12">
             <?php
             } else {
             ?>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center mx-auto">
                     <div class="overflow-y-auto overflow-x-hidden col-10">
             <?php
             }
@@ -75,7 +75,7 @@
                                 if ($showEdit) {
                                     unsetSearchKey();
                                 ?>
-                                    <a href="editProfile.php" role="button" class="btn d-md-none ms-2">Edit</a>
+                                    <a href="editProfile.php" role="button" class="btn d-lg-none ms-2">Edit</a>
                                 <?php
                                 } else {
                                     // checks if the user follow.
@@ -156,14 +156,15 @@
                                 </div>
 
                             </section>
-                            <section class="pb-5">
+                            <section>
                                 <ul class="list-group list-unstyled">
                                     <li class="my-2"><strong><?php echo $user["Username"]; ?></strong></li>
                                     <li class="my-2"><strong><?php echo $user["Name"] . " " . $user["Surname"]; ?></strong></li>
-                                    <li class="my-2"><?php echo $user["Description"]; ?></li>
+                                    <li class="my-2<?php echo(strlen($user["Description"]) == 0 ? " d-none" : ""); ?>"><?php echo $user["Description"]; ?></li>
                                 </ul>
                             </section>
-                            <section>
+                            <hr>
+                            <section class="container col-12 col-lg-8 d-block">
                                 <?php
                                 foreach ($posts as $userPost) {
                                     $empty = false;
@@ -177,7 +178,7 @@
                                     }
                                     $category = getCategory($dbh, $userPost);
                                 ?>
-                                    <div class="card border-1 mt-2 p-2" style="width: auto;">
+                                    <div class="card border-1 mt-2 p-2">
                                         <?php
                                         if (!$empty) {
                                         ?>
@@ -216,7 +217,7 @@
                     <?php
                     if ($showEdit) {
                     ?>
-                        <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-md-block">
+                        <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-lg-block">
                             <section>
                                 <?php include_once("editProfileContent.php"); ?>
                             </section>

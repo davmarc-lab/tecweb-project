@@ -1,9 +1,14 @@
+const WIDTH_MAX = 992;
+
 document.addEventListener("DOMContentLoaded", function() {
     const url = window.location.href;
     if (url.includes("profilePage.php")) {
-        document.getElementById("edit-back-button").hidden = true;
+        let backbutton = document.getElementById("edit-back-button");
+        if (backbutton != null) {
+            backbutton.hidden = true;
+        }
     } else {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > WIDTH_MAX) {
             window.location.replace("profilePage.php");
         }
         document.getElementById("edit-back-button").hidden = false;
@@ -12,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 window.addEventListener("resize", function() {
     if (window.location.href.includes("editProfile.php")) {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > WIDTH_MAX) {
             window.location.replace("profilePage.php");
         }
     }
