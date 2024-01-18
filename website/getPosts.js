@@ -98,7 +98,7 @@ $.ajax({
 });
 
 function appendPostToContainer(numPostToLoad) {
-    
+
     if (posts != null) {
         let currentCounter = counter;
         // Load the posts in the container
@@ -413,6 +413,8 @@ function appendPostToContainer(numPostToLoad) {
                 }
                 // clear textarea
                 areaComment.value = "";
+                btnSendComment.setAttribute("aria-disabled", true);
+                btnSendComment.classList.add("disabled");
             });
 
             areaComment.addEventListener('input', function () {
@@ -435,6 +437,6 @@ function appendPostToContainer(numPostToLoad) {
             counter++;
         }
     }
-        
+
     return counter;
 }
