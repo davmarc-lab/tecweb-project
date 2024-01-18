@@ -18,6 +18,9 @@ if ($numRows > 0) {
             $_SESSION["userId"] = $res[0]['IdUser'];
             updateLastSeen($dbh, $_SESSION["userId"]);
             unset($_SESSION['oldValueLogin']);
+            if (!isset($_COOKIE["theme"])) {
+                setcookie("theme", "light", strtotime( '+30 days' ), "/");
+            }
             header("location:../../index.php");
             exit;
         } else {
