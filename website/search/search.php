@@ -131,12 +131,23 @@ function printPost($res, $dbh)
                 <?php
                 if (!$empty) {
                 ?>
-                    <img src="<?php echo $previewPath ?>" class="card-img-top" alt="Post preview">
+                    <img src="<?php echo $previewPath ?>" class="card-img-top p-1" alt="Post preview">
                 <?php
                 }
+                $category = getCategory($dbh, $post);
                 ?>
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $post['Title']; ?></h5>
+                    <p class="show-date"><?php echo substr($post["Date"], 0, 10); ?></p>
+                    <?php
+                        if ($category !== NULL) {
+                    ?>
+                        <span class="badge border rounded-pill mb-2">
+                            <?php echo $category ?>
+                        </span>
+                    <?php
+                        }
+                    ?>
+                    <h5 class="card-title mt-2"><?php echo $post['Title']; ?></h5>
                     <p class="card-text"><?php echo substr($post['Description'], 0, 100); ?>
                         <?php echo strlen($post['Description']) > 100 ? '...' : ''; ?></p>
                     <a href="../post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>">
