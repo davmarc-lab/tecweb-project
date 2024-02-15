@@ -1,0 +1,31 @@
+Rofi themes repo:
+    https://github.com/adi1090x/rofi
+
+Spicetify themes git:
+    https://github.com/spicetify/spicetify-themes/blob/master/THEMES.md
+        If you want to re-apply themes run:
+            - spicetify config => to check if theme or color_scheme are configured
+            - spicetify config current_theme THEME => set the current theme
+            - spicetify config color_scheme COLOR_SCHEME => set the color scheme
+            - spicetify apply => applies current changes
+
+SDDM login theme configs:
+    https://github.com/EricKotato/sddm-slice
+
+Polybar cool addon to probably new bottom bar?
+    https://github.com/polybar/polybar-scripts
+
+Obsidian for taking notes in markdown
+
+Documentation of nvim-surround plugin:
+    https://github.com/kylechui/nvim-surround/blob/main/doc/nvim-surround.txt
+        Old text                    Command         New text
+--------------------------------------------------------------------------------
+    surr*ound_words             ysiw)           (surround_words)
+    *make strings               ys$"            "make strings"
+    [delete ar*ound me!]        ds]             delete around me!
+    remove <b>HTML t*ags</b>    dst             remove HTML tags
+    'change quot*es'            cs'"            "change quotes"
+    <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+    delete(functi*on calls)     dsf             function calls
+
