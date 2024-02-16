@@ -1,41 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btn-signup").addEventListener("click", function (event) {
         event.preventDefault();
-        console.log("Premuto signup");
-        let name = document.getElementById("signup-name").value;
-        let surname = document.getElementById("signup-surname").value;
-        let email = document.getElementById("signup-email").value;
-        let username = document.getElementById("signup-username").value;
-        let image = document.getElementById("signup-image").value;
-        let password = document.getElementById("signup-password").value;
-        let passwordRepeat = document.getElementById("signup-password-repeat").value;
+        let formData = new FormData(document.getElementById("signup-form"));
         $.ajax({
             async: false,
             url: "../model/signup/signup.php",
             type: "POST",
-            data: {
-                name: name,
-                surname: surname,
-                email: email,
-                username: username,
-                password: password,
-                passwordRepeat: passwordRepeat
-            },
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 if (response == "success") {
                     window.location.href = "../view/index.html";
                 } else if (response == "error1") {
-                    window.location.href = "../view/signup.html?error=1";
+                    printPopup("Passwords do not match, please try again");
                 } else if (response == "error2") {
-                    window.location.href = "../view/signup.html?error=2";
+                    printPopup("Password can\'t be empty");
                 } else if (response == "error3") {
-                    window.location.href = "../view/signup.html?error=3";
+                    printPopup("Username can only contain letters, numers and underscore");
                 } else if (response == "error4") {
-                    window.location.href = "../view/signup.html?error=4";
+                    printPopup("This username already exists");
                 } else if (response == "error5") {
-                    window.location.href = "../view/signup.html?error=5";
+                    printPopup("This email already exists");
                 }
             }
         });
     });
 });
+
+function printPopup(message) {
+    Swal.fire({
+        icon: 'error',
+        title: message,
+        text: '',
+    });
+
+}

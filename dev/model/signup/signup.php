@@ -16,12 +16,10 @@ $_SESSION['oldValuesSignup'] = [
 ];
 
 if ($password === "") {
-    //header("location:../signup.php?error=2");
     echo "error2";
     exit;
 } else {
     if (isNotValid($username)) {
-        //header("location:../signup.php?error=3");
         echo "error3";
         exit;
     } else {
@@ -30,27 +28,26 @@ if ($password === "") {
         $numRows = count($res);
         if ($numRows > 0) {
             if ($username == $res[0]['Username']) {
-                //header("location:../signup.php?error=4");
                 echo "error4";
                 return;
             } else if ($email == $res[0]['Email']) {
-                //header("location:../signup.php?error=5");
                 echo "error5";
                 exit;
             }
         } else {
             if ($password === $passwordRep) {
-                if (isset($_FILES['files'])) {
+                print_r($_FILES);
+                if (isset($_FILES['signup-image'])) {
+
                     $uploadDir = "uploads/";
-                    $targetDir = $HOME_DIR . $uploadDir;
+                    $targetDir = "../../" . $uploadDir;
                     $mediaId = insertImage($dbh, $uploadDir, $targetDir);
-                    unset($_FILES["files"]);
+                    unset($_FILES["signup-image"]);
                 } else {
                     $mediaId = 19;
                 }
                 register($name, $surname, $username, $email, $password, $mediaId);
             } else {
-                //header("location:../signup.php?error=1");
                 echo "error1";
             }
         }
@@ -65,7 +62,6 @@ function register($name, $surname, $username, $email, $password, $mediaId)
     $res = $dbh->execQuery($query);
     unset($_SESSION['oldValuesSignup']);
     $_SESSION['oldValueLogin']['username'] = $username;
-    //header("location:../login.php");
     echo "success";
 }
 
