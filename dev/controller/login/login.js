@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log(response);
                 if (response == "success") {
                     window.location.href = "../../view/index.html";
+                } else if (response == "error1") {
+                    window.location.href = "../../view/login/login.html?error=1";
+                } else if (response == "error2") {
+                    window.location.href = "../../view/login/login.html?error=2";
                 }
             },
         });
