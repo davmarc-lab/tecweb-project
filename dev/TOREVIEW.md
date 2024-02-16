@@ -1,5 +1,6 @@
 # Files list to be reviewed
 
- - [ ] view/index.html
+ - [ ] `view/index.html`
     - suggested profiles classes
- - [ ] anotherOne
+ - [ ] `controller/utils/getAbsolutePath.js`
+    - change method to retrieve the gome path

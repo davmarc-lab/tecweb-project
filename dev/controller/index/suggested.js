@@ -26,8 +26,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     if (profiles != null) {
+        let suggestedList = document.getElementById('list-profiles');
         for (let i = 0; i < profiles.length; i++) {
             let info = getProfileInfo(profiles[i]['IdUser']);
+            let listElem = document.createElement('li');
+            let image = document.createElement('img');
+            image.setAttribute('src', '../' + info['FilePath']);
+            image.setAttribute('alt', info['Username'] + ' profile image');
+            let link = document.createElement('a');
+            link.setAttribute('href', '');
+            link.innerHTML = '@ ' + info['Username'];
+            listElem.appendChild(image);
+            listElem.appendChild(link);
+            
+            suggestedList.appendChild(listElem);
         }
     }
 });
