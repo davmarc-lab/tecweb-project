@@ -6,8 +6,6 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
 require_once "../../includes/database.php";
 
-$_SESSION["userId"] = 2;
-
 $query = "SELECT u.*
     FROM member u
     WHERE u.IdUser <> {$_SESSION['userId']}

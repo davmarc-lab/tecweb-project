@@ -5,9 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
         success: function (response) {
             if (response) {
                 // user is logged
-                console.log(response);
             } else {
-                window.location.href = "../view/login/login.html";
+                window.location.href = "../view/login.html";
             }
         }
     });

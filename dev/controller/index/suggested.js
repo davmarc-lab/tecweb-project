@@ -9,7 +9,6 @@ function getProfileInfo(profileId) {
         },
         success: function(response) {
             profile = JSON.parse(response);
-            console.log(profile);
         }
     });
     return profile;
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image.setAttribute('src', '../' + info['FilePath']);
             image.setAttribute('alt', info['Username'] + ' profile image');
             let link = document.createElement('a');
-            link.setAttribute('href', '');
+            link.setAttribute('href', '../view/profile.html?user=' + info['IdUser']);
             link.innerHTML = '@ ' + info['Username'];
             listElem.appendChild(image);
             listElem.appendChild(link);
