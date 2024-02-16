@@ -4,7 +4,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-require_once("../../include/database.php");
+require_once "../../include/database.php";
 
 $_SESSION["userId"] = 2;
 
@@ -17,4 +17,4 @@ $query = "SELECT u.*
 
 $res = $dbh->execQuery($query);
 
-echo(json_encode($res));
+echo (json_encode($res));
