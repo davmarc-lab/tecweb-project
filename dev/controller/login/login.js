@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let key = document.getElementById("login-email").value;
         let password = document.getElementById("login-password").value;
         $.ajax({
+            async: false,
             url: "../../model/login/login.php",
             type: "POST",
             data: {
@@ -14,11 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
             success: function (response) {
                 console.log(response);
                 if (response == "success") {
-                    window.location.href = "../../view/index.html";
+                    window.location.href = "../view/index.html";
                 } else if (response == "error1") {
-                    window.location.href = "../../view/login/login.html?error=1";
+                    window.location.href = "../view/login.html?error=1";
                 } else if (response == "error2") {
-                    window.location.href = "../../view/login/login.html?error=2";
+                    window.location.href = "../view/login.html?error=2";
                 }
             },
         });

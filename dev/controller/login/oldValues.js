@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let username = "";
     $.ajax({
         async: false,
-        url: "../../model/login/oldValues.php",
+        url: "../model/login/oldValues.php",
         type: "POST",
         success: function (response) {
             username = response;
