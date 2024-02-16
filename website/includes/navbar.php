@@ -26,7 +26,7 @@ class Navbar
         <nav class="navbar sticky-top navbar-expand-md">
             <div class="navbar-header">
                 <h5 class="navbar-title" id="off-canvas-navbar-label"><?php echo ($pageName); ?></h5>
-                <button type="button" class="btn btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <a href="#" class="toggle-button">
                 <span class="bar"></span>

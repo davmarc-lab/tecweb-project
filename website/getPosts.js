@@ -34,7 +34,7 @@ function vote(postId, increment) {
 
 function createCommentElement(userId, username, text) {
     let pComment = document.createElement("p");
-    pComment.classList = "border border-success rounded text-break p-1";
+    pComment.classList = "border comment";
     let linkUsername = drawLinkUsernameElement(userId, username);
     pComment.appendChild(linkUsername);
     pComment.innerHTML += " : " + text;
@@ -106,34 +106,28 @@ function appendPostToContainer(numPostToLoad) {
             let pathPostPreview = postInfo[2]["PreviewPath"];
 
             let divRow = document.createElement("div");
-            divRow.classList = "row";
+            divRow.classList = "profile-row";
 
             // creates profile image div in the row div
-            let divProfileImage = document.createElement("div");
-            divProfileImage.classList = "col-1 me-2";
             let imgProfile = document.createElement("img");
             imgProfile.setAttribute("src", pathImgAuthor);
-            imgProfile.classList.add("rounded-circle");
+            imgProfile.classList.add("profile-icon");
 
             // append profile image to row div
-            divProfileImage.appendChild(imgProfile);
-            divRow.appendChild(divProfileImage);
+            divRow.appendChild(imgProfile);
             divPost.appendChild(divRow);
 
             // append user profile page link to row div
-            let divUser = document.createElement("div");
-            divUser.classList = "col mx-3 pt-2";
             let pUser = document.createElement("p");
             pUser.setAttribute("id", "index-post-user-id");
             pUser.appendChild(drawLinkUsernameElement(author["IdUser"], author["Username"]));
-            divUser.appendChild(pUser);
-            divRow.appendChild(divUser);
+            divRow.appendChild(pUser);
 
             // add image preview to the post div
             if (pathPostPreview != "") {
                 let imgPreview = document.createElement("img");
                 imgPreview.setAttribute("src", pathPostPreview);
-                imgPreview.classList = "card-img-top img-fluid";
+                imgPreview.classList = "card-img-top";
                 divPost.appendChild(imgPreview);
             }
 
@@ -171,12 +165,9 @@ function appendPostToContainer(numPostToLoad) {
                 // category info taken
                 let spanCategory = document.createElement("span");
                 spanCategory.setAttribute("id", "category-badge");
-                spanCategory.classList = "badge border rounded-pill text-bg-primary";
-                let pCat = document.createElement("p");
-                pCat.classList.add("m-0");
-                pCat.innerHTML = category["Description"];
+                spanCategory.classList = "badge";
+                spanCategory.innerHTML = category["Description"];
 
-                spanCategory.appendChild(pCat);
                 divCardBody.appendChild(spanCategory);
             }
 
@@ -188,12 +179,12 @@ function appendPostToContainer(numPostToLoad) {
 
             // like button and counter part
             let pVoteNumber = document.createElement("p");
-            pVoteNumber.classList = "badge bg-secondary ms-4";
+            pVoteNumber.classList = "number-badge";
             pVoteNumber.setAttribute("id", "vote-indicator" + post["IdPost"]);
             pVoteNumber.innerHTML = post["NumberVote"];
 
             let likeButton = document.createElement("button");
-            likeButton.classList = "btn btn-lg border-0";
+            likeButton.classList = "btn";
             let likeIcon = document.createElement("i");
             likeIcon.classList = "bi";
 
@@ -245,13 +236,13 @@ function appendPostToContainer(numPostToLoad) {
 
             // append comment number to divcardcol
             let pCommentNumber = document.createElement("p");
-            pCommentNumber.classList = "badge bg-secondary ms-4";
+            pCommentNumber.classList = "number-badge";
             pCommentNumber.innerHTML = post["NumberComment"];
             divCardCol.appendChild(pCommentNumber);
 
             // append commment icon
             let btnComment = document.createElement("button");
-            btnComment.classList = "btn btn-lg border-0";
+            btnComment.classList = "btn";
             let commentIcon = document.createElement("i");
             commentIcon.classList = "bi bi-chat-left-text";
             btnComment.appendChild(commentIcon);
@@ -290,7 +281,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // append container for the comments
             let divComments = document.createElement("div");
-            divComments.classList = "container m-0";
+            divComments.classList = "container";
 
             let comments = null;
             if (post["NumberComment"] > 0) {

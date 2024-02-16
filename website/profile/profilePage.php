@@ -19,9 +19,8 @@ $username = $dbh->execQuery($query)[0]["Username"];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="../includes/style.css" />
+    <link rel="stylesheet" href="../includes/newStyle.css" />
     <script src="profile_script/editProfileResize.js"></script>
     <script src="../includes/followScript.js"></script>
     <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
@@ -51,8 +50,8 @@ $username = $dbh->execQuery($query)[0]["Username"];
     $navbar = new Navbar("../");
     $navbar->drawNavbar("Profile");
     ?>
-    <div class="container-fluid overflow-hidden px-0">
-        <main class="p-2">
+    <div class="container-fluid">
+        <main>
             <?php
             if ($showEdit) {
             ?>
@@ -83,25 +82,27 @@ $username = $dbh->execQuery($query)[0]["Username"];
                                     $query = "SELECT FilePath from media WHERE IdMedia = {$user['IdMedia']};";
                                     $previewPath = $dbh->execQuery($query)[0]['FilePath'];
                                     ?>
-                                    <img src="../<?php echo $previewPath ?>" alt="" class="rounded profile-page-icon rounded-5" />
-                                    <?php
-                                    if ($showEdit) {
-                                        unsetSearchKey();
-                                    ?>
-                                        <a href="editProfile.php" role="button" class="btn d-lg-none ms-2">Edit</a>
-                                    <?php
-                                    } else {
-                                        // checks if the user follow.
-                                        $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
-                                    AND IdDst = $dstUser";
-                                        $res = $dbh->execQuery($query);
-                                    ?>
-                                        <a id="dstuser-<?php echo $dstUser ?>" role="button" class="btn btn-following ms-2"><?php echo (sizeof($res) != 0 ? "Unfollow" : "Follow") ?></a>
-                                    <?php
-                                    }
-                                    $query = "SELECT NumberFollower from member WHERE IdUser = $dstUser";
-                                    $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
-                                    ?>
+                                    <div class="row">
+                                        <img src="../<?php echo $previewPath ?>" alt="" class="profile-page-icon" />
+                                        <?php
+                                        if ($showEdit) {
+                                            unsetSearchKey();
+                                        ?>
+                                            <a href="editProfile.php" role="button" class="btn d-lg-none ms-2">Edit</a>
+                                        <?php
+                                        } else {
+                                            // checks if the user follow.
+                                            $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
+                                        AND IdDst = $dstUser";
+                                            $res = $dbh->execQuery($query);
+                                        ?>
+                                            <a id="dstuser-<?php echo $dstUser ?>" role="button" class="btn btn-following ms-2"><?php echo (sizeof($res) != 0 ? "Unfollow" : "Follow") ?></a>
+                                        <?php
+                                        }
+                                        $query = "SELECT NumberFollower from member WHERE IdUser = $dstUser";
+                                        $numFollower = $dbh->execQuery($query)[0]['NumberFollower'];
+                                        ?>
+                                    </div>
                                     <div class="row row-cols-2 my-3 d-flex">
                                         <div class="dropdown">
                                             <a class="btn btn-secondary dropdown-toggle border" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -177,7 +178,7 @@ $username = $dbh->execQuery($query)[0]["Username"];
                                     </ul>
                                 </section>
                                 <hr>
-                                <section class="container col-12 col-lg-8 d-block">
+                                <section class="posts-container">
                                     <?php
                                     foreach ($posts as $userPost) {
                                         $empty = false;
@@ -204,7 +205,7 @@ $username = $dbh->execQuery($query)[0]["Username"];
                                                 <?php
                                                 if ($category !== NULL) {
                                                 ?>
-                                                    <span class="badge border rounded-pill mb-2">
+                                                    <span class="badge">
                                                         <?php echo $category; ?>
                                                     </span>
                                                 <?php

@@ -40,17 +40,17 @@
     $_SESSION['homePagePosts'] = $res;
     ?>
 
-    <div class="container-fluid mt-3">
+    <div class="container-fluid">
         <div class="row">
             <!-- all post loaded -->
-            <div class="col-lg-8 col-md-12 col-12 justify-content-center" id="posts-container">
+            <div class="posts-container" id="posts-container">
             </div>
 
             <!-- suggested profile -->
             <div class="col-lg-3 d-none d-lg-block">
                 <div class="suggested-profile">
                     <h1>Suggested Profile</h1>
-                    <ul class="list-unstyled">
+                    <ul>
                         <?php
                         $queryProfile = "SELECT u.*
                             FROM member u
@@ -64,11 +64,12 @@
                             $previewPathSuggestedIcon = $dbh->execQuery($querySuggestedIcon)[0]['FilePath'];
                         ?>
                             <li class="mt-3">
-                                <img src="<?php echo "" . $previewPathSuggestedIcon; ?>" alt="" class="rounded rounded-circle rounded-5">
+                                <img src="<?php echo "" . $previewPathSuggestedIcon; ?>" alt="" class="profile-icon">
                                 <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>">@<?php echo $suggested["Username"] ?></a>
                             </li>
                         <?php
                         }
+                        
                         ?>
                     </ul>
                 </div>
