@@ -1,4 +1,3 @@
-
 function getProfileInfo(profileId) {
     let profile = null;
     $.ajax({
@@ -10,6 +9,7 @@ function getProfileInfo(profileId) {
         },
         success: function(response) {
             profile = JSON.parse(response);
+            console.log(profile);
         }
     });
     return profile;
@@ -26,9 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     if (profiles != null) {
-        getProfileInfo(2);
         for (let i = 0; i < profiles.length; i++) {
-
+            let info = getProfileInfo(profiles[i]['IdUser']);
         }
     }
 });
