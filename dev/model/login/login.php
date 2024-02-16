@@ -22,15 +22,12 @@ if ($numRows > 0) {
             if (!isset($_COOKIE["theme"])) {
                 setcookie("theme", "light", strtotime( '+30 days' ), "/");
             }
-            //header("location:../../index.php");
             echo "success";
             exit;
         } else {
-            //header("location:../login.php?error=2");
             echo "error2";
         }
     }
 } else {
-    //header("location:../login.php?error=1");
     echo "error1";
 }

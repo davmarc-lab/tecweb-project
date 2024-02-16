@@ -38,7 +38,6 @@ if ($password === "") {
             if ($password === $passwordRep) {
                 print_r($_FILES);
                 if (isset($_FILES['signup-image'])) {
-
                     $uploadDir = "uploads/";
                     $targetDir = "../../" . $uploadDir;
                     $mediaId = insertImage($dbh, $uploadDir, $targetDir);
@@ -62,6 +61,12 @@ function register($name, $surname, $username, $email, $password, $mediaId)
     $res = $dbh->execQuery($query);
     unset($_SESSION['oldValuesSignup']);
     $_SESSION['oldValueLogin']['username'] = $username;
+    $_SESSION["userId"] = $res[0]['IdUser'];
+    updateLastSeen($dbh, $_SESSION["userId"]);
+    unset($_SESSION['oldValueLogin']);
+    if (!isset($_COOKIE["theme"])) {
+        setcookie("theme", "light", strtotime('+30 days'), "/");
+    }
     echo "success";
 }
 
