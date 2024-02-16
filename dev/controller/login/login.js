@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let password = document.getElementById("login-password").value;
         $.ajax({
             async: false,
-            url: "../../model/login/login.php",
+            url: "../model/login/login.php",
             type: "POST",
             data: {
                 key: key,
