@@ -40,62 +40,30 @@ $infoPost = $dbh->execQuery($query)[0];
                         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                     </svg>
                 </a>
-                <?php
-                $query = "SELECT Username from member WHERE IdUser = '{$infoPost["IdUser"]}';";
-                $username = $dbh->execQuery($query)[0]["Username"];
-                ?>
-                <p class="col mt-2 ms-1">
-                    <?php echo drawLinkUsername($username, $infoPost["IdUser"], "../profile/profilePage.php") ?>
-                </p>
+                <p class="col mt-2 ms-1" id="post-author"></p>
             </div>
             <section>
                 <!-- write the post title -->
                 <div class="row justify-content-start">
-                    <h1 class="m-auto">
-                        <?php echo ($infoPost["Title"]); ?>
-                    </h1>
+                    <h1 class="m-auto" id="post-title"></h1>
                 </div>
                 <!-- write in the center of the container the post description -->
                 <div class="row justify-content-center">
                     <div class="col-11">
-                        <p>
-                            <?php echo ($infoPost["Description"]); ?>
-                        </p>
-                        <p class="show-date"><?php echo substr($infoPost["Date"], 0, 10); ?></p>
+                        <p id="post-description"></p>
+                        <p class="show-date" id="post-date"></p>
                     </div>
                 </div>
                 <div class="row col-11 mx-auto d-flex align-items-center">
-                    <?php
-                    // draw the preview.
-                    if ($infoPost["IdPreview"] != NULL) {
-                        $previewId = $infoPost["IdPreview"];
+                        <img class="img-fluid col-8 mx-auto" id="post-preview" src="" alt="File Preview Image">
 
-                        $query = "SELECT * FROM media WHERE IdMedia = $previewId;";
-                        $previewRes = $dbh->execQuery($query)[0];
-                        $previewPath = $previewRes["FilePath"];
-                        $previewName = $previewRes["FileName"];
-                        $previewPath = "../" . $previewPath;
-                    ?>
-                        <img class="img-fluid col-8 mx-auto" src="<?php echo ($previewPath); ?>" alt="File Preview Image">
-                    <?php
-                    }
-
-                    // get media information
-                    $mediaId = $infoPost["IdMedia"];
-                    $query = "SELECT * FROM media WHERE IdMedia = $mediaId;";
-                    $mediaRes = $dbh->execQuery($query)[0];
-                    $mediaPath = $mediaRes["FilePath"];
-                    $mediaName = $mediaRes["FileName"];
-                    $mediaPath = "../" . $mediaPath;
-
-                    ?>
                     <!-- write the media and download link -->
                     <span class="col-12 mt-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                             <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z" />
                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
                         </svg>
-                        <a class="link-offset-2" href="<?php echo ($mediaPath) ?>" download><?php echo ($mediaName); ?></a>
+                        <a class="link-offset-2" id="post-media" download></a>
                     </span>
                 </div>
                 <hr>
