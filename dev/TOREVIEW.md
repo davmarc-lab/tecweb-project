@@ -4,3 +4,5 @@
     - suggested profiles classes
  - [ ] `controller/utils/getAbsolutePath.js`
     - change method to retrieve the gome path
+ - [ ] `view/post.html`
+    - TODO insert navbar

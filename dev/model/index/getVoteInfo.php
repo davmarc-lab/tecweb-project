@@ -1,5 +1,9 @@
 <?php
-session_start();
+
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
 require_once "../../includes/database.php";
 $idUser = $_SESSION["userId"];
 $idPost = $_POST["idPost"];
