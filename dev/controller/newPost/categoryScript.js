@@ -60,7 +60,7 @@ $("document").ready(function () {
     // Add listener on create category button to upload the new category to the db after clicking post
     $(createButton).on('click', function () {
         $.ajax({
-            url: "createCategory.php",
+            url: "../model/newPost/createCategory.php",
             type: "POST",
             data: {
                 description: elem.value,
