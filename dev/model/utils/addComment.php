@@ -1,4 +1,7 @@
 <?php
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 require_once("../../includes/database.php");
 require_once("../../includes/utils.php");
@@ -12,12 +15,16 @@ $query = "SELECT u.IdUser as IdUser, u.Username as Username FROM member as u, po
 $result = $dbh->execQuery($query);
 $usrDst = $result[0]["IdUser"];
 
+echo('PRIMO, ');
+
 $query = "SELECT Username from member WHERE IdUser = '{$idUser}';";
 $username = $dbh->execQuery($query)[0]["Username"];
+echo('SECONDO, ');
 
 $query = "INSERT INTO usercomment (CommentText, IdPost, IdUser) VALUES ('{$text}', $idPost, $idUser);";
 $dbh->execQuery($query);
 $targetId = mysqli_insert_id($dbh->getDataBaseController());
+echo('TERZO, ');
 
 $query = "UPDATE post SET NumberComment = NumberComment + 1 WHERE IdPost = $idPost;";
 $dbh->execQuery($query);

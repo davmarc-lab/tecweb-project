@@ -155,4 +155,11 @@ $("document").ready(function () {
     drawMediaFile(infoPost);
 
     drawPostComments(infoPost);
+
+    // print the number of comment and likes
+    let textComment = document.getElementById('comment-number');
+    textComment.innerHTML = infoPost['NumberComment'];
+
+    let textLike = document.getElementById('like-number');
+    textLike.innerHTML = infoPost['NumberVote'];
 });

@@ -35,10 +35,21 @@ $("document").ready(function () {
         let user = null;
         $.ajax({
             async: false,
-            url: "../indexQuery/getCurrentUser.php",
+            url: "../model/utils/loggedUser.php",
             type: "POST",
             success: function (response) {
-                user = JSON.parse(response);
+                let userId = response;
+                $.ajax({
+                    async: false,
+                    url: "../model/utils/profileInfo.php",
+                    type: "POST",
+                    data: {
+                        id: userId,
+                    },
+                    success: function (response) {
+                        user = JSON.parse(response);
+                    }
+                });
             },
         });
 
@@ -47,6 +58,10 @@ $("document").ready(function () {
         appendNewComment(newCommentElem);
         areaComment.value = "";
         updateInputs(areaComment, btnComment);
+
+        let commentNumber = document.getElementById('comment-number').innerHTML;
+        console.log(commentNumber);
+        document.getElementById('comment-number').innerHTML = Number(commentNumber) + 1;
     });
 });
 
