@@ -7,3 +7,5 @@
  - [ ] `view/post.html`
     - TODO insert navbar
     - see comment area
+ - [ ] `view/navbar.html`
+    - submit button for logout

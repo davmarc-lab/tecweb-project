@@ -60,7 +60,6 @@ $("document").ready(function () {
         updateInputs(areaComment, btnComment);
 
         let commentNumber = document.getElementById('comment-number').innerHTML;
-        console.log(commentNumber);
         document.getElementById('comment-number').innerHTML = Number(commentNumber) + 1;
     });
 });
