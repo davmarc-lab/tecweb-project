@@ -10,10 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                console.log(response);
                 if (response == "success") {
                     window.location.href = "../view/index.html";
                 } else if (response == "error1") {
                     printPopup("Passwords do not match, please try again");
+                    document.getElementById("signup-password").value = "";
+                    document.getElementById("Signup-password-repeat").value = "";
                 } else if (response == "error2") {
                     printPopup("Password can\'t be empty");
                 } else if (response == "error3") {
@@ -34,5 +37,4 @@ function printPopup(message) {
         title: message,
         text: '',
     });
-
 }

@@ -17,11 +17,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response == "success") {
                     window.location.href = "../view/index.html";
                 } else if (response == "error1") {
-                    window.location.href = "../view/login.html?error=1";
+                    printPopup("Invalid username, please try again");
+                    document.getElementById("login-email").value = "";
+                    document.getElementById("login-password").value = "";
                 } else if (response == "error2") {
-                    window.location.href = "../view/login.html?error=2";
+                    printPopup("Password and username don\'t match, please try again");
+                    document.getElementById("login-password").value = "";
                 }
             },
         });
     });
 });
+
+function printPopup(message) {
+    Swal.fire({
+        icon: 'error',
+        title: message,
+        text: '',
+    });
+}

@@ -8,12 +8,6 @@ $email = $_POST['email'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 $passwordRep = $_POST['passwordRepeat'];
-$_SESSION['oldValuesSignup'] = [
-    "name" => $name,
-    "surname" => $surname,
-    "email" => $email,
-    "username" => $username,
-];
 
 if ($password === "") {
     echo "error2";
@@ -37,11 +31,11 @@ if ($password === "") {
         } else {
             if ($password === $passwordRep) {
                 print_r($_FILES);
-                if (isset($_FILES['signup-image'])) {
+                if (isset($_FILES['icon'])) {
                     $uploadDir = "uploads/";
                     $targetDir = "../../" . $uploadDir;
                     $mediaId = insertImage($dbh, $uploadDir, $targetDir);
-                    unset($_FILES["signup-image"]);
+                    unset($_FILES["icon"]);
                 } else {
                     $mediaId = 19;
                 }
@@ -59,11 +53,8 @@ function register($name, $surname, $username, $email, $password, $mediaId)
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $query = "INSERT INTO member (Name, Surname, Username, Email, Password, IdMedia) VALUES ('$name', '$surname', '$username', '$email', '$passwordHash', '$mediaId');";
     $res = $dbh->execQuery($query);
-    unset($_SESSION['oldValuesSignup']);
-    $_SESSION['oldValueLogin']['username'] = $username;
     $_SESSION["userId"] = $res[0]['IdUser'];
     updateLastSeen($dbh, $_SESSION["userId"]);
-    unset($_SESSION['oldValueLogin']);
     if (!isset($_COOKIE["theme"])) {
         setcookie("theme", "light", strtotime('+30 days'), "/");
     }

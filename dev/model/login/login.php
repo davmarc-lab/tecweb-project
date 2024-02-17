@@ -6,9 +6,6 @@ require_once "../../includes/database.php";
 require_once "../../includes/utils.php";
 $key = $_POST['key'];
 $password = $_POST['password'];
-$_SESSION['oldValueLogin'] = [
-    "username" => $key,
-];
 $query = "SELECT * FROM member WHERE Email='$key' OR Username='$key';";
 $res = $dbh->execQuery($query);
 $numRows = count($res);
@@ -18,7 +15,6 @@ if ($numRows > 0) {
         if (password_verify($password, $dbPassword)) {
             $_SESSION["userId"] = $res[0]['IdUser'];
             updateLastSeen($dbh, $_SESSION["userId"]);
-            unset($_SESSION['oldValueLogin']);
             if (!isset($_COOKIE["theme"])) {
                 setcookie("theme", "light", strtotime( '+30 days' ), "/");
             }
