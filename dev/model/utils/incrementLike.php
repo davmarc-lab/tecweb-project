@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
 require_once "../../includes/database.php";
 require_once "../../includes/utils.php";
 $idUser = $_SESSION["userId"];

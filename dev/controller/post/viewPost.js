@@ -29,6 +29,22 @@ function getPostInfo(idPost) {
     return infoPost;
 }
 
+function getUserLink(idUser) {
+    let username = null;
+    $.ajax({
+        async: false,
+        url: "../model/utils/profileInfo.php",
+        method: "POST",
+        data: {
+            id: idUser,
+        },
+        success: function (response) {
+            username = JSON.parse(response)['Username'];
+        }
+    });
+    return username;
+}
+
 /**
  * Creates a link to an user profile from the id given.
  * 
@@ -37,16 +53,7 @@ function getPostInfo(idPost) {
 function createLinkUsername(idUser) {
     let link = document.createElement('a');
     link.setAttribute('href', "../view/profile.html?user=" + idUser);
-    $.ajax({
-        url: "../model/utils/profileInfo.php",
-        method: "POST",
-        data: {
-            id: idUser,
-        },
-        success: function (response) {
-            link.innerHTML = "@ " + JSON.parse(response)['Username'];
-        }
-    });
+    link.innerHTML = "@ " + getUserLink(idUser);
     document.getElementById('post-author').appendChild(link);
 }
 
@@ -87,17 +94,47 @@ function drawMediaFile(infoPost) {
             id: infoPost['IdMedia'],
         },
         success: function (response) {
-            console.log(response);
             let media = JSON.parse(response);
             let tagMedia = document.getElementById('post-media'); 
             tagMedia.setAttribute('href', '../' + media['FilePath']);
             tagMedia.innerHTML = media['FileName'];
-            console.log(media['FileName']);
         }
     });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+function drawPostComments(infoPost) {
+    let postId = infoPost['IdPost'];
+
+    $.ajax({
+        url: "../model/post/getAllComments.php",
+        method: "POST",
+        data: {
+            idPost: postId,
+        },
+        success: function (response) {
+            let comments = JSON.parse(response);
+            let areaComments = document.getElementById('comments-area');
+            comments.forEach(element => {
+                let username = getUserLink(element['IdUser']);
+                let divComment = document.createElement('div');
+                let content = document.createElement('p');
+                let link = document.createElement('a');
+
+                link.setAttribute('href', '../view/profile.html?user=' + element['IdUser']);
+                link.innerHTML = "@ " + username;
+                
+                content.appendChild(link);
+                content.innerHTML += ": " + element['CommentText'];
+
+                divComment.appendChild(content);
+
+                areaComments.appendChild(divComment);
+            });
+        }
+    });
+}
+
+$("document").ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const idPost = urlParams.get('id');
     if (idPost == null) {
@@ -116,4 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     drawPostPreview(infoPost);
     drawMediaFile(infoPost);
+
+    drawPostComments(infoPost);
 });
