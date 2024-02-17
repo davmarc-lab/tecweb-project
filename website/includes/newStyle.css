@@ -14,7 +14,6 @@ main {
     justify-content: space-between;
     overflow-x: hidden;
     margin-top: 10%;
-    width: 100%;
 }
 
 .container-centered {
@@ -22,7 +21,15 @@ main {
     justify-content: center;
     overflow-x: hidden;
     margin-top: 10%;
-    width: 100%;
+}
+
+.profile-container {
+    align-items: center !important;
+    width: 120%;
+}
+
+.edit-container {
+    width: 70%;
 }
 
 .row {
@@ -275,10 +282,14 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
 
 .btn-utility {
     color: white;
+    padding: 2% 2% 1.5%;
+    border-radius: 4px;
+    vertical-align: middle;
 }
 
 a[role="button"]:hover:not(.btn-following){
     background-color: rgb(193, 196, 198);
+    color: black;
 }
 
 .badge {
@@ -350,6 +361,10 @@ ul {
 
 ul > li {
     margin-bottom: 10px;
+}
+
+.utility-buttons {
+    margin-bottom: 3% !important;
 }
 
 @media screen and (max-width: 768px) {

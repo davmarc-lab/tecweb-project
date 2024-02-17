@@ -62,7 +62,7 @@ $username = $dbh->execQuery($query)[0]["Username"];
                         <?php
                     }
                         ?>
-                        <section class="px-3">
+                        <section class="profile-container">
                             <section class="pt-3">
                                 <?php
                                 if (!$showEdit) {
@@ -174,7 +174,6 @@ $username = $dbh->execQuery($query)[0]["Username"];
                                     <li class="my-2<?php echo (strlen($user["Description"]) == 0 ? " d-none" : ""); ?>"><?php echo $user["Description"]; ?></li>
                                 </ul>
                             </section>
-                            <hr>
                             <section class="posts-container">
                                 <?php
                                 foreach ($posts as $userPost) {
@@ -228,7 +227,7 @@ $username = $dbh->execQuery($query)[0]["Username"];
                         <?php
                         if ($showEdit) {
                         ?>
-                            <div class="position-fixed top-20 end-0 pe-5 col-5 d-none d-lg-block">
+                            <div class="edit-container">
                                 <section>
                                     <?php include_once("editProfileContent.php"); ?>
                                 </section>
