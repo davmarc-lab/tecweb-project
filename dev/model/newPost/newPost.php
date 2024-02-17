@@ -1,9 +1,9 @@
 <?php
     session_start();
-    require_once("../includes/utils.php");
-    require_once("../includes/database.php");
+    require_once("../../includes/utils.php");
+    require_once("../../includes/database.php");
     $uploadDir = "uploads/";
-        $targetDir = $HOME_DIR . $uploadDir;
+        $targetDir = "../../" . $uploadDir;
         $mediaId = 0;
 
         if (isset($_FILES["files"]) && $_FILES["files"]["error"] == 0) {
