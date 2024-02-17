@@ -142,7 +142,7 @@ body:not(.signup-body, .login-body) {
     border-radius: 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     .toggle-button {
         display: flex;
     }

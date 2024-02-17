@@ -40,40 +40,36 @@
     $_SESSION['homePagePosts'] = $res;
     ?>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- all post loaded -->
-            <div class="posts-container" id="posts-container">
-            </div>
+    <div class="index-container">
+        <!-- all post loaded -->
+        <div class="posts-container" id="posts-container">
+        </div>
 
-            <!-- suggested profile -->
-            <div class="col-lg-3 d-none d-lg-block">
-                <div class="suggested-profile">
-                    <h1>Suggested Profile</h1>
-                    <ul>
-                        <?php
-                        $queryProfile = "SELECT u.*
-                            FROM member u
-                            WHERE u.IdUser <> {$_SESSION['userId']}
-                            AND u.IdUser NOT IN (SELECT f.IdDst FROM follow f WHERE f.IdSrc = {$_SESSION['userId']})
-                            ORDER BY RAND()
-                            LIMIT 5;";
-                        $res = $dbh->execQuery($queryProfile);
-                        foreach ($res as $suggested) {
-                            $querySuggestedIcon = "SELECT FilePath from media WHERE IdMedia = {$suggested['IdMedia']};";
-                            $previewPathSuggestedIcon = $dbh->execQuery($querySuggestedIcon)[0]['FilePath'];
-                        ?>
-                            <li class="mt-3">
-                                <img src="<?php echo "" . $previewPathSuggestedIcon; ?>" alt="" class="profile-icon">
-                                <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>">@<?php echo $suggested["Username"] ?></a>
-                            </li>
-                        <?php
-                        }
-                        
-                        ?>
-                    </ul>
-                </div>
-            </div>
+        <!-- suggested profile -->
+        <div class="suggested-profile">
+            <h1>Suggested Profile</h1>
+            <ul>
+                <?php
+                $queryProfile = "SELECT u.*
+                    FROM member u
+                    WHERE u.IdUser <> {$_SESSION['userId']}
+                    AND u.IdUser NOT IN (SELECT f.IdDst FROM follow f WHERE f.IdSrc = {$_SESSION['userId']})
+                    ORDER BY RAND()
+                    LIMIT 5;";
+                $res = $dbh->execQuery($queryProfile);
+                foreach ($res as $suggested) {
+                    $querySuggestedIcon = "SELECT FilePath from media WHERE IdMedia = {$suggested['IdMedia']};";
+                    $previewPathSuggestedIcon = $dbh->execQuery($querySuggestedIcon)[0]['FilePath'];
+                ?>
+                    <li class="mt-3">
+                        <img src="<?php echo "" . $previewPathSuggestedIcon; ?>" alt="" class="profile-icon">
+                        <a href="profile/profilePage.php?user=<?php echo ($suggested["IdUser"]); ?>">@<?php echo $suggested["Username"] ?></a>
+                    </li>
+                <?php
+                }
+                
+                ?>
+            </ul>
         </div>
         <?php
         if (!isset($_COOKIE["user" . $_SESSION["userId"]])) {

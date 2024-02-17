@@ -48,19 +48,28 @@ main {
     align-items: start;
 }
 
+.index-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .posts-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
+    display: inline;
+    width: 120%;
+    margin-top: 100px;
+    /*margin-left: 30%;*/
 }
 
 .post-card {
+    float: left;
     border: 2px solid lightslategray;
     border-radius: 15px;
     margin: 1%;
     padding: 1% 20px 2%;
     background-color: whitesmoke;
-    width: 34rem !important;
+    /*width: 34rem !important;*/
+    width: 50%;
     height: auto;
     justify-content: center;
 }
@@ -125,12 +134,13 @@ textarea {
 
 .suggested-profile {
     background-color: #303030;
-    position: fixed;
+    position: sticky;
     top: 30vh;
     right: 10vh;
     padding: 20px;
     border-radius: 10px;
     width: 300px;
+    height: fit-content;
 }
 
 .suggested-profile a {
@@ -367,8 +377,18 @@ ul > li {
     margin-bottom: 3% !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
+    .index-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
     .posts-container {
         width: 100%;
+    }
+
+    .suggested-profile {
+        display: none;
     }
 }
