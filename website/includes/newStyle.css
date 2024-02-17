@@ -5,7 +5,22 @@ body {
     justify-content: left;
 }
 
+main {
+    width: 100%;
+}
+
 .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
+    margin-top: 10%;
+    width: 100%;
+}
+
+.container-centered {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
     margin-top: 10%;
     width: 100%;
 }
@@ -136,6 +151,64 @@ textarea {
 .edit-profile-box {
     background-color: #303030;
     color: white;
+    border-radius: 10px;
+    margin: 1% 10% 1% 1%;
+    padding: 5%;
+    height: auto;
+    width: 100% !important;
+}
+
+.form-control:not(input[type="file"]) {
+    border: none;
+    border-radius: 4px;
+    margin: 1% 0 4%;
+    width: 96%;
+    padding: 2%;
+    font-size: medium;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: right;
+    margin: 10px 0;
+}
+
+input[type="file"] {
+    background-color: white;
+    font-size: medium;
+    border-radius: 4px;
+    width: 100%;
+    margin: 1% 0 4%;
+}
+
+input::file-selector-button {
+    background-color: rgb(222, 220, 220) !important;
+    border: none;
+    border-right: 1px solid black;
+    font-weight: bold;
+    padding: 1.5%;
+}
+
+input[type="submit"] {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: fit-content !important;
+    padding: 8px 2% !important;
+    margin: 0 0 0 10px !important;
+    font-size: medium;
+}
+
+input[type="reset"] {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: fit-content !important;
+    padding: 8px 2% !important;
+    margin: 0 10px 0 0 !important;
+    font-size: medium;
 }
 
 

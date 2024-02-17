@@ -14,7 +14,7 @@
     $user = $dbh->execQuery("SELECT * FROM member WHERE member.IdUser=$userId")[0];
     ?>
     <div class="container-fluid overflow-hidden p-3">
-        <div class="row justify-content-between fix-bottom edit-profile-box">
+        <div class="edit-profile-box">
             <section class="col-12 p-4">
                 <a id="edit-back-button" href="profilePage.php" role="button" class="btn btn-utility mb-3" title="Go back">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -51,7 +51,7 @@
                         <label for="input-description" class="form-label">Description *</label>
                         <textarea id="input-description" name="description" class="form-control" rows="4" form="edit-profile-form"><?php echo $user["Description"]; ?></textarea>
                     </div>
-                    <div class="d-flex">
+                    <div class="form-buttons">
                         <label for="reset" class="form-label" hidden>Clear</label>
                         <input id="reset" type="reset" class="btn btn-danger ms-auto m-2" value="Clear" />
                         <label for="submit" class="form-label" hidden>Save</label>
