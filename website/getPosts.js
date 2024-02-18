@@ -173,9 +173,11 @@ function appendPostToContainer(numPostToLoad) {
 
             // append div
             let divCardRow = document.createElement("div");
-            divCardRow.classList = "row";
-            let divCardCol = document.createElement("div");
-            divCardCol.classList = "col";
+            divCardRow.classList = "post-row";
+            let divCardCol1 = document.createElement("div");
+            divCardCol1.classList = "col"
+            let divCardCol2 = document.createElement("div");
+            divCardCol2.classList = "col"
 
             // like button and counter part
             let pVoteNumber = document.createElement("p");
@@ -184,7 +186,7 @@ function appendPostToContainer(numPostToLoad) {
             pVoteNumber.innerHTML = post["NumberVote"];
 
             let likeButton = document.createElement("button");
-            likeButton.classList = "btn";
+            likeButton.classList = "btn btn-feedback";
             let likeIcon = document.createElement("i");
             likeIcon.classList = "bi";
 
@@ -231,38 +233,36 @@ function appendPostToContainer(numPostToLoad) {
 
 
             // append the vote number and the like button
-            divCardCol.appendChild(pVoteNumber);
-            divCardCol.appendChild(likeButton);
+            divCardCol1.appendChild(pVoteNumber);
+            divCardCol1.appendChild(likeButton);
 
             // append comment number to divcardcol
             let pCommentNumber = document.createElement("p");
             pCommentNumber.classList = "number-badge";
             pCommentNumber.innerHTML = post["NumberComment"];
-            divCardCol.appendChild(pCommentNumber);
+            divCardCol1.appendChild(pCommentNumber);
 
             // append commment icon
             let btnComment = document.createElement("button");
-            btnComment.classList = "btn";
+            btnComment.classList = "btn btn-feedback";
             let commentIcon = document.createElement("i");
             commentIcon.classList = "bi bi-chat-left-text";
             btnComment.appendChild(commentIcon);
-            divCardCol.appendChild(btnComment);
+            divCardCol1.appendChild(btnComment);
 
             // append link to viewPost page
             let linkPost = document.createElement("a");
             linkPost.setAttribute("href", viewPostPage + "?id=" + post["IdPost"]);
-            linkPost.classList.add("float-end");
             let linkButton = document.createElement("button");
             linkButton.classList = "btn btn-primary view-post";
             linkButton.innerHTML = "View Post";
             linkPost.appendChild(linkButton);
-            divCardCol.appendChild(linkPost);
+            divCardCol2.appendChild(linkPost);
 
             // append post title and description
             let titlePost = document.createElement("h5");
             titlePost.classList.add("card-title");
             titlePost.innerHTML = post["Title"];
-            divCardCol.appendChild(titlePost);
 
             let descriptionPost = document.createElement("p");
             descriptionPost.classList.add("card-text");
@@ -272,11 +272,13 @@ function appendPostToContainer(numPostToLoad) {
                 textDescription += "...";
             } 
             descriptionPost.innerHTML = textDescription;
-            divCardCol.appendChild(descriptionPost);
 
             // prepare all the elements of the card
-            divCardRow.appendChild(divCardCol);
+            divCardRow.appendChild(divCardCol1);
+            divCardRow.appendChild(divCardCol2);
             divCardBody.appendChild(divCardRow);
+            divCardBody.appendChild(titlePost);
+            divCardBody.appendChild(descriptionPost);
             divPost.appendChild(divCardBody);
 
             // append container for the comments
@@ -339,7 +341,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // add submit button
             let btnSendComment = document.createElement("button");
-            btnSendComment.classList = "btn btn-primary mt-3 float-end";
+            btnSendComment.classList = "btn btn-primary btn-comment";
             btnSendComment.innerHTML = "Comment";
             btnSendComment.setAttribute("aria-disabled", true);
             btnSendComment.classList.add("disabled");

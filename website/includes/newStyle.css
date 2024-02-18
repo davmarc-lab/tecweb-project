@@ -2,6 +2,8 @@ body {
     display: flex;
     overflow-x: hidden;
     width: 100%;
+    margin: 0;
+    padding: 0;
     justify-content: left;
 }
 
@@ -38,9 +40,35 @@ main {
     align-items: center;
 }
 
-.card-body .col {
+.post-row {
+    display: flex;
+    justify-content: space-between;
     height: auto;
+    width: 100%;
+    margin: 5% 0 0;
 }
+
+.col:first-of-type {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+
+.col {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.btn-feedback {
+    margin: 2% 4% 0 1%;
+    background-color: transparent;
+    border: none;
+    font-size: x-large;
+    padding-bottom: 1.5%;
+}
+
+.view-post
 
 .profile-row {
     display: flex;
@@ -99,6 +127,9 @@ main {
 textarea {
     width: 100%;
     border-radius: 5px;
+    border: 1px solid lightgray !important;
+    font-size: small;
+    font-family: 'Thasadith', sans-serif;
 }
 
 #view-post {
@@ -114,10 +145,10 @@ textarea {
 .card-title {
     font-weight: bold;
     font-size: large;
+    padding: 0;
 }
 
 .card-text {
-    margin: 7% 0;
     padding-bottom: 7%;
 }
 
@@ -207,10 +238,22 @@ textarea {
     font-size: medium;
 }
 
+.password-field {
+    border: 1px solid lightgray !important;
+    height: auto;
+    width: 70% !important;
+}
+
 .form-buttons {
     display: flex;
     justify-content: right;
     margin: 10px 0;
+}
+
+.change-form-buttons {
+    display: flex;
+    justify-content: right;
+    margin: 10px 18% 10px 0;
 }
 
 input[type="file"] {
@@ -230,7 +273,7 @@ input::file-selector-button {
 }
 
 input[type="submit"] {
-    background-color: green;
+    background-color: green !important;
     color: white;
     border: none;
     border-radius: 4px;
@@ -295,9 +338,8 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     text-decoration: none;
 }
 
-.view-post {
-    position: static;
-    text-align: center;
+.view-post, .btn-comment {
+    float: right;
     padding: 10%;
 }
 
@@ -310,6 +352,12 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     border: 1px solid lightslategray;
     border-radius: 5px;
     padding: 1%;
+}
+
+.btn-back {
+    margin-right: 2%;
+    padding: 1.8% 1.5% 1.5% 1.8%;
+    border: 1px solid lightgray;
 }
 
 .btn-secondary:hover, .btn-secondary:focus, .btn-utility-contrast:hover {
@@ -361,6 +409,23 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 0.5% 1%;
+}
+
+.toggle-password {
+    background-color: transparent;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding:2%;
+    margin: 5% 0;
+    width: 3%;
+}
+
+.toggle-password:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    padding:2%;
+    margin: 5% 0;
+    width: 3%;
 }
 
 a[role="button"]:hover:not(.btn-following){
@@ -419,11 +484,21 @@ a.dropdown-toggle:hover {
 #cookie-notify {
     background-color: darkslategray;
     color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 #ok-button {
     background-color: whitesmoke;
     color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: bold !important;
+    margin: 0 1%;
+    float: right;
+    width: 2%;
 }
 
 
@@ -467,6 +542,23 @@ ul > li {
 .dropdown-toggle:hover {
     cursor: pointer;
     background-color: lightgray;
+}
+
+.change-password-section {
+    width: 60% !important;
+    display: flex;
+    justify-content: center;
+}
+
+.change-password-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.change-password-group > form {
+    width: 60%;
+    padding-left: 10%;
 }
 
 @media screen and (max-width: 992px) {

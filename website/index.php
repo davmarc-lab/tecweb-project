@@ -74,11 +74,9 @@
         <?php
         if (!isset($_COOKIE["user" . $_SESSION["userId"]])) {
         ?>
-            <div class="row">
-                <div id="cookie-notify" class="fixed-bottom col-12">
-                    <p><strong>This site uses technical cookies to improve the user experience</strong></p>
-                    <button id="ok-button">Ok</button>
-                </div>
+            <div id="cookie-notify">
+                <p><strong>This site uses technical cookies to improve the user experience</strong></p>
+                <button id="ok-button">OK</button>
             </div>
         <?php
         }
