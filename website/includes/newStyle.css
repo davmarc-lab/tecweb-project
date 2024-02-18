@@ -252,14 +252,14 @@ input[type="reset"] {
 }
 
 #search-text {
-    border: 1px solid darkslategray;
-    border-right: none;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    float: left;
+    border: 1px solid lightgray;
+    border-radius: 10px;
     margin: 2% 0;
-    padding: 0.5%;
-    width: 60%;
+    padding: 0.6%;
+    width: 95%;
     font-size: medium;
+    height: auto;
 }
 
 #category-search {
@@ -269,7 +269,6 @@ input[type="reset"] {
     border: 1px solid lightgray;
     border-radius: 5px;
 }
-
 
 a:not(a[role="button"], .signup-body a, .login-body a) {
     color: black;
@@ -307,13 +306,13 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
 }
 
 .btn-secondary, .btn-utility-contrast {
-    color: black;
     background-color: transparent;
-    border-color: black;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding: 1%;
 }
 
 .btn-secondary:hover, .btn-secondary:focus, .btn-utility-contrast:hover {
-    color: black;
     background-color: rgb(193, 196, 198);
 }
 
@@ -333,7 +332,7 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     color: white !important;
 }
 
-.btn-following, .dropdown-toggle {
+.btn-following {
     cursor: pointer;
     margin: 2%;
 }
@@ -346,20 +345,21 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
 }
 
 .btn-search {
+    float: right;
     background-color: lightgray;
-    border: 1px solid darkslategray;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border: 1px solid lightslategray;
+    border-radius: 10px;
     padding: 0.5% 0.7%;
     margin: 2% 0;
     height: fit-content;
+    width: 3%;
 }
 
 .btn-search:hover {
     cursor: pointer;
     background-color: rgb(187, 186, 186);
-    border: 1px solid darkslategray;
-    border-radius: 4px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     padding: 0.5% 1%;
 }
 
@@ -396,12 +396,14 @@ a[role="button"]:hover:not(.btn-following){
     background-color: #198754 !important;
     color: white !important;
     border: none !important;
+    cursor: pointer;
 }
 
 a.dropdown-toggle {
     background-color: #198754 !important;
     color: white !important;
     border-color: #198754 !important;
+    padding: 1%;
 }
 
 a.dropdown-toggle:hover {
@@ -451,6 +453,20 @@ ul > li {
 
 .input-group {
     width: 100% !important;
+    vertical-align: middle !important;
+}
+
+.dropdown-toggle {
+    border: 1px solid lightslategray !important;
+    border-radius: 5px !important;
+    padding: 1%;
+    height: auto;
+    font-size: medium;
+}
+
+.dropdown-toggle:hover {
+    cursor: pointer;
+    background-color: lightgray;
 }
 
 @media screen and (max-width: 992px) {

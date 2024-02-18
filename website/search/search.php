@@ -40,16 +40,15 @@
         </div>
         <div class="row mt-4">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Choose categories
                 </button>
                 <div class="dropdown-menu p-1" aria-labelledby="category-dropdown">
                     <div class="container d-flex">
                         <label for="category-search" hidden>Choose zero or one or many categories</label>
                         <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search category" />
-                        <a class="btn btn-utility-contrast btn-secondary ms-1" role="button" id="reset">Clear</a>
+                        <a class="btn btn-utility-contrast" role="button" id="reset">Clear</a>
                     </div>
-                    <div class="container mt-2 scrollable-menu">
                         <?php
                         $categories = getAllCategories($dbh);
                         foreach ($categories as $cat) {
@@ -58,7 +57,6 @@
                         <?php
                         }
                         ?>
-                    </div>
                 </div>
                 <div id="selected-categories"></div>
             </div>
