@@ -39,13 +39,20 @@ main {
 }
 
 .card-body .col {
-    align-items: right;
+    height: auto;
 }
 
 .profile-row {
     display: flex;
     width: 100%;
     align-items: start;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .index-container {
@@ -75,7 +82,18 @@ main {
 }
 
 .card:not(.post-card) {
-    width: 18rem;
+    /*width: 18rem;*/
+    width: 33%;
+    border: 1px solid lightslategray;
+    border-radius: 15px;
+    margin: 5%;
+    height: auto;
+    padding: 1% 20px 2%;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
 }
 
 textarea {
@@ -96,6 +114,11 @@ textarea {
 .card-title {
     font-weight: bold;
     font-size: large;
+}
+
+.card-text {
+    margin: 7% 0;
+    padding-bottom: 7%;
 }
 
 .profile-icon {
@@ -228,6 +251,25 @@ input[type="reset"] {
     font-size: medium;
 }
 
+#search-text {
+    border: 1px solid darkslategray;
+    border-right: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: 2% 0;
+    padding: 0.5%;
+    width: 60%;
+    font-size: medium;
+}
+
+#category-search {
+    width: 20% !important;
+    height: fit-content;
+    padding: 1%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
 
 a:not(a[role="button"], .signup-body a, .login-body a) {
     color: black;
@@ -252,6 +294,12 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     border: none;
     border-radius: 10px;
     text-decoration: none;
+}
+
+.view-post {
+    position: static;
+    text-align: center;
+    padding: 10%;
 }
 
 .btn-primary:hover:not(.signup-body .btn-primary, .login-body .btn-primary), .btn-primary:hover:active:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post:hover {
@@ -295,6 +343,24 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     padding: 2% 2% 1.5%;
     border-radius: 4px;
     vertical-align: middle;
+}
+
+.btn-search {
+    background-color: lightgray;
+    border: 1px solid darkslategray;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 0.5% 0.7%;
+    margin: 2% 0;
+    height: fit-content;
+}
+
+.btn-search:hover {
+    cursor: pointer;
+    background-color: rgb(187, 186, 186);
+    border: 1px solid darkslategray;
+    border-radius: 4px;
+    padding: 0.5% 1%;
 }
 
 a[role="button"]:hover:not(.btn-following){
@@ -375,6 +441,16 @@ ul > li {
 
 .utility-buttons {
     margin-bottom: 3% !important;
+}
+
+.cascading-container {
+    display: inline-block;
+    align-items: center;
+    margin: 5%;
+}
+
+.input-group {
+    width: 100% !important;
 }
 
 @media screen and (max-width: 992px) {
