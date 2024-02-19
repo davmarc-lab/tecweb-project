@@ -561,6 +561,53 @@ ul > li {
     padding-left: 10%;
 }
 
+#profiles-table {
+    display: flex;
+    margin: 10%;
+    justify-content: center;
+}
+
+.table-responsive {
+    overflow-x: hidden;
+    width: 60%;
+    height: 90%;
+}
+
+.table {
+    width: 94% !important;
+    height: 100%;
+}
+
+.table th, .table td {
+    height: auto;
+    padding: 2%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table > thead {
+    position: sticky;
+    top: 0;
+    background-color: rgba(0, 105, 0);
+    color: white;
+}
+
+.table > tbody {
+    overflow-y: auto;
+}
+
+.table-striped {
+    background-color: white;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding: 2%;
+}
+
+
+.table-striped tr:nth-child(even) {
+    background-color: lightgray;
+}
+
 @media screen and (max-width: 992px) {
     .index-container {
         display: flex;

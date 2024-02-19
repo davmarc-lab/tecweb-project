@@ -73,14 +73,12 @@
         <?php
         } else {
         ?>
-            <div class="row mt-4 justify-content-center">
-                <div class="container col-md-8">
-                    <?php
-                    if (!empty($_SESSION["search_result"]["profile"])) {
-                        printProfile($dbh, $_SESSION["search_result"]["profile"]);
-                    }
-                    ?>
-                </div>
+            <div id="profiles-table" class="row">
+                <?php
+                if (!empty($_SESSION["search_result"]["profile"])) {
+                    printProfile($dbh, $_SESSION["search_result"]["profile"]);
+                }
+                ?>
             </div>
             <div class="card-row">
                 <?php
@@ -164,7 +162,7 @@ function printPost($res, $dbh)
 function printProfile($dbh, $res)
 {
 ?>
-    <div class="table-responsive overflow-y-auto">
+    <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
