@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="../includes/style.css" />
+    <link rel="stylesheet" href="../includes/newStyle.css" />
     <script src="categoryScript.js"></script>
     <link rel="stylesheet" href="../includes/scrollableMenu.css">
     <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
@@ -28,71 +27,54 @@
     // login already done
     if (!isset($_POST["submit"])) {
     ?>
-        <div class="row m-auto mb-4">
-            <?php
-            include_once("../includes/navbar.php");
-            $bar = new Navbar("../");
-            $bar->drawNavbar("New Post");
-            ?>
-        </div>
-        <div class="container-fluid">
-            <div class="row col-12 col-lg-8 mx-auto d-block">
-                <section>
+        <?php
+        include_once("../includes/navbar.php");
+        $bar = new Navbar("../");
+        $bar->drawNavbar("New Post");
+        ?>
+        <div class="container-centered">
+                <section id="new-post">
                     <h2>New Post</h2>
                     <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="post" id="new-post-form" enctype="multipart/form-data">
+                        <label for="title" class="form-label">Choose Title:</label>
+                        <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" required/> 
+                        <label for="files" class="form-label">Choose notes:</label>
+                        <input type="file" class="form-control" name="files" id="files" required/>
+                        <label for="preview">Choose preview image:</label>
+                        <input type="file" class="form-control" name="preview" id="preview" accept="image/*" />
+                        <label for="description" class="form-label">Write Description:</label>
+                        <textarea class="form-control" name="description" id="description" cols="50" rows="6" form="new-post-form" placeholder="Description..." required></textarea>
 
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Choose Title:</label>
-                            <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" required/> 
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="files" class="form-label">Choose notes:</label>
-                            <input type="file" class="form-control" name="files" id="files" required/>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="preview">Choose preview image:</label>
-                            <input type="file" class="form-control" name="preview" id="preview" accept="image/*" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Write Description:</label>
-                            <textarea class="form-control" name="description" id="description" cols="50" rows="6" form="new-post-form" placeholder="Description..." required></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="category-dropdown">Select category:</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Choose category
-                                </button>
-                                <div class="dropdown-menu p-1" aria-labelledby="category-dropdown">
-                                    <div class="container d-flex">
-                                        <label for="category-search" hidden>Search categories</label>
-                                        <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search/Create" />
-                                        <a class="btn btn-utility-contrast btn-secondary ms-1" role="button" id="create-ctg-btn">Create</a>
-                                    </div>
-                                    <div class="container mt-2 scrollable-menu">
-                                        <?php
-                                        $query = "SELECT * FROM category";
-                                        $categories = $dbh->execQuery($query);
-
-                                        foreach ($categories as $cat) {
-                                        ?>
-                                            <a class="dropdown-item btn-primary rounded my-1" role="button" id="cat-<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
+                        <label for="category-dropdown">Select category:</label>
+                        <div class="dropdown">
+                                Choose category
+                            </button>
+                            <div class="dropdown-menu p-1" aria-labelledby="category-dropdown">
+                                <div class="container">
+                                    <label for="category-search" hidden>Search categories</label>
+                                    <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search/Create" />
+                                    <a class="btn btn-utility-contrast btn-secondary" role="button" id="create-ctg-btn">Create</a>
                                 </div>
-                                <input type="hidden" id="selected-category" name="category" />
-                            </div>
-                            <span class="badge border rounded-pill text-bg-primary d-none" id="category-badge">
-                                <span class="m-0" id="category-description"></span>
-                            </span>
-                        </div>
+                                <div class="container scrollable-menu">
+                                    <?php
+                                    $query = "SELECT * FROM category";
+                                    $categories = $dbh->execQuery($query);
 
-                        <div class="mb-3">
+                                    foreach ($categories as $cat) {
+                                    ?>
+                                        <a class="dropdown-item btn-primary" role="button" id="cat-<?php echo ($cat["IdCategory"]); ?>"><?php echo ($cat["Description"]); ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <input type="hidden" id="selected-category" name="category" />
+                        </div>
+                        <span class="badge" id="category-badge">
+                            <span class="m-0" id="category-description"></span>
+                        </span> 
+
+                        <div class="form-buttons">
                             <label for="reset" class="form-label" hidden>Clear</label>
                             <input id="reset" type="reset" class="btn btn-danger confirm-button" value="Clear" />
                             <label for="submit" class="form-label" hidden>Post</label>
@@ -100,8 +82,6 @@
                         </div>
                     </form>
                 </section>
-
-            </div>
         </div>
     <?php } else {      // submit already done
         include_once("../includes/utils.php");

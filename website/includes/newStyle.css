@@ -238,6 +238,15 @@ textarea {
     font-size: medium;
 }
 
+#new-post .form-control {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+#new-post .form-control:not(input[type="file"]) {
+    padding: 1% 2%;
+}
+
 .password-field {
     border: 1px solid lightgray !important;
     height: auto;
@@ -606,6 +615,11 @@ ul > li {
 
 .table-striped tr:nth-child(even) {
     background-color: lightgray;
+}
+
+#new-post {
+    width: 60% !important;
+    padding: 0 5%;
 }
 
 @media screen and (max-width: 992px) {
