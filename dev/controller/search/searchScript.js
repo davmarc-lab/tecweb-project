@@ -2,8 +2,12 @@ function searchResult() {
     let input = document.getElementById("search-text");
     let key = input.value;
     let items = Array.from(document.getElementsByClassName("dropdown-item active"));
+    if (items == null) {
+        console.log("items è null");
+    }
     let filters = [];
     items.forEach(e => filters.push(String(e.id).split("-").pop()));
+    console.log("Filtri: " + filters);
     $.ajax({
         url: "../model/search/createArrayRes.php",
         type: "POST",
