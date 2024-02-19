@@ -5,14 +5,16 @@ function searchResult() {
     let filters = [];
     items.forEach(e => filters.push(String(e.id).split("-").pop()));
     $.ajax({
-        url: "createArrayRes.php",
+        url: "../model/search/createArrayRes.php",
         type: "POST",
         data: {
             key: key,
             filters: filters
         },
         success: function(response) {
-            location.reload();
+            document.getElementById("random-post-container").innerHTML = "";
+            document.getElementById("search-post-container").innerHTML = "";
+            printPostToTarget(document.getElementById("search-post-container"), response);
         }
     });
 }
@@ -25,7 +27,7 @@ input.addEventListener('keyup', (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("btn-search").addEventListener("click", function (){
+    document.getElementById("search-button").addEventListener("click", function (){
         searchResult();
     });
 });

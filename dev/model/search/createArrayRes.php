@@ -36,6 +36,7 @@
         $query .= ")";
     }
     $query .= " ORDER BY p.NumberVote DESC;";
-    print_r($query);
-    $_SESSION["search_result"]["post"] = $dbh->execQuery($query);
+    //$_SESSION["search_result"]["post"] = $dbh->execQuery($query);
+    $res = $dbh->execQuery($query);
+    echo json_encode($res);  
 ?>

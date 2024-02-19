@@ -1,11 +1,8 @@
 function printPostToTarget (targetContainer, posts) {
-    console.log("sono la funzione separata");
-    /* console.log(posts); */
     posts = JSON.parse(posts);
     let index = 0;
     let rowContainer;
     posts.forEach(function (post) {
-        //let newPost = document.createElement()
         let previewPath;
         let empty = false;
         if (post.IdPreview != null) {
@@ -19,7 +16,6 @@ function printPostToTarget (targetContainer, posts) {
                 success: function (response) {
                     response = JSON.parse(response);
                     previewPath = "../" + response.FilePath;
-                    console.log(previewPath);
                 }
             });
         } else {
@@ -51,7 +47,6 @@ function printPostToTarget (targetContainer, posts) {
         card.appendChild(pUsername);
         if (!empty) {
             let imagePreview = document.createElement("img");
-            console.log(previewPath);
             imagePreview.setAttribute("src", previewPath);
             imagePreview.classList.add('card-img-top', 'p-1');
             imagePreview.setAttribute("alt", "Post preview");
@@ -80,10 +75,8 @@ function printPostToTarget (targetContainer, posts) {
         cardBody.appendChild(postDescription);
         let viewButton = createViewPostButton(post.IdPost);
         cardBody.appendChild(viewButton);
-        console.log(index);
         index = (index + 1)%3;
     });
-    console.log("Ho appeso tutto");
 }
 
 function createRowContainer () {
@@ -99,7 +92,6 @@ function createPostDiv () {
 }
 
 function createUsernameLink(username, userId, targetLink) {
-    console.log(username, " ", userId, " ", targetLink);
     let p = document.createElement("p");
     p.classList.add('m-1');
     let a = document.createElement("a");
@@ -123,11 +115,9 @@ function createDate(date) {
 }
 
 function createCategory(category) {
-    console.log(category);
     let p = document.createElement("p");
     //span.classList.add('badge', 'border', 'rounded-pill', 'mb-2');
     p.innerText = category;
-    console.log(p.innerHTML);
     return p;
 }
 

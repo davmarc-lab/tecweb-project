@@ -9,13 +9,13 @@
     <!-- <link rel="stylesheet" href="../includes/style.css" /> -->
     <!-- <link rel="stylesheet" href="../includes/scrollableMenu.css" /> -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- <script src="searchScript.js" defer></script> -->
     <!-- <script src="categoryFilter.js"></script> -->
     <!-- <script src="../includes/followScript.js"></script> -->
     <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
     <script src="../controller/newPost/loadCategories.js"></script>
     <script src="../controller/search/printPost.js"></script>
     <script src="../controller/search/loadRandomPosts.js"></script>
+    <script src="../controller/search/searchScript.js" defer></script>
     <title>NFA - Search</title>
 </head>
 
@@ -74,7 +74,7 @@
                         ?>
                     </div>
                 </div>
-                <div class="row justify-content-center align-items-center text-center">
+                <div class="row justify-content-center align-items-center text-center" id="search-post-container">
                     <?php
                     printPost($_SESSION["search_result"]["post"], $dbh);
                     ?>
