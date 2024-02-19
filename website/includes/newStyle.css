@@ -22,7 +22,7 @@ main {
     display: flex;
     justify-content: center;
     overflow-x: hidden;
-    margin-top: 10%;
+    margin: 10% 0;
 }
 
 .profile-container {
@@ -67,8 +67,6 @@ main {
     font-size: x-large;
     padding-bottom: 1.5%;
 }
-
-.view-post
 
 .profile-row {
     display: flex;
@@ -136,7 +134,7 @@ textarea {
     border-color: lightslategray !important;
 }
 
-.card-img-top {
+.card-img-top, .img-fluid {
     width: 100%;
     align-items: center;
     border-radius: 5px;
@@ -160,9 +158,21 @@ textarea {
 
 .comment {
     border: 1px solid #006f3c;
-    border-radius: 15px;
+    border-radius: 10px;
     font-size: medium;
     padding: 0.6% 1%;
+}
+
+#comment-text {
+    border: 1px solid lightslategray !important;
+}
+
+#comments-row {
+    display: flex;
+    justify-content: end;
+    margin-right: 2%;
+    height: auto;
+    width: 100%;
 }
 
 .profile-page-icon {
@@ -367,6 +377,17 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     margin-right: 2%;
     padding: 1.8% 1.5% 1.5% 1.8%;
     border: 1px solid lightgray;
+    border-radius: 50%;
+}
+
+#view-post .btn-back {
+    padding: 1% !important;
+    color: black;
+    border: 1px solid lightslategray;
+}
+
+.btn-back svg {
+    vertical-align: middle;
 }
 
 .btn-secondary:hover, .btn-secondary:focus, .btn-utility-contrast:hover {
@@ -620,6 +641,18 @@ ul > li {
 #new-post {
     width: 60% !important;
     padding: 0 5%;
+}
+
+#view-post {
+    width: 60%;
+    align-items: center;
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+    padding: 3%;
+}
+
+#post-files {
+    margin: 2% 5% !important;
 }
 
 @media screen and (max-width: 992px) {
