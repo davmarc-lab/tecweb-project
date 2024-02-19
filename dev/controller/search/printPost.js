@@ -1,6 +1,6 @@
 function printPostToTarget (targetContainer, posts) {
-    /* console.log("sono la funzione separata");
-    console.log(posts); */
+    console.log("sono la funzione separata");
+    /* console.log(posts); */
     posts = JSON.parse(posts);
     let index = 0;
     let rowContainer;
@@ -17,7 +17,9 @@ function printPostToTarget (targetContainer, posts) {
                     id: post.IdPreview
                 },
                 success: function (response) {
-                    previewPath = response.FilePath;
+                    response = JSON.parse(response);
+                    previewPath = "../" + response.FilePath;
+                    console.log(previewPath);
                 }
             });
         } else {
@@ -25,6 +27,7 @@ function printPostToTarget (targetContainer, posts) {
         }
         if (index == 0) {
             rowContainer = createRowContainer();
+            targetContainer.appendChild(rowContainer);
         }
         let userInfo;
         $.ajax({
@@ -35,15 +38,52 @@ function printPostToTarget (targetContainer, posts) {
                 id: post.IdUser
             },
             success: function (response) {
+                response = JSON.parse(response);
                 userInfo = response;
             }
         });
         let postDiv = createPostDiv();
+        rowContainer.appendChild(postDiv);
         let card = document.createElement("div");
         card.classList.add('card');
-        let pUsername = createUsernameLink();
-        
+        postDiv.appendChild(card);
+        let pUsername = createUsernameLink(userInfo.Username, userInfo.IdUser, "profilePage.html");
+        card.appendChild(pUsername);
+        if (!empty) {
+            let imagePreview = document.createElement("img");
+            console.log(previewPath);
+            imagePreview.setAttribute("src", previewPath);
+            imagePreview.classList.add('card-img-top', 'p-1');
+            imagePreview.setAttribute("alt", "Post preview");
+            card.appendChild(imagePreview);
+        }
+        let cardBody = createCardBody();
+        card.appendChild(cardBody);
+        let dateP = createDate(post.Date);
+        cardBody.appendChild(dateP);
+        if (post.IdCategory != null) {
+            $.ajax({
+                async: false,
+                url: '../model/search/getCategoryDescription.php',
+                type: 'POST',
+                data: {
+                    Id: post.IdCategory
+                },
+                success: function (response) {
+                    cardBody.appendChild(createSpanCategory());
+                }
+            })
+        }
+        let postTitle = createPostTitle(post.Title);
+        cardBody.appendChild(postTitle);
+        let postDescription = createPostDescription(post.Description);
+        cardBody.appendChild(postDescription);
+        let viewButton = createViewPostButton(post.IdPost);
+        cardBody.appendChild(viewButton);
+        console.log(index);
+        index = (index + 1)%3;
     });
+    console.log("Ho appeso tutto");
 }
 
 function createRowContainer () {
@@ -59,10 +99,58 @@ function createPostDiv () {
 }
 
 function createUsernameLink(username, userId, targetLink) {
+    console.log(username, " ", userId, " ", targetLink);
     let p = document.createElement("p");
     p.classList.add('m-1');
     let a = document.createElement("a");
-    a.setAttribute("href", targetLink + "?user=" + userId + "\\");
+    a.setAttribute("href", targetLink + "?user=" + userId);
     a.innerHTML = "@" + username;
     p.appendChild(a);
+    return p;
+}
+
+function createCardBody() {
+    let card = document.createElement("div");
+    card.classList.add('card-body');
+    return card;
+}
+
+function createDate(date) {
+    let p = document.createElement("p");
+    p.classList.add('show-date');
+    p.innerText = String(date).substring(0, 11);
+    return p;
+}
+
+function createSpanCategory(category) {
+    let span = document.createElement("span");
+    span.classList.add('badge', 'border', 'rounded-pill', 'mb-2');
+    span.innerHTML = category;
+    return span;
+}
+
+function createPostTitle(postTitle) {
+    let title = document.createElement("h1");
+    title.classList.add('card-title', 'mt-2');
+    title.innerHTML = postTitle;
+    return title;
+}
+
+function createPostDescription(postDescription) {
+    let p = document.createElement("p");
+    p.classList.add('card-text');
+    p.innerText = String(postDescription).substring(0, 101);
+    if (String(postDescription).length > 100) {
+        p.innerText += "...";
+    }
+    return p;
+}
+
+function createViewPostButton(postId) {
+    let a = document.createElement("a");
+    a.setAttribute("href", "viewPost.html?id=" + postId);
+    a.setAttribute("role", "button");
+    a.classList.add('btn', 'btn-primary', 'view-post');
+    a.innerHTML = "View post";
+    return a;
 }
