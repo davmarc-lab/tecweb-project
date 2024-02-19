@@ -563,7 +563,7 @@ ul > li {
 
 #profiles-table {
     display: flex;
-    margin: 10%;
+    margin: 10% 0;
     justify-content: center;
 }
 
@@ -598,7 +598,7 @@ ul > li {
 
 .table-striped {
     background-color: white;
-    border: 1px solid lightslategray;
+    border: none;
     border-radius: 5px;
     padding: 2%;
 }
