@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
+function updateLastSeen(remove = -1) {
     $.ajax({
         url: "../model/utils/lastSeen.php",
         method: "POST",
         data: {
-            delete: -1,
+            delete: remove,
         }
     });
-});
+}
