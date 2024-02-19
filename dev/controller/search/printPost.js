@@ -70,7 +70,7 @@ function printPostToTarget (targetContainer, posts) {
                     Id: post.IdCategory
                 },
                 success: function (response) {
-                    cardBody.appendChild(createSpanCategory());
+                    cardBody.appendChild(createCategory(response));
                 }
             })
         }
@@ -122,11 +122,13 @@ function createDate(date) {
     return p;
 }
 
-function createSpanCategory(category) {
-    let span = document.createElement("span");
-    span.classList.add('badge', 'border', 'rounded-pill', 'mb-2');
-    span.innerHTML = category;
-    return span;
+function createCategory(category) {
+    console.log(category);
+    let p = document.createElement("p");
+    //span.classList.add('badge', 'border', 'rounded-pill', 'mb-2');
+    p.innerText = category;
+    console.log(p.innerHTML);
+    return p;
 }
 
 function createPostTitle(postTitle) {
