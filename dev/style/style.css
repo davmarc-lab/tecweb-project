@@ -392,6 +392,7 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
 
 .btn-secondary:hover, .btn-secondary:focus, .btn-utility-contrast:hover {
     background-color: rgb(193, 196, 198);
+    cursor: pointer;
 }
 
 a[role="button"]:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
@@ -652,8 +653,10 @@ ul > li {
 }
 
 #new-post {
+    border: 1px solid lightgray;
+    border-radius: 5px;
     width: 60% !important;
-    padding: 0 5%;
+    padding: 2% 5%;
 }
 
 #view-post {

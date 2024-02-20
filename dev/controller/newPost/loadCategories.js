@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         success: function (categories) {
             categories.forEach(function (category) {
                 let tmpA = document.createElement("a");
-                tmpA.classList.add('dropdown-item', 'btn-primary', 'rounded', 'my-1');
+                tmpA.classList.add('dropdown-item', 'btn-primary');
                 tmpA.setAttribute("role", "button");
                 let categoryId = category.IdCategory;
                 tmpA.setAttribute("id", "cat-" + categoryId);

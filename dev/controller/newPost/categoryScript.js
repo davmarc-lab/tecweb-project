@@ -66,7 +66,7 @@ $("document").ready(function () {
                 description: elem.value,
             },
             success: function (response) {
-                categoryBadge.classList.remove("d-none");
+                //the category badge now has to be visible
                 categoryDescription.innerHTML = elem.value;
                 value.setAttribute("id", response);
             }
@@ -76,7 +76,7 @@ $("document").ready(function () {
     // Add listener on reset button to reset the category
     let resetButton = document.getElementById("reset");
     $(resetButton).on('click', function () {
-        categoryBadge.classList.add("d-none");
+        //the category badge now has to be not visible
         categoryDescription.innerHTML = "";
     })
 });
