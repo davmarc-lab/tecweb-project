@@ -56,7 +56,7 @@ function createPost(elem) {
         });
         post.appendChild(imgPreview);
     }
-    
+
     // date
     let dateText = elem['Date'];
     let pDate = document.createElement('p');
@@ -64,13 +64,35 @@ function createPost(elem) {
     post.appendChild(pDate);
 
     // category
-    let categoryText = elem['sakjdgjqasdjgsa'];
+    let idCategory = elem['IdCategory'];
+    let pCategory = document.createElement('p');
+    post.appendChild(pCategory);
+    $.ajax({
+        url: "../model/utils/getCategoryDescription.php",
+        method: "POST",
+        data: {
+            Id: idCategory,
+        },
+        success: function (response) {
+            pCategory.innerHTML = response;
+        }
+    });
 
     // Title
+    let title = document.createElement('h2');
+    title.innerHTML = elem['Title'];
+    post.appendChild(title);
 
     // Description
+    let pDescription = document.createElement('p');
+    pDescription.innerHTML = (String(elem['Description']).substring(0, 200) + (elem['Description'].length > 200 ? " ..." : ""));
+    post.appendChild(pDescription);
 
     // ViewPost button
+    let linkPost = document.createElement('a');
+    linkPost.setAttribute('href', "../view/post.html?id=" + elem['IdPost']);
+    linkPost.innerHTML = "View Post";
+    post.appendChild(linkPost);
 
     return post;
 }
@@ -96,6 +118,81 @@ function drawUserPost(div, user) {
             div.appendChild(createPost(element));
         });
     }
+}
+
+function createModalSpace(parent, id) {
+    let divModal = document.createElement('div');
+    divModal.setAttribute('id', id);
+    divModal.setAttribute('class', 'modal');
+
+    let divContent = document.createElement('div');
+    divContent.setAttribute('class', 'modal-content');
+
+    let span = document.createElement('span');
+    span.setAttribute('class', 'close');
+    span.innerHTML = "&times;";
+    divContent.appendChild(span);
+
+    divModal.appendChild(divContent);
+
+    // actions
+    span.addEventListener('click', function () {
+        divModal.style.display = "none";
+        parent.removeChild(divModal);
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target == divModal) {
+            divModal.style.display = "none";
+            parent.removeChild(divModal);
+        }
+    });
+
+    return divModal;
+}
+
+function printUsersModal(div, userList) {
+    let table = document.createElement('table');
+
+    let tableHead = document.createElement('thead');
+    let firstRow = document.createElement('tr');
+
+    let userHeader = document.createElement('th');
+    userHeader.setAttribute('id', 'user');
+    userHeader.setAttribute('scope', 'col');
+    userHeader.innerHTML = "User";
+
+    let actionHeader = document.createElement('th');
+    actionHeader.setAttribute('id', 'action');
+    actionHeader.setAttribute('scope', 'col');
+    actionHeader.innerHTML = "Action";
+
+    tableHead.appendChild(userHeader);
+    tableHead.appendChild(actionHeader);
+
+    tableHead.appendChild(firstRow);
+    table.appendChild(tableHead);
+
+    let tableBody = document.createElement('tbody');
+    table.appendChild(tableBody);
+
+    userList.forEach(elem => {
+        let row = document.createElement('tr');
+        let userCell = document.createElement('td');
+        userCell.setAttribute('headers', 'user');
+        userCell.innerHTML = elem['Username'];
+        row.appendChild(userCell);
+
+        let actionCell = document.createElement('td');
+        let action = document.createElement('button');
+        actionCell.setAttribute('headers', 'action');
+        action.innerHTML = "TEXT HERE";
+        actionCell.appendChild(action);
+        row.appendChild(actionCell);
+        tableBody.appendChild(row);
+    });
+    
+    div.appendChild(table);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -134,5 +231,56 @@ document.addEventListener('DOMContentLoaded', function () {
             let divPosts = document.getElementById('profile-post');
             drawUserPost(divPosts, user);
         }
+    });
+
+    document.getElementById('btn-follow').addEventListener('click', function () {
+        let divFollow = document.getElementById('profile-follow');
+        let followModal = createModalSpace(divFollow, 'modal-follow');
+        let modalContent = followModal.children[0];
+        $.ajax({
+            url: "../model/profile/getFollow.php",
+            method: "POST",
+            data: {
+                user: user['IdUser'],
+            },
+            success: function (response) {
+                let follow = JSON.parse(response);
+                if (response != null && follow.length > 0) {
+                    let modalTitle = document.createElement('h1');
+                    modalTitle.innerHTML = "Following";
+                    modalContent.appendChild(modalTitle);
+                    modalContent.appendChild(document.createElement('hr'));
+                    printUsersModal(modalContent, JSON.parse(response));
+                }
+            },
+        });
+
+        followModal.style.display = "block";
+        divFollow.appendChild(followModal);
+    });
+    document.getElementById('btn-followers').addEventListener('click', function () {
+        let divFollowers = document.getElementById('profile-follow');
+        let followerModal = createModalSpace(divFollowers, 'modal-followers');
+        let modalContent = followerModal.children[0];
+        $.ajax({
+            url: "../model/profile/getFollowers.php",
+            method: "POST",
+            data: {
+                user: user['IdUser'],
+            },
+            success: function (response) {
+                let follow = JSON.parse(response);
+                if (response != null && follow.length > 0) {
+                    let modalTitle = document.createElement('h1');
+                    modalTitle.innerHTML = "Followers";
+                    modalContent.appendChild(modalTitle);
+                    modalContent.appendChild(document.createElement('hr'));
+                    printUsersModal(modalContent, JSON.parse(response));
+                }
+            },
+        });
+
+        followerModal.style.display = "block";
+        divFollowers.appendChild(followerModal);
     });
 });
