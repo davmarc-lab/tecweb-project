@@ -4,12 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <!-- <link rel="stylesheet" href="../includes/style.css" /> -->
-    <!-- <link rel="stylesheet" href="../includes/scrollableMenu.css" /> -->
+    <link rel="stylesheet" href="../style/newStyle.css" />
+    <link rel="stylesheet" href="../style/scrollableMenu.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- <script src="../includes/followScript.js"></script> -->
     <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
     <script src="../controller/newPost/loadCategories.js"></script>
     <script src="../controller/search/printPost.js"></script>
@@ -21,181 +18,57 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="input-group">
-                <label for="search-text" class="visually-hidden">Search</label>
-                <input type="text" id="search-text" name="search-text" class="form-control" placeholder="Search" aria-describedby="search-button" />
-                <button class="btn btn-outline-secondary btn-search" id="search-button" name="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                    </svg>
+    <div class="cascading-container">
+        <div class="input-group">
+            <label for="search-text" class="visually-hidden" hidden>Search</label>
+            <input type="text" id="search-text" name="search-text" class="form-control" placeholder="Search"
+                aria-describedby="search-button" />
+            <button class="btn btn-search" id="search-button" name="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+            </button>
+        </div>
+        <div class="row mt-4">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Choose categories
                 </button>
-            </div>
-            <div class="row mt-4">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="category-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose categories
-                    </button>
-                    <div class="dropdown-menu p-1" aria-labelledby="category-dropdown">
-                        <div class="container d-flex">
-                            <label for="category-search" hidden>Choose zero or one or many categories</label>
-                            <input type="text" name="categorySearch" id="category-search" class="form-control" placeholder="Search category" />
-                            <a class="btn btn-utility-contrast btn-secondary ms-1" role="button" id="reset">Clear</a>
-                        </div>
-                        <div class="container mt-2 scrollable-menu" id="categories-menu">
-                           <!-- category menu -->
-                        </div>
+                <div class="dropdown-menu p-1" aria-labelledby="category-dropdown">
+                    <div class="container d-flex">
+                        <label for="category-search" hidden>Choose zero or one or many categories</label>
+                        <input type="text" name="categorySearch" id="category-search" class="form-control"
+                            placeholder="Search category" />
+                        <a class="btn btn-utility-contrast" role="button" id="reset">Clear</a>
                     </div>
-                    <div id="selected-categories"></div>
+                    <div class="container mt-2 scrollable-menu" id="categories-menu">
+                        <!-- category menu -->
+                    </div>
                 </div>
-                <div id="category-badges"></div>
+                <div id="selected-categories"></div>
             </div>
+            <div id="category-badges"></div>
         </div>
         <?php
         if (!isset($_SESSION["search_result"]["post"])) {
         ?>
-            <div class="container-fluid justify-content-center align-items-center text-center" id="random-post-container">
-                <?php
-                $query = "SELECT * FROM post ORDER BY RAND() LIMIT 9;";
-                $res = $dbh->execQuery($query);
-                printPost($res, $dbh);
-                ?>
-            </div>
-        <?php
-        } else {
-        ?>
-            <div class="container-fluid">
-                <div class="row mt-4 justify-content-center">
-                    <div class="container col-md-8" id="profile-container">
-                        <?php
-                        if (!empty($_SESSION["search_result"]["profile"])) {
-                            printProfile($dbh, $_SESSION["search_result"]["profile"]);
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="row justify-content-center align-items-center text-center" id="search-post-container">
-                    <?php
-                    printPost($_SESSION["search_result"]["post"], $dbh);
-                    ?>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
+        <div id="random-post-container">
+            <!-- random posts here -->
+        </div>
+        <div class="row" id="profile-container">
+            <!-- profile table here -->
+        </div>
+        <div class="card-row" id="search-post-container">
+            <!-- searched posts here -->
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
-
-<!-- <?php
-function printPost($res, $dbh)
-{
-    $index = 0;
-    foreach ($res as $post) {
-        $empty = false;
-        if ($post['IdPreview'] != NULL) {
-            $queryPreview = "SELECT FilePath from media WHERE IdMedia = {$post['IdPreview']};";
-            $previewPath = $dbh->execQuery($queryPreview)[0]['FilePath'];
-            $previewPath = "../" . $previewPath;
-            $empty = false;
-        } else {
-            $empty = true;
-        }
-
-        if ($index == 0) {
-            echo "<div class=\"row mt-5 d-flex justify-content-center align-items-center text-center\">";
-        }
-        $query = "SELECT Username from member WHERE IdUser = '{$post["IdUser"]}';";
-        $username = $dbh->execQuery($query)[0]["Username"];
-?>
-        <div class="col-md-4 col-12 mx-auto my-5 d-flex justify-content-center">
-            <div class="card">
-                <p class="m-1"><?php echo drawLinkUsername($username, $post["IdUser"], "../profile/profilePage.php") ?></p>
-                <?php
-                if (!$empty) {
-                ?>
-                    <img src="<?php echo $previewPath ?>" class="card-img-top p-1" alt="Post preview">
-                <?php
-                }
-                $category = getCategory($dbh, $post);
-                ?>
-                <div class="card-body">
-                    <p class="show-date"><?php echo substr($post["Date"], 0, 10); ?></p>
-                    <?php
-                    if ($category !== NULL) {
-                    ?>
-                        <span class="badge border rounded-pill mb-2">
-                            <?php echo $category ?>
-                        </span>
-                    <?php
-                    }
-                    ?>
-                    <h5 class="card-title mt-2"><?php echo $post['Title']; ?></h5>
-                    <p class="card-text"><?php echo substr($post['Description'], 0, 100); ?>
-                        <?php echo strlen($post['Description']) > 100 ? '...' : ''; ?></p>
-                    <a href="../post/viewPost.php?id=<?php echo ($post["IdPost"]); ?>" role="button" class="btn btn-primary view-post">
-                        View post
-                    </a>
-                </div>
-            </div>
-        </div>
-<?php
-        if ($index == 2) {
-            echo "</div>";
-        }
-        $index = ($index + 1) % 3;
-    }
-    if ($index != 0) {
-        echo "</div>";
-    }
-}
-?>
-
-<?php
-function printProfile($dbh, $res)
-{
-?>
-    <div class="table-responsive overflow-y-auto">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th class="text-center" scope="col" id="username">Username</th>
-                    <th class="text-center d-none d-md-table-cell" scope="col" id="number-post">Posts</th>
-                    <th class="text-center d-none d-md-table-cell" scope="col" id="number-follower">Follower</th>
-                    <th class="text-center" scope="col" id="btt-follow"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($res as $user) {
-                ?>
-                    <tr>
-                        <td class="text-center" headers="username"><?php echo drawLinkUsername($user['Username'], $user['IdUser'], "../profile/profilePage.php"); ?></td>
-                        <td class="text-center d-none d-md-table-cell" headers="number-post"><?php echo $user['NumberPost'] ?></td>
-                        <td class="text-center d-none d-md-table-cell" headers="number-follower"><?php echo $user['NumberFollower'] ?></td>
-                        <td class="text-center" headers="btt-follow">
-                            <?php
-                            if ($user["IdUser"] !== $_SESSION["userId"]) {
-                                $query = "SELECT * FROM follow WHERE IdSrc = {$_SESSION['userId']}
-                                        AND IdDst = {$user['IdUser']}";
-                                $test = $dbh->execQuery($query);
-                            ?>
-                                <a id="dstuser-<?php echo $user['IdUser'] ?>" role="button" class="btn btn-following"><?php echo (sizeof($test) != 0 ? "Unfollow" : "Follow") ?></a>
-                            <?php
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-<?php
-}
-?> -->

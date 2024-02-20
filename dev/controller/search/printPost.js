@@ -40,26 +40,26 @@ function printPostToTarget (targetContainer, posts) {
         });
         let postDiv = createPostDiv();
         rowContainer.appendChild(postDiv);
-        let card = document.createElement("div");
+        /* let card = document.createElement("div");
         card.classList.add('card');
-        postDiv.appendChild(card);
-        let pUsername = createUsernameLink(userInfo.Username, userInfo.IdUser, "profilePage.html");
-        card.appendChild(pUsername);
+        postDiv.appendChild(card); */
+        let pUsername = createUsernameLink(userInfo.Username, userInfo.IdUser, "profile.html");
+        postDiv.appendChild(pUsername);
         if (!empty) {
             let imagePreview = document.createElement("img");
             imagePreview.setAttribute("src", previewPath);
-            imagePreview.classList.add('card-img-top', 'p-1');
+            imagePreview.classList.add('card-img-top');
             imagePreview.setAttribute("alt", "Post preview");
-            card.appendChild(imagePreview);
+            postDiv.appendChild(imagePreview);
         }
         let cardBody = createCardBody();
-        card.appendChild(cardBody);
+        postDiv.appendChild(cardBody);
         let dateP = createDate(post.Date);
         cardBody.appendChild(dateP);
         if (post.IdCategory != null) {
             $.ajax({
                 async: false,
-                url: '../model/search/getCategoryDescription.php',
+                url: '../model/utils/getCategoryDescription.php',
                 type: 'POST',
                 data: {
                     Id: post.IdCategory
@@ -81,13 +81,13 @@ function printPostToTarget (targetContainer, posts) {
 
 function createRowContainer () {
     let row = document.createElement("div");
-    row.classList.add('row', 'mt-5', 'd-flex', 'justify-content-center', 'align-items-center', 'text-center');
+    row.classList.add('card-row');
     return row;
 }
 
 function createPostDiv () {
     let postDiv = document.createElement("div");
-    postDiv.classList.add('col-md-4', 'col-12', 'mx-auto', 'my-5', 'd-flex', 'justify-content-center');
+    postDiv.classList.add('card');
     return postDiv;
 }
 
@@ -116,14 +116,14 @@ function createDate(date) {
 
 function createCategory(category) {
     let p = document.createElement("p");
-    //span.classList.add('badge', 'border', 'rounded-pill', 'mb-2');
+    p.classList.add('badge');
     p.innerText = category;
     return p;
 }
 
 function createPostTitle(postTitle) {
-    let title = document.createElement("h1");
-    title.classList.add('card-title', 'mt-2');
+    let title = document.createElement("h5");
+    title.classList.add('card-title');
     title.innerHTML = postTitle;
     return title;
 }

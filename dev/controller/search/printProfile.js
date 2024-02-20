@@ -4,7 +4,7 @@ function printProfileToTarget(targetContainer, profiles) {
         return;
     }
     let externDiv = document.createElement("div");
-    externDiv.classList.add('table-responsive', 'overflow-y-auto');
+    externDiv.classList.add('table-responsive');
     let table = document.createElement('table');
     table.classList.add('table', 'table-stripped');
     externDiv.appendChild(table);
@@ -81,9 +81,8 @@ function createButtonFollow(idTarget) {
         $.ajax({
             async: false,
             url: '../model/utils/checkFollow.php',
-            type: 'GET',
+            type: 'POST',
             data: {
-                IdSrc: currentId,
                 IdDst: idTarget
             },
             success: function (response) {
