@@ -2,7 +2,7 @@ function loadProfileInfo(userId) {
     let userInfo = null;
     $.ajax({
         async: false,
-        url: "../model/profile/getUserData.php",
+        url: "../model/utils/getAllInfo.php",
         method: "POST",
         data: {
             id: userId,
