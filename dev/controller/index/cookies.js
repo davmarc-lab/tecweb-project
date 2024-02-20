@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let btnButton = document.createElement('button');
         btnButton.setAttribute('id', 'ok-button');
-        btnButton.innerHTML = "Ok";
+        btnButton.innerHTML = "OK";
 
         btnButton.addEventListener('click', function () {
             // sets cookie

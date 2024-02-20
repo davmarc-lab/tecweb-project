@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let info = getProfileInfo(profiles[i]['IdUser']);
             let listElem = document.createElement('li');
             let image = document.createElement('img');
+            image.classList.add("profile-icon");
             image.setAttribute('src', '../' + info['FilePath']);
             image.setAttribute('alt', info['Username'] + ' profile image');
             let link = document.createElement('a');

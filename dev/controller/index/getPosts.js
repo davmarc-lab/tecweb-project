@@ -32,7 +32,7 @@ function vote(postId, increment) {
 
 function createCommentElement(userId, username, text) {
     let pComment = document.createElement("p");
-    pComment.classList = "border border-success rounded text-break p-1";
+    pComment.classList = "comment";
     let linkUsername = drawLinkUsernameElement(userId, username);
     pComment.appendChild(linkUsername);
     pComment.innerHTML += " : " + text;
@@ -80,7 +80,7 @@ function appendPostToContainer(numPostToLoad) {
             let post = posts[i];
 
             let divPost = document.createElement("div");
-            divPost.classList = "card post-card border border-1 rounded mx-auto m-4 p-3 single-post";
+            divPost.classList = "post-card";
             divPost.setAttribute("id", "post-" + post["IdPost"]);
 
             // Post info query
@@ -109,10 +109,9 @@ function appendPostToContainer(numPostToLoad) {
 
             // creates profile image div in the row div
             let divProfileImage = document.createElement("div");
-            divProfileImage.classList = "col-1 me-2";
             let imgProfile = document.createElement("img");
             imgProfile.setAttribute("src", pathImgAuthor);
-            imgProfile.classList.add("rounded-circle");
+            imgProfile.classList.add("profile-icon");
 
             // append profile image to row div
             divProfileImage.appendChild(imgProfile);
@@ -121,7 +120,6 @@ function appendPostToContainer(numPostToLoad) {
 
             // append user profile page link to row div
             let divUser = document.createElement("div");
-            divUser.classList = "col mx-3 pt-2";
             let pUser = document.createElement("p");
             pUser.setAttribute("id", "index-post-user-id");
             pUser.appendChild(drawLinkUsernameElement(author["IdUser"], author["Username"]));
@@ -168,31 +166,30 @@ function appendPostToContainer(numPostToLoad) {
                     },
                 });
                 // category info taken
-                let spanCategory = document.createElement("span");
-                spanCategory.setAttribute("id", "category-badge");
-                spanCategory.classList = "badge border rounded-pill text-bg-primary";
                 let pCat = document.createElement("p");
-                pCat.classList.add("m-0");
+                pCat.setAttribute("id", "category-badge");
+                pCat.classList = "badge";
                 pCat.innerHTML = category["Description"];
 
-                spanCategory.appendChild(pCat);
-                divCardBody.appendChild(spanCategory);
+                divCardBody.appendChild(pCat);
             }
 
             // append div
             let divCardRow = document.createElement("div");
-            divCardRow.classList = "row";
-            let divCardCol = document.createElement("div");
-            divCardCol.classList = "col";
+            divCardRow.classList = "post-row";
+            let divCardCol1 = document.createElement("div");
+            divCardCol1.classList = "col";
+            let divCardCol2 = document.createElement("div");
+            divCardCol2.classList = "col";
 
             // like button and counter part
             let pVoteNumber = document.createElement("p");
-            pVoteNumber.classList = "badge bg-secondary ms-4";
+            pVoteNumber.classList = "number-badge";
             pVoteNumber.setAttribute("id", "vote-indicator" + post["IdPost"]);
             pVoteNumber.innerHTML = post["NumberVote"];
 
             let likeButton = document.createElement("button");
-            likeButton.classList = "btn btn-lg border-0";
+            likeButton.classList = "btn-feedback";
             let likeIcon = document.createElement("i");
             likeIcon.classList = "bi";
 
@@ -239,38 +236,36 @@ function appendPostToContainer(numPostToLoad) {
 
 
             // append the vote number and the like button
-            divCardCol.appendChild(pVoteNumber);
-            divCardCol.appendChild(likeButton);
+            divCardCol1.appendChild(pVoteNumber);
+            divCardCol1.appendChild(likeButton);
 
             // append comment number to divcardcol
             let pCommentNumber = document.createElement("p");
-            pCommentNumber.classList = "badge bg-secondary ms-4";
+            pCommentNumber.classList = "number-badge";
             pCommentNumber.innerHTML = post["NumberComment"];
-            divCardCol.appendChild(pCommentNumber);
+            divCardCol1.appendChild(pCommentNumber);
 
             // append commment icon
             let btnComment = document.createElement("button");
-            btnComment.classList = "btn btn-lg border-0";
+            btnComment.classList = "btn-feedback";
             let commentIcon = document.createElement("i");
             commentIcon.classList = "bi bi-chat-left-text";
             btnComment.appendChild(commentIcon);
-            divCardCol.appendChild(btnComment);
+            divCardCol1.appendChild(btnComment);
 
             // append link to viewPost page
             let linkPost = document.createElement("a");
             linkPost.setAttribute("href", viewPostPage + "?id=" + post["IdPost"]);
-            linkPost.classList.add("float-end");
             let linkButton = document.createElement("button");
             linkButton.classList = "btn btn-primary view-post";
             linkButton.innerHTML = "View Post";
             linkPost.appendChild(linkButton);
-            divCardCol.appendChild(linkPost);
+            divCardCol2.appendChild(linkPost);
 
             // append post title and description
             let titlePost = document.createElement("h5");
             titlePost.classList.add("card-title");
             titlePost.innerHTML = post["Title"];
-            divCardCol.appendChild(titlePost);
 
             let descriptionPost = document.createElement("p");
             descriptionPost.classList.add("card-text");
@@ -280,16 +275,17 @@ function appendPostToContainer(numPostToLoad) {
                 textDescription += "...";
             } 
             descriptionPost.innerHTML = textDescription;
-            divCardCol.appendChild(descriptionPost);
 
             // prepare all the elements of the card
-            divCardRow.appendChild(divCardCol);
+            divCardRow.appendChild(divCardCol1);
+            divCardRow.appendChild(divCardCol2);
             divCardBody.appendChild(divCardRow);
+            divCardBody.appendChild(titlePost);
+            divCardBody.appendChild(descriptionPost);
             divPost.appendChild(divCardBody);
 
             // append container for the comments
             let divComments = document.createElement("div");
-            divComments.classList = "container m-0";
 
             let comments = null;
             if (post["NumberComment"] > 0) {
@@ -347,7 +343,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // add submit button
             let btnSendComment = document.createElement("button");
-            btnSendComment.classList = "btn btn-primary mt-3 float-end";
+            btnSendComment.classList = "btn btn-primary";
             btnSendComment.innerHTML = "Comment";
             btnSendComment.setAttribute("aria-disabled", true);
             btnSendComment.classList.add("disabled");
