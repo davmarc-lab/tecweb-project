@@ -81,7 +81,7 @@ function createLinkUsernameElement(userId, username) {
 
 function createCommentElement(userId, username, text) {
     let pComment = document.createElement("p");
-    pComment.classList = "p-2 text-break m-0";
+    pComment.classList.add("comment");
     let linkUsername = createLinkUsernameElement(userId, username);
     pComment.appendChild(linkUsername);
     pComment.innerHTML += " : " + text;
@@ -91,12 +91,5 @@ function createCommentElement(userId, username, text) {
 function appendNewComment(commentElem) {
     const parentNode = document.getElementById("comments-area");
 
-    let divCommentArea = document.createElement("div");
-    divCommentArea.classList.add("me-2");
-    let divComment = document.createElement("div");
-    divComment.classList = "border border-success rounded p-auto my-2";
-
-    divComment.appendChild(commentElem);
-    divCommentArea.appendChild(divComment);
-    parentNode.insertBefore(divCommentArea, parentNode.children[0]);
+    parentNode.insertBefore(commentElem, parentNode.children[0]);
 }

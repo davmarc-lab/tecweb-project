@@ -116,7 +116,6 @@ function drawPostComments(infoPost) {
             let areaComments = document.getElementById('comments-area');
             comments.forEach(element => {
                 let username = getUserLink(element['IdUser']);
-                let divComment = document.createElement('div');
                 let content = document.createElement('p');
                 let link = document.createElement('a');
 
@@ -124,11 +123,10 @@ function drawPostComments(infoPost) {
                 link.innerHTML = "@ " + username;
                 
                 content.appendChild(link);
+                content.classList.add("comment");
                 content.innerHTML += ": " + element['CommentText'];
 
-                divComment.appendChild(content);
-
-                areaComments.appendChild(divComment);
+                areaComments.appendChild(content);
             });
         }
     });

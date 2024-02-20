@@ -51,16 +51,19 @@ main {
 .col:first-of-type {
     display: flex;
     justify-content: start;
+    align-items: center;
     width: 100%;
 }
 
 .col {
     display: flex;
     justify-content: end;
+    align-items: center;
     width: 100%;
 }
 
 .btn-feedback {
+    cursor: pointer;
     margin: 2% 4% 0 1%;
     background-color: transparent;
     border: none;
@@ -161,10 +164,15 @@ textarea {
     border-radius: 10px;
     font-size: medium;
     padding: 0.6% 1%;
+    text-wrap: wrap;
 }
 
 #comment-text {
     border: 1px solid lightslategray !important;
+}
+
+#comment-button {
+    height: fit-content;
 }
 
 #comments-row {
@@ -478,14 +486,21 @@ a[role="button"]:hover:not(.btn-following){
     width: fit-content;
 }
 
+.col > p, .col > button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .number-badge {
     color: white !important;
     background-color: lightslategray !important;
     font-size: small;
     width: fit-content;
+    height: fit-content;
     border: none;
     border-radius: 10px;
-    padding: 4px 10px;
+    padding: 6px 10px;
+    margin: 0 2% !important;
 }
 
 .dropwdown-menu {
@@ -668,7 +683,7 @@ ul > li {
 }
 
 #post-files {
-    margin: 2% 5% !important;
+    margin: 2% 0 !important;
 }
 
 @media screen and (max-width: 992px) {
