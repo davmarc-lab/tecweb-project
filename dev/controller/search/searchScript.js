@@ -8,8 +8,23 @@ function searchResult() {
     let filters = [];
     items.forEach(e => filters.push(String(e.id).split("-").pop()));
     console.log("Filtri: " + filters);
+
     $.ajax({
-        url: "../model/search/createArrayRes.php",
+        async: false,
+        url: "../model/search/searchProfiles.php",
+        type: "POST",
+        data: {
+            key: key
+        },
+        success: function (response) {
+            document.getElementById("profile-container").innerHTML = "";
+            printProfileToTarget(document.getElementById("profile-container"), response);
+        }
+    })
+
+    $.ajax({
+        async: false,
+        url: "../model/search/searchPosts.php",
         type: "POST",
         data: {
             key: key,
@@ -21,6 +36,7 @@ function searchResult() {
             printPostToTarget(document.getElementById("search-post-container"), response);
         }
     });
+
 }
 
 let input = document.getElementById("search-text");

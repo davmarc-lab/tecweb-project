@@ -13,6 +13,7 @@
     <link rel="icon" href="../nfa-icon.png" type="image/x-icon" />
     <script src="../controller/newPost/loadCategories.js"></script>
     <script src="../controller/search/printPost.js"></script>
+    <script src="../controller/search/printProfile.js"></script>
     <script src="../controller/search/loadRandomPosts.js"></script>
     <script src="../controller/search/searchScript.js" defer></script>
     <script src="../controller/search/categoryFilter.js"></script>
@@ -66,7 +67,7 @@
         ?>
             <div class="container-fluid">
                 <div class="row mt-4 justify-content-center">
-                    <div class="container col-md-8">
+                    <div class="container col-md-8" id="profile-container">
                         <?php
                         if (!empty($_SESSION["search_result"]["profile"])) {
                             printProfile($dbh, $_SESSION["search_result"]["profile"]);
