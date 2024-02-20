@@ -24,6 +24,19 @@ function drawProfileInfo(user, isSame) {
         divProfile.insertBefore(button, after);
     }
 
+    let img = document.getElementById('profile-image');
+    $.ajax({
+        url: "../model/utils/getMediaFromId.php",
+        method: "POST",
+        data: {
+            id: user['IdMedia'],
+        },
+        success: function (response) {
+            let image = JSON.parse(response);
+            img.setAttribute('src', "../" + image['FilePath']);
+        }
+    });
+    
     // apend all user info in a list
     const elems = Array(user['Username'], user['Name'] + " " + user['Surname'], user['Description'] == null ? "" : user['Description']);
     const list = document.getElementById('list-info');
@@ -151,6 +164,19 @@ function createModalSpace(parent, id) {
     return divModal;
 }
 
+function setActionButtonState(btn, dst) {
+    $.ajax({
+        url: "../model/utils/checkFollow.php",
+        method: "POST",
+        data: {
+            IdDst: dst,
+        },
+        success: function (response) {
+            btn.innerHTML = (response > 0 ? "Unfollow" : "Follow");
+        }
+    });
+}
+
 function printUsersModal(div, userList) {
     let table = document.createElement('table');
 
@@ -184,10 +210,26 @@ function printUsersModal(div, userList) {
         row.appendChild(userCell);
 
         let actionCell = document.createElement('td');
-        let action = document.createElement('button');
         actionCell.setAttribute('headers', 'action');
-        action.innerHTML = "TEXT HERE";
-        actionCell.appendChild(action);
+
+        let btnAction = document.createElement('button');
+        setActionButtonState(btnAction, elem['IdUser']);
+        btnAction.addEventListener('click', function () {
+            if (this.innerHTML != "") {
+                $.ajax({
+                    url: "../model/utils/" + (this.innerHTML == "Follow" ? "followUserQuery" : "unfollowUserQuery") + ".php",
+                    type: "POST",
+                    data: {
+                        dstUser: elem['IdUser'],
+                    },
+                    success: function (response) {
+                        setActionButtonState(btnAction, elem['IdUser']);
+                    },
+                });
+            }
+        });
+        
+        actionCell.appendChild(btnAction);
         row.appendChild(actionCell);
         tableBody.appendChild(row);
     });
@@ -196,7 +238,7 @@ function printUsersModal(div, userList) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // $('#navbar-space').load('../view/navbar.html');
+    $('#navbar-space').load('../view/navbar.html');
 
     let user = null;
     // flag to tell if logged user is loading profile page or another one is doing it
