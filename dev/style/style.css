@@ -25,6 +25,34 @@ main {
     margin: 10% 0;
 }
 
+.notification-container {
+    display: inline-block;
+    text-align: center;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 10% 0 0 0 !important;
+}
+
+.notification-area {
+    width: 100%;
+    text-align: center;
+}
+
+.notification-container h2 {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.notification-container p {
+    text-align: left;
+    border: 2px solid lightslategray;
+    border-radius: 5px;
+    margin: 2% 10%;
+    text-wrap: wrap;
+    padding: 3px 1%;
+}
+
 .profile-container {
     align-items: center !important;
     width: 120%;
