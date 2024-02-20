@@ -255,7 +255,7 @@ function appendPostToContainer(numPostToLoad) {
 
             // append link to viewPost page
             let linkPost = document.createElement("a");
-            linkPost.setAttribute("href", viewPostPage + "?id=" + post["IdPost"]);
+            linkPost.setAttribute("href", "../" + viewPostPage + "?id=" + post["IdPost"]);
             let linkButton = document.createElement("button");
             linkButton.classList = "btn btn-primary view-post";
             linkButton.innerHTML = "View Post";
