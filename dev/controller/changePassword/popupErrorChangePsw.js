@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (errorParam === "2") {
         Swal.fire({
             icon: 'error',
-            title: "Passwords do not match! Re-enter the old password.",
+            title: "Passwords do not match! Try again.",
             text: '',
         });
         document.getElementById("insert-old").hidden = true;
