@@ -15,16 +15,17 @@ function loadProfileInfo(userId) {
 }
 
 function drawProfileInfo(user, isSame) {
-    let divProfile = document.getElementById('profile-info');
+    let divProfile = document.getElementById('profile-info').getElementsByClassName('row').item(0);
     if (isSame) {
         // create edit button
-        let button = document.createElement('button');
-        let after = divProfile.children[1];
+        let button = document.createElement('a');
+        button.setAttribute('role', 'button');
+        button.classList.add("btn");
         button.innerHTML = "Settings";
         button.addEventListener("click", function () {
             window.location.href = "settings.html";
         });
-        divProfile.insertBefore(button, after);
+        divProfile.appendChild(button);
     }
 
     let img = document.getElementById('profile-image');
@@ -54,10 +55,12 @@ function drawProfileInfo(user, isSame) {
 
 function createPost(elem) {
     let post = document.createElement('div');
+    post.classList.add("card", "post-card");
     let elems = Array(6);
     // preview
     if (elem['IdPreview'] != null) {
         let imgPreview = document.createElement('img');
+        imgPreview.classList.add("card-img-top");
         $.ajax({
             async: false,
             url: "../model/utils/getMediaFromId.php",
@@ -73,16 +76,22 @@ function createPost(elem) {
         post.appendChild(imgPreview);
     }
 
+    //card-body
+    let postBody = document.createElement('div');
+    postBody.classList.add("card-body");
+
     // date
-    let dateText = elem['Date'];
+    let dateText = String(elem['Date']).substring(0, 11);
     let pDate = document.createElement('p');
+    pDate.classList.add("show-date");
     pDate.innerHTML = dateText;
-    post.appendChild(pDate);
+    postBody.appendChild(pDate);
 
     // category
     let idCategory = elem['IdCategory'];
-    let pCategory = document.createElement('p');
-    post.appendChild(pCategory);
+    let spanCategory = document.createElement('span');
+    spanCategory.classList.add("badge");
+    postBody.appendChild(spanCategory);
     $.ajax({
         url: "../model/utils/getCategoryDescription.php",
         method: "POST",
@@ -90,25 +99,30 @@ function createPost(elem) {
             Id: idCategory,
         },
         success: function (response) {
-            pCategory.innerHTML = response;
+            spanCategory.innerHTML = response;
         }
     });
 
     // Title
-    let title = document.createElement('h2');
+    let title = document.createElement('h5');
+    title.classList.add("card-title");
     title.innerHTML = elem['Title'];
-    post.appendChild(title);
+    postBody.appendChild(title);
 
     // Description
     let pDescription = document.createElement('p');
+    pDescription.classList.add("card-text");
     pDescription.innerHTML = (String(elem['Description']).substring(0, 200) + (elem['Description'].length > 200 ? " ..." : ""));
-    post.appendChild(pDescription);
+    postBody.appendChild(pDescription);
 
     // ViewPost button
     let linkPost = document.createElement('a');
+    linkPost.classList.add("btn", "btn-primary");
     linkPost.setAttribute('href', "../view/post.html?id=" + elem['IdPost']);
     linkPost.innerHTML = "View Post";
-    post.appendChild(linkPost);
+    postBody.appendChild(linkPost);
+
+    post.appendChild(postBody);
 
     return post;
 }
@@ -182,6 +196,7 @@ function setActionButtonState(btn, dst) {
 
 function printUsersModal(div, userList) {
     let table = document.createElement('table');
+    table.classList.add("table", "table-striped");
 
     let tableHead = document.createElement('thead');
     let firstRow = document.createElement('tr');
@@ -189,7 +204,7 @@ function printUsersModal(div, userList) {
     let userHeader = document.createElement('th');
     userHeader.setAttribute('id', 'user');
     userHeader.setAttribute('scope', 'col');
-    userHeader.innerHTML = "User";
+    userHeader.innerHTML = "Username";
 
     let actionHeader = document.createElement('th');
     actionHeader.setAttribute('id', 'action');
@@ -215,7 +230,9 @@ function printUsersModal(div, userList) {
         let actionCell = document.createElement('td');
         actionCell.setAttribute('headers', 'action');
 
-        let btnAction = document.createElement('button');
+        let btnAction = document.createElement('a');
+        btnAction.setAttribute('role', 'button');
+        btnAction.classList.add("btn", "btn-following")
         setActionButtonState(btnAction, elem['IdUser']);
         btnAction.addEventListener('click', function () {
             if (this.innerHTML != "") {
@@ -291,10 +308,9 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (response) {
                 let follow = JSON.parse(response);
                 if (response != null && follow.length > 0) {
-                    let modalTitle = document.createElement('h1');
+                    let modalTitle = document.createElement('h2');
                     modalTitle.innerHTML = "Following";
                     modalContent.appendChild(modalTitle);
-                    modalContent.appendChild(document.createElement('hr'));
                     printUsersModal(modalContent, JSON.parse(response));
                 }
             },
@@ -316,10 +332,9 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (response) {
                 let follow = JSON.parse(response);
                 if (response != null && follow.length > 0) {
-                    let modalTitle = document.createElement('h1');
+                    let modalTitle = document.createElement('h2');
                     modalTitle.innerHTML = "Followers";
                     modalContent.appendChild(modalTitle);
-                    modalContent.appendChild(document.createElement('hr'));
                     printUsersModal(modalContent, JSON.parse(response));
                 }
             },

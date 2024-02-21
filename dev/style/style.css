@@ -73,7 +73,7 @@ main {
     justify-content: space-between;
     height: auto;
     width: 100%;
-    margin: 5% 0 0;
+    margin: 2% 0 0;
 }
 
 .col:first-of-type {
@@ -122,20 +122,17 @@ main {
     display: inline;
     width: 100%;
     margin-top: 100px;
-    /*margin-left: 30%;*/
+    /*margin-left: 20%;*/
 }
 
 .post-card {
-    float: left;
     border: 2px solid lightslategray;
     border-radius: 15px;
-    margin: 1%;
+    margin: 2% auto;
     padding: 1% 20px 2%;
     background-color: whitesmoke;
-    /*width: 34rem !important;*/
     width: 50%;
     height: auto;
-    justify-content: center;
 }
 
 .card:not(.post-card) {
@@ -154,11 +151,12 @@ main {
 }
 
 textarea {
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid lightgray !important;
-    font-size: small;
     font-family: 'Thasadith', sans-serif;
+    font-size: small;
+    width: 100%;
+    border: 1px solid lightgray !important;
+    border-radius: 5px;
+    margin: 1% 0 2% !important;
 }
 
 #view-post {
@@ -175,10 +173,11 @@ textarea {
     font-weight: bold;
     font-size: large;
     padding: 0;
+    margin: 5% 0 0 0;
 }
 
 .card-text {
-    padding-bottom: 7%;
+    padding-bottom: 2%;
 }
 
 .profile-icon {
@@ -211,10 +210,16 @@ textarea {
     width: 100%;
 }
 
+#profile-info a {
+    margin: 2%;
+    cursor: pointer;
+}
+
 .profile-page-icon {
     border-radius: 50%;
     width: 70px;
     height: 70px;
+    margin-left: 2%;
 }
 
 #index-post-user-id {
@@ -236,7 +241,7 @@ textarea {
     background-color: #303030;
     position: sticky;
     top: 30vh;
-    right: 10vh;
+    right: 5vh;
     padding: 20px;
     border-radius: 10px;
     width: 300px;

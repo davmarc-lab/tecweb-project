@@ -14,6 +14,7 @@
     <script src="profile_script/editProfileResize.js"></script> -->
     <!-- <link rel="icon" href="../nfa-icon.png" type="image/x-icon" /> -->
 
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/modals.css">
 
     <title>NFA</title>
@@ -23,17 +24,21 @@
     <div id="navbar-space"></div>
 
     <main>
-        <section id="profile">
-            <section id="profile-info">
-                <img alt="User profile image" id="profile-image">
-                <ul id="list-info"></ul>
+        <div class="container-fluid">
+            <section id="profile" class="profile-container">
+                <section id="profile-info">
+                    <div class="row">
+                        <img alt="User profile image" id="profile-image" class="profile-page-icon" />
+                    </div>
+                    <div id="profile-follow" class="row">
+                        <a id="btn-follow" role="button" class="btn btn-secondary">Follow</a>
+                        <a id="btn-followers" role="button" class="btn btn-secondary">Followers</a>
+                    </div>
+                    <ul id="list-info"></ul>
+                </section>
+                <section id="profile-post" class="posts-container"></section>
             </section>
-            <section id="profile-follow">
-                <button id="btn-follow">Follow</button>
-                <button id="btn-followers">Followers</button>
-            </section>
-            <section id="profile-post"></section>
-        </section>
+        </div>
     </main>
 
 </body>
