@@ -139,13 +139,13 @@ function drawUserPost(div, user) {
 function createModalSpace(parent, id) {
     let divModal = document.createElement('div');
     divModal.setAttribute('id', id);
-    divModal.setAttribute('class', 'modal');
+    divModal.classList.add('modal');
 
     let divContent = document.createElement('div');
-    divContent.setAttribute('class', 'modal-content');
+    divContent.classList.add('modal-content');
 
     let span = document.createElement('span');
-    span.setAttribute('class', 'close');
+    span.classList.add('close');
     span.innerHTML = "&times;";
     divContent.appendChild(span);
 
