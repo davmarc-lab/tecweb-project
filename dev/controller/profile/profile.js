@@ -20,7 +20,10 @@ function drawProfileInfo(user, isSame) {
         // create edit button
         let button = document.createElement('button');
         let after = divProfile.children[1];
-        button.innerHTML = "Edit";
+        button.innerHTML = "Settings";
+        button.addEventListener("click", function () {
+            window.location.href = "settings.html";
+        });
         divProfile.insertBefore(button, after);
     }
 
