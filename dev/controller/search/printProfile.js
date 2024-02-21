@@ -86,13 +86,50 @@ function createButtonFollow(idTarget) {
                 IdDst: idTarget
             },
             success: function (response) {
+                console.log(response);
                 if (response != 0) {
                     btn.innerHTML = "Unfollow";
                 } else {
                     btn.innerHTML = "Follow";
                 }
+                addFollowListener(btn, idTarget);
             }
         });
     }
     return btn;
+}
+
+function addFollowListener(target, dstUser) {
+    target.addEventListener("click", function () {
+        console.log(target.innerHTML);
+        if (target.innerHTML == "Unfollow") {
+            //unfollow query
+            console.log("Eseguo unfollow");
+            $.ajax({
+                async: false,
+                url: '../model/utils/unfollowUserQuery.php',
+                type: 'POST',
+                data: {
+                    dstUser: dstUser
+                },
+                success: function () {
+                    target.innerHTML = "Follow";
+                }
+            })
+        } else {
+            //follow query
+            console.log("Eseguo follow");
+            $.ajax({
+                async: false,
+                url: '../model/utils/followUserQuery.php',
+                type: 'POST',
+                data: {
+                    dstUser: dstUser
+                },
+                success: function () {
+                    target.innerHTML = "Unfollow";
+                }
+            })
+        }
+    });
 }
