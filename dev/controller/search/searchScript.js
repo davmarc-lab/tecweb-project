@@ -17,8 +17,8 @@ function searchResult() {
             key: key
         },
         success: function (response) {
-            document.getElementById("profile-container").innerHTML = "";
-            printProfileToTarget(document.getElementById("profile-container"), response);
+            document.getElementById("profiles-table").innerHTML = "";
+            printProfileToTarget(document.getElementById("profiles-table"), response);
         }
     })
 

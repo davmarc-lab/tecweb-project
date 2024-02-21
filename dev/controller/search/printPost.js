@@ -93,7 +93,6 @@ function createPostDiv () {
 
 function createUsernameLink(username, userId, targetLink) {
     let p = document.createElement("p");
-    p.classList.add('m-1');
     let a = document.createElement("a");
     a.setAttribute("href", targetLink + "?user=" + userId);
     a.innerHTML = "@" + username;

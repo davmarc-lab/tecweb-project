@@ -36,8 +36,8 @@ $("document").ready(function () {
 
             // Take te badge span
             categoryBadges.innerHTML += 
-                "<span class='selected-badge badge border rounded-pill m-2' style='width: fit-content;' id='selected-badge" + j  + "'>" +
-                "<p class='m-0' id='category-description" + j + "'></p></span>";
+                "<span class='selected-badge badge' id='selected-badge" + j  + "'>" +
+                "<p id='category-description" + j + "'></p></span>";
             let categoryDescription = document.getElementById("category-description" + j);
             categoryDescription.innerHTML = item.innerHTML;
             j++;

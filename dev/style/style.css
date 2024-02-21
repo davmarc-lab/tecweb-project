@@ -473,8 +473,7 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
 .btn-search:hover {
     cursor: pointer;
     background-color: rgb(187, 186, 186);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 10px;
     padding: 0.5% 1%;
 }
 
@@ -533,6 +532,10 @@ a[role="button"]:hover:not(.btn-following){
 
 .dropwdown-menu {
     width: 300px;
+}
+
+.dropdown-item {
+    margin: 0 2px;
 }
 
 .dropdown-item:hover {
@@ -654,7 +657,7 @@ ul > li {
     justify-content: center;
 }
 
-.table-responsive {
+#profiles-table .table-responsive {
     overflow-x: hidden;
     width: 60%;
     height: 90%;
@@ -672,11 +675,17 @@ ul > li {
     vertical-align: middle;
 }
 
+.table th > p, .table td > p {
+    padding: 0;
+    margin: 0;
+}
+
 .table > thead {
     position: sticky;
     top: 0;
     background-color: rgba(0, 105, 0);
     color: white;
+    border: 2px solid rgba(0, 105, 0);
 }
 
 .table > tbody {
@@ -689,7 +698,6 @@ ul > li {
     border-radius: 5px;
     padding: 2%;
 }
-
 
 .table-striped tr:nth-child(even) {
     background-color: lightgray;
@@ -726,6 +734,10 @@ ul > li {
     }
 
     .suggested-profile {
+        display: none;
+    }
+
+    #number-post, #number-follower, td[headers="number-follower"], td[headers="number-post"] {
         display: none;
     }
 }

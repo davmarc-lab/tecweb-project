@@ -6,18 +6,18 @@ function printProfileToTarget(targetContainer, profiles) {
     let externDiv = document.createElement("div");
     externDiv.classList.add('table-responsive');
     let table = document.createElement('table');
-    table.classList.add('table', 'table-stripped');
+    table.classList.add('table', 'table-striped');
     externDiv.appendChild(table);
     let thead = document.createElement("thead");
     table.appendChild(thead);
     let trHedaer = document.createElement("tr");
-    let userHeader = createHeader("username", "Username", false);
+    let userHeader = createHeader("username", "Username");
     trHedaer.appendChild(userHeader);
-    let numberPostHeader = createHeader("number-post", "Posts", true);
+    let numberPostHeader = createHeader("number-post", "Posts");
     trHedaer.appendChild(numberPostHeader);
-    let numberFollowerHeader = createHeader("number-followe", "Followers", true);
+    let numberFollowerHeader = createHeader("number-follower", "Followers");
     trHedaer.appendChild(numberFollowerHeader);
-    let followHeader = createHeader("btt-follow", "", false);
+    let followHeader = createHeader("btt-follow", "");
     trHedaer.appendChild(followHeader);
     thead.appendChild(trHedaer);
     let tableBody = document.createElement("tbody");
@@ -26,33 +26,25 @@ function printProfileToTarget(targetContainer, profiles) {
         tr.appendChild(createTableElement("username", 
             createUsernameLink(profile.Username, profile.IdUser, "profilePage.html"),
             false));
-        tr.appendChild(createTableElement("number-post", profile.NumberPost, true, true));
-        tr.appendChild(createTableElement("number-follower", profile.NumberFollower, true, true));
-        tr.appendChild(createTableElement("btt-follow", createButtonFollow(profile.IdUser), false, false));
+        tr.appendChild(createTableElement("number-post", profile.NumberPost, true));
+        tr.appendChild(createTableElement("number-follower", profile.NumberFollower, true));
+        tr.appendChild(createTableElement("btt-follow", createButtonFollow(profile.IdUser), false));
         tableBody.appendChild(tr);
     });
     table.appendChild(tableBody);
     targetContainer.appendChild(externDiv);
 }
 
-function createHeader(id, text, isMiddle) {
+function createHeader(id, text) {
     let header = document.createElement("th");
-    header.classList.add("text-center");
-    if (isMiddle) {
-        header.classList.add('d-none', 'd-md-table-cell');
-    }
     header.setAttribute("scope", "col");
     header.setAttribute("id", id);
     header.innerHTML = text;
     return header;
 }
 
-function createTableElement(header, content, isMiddle, isText) {
+function createTableElement(header, content, isText) {
     let td = document.createElement("td");
-    td.classList.add('text-center');
-    if (isMiddle) {
-        td.classList.add('d-none', 'd-md-table-cell');
-    }
     td.setAttribute("headers", header);
     if (isText) {
         td.innerHTML = content;
