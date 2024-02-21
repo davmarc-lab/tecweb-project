@@ -66,10 +66,13 @@
         $query = "INSERT INTO post (Date, Title, Description, NumberVote, NumberComment, IdUser, IdMedia" .
             ($previewId == NULL ? "" : ", IdPreview") .
             ($idCategory == NULL ? "" : ", IdCategory") .
-            ")" .
+            (isset($_POST["select-private"]) ? ", Private" : "") . 
+            ")" . 
             " VALUES('$currentDate', '$title', '$description', 0, 0, $idUser, $idMedia" .
             ($previewId == NULL ? "" : ", $idPreview") .
             ($idCategory == NULL ? "" : ", $idCategory") .
+            (isset($_POST["select-private"]) ? ", TRUE" : "") .
             ");";
+        echo $query;
         $res = $dbh->execQuery($query);
 ?>
