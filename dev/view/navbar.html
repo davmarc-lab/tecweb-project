@@ -13,7 +13,6 @@
             url: '../model/navbar/checkNotificationNavbar.php',
             type: 'POST',
             success: function (response) {
-                console.log(response);
                 if (response == 0) {
                     bellWhite.style.display = "block";
                     bellRed.style.display = "none";
@@ -25,7 +24,7 @@
         });
     }
     checkNotification();
-    setInterval(checkNotification, 4000);
+    setInterval(checkNotification, 5000);
 </script>
 <nav class="navbar sticky-top navbar-expand-md">
     <div class="navbar-header">

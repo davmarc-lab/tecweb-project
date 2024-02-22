@@ -6,6 +6,8 @@
     $str = "+" . $duration . "days";
     $expiration = date('Y-m-d', strtotime($str));
 
-    $query = "INSERT INTO Sponsor (Expiration, IdPost) VALUES ($expiration, $idPost);";
+    echo $expiration;
+
+    $query = "INSERT INTO Sponsor (Expiration, IdPost) VALUES ('{$expiration}', $idPost);";
     $dbh->execQuery($query);
 ?>
