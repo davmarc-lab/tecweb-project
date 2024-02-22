@@ -89,19 +89,21 @@ function createPost(elem) {
 
     // category
     let idCategory = elem['IdCategory'];
-    let spanCategory = document.createElement('span');
-    spanCategory.classList.add("badge");
-    postBody.appendChild(spanCategory);
-    $.ajax({
-        url: "../model/utils/getCategoryDescription.php",
-        method: "POST",
-        data: {
-            Id: idCategory,
-        },
-        success: function (response) {
-            spanCategory.innerHTML = response;
-        }
-    });
+    if (idCategory != null) {
+        let spanCategory = document.createElement('span');
+        spanCategory.classList.add("badge");
+        postBody.appendChild(spanCategory);
+        $.ajax({
+            url: "../model/utils/getCategoryDescription.php",
+            method: "POST",
+            data: {
+                Id: idCategory,
+            },
+            success: function (response) {
+                spanCategory.innerHTML = response;
+            }
+        });
+    }
 
     // Title
     let title = document.createElement('h5');
