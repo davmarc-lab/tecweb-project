@@ -36,9 +36,8 @@ $("document").ready(function () {
 
             // Take te badge span
             categoryBadges.innerHTML += 
-                "<span class='selected-badge badge' id='selected-badge" + j  + "'>" +
-                "<p id='category-description" + j + "'></p></span>";
-            let categoryDescription = document.getElementById("category-description" + j);
+                "<p class='badge' id='selected-badge" + j  + "'>";
+            let categoryDescription = document.getElementById("selected-badge" + j);
             categoryDescription.innerHTML = item.innerHTML;
             j++;
         });

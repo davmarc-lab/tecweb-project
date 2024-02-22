@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
 
 body {
+    font-family: 'Thasadith', sans-serif;
     display: flex;
     overflow-x: hidden;
     width: 100%;
@@ -237,6 +238,7 @@ main {
 textarea {
     font-family: 'Thasadith', sans-serif;
     font-size: small;
+    line-height: 1.5em;
     width: 100%;
     border: 1px solid lightgray !important;
     border-radius: 5px;
@@ -262,6 +264,7 @@ textarea {
 
 .card-text {
     padding-bottom: 2%;
+    line-height: 1.5em;
 }
 
 .profile-icon {
@@ -330,6 +333,7 @@ textarea {
     border-radius: 10px;
     width: 300px;
     height: fit-content;
+    text-align: center;
 }
 
 .suggested-profile a {
@@ -351,7 +355,7 @@ textarea {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 300px;
-    padding-left: 40px;
+    text-align: center;
 }
 
 .edit-profile-box {
@@ -467,9 +471,9 @@ input[type="reset"] {
 }
 
 #category-search {
-    width: 20% !important;
+    width: 60% !important;
     height: fit-content;
-    padding: 1%;
+    padding: 3%;
     border: 1px solid lightgray;
     border-radius: 5px;
 }
@@ -636,12 +640,51 @@ a[role="button"]:hover:not(.btn-following){
     margin: 0 2% !important;
 }
 
-.dropwdown-menu {
-    width: 300px;
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+
+.dropdown-menu {
+    display: none;
+    background-color: white;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 180%;
+    padding: 1%;
+}
+
+.scrollable-menu {
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    overflow-y: auto;
+}
+
+.dropdown-toggle {
+    border: 1px solid lightslategray !important;
+    border-radius: 5px !important;
+    padding: 10% 4%;
+    height: auto;
+    width: 120%;
+    font-size: medium;
+}
+
+.dropdown-toggle:hover {
+    cursor: pointer;
+    background-color: lightgray;
 }
 
 .dropdown-item {
-    margin: 0 2px;
+    margin: 2% 2px;
+    display: block;
 }
 
 .dropdown-item:hover {
@@ -649,6 +692,10 @@ a[role="button"]:hover:not(.btn-following){
     color: white !important;
     border: none !important;
     cursor: pointer;
+}
+
+.dropdown-menu #reset {
+    padding: 3% 3% 4%;
 }
 
 a.dropdown-toggle {
@@ -662,6 +709,17 @@ a.dropdown-toggle:hover {
     background-color: #006f3c !important;
     color: white !important;
     border-color: #006f3c !important;
+}
+
+#category-badges {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+}
+
+#category-badges > p {
+    width: max-content !important;
+    margin-right: 5px;
 }
 
 .show-date {
@@ -725,19 +783,6 @@ ul > li {
 .input-group {
     width: 100% !important;
     vertical-align: middle !important;
-}
-
-.dropdown-toggle {
-    border: 1px solid lightslategray !important;
-    border-radius: 5px !important;
-    padding: 1%;
-    height: auto;
-    font-size: medium;
-}
-
-.dropdown-toggle:hover {
-    cursor: pointer;
-    background-color: lightgray;
 }
 
 .change-password-section {
@@ -813,7 +858,7 @@ ul > li {
     border: 1px solid lightgray;
     border-radius: 5px;
     width: 60% !important;
-    padding: 2% 5%;
+    padding: 2% 5% 8%;
 }
 
 #view-post {
