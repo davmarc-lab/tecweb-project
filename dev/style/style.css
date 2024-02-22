@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com");
+@import url("https://fonts.gstatic.com");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
+
 body {
     display: flex;
     overflow-x: hidden;
@@ -5,6 +9,27 @@ body {
     margin: 0;
     padding: 0;
     justify-content: left;
+}
+
+.login-body {
+    font-family: sans-serif;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.login-body .container-fluid {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.login-body form {
+    width: 50%;
+    height: fit-content;
+    vertical-align: middle;
 }
 
 main {
@@ -23,6 +48,55 @@ main {
     justify-content: center;
     overflow-x: hidden;
     margin: 10% 0;
+}
+
+#changing-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin: 0 10%;
+}
+
+.side-panel {
+    display: flex;
+    background-color: #81BDDF;
+    width: 30%;
+    height: 100% !important;
+    align-items: center;
+}
+
+.waves {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 20%;
+    z-index: -1;
+}
+
+.login-buttons {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: 20%;
+}
+
+.login-buttons .btn-primary {
+    background-color: #0D6EFD;
+    color: white;
+    font-size: medium;
+    border: 1px solid #0D6EFD;
+    border-radius: 5px;
+    padding: 1.5% 3%;
+}
+
+.login-buttons a {
+    color: #0D6EFD;
+}
+
+.login-buttons .btn-primary:hover {
+    cursor: pointer;
+    background-color: #0B5ED7;
 }
 
 .notification-container {
@@ -289,9 +363,21 @@ textarea {
     font-size: medium;
 }
 
-#new-post .form-control {
-    border: 1px solid lightgray;
-    border-radius: 5px;
+#new-post .form-control, .login-body .form-control {
+    border: 1px solid lightgray !important;
+    border-radius: 5px !important;
+}
+
+/* login form */
+.login-body .container-centered:not(.side-panel) {
+    width: 60% !important;
+    height: fit-content;
+    margin: 0;
+}
+
+.login-body .form-control {
+    width: 90% !important;
+    justify-content: center;
 }
 
 #new-post .form-control:not(input[type="file"]) {
