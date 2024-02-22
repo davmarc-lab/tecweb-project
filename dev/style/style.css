@@ -11,13 +11,13 @@ body {
     justify-content: left;
 }
 
-.login-body {
+.login-body, .signup-body {
     font-family: sans-serif;
     display: inline-block;
     overflow: hidden;
 }
 
-.login-body .container-fluid {
+.login-body .container-fluid, .signup-body .container-fluid {
     display: flex;
     align-items: center;
     height: 100vh;
@@ -26,10 +26,16 @@ body {
     overflow: hidden;
 }
 
-.login-body form {
+.login-body form, .signup-body form {
     width: 50%;
     height: fit-content;
     vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+}
+
+.login-body form h1, .signup-body form h1 {
+    font-size: 38px;
 }
 
 main {
@@ -74,14 +80,18 @@ main {
     z-index: -1;
 }
 
-.login-buttons {
+.login-buttons, .signup-buttons {
     display: inline-block;
     text-align: center;
     width: 100%;
     margin-top: 20%;
 }
 
-.login-buttons .btn-primary {
+.signup-buttons {
+    margin-top: 1% !important;
+}
+
+.login-buttons .btn-primary, .signup-buttons .btn-primary {
     background-color: #0D6EFD;
     color: white;
     font-size: medium;
@@ -90,11 +100,11 @@ main {
     padding: 1.5% 3%;
 }
 
-.login-buttons a {
+.login-buttons a, .signup-buttons a {
     color: #0D6EFD;
 }
 
-.login-buttons .btn-primary:hover {
+.login-buttons .btn-primary:hover,.signup-buttons .btn-primary:hover {
     cursor: pointer;
     background-color: #0B5ED7;
 }
@@ -359,26 +369,27 @@ textarea {
     border-radius: 4px;
     margin: 1% 0 4%;
     width: 96%;
-    padding: 2%;
+    padding: 1.5%;
     font-size: medium;
 }
 
-#new-post .form-control, .login-body .form-control {
+#new-post .form-control, .login-body .form-control, .signup-body .form-control {
     border: 1px solid lightgray !important;
     border-radius: 5px !important;
 }
 
-/* login form */
-.login-body .container-centered:not(.side-panel) {
+.login-body .form-control:not(input[type="file"]), .signup-body .form-control.form-control:not(input[type="file"]) {
+    width: 70% !important;
+    justify-content: center;
+}
+
+/* login and signup form */
+.login-body .container-centered:not(.side-panel), .signup-body .container-centered:not(.side-panel) {
     width: 60% !important;
     height: fit-content;
     margin: 0;
 }
 
-.login-body .form-control {
-    width: 90% !important;
-    justify-content: center;
-}
 
 #new-post .form-control:not(input[type="file"]) {
     padding: 1% 2%;
@@ -408,6 +419,10 @@ input[type="file"] {
     border-radius: 4px;
     width: 100%;
     margin: 1% 0 4%;
+}
+
+.signup-body input[type="file"] {
+    width: 73% !important;
 }
 
 input::file-selector-button {
