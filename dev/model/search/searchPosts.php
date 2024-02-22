@@ -8,14 +8,9 @@
     } else {
         $filters = [];
     }
+    
     if (strlen($searchKey) > 0) {
-        $query = "SELECT * FROM member WHERE Username LIKE '%$searchKey%' ORDER BY NumberFollower DESC;";
-        $_SESSION["search_result"]["profile"] = $dbh->execQuery($query);
-    } else {
-        $_SESSION["search_result"]["profile"] = [];
-    }
-    if (strlen($searchKey) > 0) {
-        $query = "SELECT * FROM post p WHERE Title LIKE '%$searchKey%' ";
+        $query = "SELECT * FROM post p WHERE Title LIKE '%$searchKey%' AND Private = FALSE ";
     } else {
         $query = "SELECT * FROM post p";
     }
@@ -36,7 +31,6 @@
         $query .= ")";
     }
     $query .= " ORDER BY p.NumberVote DESC;";
-    //$_SESSION["search_result"]["post"] = $dbh->execQuery($query);
     $res = $dbh->execQuery($query);
     echo json_encode($res);  
 ?>

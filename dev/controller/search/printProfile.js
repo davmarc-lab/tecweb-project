@@ -24,7 +24,7 @@ function printProfileToTarget(targetContainer, profiles) {
     profiles.forEach(function (profile) {
         let tr = document.createElement("tr");
         tr.appendChild(createTableElement("username", 
-            createUsernameLink(profile.Username, profile.IdUser, "profilePage.html"),
+            createUsernameLink(profile.Username, profile.IdUser, "profile.html"),
             false));
         tr.appendChild(createTableElement("number-post", profile.NumberPost, true));
         tr.appendChild(createTableElement("number-follower", profile.NumberFollower, true));
