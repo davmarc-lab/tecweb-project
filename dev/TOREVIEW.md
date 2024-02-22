@@ -9,3 +9,5 @@
     - see comment area
  - [ ] `view/navbar.html`
     - submit button for logout
+ - [ ] `view/message.html`
+    - check send messages (set class for the `p` element)

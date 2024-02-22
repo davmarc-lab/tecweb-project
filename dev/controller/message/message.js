@@ -12,7 +12,7 @@ function printAllMessages(div, messages, dst) {
 
     // clear the div
     div.innerHTML = "";
-    
+
     // write all messages
     messages.forEach(elem => {
         let pMsg = document.createElement('p');
@@ -31,7 +31,7 @@ function printAllMessages(div, messages, dst) {
     let areaMessage = document.createElement('textarea');
     areaMessage.placeholder = "Write your message here...";
     divUserInput.appendChild(areaMessage);
-    
+
     let sendMessage = document.createElement('button');
     sendMessage.innerHTML = "Send";
     sendMessage.disabled = areaMessage.value == "";
@@ -112,12 +112,87 @@ function printAllChats(div, chats) {
                 });
             }
         });
-        
+
         // get message for this user        --OPTIONAL--
-        
+
 
         div.appendChild(newChat);
     });
+}
+
+function printFollowUser(modalBody, followList) {
+    let usersList = document.createElement('ul');
+    followList.forEach(elem => {
+        let listElem = document.createElement('li');
+        listElem.innerHTML = elem['Username'];
+        usersList.appendChild(listElem);
+
+        // event listener
+        listElem.addEventListener('click', function () {
+            let modal = document.getElementById('modal-new-chat');
+            modal.style.display = "none";
+            
+            // set new space
+        });
+    });
+    modalBody.appendChild(usersList);
+}
+
+function createModalSpace(parent, id, title) {
+    let divModal = document.createElement('div');
+    divModal.setAttribute('id', id);
+    divModal.style.display = "block";
+    divModal.classList.add('modal');
+
+    let divContent = document.createElement('div');
+    divContent.classList.add('modal-content');
+
+    let modalHeader = document.createElement('div');
+    modalHeader.classList.add('modal-header');
+    divContent.appendChild(modalHeader);
+
+    let modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+    divContent.appendChild(modalBody);
+
+    let span = document.createElement('span');
+    span.classList.add('close');
+    span.innerHTML = "&times;";
+    modalHeader.appendChild(span);
+
+    let pTitle = document.createElement('h2');
+    pTitle.innerHTML = title;
+    modalHeader.appendChild(pTitle);
+
+    divModal.appendChild(divContent);
+
+    // actions
+    span.addEventListener('click', function () {
+        divModal.style.display = "none";
+        parent.removeChild(divModal);
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target == divModal) {
+            divModal.style.display = "none";
+            parent.removeChild(divModal);
+        }
+    });
+
+    // content
+    let followList = null;
+    $.ajax({
+        url: "../model/profile/getFollow.php",
+        method: "POST",
+        success: function (response) {
+            if (response != "") {
+                followList = JSON.parse(response);
+                printFollowUser(modalBody, followList);
+            }
+        },
+    });
+
+    return divModal;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -132,5 +207,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 printAllChats(listChat, chats);
             }
         },
+    });
+
+    let btnNewChat = document.getElementById('btn-new-chat');
+    btnNewChat.addEventListener('click', function () {
+        let oldModal = document.getElementById('modal-new-chat');
+        if (oldModal != null) {
+            document.body.removeChild(oldModal);
+        }
+        let chatModal = createModalSpace(document.body, 'modal-new-chat', "New Chat");
+        document.body.appendChild(chatModal);
     });
 });

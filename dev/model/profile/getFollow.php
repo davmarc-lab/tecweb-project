@@ -6,7 +6,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
 require_once "../../includes/database.php";
 
-$user = $_POST['user'];
+$user = $_SESSION['userId'];
 
 $query = "SELECT u.IdUser, u.Username, u.IdMedia
         FROM follow AS f
@@ -14,4 +14,8 @@ $query = "SELECT u.IdUser, u.Username, u.IdMedia
         WHERE f.IdSrc = $user";
 $follow = $dbh->execQuery($query, MYSQLI_ASSOC);
 
-echo (json_encode($follow));
+if (empty($follow)) {
+    echo ("");
+} else {
+    echo (json_encode($follow));
+}
