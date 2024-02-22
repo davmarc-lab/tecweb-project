@@ -1,9 +1,11 @@
 function createPost(elem) {
     let post = document.createElement('div');
+    post.classList.add("card", "post-card");
     let elems = Array(6);
     // preview
     if (elem['IdPreview'] != null) {
         let imgPreview = document.createElement('img');
+        imgPreview.classList.add("card-img-top");
         $.ajax({
             async: false,
             url: "../model/utils/getMediaFromId.php",
@@ -19,16 +21,22 @@ function createPost(elem) {
         post.appendChild(imgPreview);
     }
 
+    //card-body
+    let postBody = document.createElement('div');
+    postBody.classList.add("card-body");
+
     // date
-    let dateText = elem['Date'];
+    let dateText = String(elem['Date']).substring(0, 11);
     let pDate = document.createElement('p');
+    pDate.classList.add("show-date");
     pDate.innerHTML = dateText;
-    post.appendChild(pDate);
+    postBody.appendChild(pDate);
 
     // category
     let idCategory = elem['IdCategory'];
-    let pCategory = document.createElement('p');
-    post.appendChild(pCategory);
+    let spanCategory = document.createElement('span');
+    spanCategory.classList.add("badge");
+    postBody.appendChild(spanCategory);
     $.ajax({
         url: "../model/utils/getCategoryDescription.php",
         method: "POST",
@@ -36,25 +44,53 @@ function createPost(elem) {
             Id: idCategory,
         },
         success: function (response) {
-            pCategory.innerHTML = response;
+            spanCategory.innerHTML = response;
         }
     });
 
     // Title
-    let title = document.createElement('h2');
+    let title = document.createElement('h5');
+    title.classList.add("card-title");
     title.innerHTML = elem['Title'];
-    post.appendChild(title);
+    postBody.appendChild(title);
 
     // Description
     let pDescription = document.createElement('p');
+    pDescription.classList.add("card-text");
     pDescription.innerHTML = (String(elem['Description']).substring(0, 200) + (elem['Description'].length > 200 ? " ..." : ""));
-    post.appendChild(pDescription);
+    postBody.appendChild(pDescription);
 
     // ViewPost button
-    let linkPost = document.createElement('a');
-    linkPost.setAttribute('href', "../view/post.html?id=" + elem['IdPost']);
-    linkPost.innerHTML = "View Post";
-    post.appendChild(linkPost);
+    let choosePost = document.createElement('a');
+    choosePost.classList.add("btn", "btn-primary");
+    choosePost.innerHTML = "Choose post";
+    choosePost.setAttribute("role", "button");
+    choosePost.addEventListener("click", function() {
+        let id = elem['IdPost'];
+        let duration;
+        for (let i = 0; i < durationOption.length; i++) {
+            if (durationOption[i].checked) {
+                duration = durationOption[i].value;
+            }
+        }
+        if (duration != null) {
+            $.ajax({
+                async: false,
+                url: '../model/sponsor/addSponsor.php',
+                type: 'POST',
+                data: {
+                    id: id,
+                    duration: duration
+                },
+                success: function (res) {
+                    window.location.href = "profile.html";
+                }
+            });
+        }
+    });
+    postBody.appendChild(choosePost);
+
+    post.appendChild(postBody);
 
     return post;
 }
@@ -81,6 +117,9 @@ function drawUserPost(div, user) {
         });
     }
 }
+
+let durationOption = document.getElementsByName("duration");
+let durationOptions = document.getElementsByName("duration");
 
 document.addEventListener("DOMContentLoaded", function () {
     let user;
@@ -110,10 +149,32 @@ document.addEventListener("DOMContentLoaded", function () {
     let allPosts = Array.from(document.getElementById("post-container").children);
 
     allPosts.forEach(function (post) {
+        post.style.display = "none";
+    });
+
+    durationOptions.forEach(function (option) {
+        option.addEventListener("change", function () {
+            let duration = null;
+            for (let i = 0; i < durationOptions.length; i++) {
+                if (durationOptions[i].checked) {
+                    duration = durationOptions[i].value;
+                }
+            }
+
+            // Se è stata selezionata una durata, mostra i post con un'animazione
+            if (duration != null) {
+                allPosts.forEach(function (post) {
+                    // Utilizza fadeIn() per mostrare il post gradualmente
+                    $(post).fadeIn();
+                });
+            }
+        });
+    });
+
+    /* allPosts.forEach(function (post) {
         post.addEventListener("click", function() {
             let id = post.querySelectorAll('a')[0].href.split('=')[1];
             let duration;
-            let durationOption = document.getElementsByName("duration");
             for (let i = 0; i < durationOption.length; i++) {
                 if (durationOption[i].checked) {
                     duration = durationOption[i].value;
@@ -134,6 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         });
-    });
+    }); */
 
 });
