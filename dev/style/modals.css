@@ -14,7 +14,6 @@
   
 /* Modal Content/Box */
 .modal-content {
-    display: inline-block;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 0 20px 20px;
@@ -22,34 +21,45 @@
     border-radius: 10px;
     width: 40%; /* Could be more or less, depending on screen size */
     max-height: 60%;
-    overflow-y: auto;
-}
-
-.modal-header {
-    background-color: white;
-    position: fixed;
-    width: 40%;
-    height: 10%;
-    z-index: 1;
+    /*overflow: hidden;*/
 }
 
 /* Modal Content table */
 .modal-content table {
-    margin-top: 10%;
-    overflow-y: initial !important;
+    display: block;
+    margin-top: 5%;
+    padding-top: 0;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .modal-content table thead {
-    z-index: 1;
-    position: sticky !important;
-    top: 19%;
+    position: sticky;
+    display: block;
+    width:100%;
+    margin-top: 0;
 }
 
-/* Modal Content table's rows */
-.modal-content table td {
-    padding: 3% 0;
+.modal-content table tbody {
+    display: block;
+    width: 100%;
+    overflow-y: auto;
 }
-  
+
+.modal-content table tr {
+    width: 100%;
+    display: flex;
+}
+
+.modal-content table td, .modal-content table th {
+    flex-basis: 100%;
+    flex-grow: 2;
+    display: block;
+    padding: 1rem;
+    text-align: center;
+}
+
 /* The Close Button */
 .close {
     color: #aaa;

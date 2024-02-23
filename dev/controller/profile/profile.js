@@ -213,8 +213,8 @@ function printUsersModal(div, userList) {
     actionHeader.setAttribute('scope', 'col');
     actionHeader.innerHTML = "Action";
 
-    tableHead.appendChild(userHeader);
-    tableHead.appendChild(actionHeader);
+    firstRow.appendChild(userHeader);
+    firstRow.appendChild(actionHeader);
 
     tableHead.appendChild(firstRow);
     table.appendChild(tableHead);
