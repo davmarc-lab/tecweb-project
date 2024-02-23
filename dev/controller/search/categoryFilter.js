@@ -22,13 +22,10 @@ $("document").ready(function () {
 
     dropdownItems.forEach(function (item) {
         item.addEventListener('click', function () {
-            // Set 'active' class for the clicked item
-            this.classList.add('active');
             this.hidden = true;
 
             // Set the value of the hidden input
             let selectedValue = String(this.id).split("-").pop();
-            console.log(selectedValue);
             values.innerHTML += "<input type='hidden' id='selected-category" + i + "' name='category' />";
             let value = document.getElementById("selected-category" + i);
             value.setAttribute("value", selectedValue);
@@ -48,7 +45,6 @@ $("document").ready(function () {
         categoryBadges.innerHTML = "";
         dropdownItems.forEach(function (item) {
             item.hidden = false;
-            item.classList.remove('active');
         });
         location.reload();
     })

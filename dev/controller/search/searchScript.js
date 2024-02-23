@@ -1,7 +1,7 @@
 function searchResult() {
     let input = document.getElementById("search-text");
     let key = input.value;
-    let items = Array.from(document.getElementsByClassName("dropdown-item active"));
+    let items = Array.from(document.getElementsByClassName("dropdown-item"));
     if (items == null) {
         console.log("items è null");
     }

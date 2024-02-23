@@ -10,10 +10,6 @@ $("document").ready(function () {
         createButton.classList.add("disabled");
     }
 
-    // Take te badge span
-    let categoryBadge = document.getElementById("category-badge");
-    let categoryDescription = document.getElementById("category-description");
-
     // Add event listener for the input search
     $(elem).on('input', function () {
         // Enable create button if text not empty
@@ -35,25 +31,23 @@ $("document").ready(function () {
 
     // Add event listener to handle dropdown item selection
     let dropdownItems = document.querySelectorAll('.dropdown-item');
-    let value = document.getElementById("selected-category");
+    let categoryBadge = document.getElementById("category-badge");
 
     dropdownItems.forEach(function (item) {
         item.addEventListener('click', function () {
-            // Remove 'active' class from all items
-            dropdownItems.forEach(function (item) {
-                item.classList.remove('active');
-            });
-
-            // Set 'active' class for the clicked item
-            this.classList.add('active');
-
             // Set the value of the hidden input
             let selectedValue = String(this.id).split("-").pop();
+            let value = document.getElementById("selected-category");
+            console.log(value);
+            value.innerHTML = "<input type='hidden' id='selected-category' name='category' />";
             value.setAttribute("value", selectedValue);
 
             // Set the badge value
-            categoryBadge.classList.remove("d-none");
-            categoryDescription.innerHTML = this.innerHTML;
+            categoryBadge.innerHTML = "<p class='badge' id='selected-badge'>";
+            let categoryDescription = document.getElementById("selected-badge");
+            console.log(item.innerHTML);
+            categoryDescription.innerHTML = item.innerHTML;
+            console.log(categoryDescription);
         });
     });
 

@@ -382,7 +382,7 @@ textarea {
     border-radius: 5px !important;
 }
 
-.login-body .form-control:not(input[type="file"]), .signup-body .form-control.form-control:not(input[type="file"]) {
+.login-body .form-control:not(input[type="file"], input[type="checkbox"]), .signup-body .form-control.form-control:not(input[type="file"]) {
     width: 70% !important;
     justify-content: center;
 }
@@ -395,8 +395,20 @@ textarea {
 }
 
 
-#new-post .form-control:not(input[type="file"]) {
+#new-post .form-control:not(input[type="file"], input[type="checkbox"]) {
     padding: 1% 2%;
+}
+
+/* checkbox to make a new post private */
+#new-post input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0 2%;
+}
+
+/* row with the label and the checkbox to make a new post private */
+#new-post .row {
+    margin-bottom: 2%;
 }
 
 .password-field {
@@ -438,6 +450,7 @@ input::file-selector-button {
 }
 
 input[type="submit"] {
+    cursor: pointer;
     background-color: green !important;
     color: white;
     border: none;
@@ -449,6 +462,7 @@ input[type="submit"] {
 }
 
 input[type="reset"] {
+    cursor: pointer;
     background-color: red;
     color: white;
     border: none;
@@ -472,10 +486,10 @@ input[type="reset"] {
 
 #category-search {
     width: 60% !important;
-    height: fit-content;
-    padding: 3%;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+    height: fit-content !important;
+    padding: 3% !important;
+    border: 1px solid lightgray !important;
+    border-radius: 5px !important;
 }
 
 a:not(a[role="button"], .signup-body a, .login-body a) {
@@ -663,6 +677,10 @@ a[role="button"]:hover:not(.btn-following){
     max-height: 300px;
 }
 
+#new-post .scrollable-menu {
+    max-height: 180px;
+}
+
 .dropdown:hover .dropdown-menu {
     display: block;
     overflow-y: auto;
@@ -694,7 +712,7 @@ a[role="button"]:hover:not(.btn-following){
     cursor: pointer;
 }
 
-.dropdown-menu #reset {
+.dropdown-menu a[role="button"] {
     padding: 3% 3% 4%;
 }
 
@@ -711,13 +729,13 @@ a.dropdown-toggle:hover {
     border-color: #006f3c !important;
 }
 
-#category-badges {
+#category-badges, #category-badge {
     display: flex;
     justify-content: space-between;
     margin-left: 10%;
 }
 
-#category-badges > p {
+#category-badges > p, #category-badge > p {
     width: max-content !important;
     margin-right: 5px;
 }
@@ -858,7 +876,7 @@ ul > li {
     border: 1px solid lightgray;
     border-radius: 5px;
     width: 60% !important;
-    padding: 2% 5% 8%;
+    padding: 2% 5% 10%;
 }
 
 #view-post {
