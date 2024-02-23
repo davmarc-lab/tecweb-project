@@ -729,7 +729,7 @@ a.dropdown-toggle:hover {
     border-color: #006f3c !important;
 }
 
-#category-badges, #category-badge {
+#category-badges, #category-badge:not(.posts-container #category-badge) {
     display: flex;
     justify-content: space-between;
     margin-left: 10%;
