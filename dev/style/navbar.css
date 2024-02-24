@@ -21,7 +21,7 @@ body:not(.signup-body, .login-body) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+    /*z-index: 100;*/
     overflow: hidden;
 }
 
@@ -65,7 +65,11 @@ body:not(.signup-body, .login-body) {
     padding: 5px 10px;
 }
 
-#btn-logout {
+#btn-logout > svg {
+    vertical-align: middle;
+}
+
+/*#btn-logout {
     font-family: Arial, Helvetica, sans-serif;
     background-color: transparent !important;
     margin-right: 10px !important;
@@ -78,13 +82,14 @@ body:not(.signup-body, .login-body) {
 
 #btn-logout:hover {
     text-decoration: underline;
-}
+}*/
 
 .navbar-body svg {
     margin-right: 5px;
 }
 
 .nav-item:hover {
+    cursor: pointer;
     text-decoration: underline !important;
 }
 
@@ -159,6 +164,42 @@ body:not(.signup-body, .login-body) {
     background: red;
     color: white;
     scale: 0.8;
+}
+
+.navbar .dropdown {
+    overflow: hidden;
+}
+
+.navbar .dropdown:hover > .dropdown-button {
+    text-decoration: underline;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #015a31;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    height: auto;
+    border-radius: 4px;
+}
+
+.dropdown-content > a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content > a:hover {
+    background-color: #447957;
+}
+
+.dropdown:hover > .dropdown-content {
+    display: block;
 }
 
 @media screen and (max-width: 992px) {
