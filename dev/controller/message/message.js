@@ -1,30 +1,4 @@
-function printAllMessages(div, messages, dst) {
-    // take the current user
-    let src = null;
-    $.ajax({
-        async: false,
-        url: "../model/utils/loggedUser.php",
-        method: "POST",
-        success: function (response) {
-            src = response;
-        }
-    });
-
-    // clear the div
-    div.innerHTML = "";
-
-    // write all messages
-    messages.forEach(elem => {
-        let pMsg = document.createElement('p');
-        if (elem['IdSrc'] == src) {
-            pMsg.classList.add('message-src');
-        } else {
-            pMsg.classList.add('message-dst');
-        }
-        pMsg.innerHTML = elem['Content'];
-        div.appendChild(pMsg);
-    });
-
+function createMessageInput(div, dst) {
     // add text box at the end of the div
     let divUserInput = document.createElement('div');
 
@@ -53,19 +27,75 @@ function printAllMessages(div, messages, dst) {
                 message: messageText,
                 dst: dst,
             },
-            success: function (response) {
-                let pNewMsg = document.createElement('p');
-                pNewMsg.innerHTML = messageText;
-                div.insertBefore(pNewMsg, divUserInput);
+            success: function (srcId) {
+                $.ajax({
+                    url: "../model/utils/profileInfo.php",
+                    method: "POST",
+                    data: {
+                        id: srcId,
+                    },
+                    success: function (response) {
+                        let infoSrc = JSON.parse(response);
+                        let pNewMsg = document.createElement('p');
+                        pNewMsg.innerHTML = infoSrc['Username'] + ": " + messageText;
+                        div.insertBefore(pNewMsg, divUserInput);
 
-                // clear text area
-                areaMessage.value = "";
-                sendMessage.disabled = true;
+                        // clear text area
+                        areaMessage.value = "";
+                        sendMessage.disabled = true;
+                    },
+                });
             }
         });
     });
 
     div.appendChild(divUserInput);
+}
+
+function printAllMessages(div, messages, dst) {
+    // take the current user
+    let src = null;
+    $.ajax({
+        async: false,
+        url: "../model/utils/loggedUser.php",
+        method: "POST",
+        success: function (response) {
+            src = response;
+        }
+    });
+
+    // clear the div
+    div.innerHTML = "";
+
+    // write all messages
+    messages.forEach(elem => {
+        let pMsg = document.createElement('p');
+        if (elem['IdSrc'] == src) {
+            pMsg.classList.add('message-src');
+        } else {
+            pMsg.classList.add('message-dst');
+        }
+        // get source info
+        let user = null;
+        $.ajax({
+            async: false,
+            url: "../model/utils/profileInfo.php",
+            method: "POST",
+            data: {
+                id: elem['IdSrc'],
+            },
+            success: function (response) {
+                user = JSON.parse(response);
+            }
+        });
+        if (user != null) {
+            pMsg.innerHTML = user['Username'] + ": " + elem['Content'];
+            div.appendChild(pMsg);
+        }
+    });
+
+    // crates input for sending messages
+    createMessageInput(div, dst);
 }
 
 function loadMessages(userId) {
@@ -120,6 +150,13 @@ function printAllChats(div, chats) {
     });
 }
 
+function createEmptyChat(dstId) {
+    let newChatSpace = document.getElementById('chat-content');
+    newChatSpace.innerHTML = "";
+
+    createMessageInput(newChatSpace, dstId);
+}
+
 function printFollowUser(modalBody, followList) {
     let usersList = document.createElement('ul');
     followList.forEach(elem => {
@@ -131,8 +168,9 @@ function printFollowUser(modalBody, followList) {
         listElem.addEventListener('click', function () {
             let modal = document.getElementById('modal-new-chat');
             modal.style.display = "none";
-            
+
             // set new space
+            createEmptyChat(elem['IdUser']);
         });
     });
     modalBody.appendChild(usersList);

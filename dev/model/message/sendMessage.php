@@ -14,3 +14,4 @@ $query = "INSERT INTO message (Content, IdSrc, IdDst)
         VALUES ('$message', $src, $dst);";
 
 $dbh->execQuery($query);
+echo ($src);
