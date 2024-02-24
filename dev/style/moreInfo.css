@@ -30,7 +30,7 @@
 
 #private-more-info:hover #explain-private {
     visibility: visible;
-    background-color: whitesmoke;
+    background-color: white;
     color: black;
     border: 1px solid lightslategray;
     border-radius: 5px;
