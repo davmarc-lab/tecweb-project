@@ -759,7 +759,7 @@ a.dropdown-toggle:hover {
     border-radius: 5px;
     font-size: medium;
     font-weight: bold !important;
-    margin: 0 1%;
+    margin: 0 1% 1%;
     float: right;
     width: 2%;
 }
