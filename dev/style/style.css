@@ -59,6 +59,10 @@ main {
     margin: 10% 0;
 }
 
+#edit-profile .container-centered {
+    margin-top: 2% !important;
+}
+
 #changing-text {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 40px;
@@ -361,11 +365,7 @@ textarea {
 }
 
 .edit-profile-box {
-    background-color: #303030;
-    color: white;
-    border-radius: 10px;
-    margin: 1% 10% 1% 1%;
-    padding: 5%;
+    padding: 2% 5% !important;
     height: auto;
     width: 100% !important;
 }
@@ -379,7 +379,7 @@ textarea {
     font-size: medium;
 }
 
-#new-post .form-control, .login-body .form-control, .signup-body .form-control {
+#new-post .form-control, .edit-profile-box .form-control, .login-body .form-control, .signup-body .form-control {
     border: 1px solid lightgray !important;
     border-radius: 5px !important;
 }
@@ -397,7 +397,7 @@ textarea {
 }
 
 
-#new-post .form-control:not(input[type="file"], input[type="checkbox"]) {
+#new-post .form-control:not(input[type="file"], input[type="checkbox"]), .edit-profile-box .form-control:not(input[type="file"]) {
     padding: 1% 2%;
 }
 
@@ -437,6 +437,10 @@ input[type="file"] {
     border-radius: 4px;
     width: 100%;
     margin: 1% 0 4%;
+}
+
+.edit-profile-box input {
+    margin: 1% 0 2% !important;
 }
 
 .signup-body input[type="file"] {
@@ -536,16 +540,13 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
 }
 
 .btn-back {
+    background-color: transparent;
+    color: black;
     margin-right: 2%;
-    padding: 1.8% 1.5% 1.5% 1.8%;
+    padding: 1%;
     border: 1px solid lightgray;
     border-radius: 50%;
-}
-
-#view-post .btn-back {
-    padding: 1% !important;
-    color: black;
-    border: 1px solid lightslategray;
+    height: auto;
 }
 
 .btn-back svg {
@@ -579,10 +580,18 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
 }
 
 .btn-utility {
-    color: white;
-    padding: 2% 2% 1.5%;
+    color: black;
+    width: fit-content;
+    padding: 1%;
+    margin: 0 2% 0 0;
+    border: 1px solid lightgray;
     border-radius: 4px;
     vertical-align: middle;
+}
+
+.btn-utility > svg {
+    vertical-align: middle;
+    align-items: center;
 }
 
 .btn-search {
@@ -874,7 +883,7 @@ ul > li {
     background-color: lightgray;
 }
 
-#new-post {
+#new-post, .edit-profile-box {
     border: 1px solid lightgray;
     border-radius: 5px;
     width: 60% !important;

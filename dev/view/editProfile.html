@@ -8,14 +8,14 @@
     <script src="../controller/editProfile/editProfile.js"></script>
     <title>Edit profile</title>
 </head>
-<body>
-    <div class="container-fluid">
+<body id="edit-profile">
+    <div  class="container-centered">
         <div class="edit-profile-box">
             <section>
-                <section class="utility-buttons">
-                    <a id="edit-back-button" href="profile.html" role="button" class="btn btn-utility" title="Go back">
+                <section class="row utility-buttons">
+                    <a id="edit-back-button" href="profile.html" role="button" class="btn btn-utility-contrast btn-back" title="Go back">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                         </svg>
                     </a>
                     <a id="change-password-button" href="changePassword.html" role="button" class="btn btn-utility" title="Change password">
@@ -25,30 +25,18 @@
                     </a>
                 </section>
                 <form action="#" method="post" id="edit-profile-form" enctype="multipart/form-data">
-                    <div class="mb-2">
-                        <label for="input-image" class="form-label">Upload new icon:</label>
-                        <input type="file" name="icon" id="input-image" accept="image/*" class="form-control" />
-                    </div>
-                    <div class="mb-2">
-                        <label for="input-name" class="form-label">Name:</label>
-                        <input type="text" id="input-name" name="name" class="form-control" />
-                    </div>
-                    <div class="mb-2">
-                        <label for="input-surname" class="form-label">Surname</label>
-                        <input type="text" id="input-surname" name="surname" class="form-control" />
-                    </div>
-                    <div class="mb-2">
-                        <label for="input-username" class="form-label">Username</label>
-                        <input type="text" id="input-username" name="username" class="form-control" />
-                    </div>
-                    <div class="mb-2">
-                        <label for="input-email" class="form-label">Email</label>
-                        <input type="email" id="input-email" name="email" class="form-control" />
-                    </div>
-                    <div class="mb-2">
-                        <label for="input-description" class="form-label">Description *</label>
-                        <textarea id="input-description" name="description" class="form-control" rows="4" form="edit-profile-form"></textarea>
-                    </div>
+                    <label for="input-image" class="form-label">Upload new icon:</label>
+                    <input type="file" name="icon" id="input-image" accept="image/*" class="form-control" />
+                    <label for="input-name" class="form-label">Name:</label>
+                    <input type="text" id="input-name" name="name" class="form-control" />
+                    <label for="input-surname" class="form-label">Surname</label>
+                    <input type="text" id="input-surname" name="surname" class="form-control" />
+                    <label for="input-username" class="form-label">Username</label>
+                    <input type="text" id="input-username" name="username" class="form-control" />
+                    <label for="input-email" class="form-label">Email</label>
+                    <input type="email" id="input-email" name="email" class="form-control" />
+                    <label for="input-description" class="form-label">Description *</label>
+                    <textarea id="input-description" name="description" class="form-control" rows="4" form="edit-profile-form"></textarea>
                     <div class="form-buttons">
                         <label for="reset" class="form-label" hidden>Clear</label>
                         <input id="reset" type="reset" class="btn btn-danger ms-auto m-2" value="Clear" />
