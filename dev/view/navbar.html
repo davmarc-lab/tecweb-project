@@ -26,7 +26,7 @@
     checkNotification();
     setInterval(checkNotification, 5000);
 </script>
-<nav class="navbar sticky-top navbar-expand-md">
+<nav class="navbar">
     <div class="navbar-header">
         <h5 class="navbar-title" id="off-canvas-navbar-label">PageTitle</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -37,8 +37,8 @@
         <span class="bar"></span>
     </a>
     <div class="navbar-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mt-1">
-            <li class="nav-item p-2 mt-1">
+        <ul>
+            <li class="nav-item">
                 <a href="index.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-house" viewBox="0 0 16 16">
@@ -48,7 +48,7 @@
                     Home
                 </a>
             </li>
-            <li class="nav-item p-2 mt-1">
+            <li class="nav-item">
                 <a href="search.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
@@ -58,7 +58,7 @@
                     Search
                 </a>
             </li>
-            <li class="nav-item p-2 mt-1">
+            <li class="nav-item">
                 <a href="notification.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell"
                         viewBox="0 0 16 16" id="bell-white">
@@ -73,7 +73,7 @@
                     Notification
                 </a>
             </li>
-            <li class="nav-item p-2 mt-1">
+            <li class="nav-item">
                 <a href="newPost.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-plus-circle" viewBox="0 0 16 16">
@@ -84,7 +84,7 @@
                     New Post
                 </a>
             </li>
-            <li class="nav-item p-2 mt-1">
+            <li class="nav-item">
                 <a href="profile.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -93,22 +93,21 @@
                     Profile
                 </a>
             </li>
-            <li class="nav-item p-2 mt-1">
+            <li class="nav-item">
                 <!--  -->
                 <form action="">
-                    <button type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    <label for="submit" hidden>Log out</label>
+                    <input id="submit" type="submit" class="btn" name="submit" value="Log out" />
+                        <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                        </svg>
-                        Log out
-                    </button>
+                        </svg>-->
                 </form>
             </li>
-            <li class="nav-item p-2 mt-1">
+            <li class="nav-item">
                 <div class="theme-switch">
                     <input type="checkbox" role="switch" id="switch-theme" />
                     <label for="switch-theme" class="slider"></label>
