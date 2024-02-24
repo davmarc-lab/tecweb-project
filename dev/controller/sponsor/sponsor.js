@@ -172,31 +172,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
-    /* allPosts.forEach(function (post) {
-        post.addEventListener("click", function() {
-            let id = post.querySelectorAll('a')[0].href.split('=')[1];
-            let duration;
-            for (let i = 0; i < durationOption.length; i++) {
-                if (durationOption[i].checked) {
-                    duration = durationOption[i].value;
-                }
-            }
-            if (duration != null) {
-                $.ajax({
-                    async: false,
-                    url: '../model/sponsor/addSponsor.php',
-                    type: 'POST',
-                    data: {
-                        id: id,
-                        duration: duration
-                    },
-                    success: function (res) {
-                        window.location.href = "profile.html";
-                    }
-                });
-            }
-        });
-    }); */
-
 });
