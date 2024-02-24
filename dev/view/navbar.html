@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="../style/navbar.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../controller/utils/themeScript.js"></script>
+<script src="../controller/utils/logout.js"></script>
 <!-- <script src="../controller/navbar/checkNotificationNavbar.js"></script>
  -->
 <script>
@@ -95,9 +96,8 @@
             </li>
             <li class="nav-item">
                 <!--  -->
-                <form action="">
-                    <label for="submit" hidden>Log out</label>
-                    <input id="submit" type="submit" class="btn" name="submit" value="Log out" />
+                    <label for="btn-logout" hidden>Log out</label>
+                    <button id="btn-logout" class="btn">Log out</button>
                         <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -105,7 +105,6 @@
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
                         </svg>-->
-                </form>
             </li>
             <li class="nav-item">
                 <div class="theme-switch">
