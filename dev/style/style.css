@@ -16,6 +16,8 @@ body {
     font-family: sans-serif;
     display: inline-block;
     overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .login-body .container-fluid, .signup-body .container-fluid {
