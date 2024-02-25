@@ -69,21 +69,6 @@ body:not(.signup-body, .login-body) {
     vertical-align: middle;
 }
 
-/*#btn-logout {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: transparent !important;
-    margin-right: 10px !important;
-    border: none !important;
-    border-radius: 0;
-    text-align: center;
-    padding: 0;
-    margin: 0 5px 0 0;
-}
-
-#btn-logout:hover {
-    text-decoration: underline;
-}*/
-
 .navbar-body svg {
     margin-right: 5px;
 }
@@ -196,6 +181,7 @@ body:not(.signup-body, .login-body) {
 
 .dropdown-content > a:hover {
     background-color: #447957;
+    border-radius: 4px;
 }
 
 .dropdown:hover > .dropdown-content {
