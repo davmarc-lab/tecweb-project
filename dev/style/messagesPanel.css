@@ -88,11 +88,18 @@ main {
 }
 
 #list-chat > li {
+    display: flex;
     border: 1px solid lightgray;
     border-radius: 5px;
     margin: 2% 0;
-    padding: 1%;
+    padding: 2%;
     box-shadow: 2px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    align-items: center;
+}
+
+#list-chat > li > img {
+    margin-right: 10px;
 }
 
 .profile-icon {
@@ -102,7 +109,6 @@ main {
 }
 
 #list-chat > li > p:hover {
-    cursor: pointer;
     color: #006f3c;
 }
 

@@ -40,8 +40,10 @@ function createMessageInput(div, dst) {
                     success: function (response) {
                         let infoSrc = JSON.parse(response);
                         let pNewMsg = document.createElement('p');
+                        pNewMsg.classList.add('message-src');
                         pNewMsg.innerHTML = infoSrc['Username'] + ": " + messageText;
-                        div.insertBefore(pNewMsg, divUserInput);
+                        let divMessages = document.getElementById('chat-messages');
+                        divMessages.appendChild(pNewMsg);
 
                         // clear text area
                         areaMessage.value = "";
@@ -133,8 +135,21 @@ function printAllChats(div, chats) {
             success: function (response) {
                 let elem = JSON.parse(response);
 
+                // get media information
+                let profileImg = null;
                 let imgProfile = document.createElement('img');
-                imgProfile.setAttribute('src', 'path/to/image');
+                $.ajax({
+                    url: "../model/utils/getMediaFromId.php",
+                    type: "POST",
+                    data: {
+                        id: elem['IdMedia'],
+                    },
+                    success: function (response) {
+                        profileImg = JSON.parse(response);
+                        imgProfile.setAttribute('src', '../' + profileImg['FilePath']);
+                    }
+                });
+
                 imgProfile.setAttribute('alt', 'User Profile Image');
                 imgProfile.classList.add('profile-icon');
                 newChat.appendChild(imgProfile);
