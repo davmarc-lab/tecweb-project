@@ -4,6 +4,7 @@ function createMessageInput(div, dst) {
     divUserInput.setAttribute('id', 'input-area');
 
     let areaMessage = document.createElement('textarea');
+    areaMessage.setAttribute('rows', '3');
     areaMessage.placeholder = "Write your message here...";
     divUserInput.appendChild(areaMessage);
 
@@ -96,12 +97,13 @@ function printAllMessages(div, messages, dst) {
         }
     });
 
-    // crates input for sending messages
-    createMessageInput(div, dst);
+    // creates input for sending messages
+    let newChatSpace = document.getElementById('chat-content');
+    createMessageInput(newChatSpace, dst);
 }
 
 function loadMessages(userId) {
-    let messagesDiv = document.getElementById('chat-content');
+    let messagesDiv = document.getElementById('chat-messages');
     let messages = null;
     $.ajax({
         url: "../model/message/getMessages.php",

@@ -15,8 +15,8 @@ aside {
     border-radius: 5px;
     margin-left: 5%;
     margin-top: 2%;
-    padding: 2%;
-    width: 20%;
+    padding: 2% 1%;
+    width: 22%;
     height: 82vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -30,25 +30,29 @@ main {
     border-radius: 5px;
     margin-right: 5%;
     margin-top: 2%;
-    padding: 2%;
+    padding: 2% 1%;
     width: 60%;
     height: 82vh;
-    overflow-y: auto;
     overflow-x: hidden;
+}
+
+#chat-content {
+    height: 100%;
 }
 
 #input-area {
     display: flex;
+    justify-content: space-between;
     position: absolute;
     bottom: 0;
-    margin-bottom: 2%;
-    width: 100%;
-    padding: 1%; 
+    width: 98%;
+    padding: 2% 1% 4%; 
     align-items: center;
 }
 
 #input-area > textarea {
     width: 80%;
+    height: 50%;
     text-wrap: wrap;
     padding: 1%;
     border-radius: 5px;
@@ -71,13 +75,14 @@ main {
 
 #input-area > button {
     width: 10%;
-    margin: 0 1%;
+    margin: 0 3%;
     vertical-align: middle;
+    float: right;
 }
 
 #list-chat {
     list-style: none;
-    width: 100%;
+    width: 98%;
     margin: 0.5%;
     padding: 1%;
 }
@@ -85,7 +90,9 @@ main {
 #list-chat > li {
     border: 1px solid lightgray;
     border-radius: 5px;
-    margin: 1% 0;
+    margin: 2% 0;
+    padding: 1%;
+    box-shadow: 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .profile-icon {
@@ -103,14 +110,16 @@ main {
     position: absolute;
     bottom: 0;
     margin: 5% 0;
-    width: 80%;
+    width: 90%;
 }
 
-#chat-content {
+#chat-messages {
+    padding: 2%;
+    height: 80%;
     overflow-y: auto;
 }
 
-#chat-content > p {
+#chat-messages > p {
     padding: 1%;
     line-height: 1.5em;
     border: 1px solid lightgray;
@@ -118,6 +127,6 @@ main {
     margin-bottom: 1%;
 }
 
-#chat-content > .message-src {
+#chat-messages > .message-src {
     background-color: lightgray;
 }
