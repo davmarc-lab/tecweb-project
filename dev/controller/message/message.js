@@ -1,12 +1,14 @@
 function createMessageInput(div, dst) {
     // add text box at the end of the div
     let divUserInput = document.createElement('div');
+    divUserInput.setAttribute('id', 'input-area');
 
     let areaMessage = document.createElement('textarea');
     areaMessage.placeholder = "Write your message here...";
     divUserInput.appendChild(areaMessage);
 
     let sendMessage = document.createElement('button');
+    sendMessage.classList.add('btn', 'btn-primary');
     sendMessage.innerHTML = "Send";
     sendMessage.disabled = areaMessage.value == "";
     divUserInput.appendChild(sendMessage);
@@ -132,6 +134,7 @@ function printAllChats(div, chats) {
                 let imgProfile = document.createElement('img');
                 imgProfile.setAttribute('src', 'path/to/image');
                 imgProfile.setAttribute('alt', 'User Profile Image');
+                imgProfile.classList.add('profile-icon');
                 newChat.appendChild(imgProfile);
 
                 let pText = document.createElement('p');

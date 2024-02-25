@@ -518,7 +518,6 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     color: white !important;
     border: none !important;
     padding: 10px;
-    border: none;
     border-radius: 10px;
     text-decoration: none;
 }
