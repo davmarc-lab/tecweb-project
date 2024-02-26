@@ -16,15 +16,53 @@ function loadProfileInfo(userId) {
 
 function drawProfileInfo(user, isSame) {
     let divProfile = document.getElementById('profile-info').getElementsByClassName('row').item(0);
-    if (isSame) {
-        // create edit button
+    if (!isSame) {
+        // create follow button
         let button = document.createElement('a');
         button.setAttribute('role', 'button');
         button.classList.add("btn");
-        button.innerHTML = "Settings";
-        button.addEventListener("click", function () {
-            window.location.href = "settings.html";
+        $.ajax({
+            url: "../model/utils/checkFollow.php",
+            type: "POST",
+            data: {
+                IdDst: user['IdUser'],
+            },
+            success: function (response) {
+                button.innerHTML = response == 0 ? "Follow" : "Unfollow";
+            }
         });
+
+        button.addEventListener('click', function () {
+            let fileBase = "../model/utils/";
+            if (button.innerHTML == "Unfollow") {
+                // unfollow
+                $.ajax({
+                    async: false,
+                    url: fileBase + "unfollowUserQuery.php",
+                    type: "POST",
+                    data: {
+                        dstUser: user['IdUser'],
+                    },
+                    success: function (response) {
+                        button.innerHTML = "Follow";
+                    }
+                });
+            } else {
+                // follow
+                $.ajax({
+                    async: false,
+                    url: fileBase + "followUserQuery.php",
+                    type: "POST",
+                    data: {
+                        dstUser: user['IdUser'],
+                    },
+                    success: function (response) {
+                        button.innerHTML = "Unfollow";
+                    }
+                });
+            }
+        });
+
         divProfile.appendChild(button);
     }
 

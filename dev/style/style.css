@@ -528,8 +528,9 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
 }
 
 .btn-primary:disabled {
-    background-color: gray !important;
+    background-color: #006f3c !important;
     cursor: not-allowed !important;
+    opacity: 0.5;
 }
 
 .btn-primary:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post {
