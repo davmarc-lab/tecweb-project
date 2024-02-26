@@ -1,0 +1,75 @@
+html[data-bs-theme="dark"] {
+
+    body {
+        /* font-family: Arial, Helvetica, sans-serif; */
+        background-color: #212529;
+        color: white;
+    }
+
+    nav {
+        background-color: #006f3c !important;
+        color: white;
+    }
+
+    .post-card,
+    .card {
+        background-color: #212529;
+        color: white;
+    }
+
+    .btn {
+        background-color: #006f3c !important;
+    }
+
+    .btn-feedback,
+    .comment>a,
+    #index-post-user-id>a,
+    .card>p>a,
+    #private-more-info > svg {
+        color: white;
+    }
+
+    .sponsorized-text {
+        color: #FEAB5D;
+    }
+
+    #text-area-comment {
+        background-color: #212529;
+        color: white;
+    }
+
+    .dropdown-toggle {
+        background-color: #212529 !important;
+        color: white;
+    }
+
+    #search-text,
+    #search-button,
+    #category-search,
+    .dropdown-menu,
+    .dropdown-menu>a,
+    .notification-area>p>a,
+    #new-post>form>input,
+    #new-post>form>textarea {
+        background-color: #212529 !important;
+        color: white;
+    }
+
+    .table-striped {
+        background-color: #2c3034;
+    }
+
+    .table-striped > tbody > tr > td > p > a {
+        color: white !important;
+    }
+    
+    .table-striped tr:nth-child(even), .table-striped > thead > tr > th, .modal-content {
+        background-color: #212529;
+    }
+
+    .table > thead {
+        border: none;
+    }
+
+
+}

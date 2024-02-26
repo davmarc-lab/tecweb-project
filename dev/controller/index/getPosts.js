@@ -99,7 +99,6 @@ function appendPostToContainer(numPostToLoad) {
                 post = sponsorizedPosts[counterSponsorized++];
                 skip = true;
             } else {
-                i++;
                 skip = false;
                 post = posts[i];
             }
@@ -450,7 +449,10 @@ function appendPostToContainer(numPostToLoad) {
 
             // Last instruction
             postsContainer.appendChild(divPost);
-            counter++;
+            if (!skip) {
+                i++;
+                counter++;
+            }
 
         }
     }
