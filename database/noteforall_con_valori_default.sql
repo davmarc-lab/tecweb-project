@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Creato il: Feb 21, 2024 alle 16:55
+-- Creato il: Feb 26, 2024 alle 12:56
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -96,7 +96,8 @@ INSERT INTO `follow` (`Id`, `IdSrc`, `IdDst`) VALUES
 (41, 1, 11),
 (42, 1, 15),
 (43, 1, 6),
-(44, 1, 4);
+(44, 1, 4),
+(46, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -263,8 +264,8 @@ CREATE TABLE `member` (
   `IdUser` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `Surname` varchar(100) NOT NULL,
-  `NumberFollower` int(11) NOT NULL,
-  `NumberPost` int(11) NOT NULL,
+  `NumberFollower` int(11) NOT NULL DEFAULT 0,
+  `NumberPost` int(11) NOT NULL DEFAULT 0,
   `lastseen` datetime DEFAULT NULL,
   `Username` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
@@ -278,14 +279,14 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`IdUser`, `Name`, `Surname`, `NumberFollower`, `NumberPost`, `lastseen`, `Username`, `Email`, `Password`, `Description`, `IdMedia`) VALUES
-(1, 'Mario', 'Rossi', 4, 0, '2024-02-21 10:44:56', 'marros', 'marros@email.com', '$2y$10$IEBjWZs3XOGZktRcDVIUAuxQuECD7CmanLy2w/aRYGWcbXzX9xzCC', NULL, 1),
-(2, 'Riccardo', 'Penazzi', 4, 0, '2024-02-16 13:00:41', 'riki17', 'riccardo.penazzi@studio.unibo.it', '$2y$10$xeoloC4BWE09llxo5rKUF.kXiU6F9yVlvGQBHlzPiThtxl9egCCh6', NULL, 8),
+(1, 'Mario', 'Rossi', 4, 0, '2024-02-26 12:29:41', 'marros', 'marros@email.com', '$2y$10$Dt5DhRWtqApYTnOTU.V3NeGkOebP5n2WZmCEjNpW4QWbsgvFuOcSy', NULL, 1),
+(2, 'Riccardo', 'Penazzi', 4, 0, NULL, 'riki17', 'riccardo.penazzi@studio.unibo.it', '$2y$10$xeoloC4BWE09llxo5rKUF.kXiU6F9yVlvGQBHlzPiThtxl9egCCh6', NULL, 8),
 (3, 'Filippo', 'Pracucci', 2, 0, NULL, 'filprac', 'filippo.pracucci@studio.unibo.it', '$2y$10$lT9Q4TD9bOkkcckQuWIsxO.3y/tzEDdhtJWjth4uIAILQ3Epf71..', NULL, 9),
 (4, 'Davide', 'Marchetti', 2, 0, NULL, 'davmarc', 'davide.marchetti6@studio.unibo.it', '$2y$10$hYPOThyXgMqcUxI2fFUBBeaAMdkZoUikX1mJQMvPQyI6G2tRrU38S', NULL, 10),
 (5, 'Ludovica', 'Verdi', 0, 0, NULL, 'ludoverdi', 'ludoverdi@email.com', '$2y$10$AKM/ANeg0rElvcBaLnXz1Ouo/YHbl9vZqoR3PihD4b69fADny/xM6', NULL, 11),
-(6, 'Federica', 'Gialli', 3, 0, NULL, 'fedegialli', 'fedegialli@email.com', '$2y$10$4.aEOiSRI.iBwO2KKvxmMeiuRbef/AidjwuL2YdJj6YAN.Zd0TniO', NULL, 12),
+(6, 'Federica', 'Gialli', 3, 0, '2024-02-22 17:30:36', 'fedegialli', 'fedegialli@email.com', '$2y$10$4.aEOiSRI.iBwO2KKvxmMeiuRbef/AidjwuL2YdJj6YAN.Zd0TniO', NULL, 12),
 (7, 'Lorenzo', 'Violi', 1, 0, NULL, 'lorenzovioli', 'lorenzovioli@email.com', '$2y$10$XuofQyhaubLyoJEZAfbVruvLzGeSSEb8FAgEz.VN4MJNPzEEmjG6G', NULL, 13),
-(8, 'Mattia', 'Sedia', 2, 0, NULL, 'mattiasedia', 'mattiasedia@email.com', '$2y$10$0mgn8U.KfW3OHpdmbo5sz.EODQAgfYJBN62qU/Bsy88g9nrF2dCjG', NULL, 14),
+(8, 'Mattia', 'Sedia', 3, 0, NULL, 'mattiasedia', 'mattiasedia@email.com', '$2y$10$0mgn8U.KfW3OHpdmbo5sz.EODQAgfYJBN62qU/Bsy88g9nrF2dCjG', NULL, 14),
 (9, 'Francesca', 'Scatola', 1, 0, NULL, 'francescascatola', 'francescascatola@email.com', '$2y$10$F60mSY/2iLkabW.ULC0pMeGX2MynSS14lIr5N4KjtJMawlkNJolPe', NULL, 15),
 (10, 'Valentina', 'Gufo', 0, 0, NULL, 'valegufo', 'valegufo@email.com', '$2y$10$3qM.FgFVWrwcqdhly06g1ed2204zJrNZavEalr.sav1pAJLB.Z3me', NULL, 16),
 (11, 'Beatrice', 'Libro', 2, 0, NULL, 'bealibro', 'bealibro@email.com', '$2y$10$mklVad4UIPfc2VlDoNtsGuQa4YZQF1I5ANOy/0yPs8vhBUim5P0bG', NULL, 17),
@@ -316,7 +317,8 @@ CREATE TABLE `message` (
 INSERT INTO `message` (`IdMsg`, `Content`, `DateTime`, `IdSrc`, `IdDst`) VALUES
 (1, 'prova inserimento', '2024-02-20 16:49:57', 3, 1),
 (2, 'seconda prova', '2024-02-20 16:50:44', 1, 2),
-(3, 'Ultima prova', '2024-02-20 16:51:28', 2, 1);
+(3, 'Ultima prova', '2024-02-20 16:51:28', 2, 1),
+(4, 'Hello\n', '2024-02-24 12:25:36', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -374,15 +376,18 @@ INSERT INTO `notification` (`IdNotification`, `Type`, `Description`, `IsRead`, `
 (61, 'Comment', 'marros added a comment to your post', 1, 2, 12),
 (63, 'Comment', 'marros added a comment to your post', 1, 2, 13),
 (65, 'Comment', 'marros added a comment to your post', 1, 2, 14),
-(69, 'Like', 'marros liked your post', 0, 2, 27),
-(76, 'Follower', 'marros started following you', 0, 2, 35),
+(69, 'Like', 'marros liked your post', 1, 2, 27),
+(76, 'Follower', 'marros started following you', 1, 2, 35),
 (78, 'Follower', 'marros started following you', 0, 13, 37),
 (79, 'Follower', 'marros started following you', 0, 3, 38),
 (81, 'Follower', 'marros started following you', 0, 16, 40),
 (82, 'Follower', 'marros started following you', 0, 11, 41),
 (83, 'Follower', 'marros started following you', 0, 15, 42),
 (84, 'Follower', 'marros started following you', 0, 6, 43),
-(85, 'Follower', 'marros started following you', 0, 4, 44);
+(85, 'Follower', 'marros started following you', 0, 4, 44),
+(95, 'Comment', 'marros added a comment to your post', 0, 16, 15),
+(96, 'Follower', 'marros started following you', 0, 8, 46),
+(97, 'Like', 'marros liked your post', 0, 16, 36);
 
 -- --------------------------------------------------------
 
@@ -410,7 +415,7 @@ CREATE TABLE `post` (
 
 INSERT INTO `post` (`IdPost`, `Title`, `Description`, `NumberVote`, `NumberComment`, `Date`, `Private`, `IdUser`, `IdMedia`, `IdPreview`, `IdCategory`) VALUES
 (1, 'Appunti del corso di robotica avanzata', 'Questo post contiene dettagliati appunti del corso di robotica avanzata, una risorsa preziosa per gli appassionati di ingegneria robotica e gli studenti che stanno seguendo il corso. Gli appunti coprono argomenti avanzati nel campo della robotica, fornendo una panoramica approfondita delle ultime teorie, tecnologie e sviluppi nel settore. I contenuti degli appunti includono: - Introduzione ai Concetti Avanzati: Un\'analisi dettagliata dei concetti chiave introdotti nel corso, compresi algoritmi avanzati, tecniche di controllo e principi di progettazione avanzati. - Studio delle Ultime Tecnologie: Esplorazione delle tecnologie emergenti nel campo della robotica avanzata, compresi sensori di ultima generazione, attuatori avanzati e piattaforme hardware/software all\'avanguardia. - Progetti Pratici e Studi di Caso: Una raccolta di progetti pratici e studi di caso che dimostrano l\'applicazione pratica dei concetti appresi nel corso. Questi progetti forniscono insight sulle sfide reali e sulle soluzioni innovative nel campo della robotica. - Risorse Aggiuntive: Collegamenti a risorse aggiuntive come libri consigliati, articoli accademici e video tutorial per approfondire ulteriormente la comprensione degli argomenti trattati nel corso. - Questi appunti mirano a consolidare e ampliare la conoscenza acquisita durante il corso di robotica avanzata, offrendo un punto di riferimento completo per gli studenti e gli appassionati che desiderano approfondire la propria comprensione di questo campo in continua evoluzione.', 1, 3, '2024-01-18 11:44:38', 0, 1, 6, 7, 7),
-(3, 'Appunti analisi 1 - ingegneria ', 'Questo post contiene appunti dettagliati dedicati al corso di Analisi 1, focalizzato sulle applicazioni specifiche e i concetti fondamentali rilevanti per gli studenti di ingegneria. Gli appunti coprono una vasta gamma di argomenti, offrendo chiarimenti, esempi pratici e risorse utili per consolidare la comprensione di Analisi 1 nel contesto dell\'ingegneria.\r\n\r\nI principali contenuti degli appunti includono:\r\n\r\nFondamenti Teorici di Analisi 1: Una spiegazione approfondita dei principi fondamentali dell\'Analisi 1, con un focus particolare sugli aspetti rilevanti per gli studenti di ingegneria.\r\n\r\nEsempi Applicati: Esempi dettagliati e applicati che dimostrano l\'utilizzo pratico dei concetti di Analisi 1 in contesti ingegneristici specifici. Questi esempi aiutano gli studenti a collegare la teoria all\'applicazione pratica.\r\n\r\nRisorse Utili: Collegamenti a risorse aggiuntive, come libri di testo consigliati, guide online e tutorial video che possono supportare ulteriormente lo studio di Analisi 1.\r\n\r\nMetodi di Risoluzione Problemi: Suggerimenti e strategie per affrontare problemi comuni che gli studenti potrebbero incontrare durante lo studio di Analisi 1, con un focus particolare su come applicare queste competenze nell\'ambito dell\'ingegneria.\r\n\r\nQuesti appunti sono progettati per essere uno strumento di studio completo, offrendo un supporto pratico e teorico agli studenti di ingegneria impegnati nel corso di Analisi 1.', 0, 0, '2024-01-18 12:29:19', 0, 16, 23, 24, NULL),
+(3, 'Appunti analisi 1 - ingegneria ', 'Questo post contiene appunti dettagliati dedicati al corso di Analisi 1, focalizzato sulle applicazioni specifiche e i concetti fondamentali rilevanti per gli studenti di ingegneria. Gli appunti coprono una vasta gamma di argomenti, offrendo chiarimenti, esempi pratici e risorse utili per consolidare la comprensione di Analisi 1 nel contesto dell\'ingegneria.\r\n\r\nI principali contenuti degli appunti includono:\r\n\r\nFondamenti Teorici di Analisi 1: Una spiegazione approfondita dei principi fondamentali dell\'Analisi 1, con un focus particolare sugli aspetti rilevanti per gli studenti di ingegneria.\r\n\r\nEsempi Applicati: Esempi dettagliati e applicati che dimostrano l\'utilizzo pratico dei concetti di Analisi 1 in contesti ingegneristici specifici. Questi esempi aiutano gli studenti a collegare la teoria all\'applicazione pratica.\r\n\r\nRisorse Utili: Collegamenti a risorse aggiuntive, come libri di testo consigliati, guide online e tutorial video che possono supportare ulteriormente lo studio di Analisi 1.\r\n\r\nMetodi di Risoluzione Problemi: Suggerimenti e strategie per affrontare problemi comuni che gli studenti potrebbero incontrare durante lo studio di Analisi 1, con un focus particolare su come applicare queste competenze nell\'ambito dell\'ingegneria.\r\n\r\nQuesti appunti sono progettati per essere uno strumento di studio completo, offrendo un supporto pratico e teorico agli studenti di ingegneria impegnati nel corso di Analisi 1.', 1, 1, '2024-01-18 12:29:19', 0, 16, 23, 24, NULL),
 (4, 'Appunti di ricerca operativa - terzo anno ISI', 'Questo post raccoglie appunti approfonditi relativi al corso di Ricerca Operativa tenuto presso l\'Istituto Superiore di Informatica (ISI) durante il terzo anno di studi. Gli appunti sono concepiti per fornire agli studenti un\'ampia comprensione degli argomenti trattati nel corso, offrendo chiarimenti, esempi pratici e risorse utili per la preparazione agli esami.\r\n\r\nI principali contenuti degli appunti includono:\r\n\r\nIntroduzione alla Ricerca Operativa: Un\'analisi dettagliata delle basi concettuali della Ricerca Operativa, con un\'enfasi particolare sulle sue applicazioni pratiche e impatti nel contesto dell\'informatica.\r\n\r\nMetodi di Ottimizzazione: Approfondimento dei metodi di ottimizzazione utilizzati nella Ricerca Operativa, compresi algoritmi di programmazione lineare, programmazione intera e tecniche di programmazione dinamica.\r\n\r\nAnalisi di Sensibilità: Spiegazioni dettagliate sull\'analisi di sensibilità e il suo ruolo nella valutazione delle decisioni strategiche in situazioni complesse.\r\n\r\nModellazione dei Problemi: Guida pratica alla modellazione dei problemi reali in scenari che richiedono soluzioni di Ricerca Operativa. Gli esempi illustrano come tradurre situazioni complesse in modelli matematici risolvibili.\r\n\r\nCasi di Studio e Applicazioni Pratiche: Esplorazione di casi di studio rilevanti e applicazioni pratiche della Ricerca Operativa nell\'ambito dell\'Informatica e oltre.\r\n\r\nQuesti appunti sono destinati a fornire un\'utile risorsa di studio per gli studenti del terzo anno presso l\'ISI, facilitando la comprensione dei concetti chiave della Ricerca Operativa e supportando la preparazione agli esami.', 0, 0, '2024-01-18 12:33:06', 0, 16, 25, 26, 1),
 (5, 'Fisica tecnica - esercizi completi ', 'Questo post è una raccolta completa di esercizi di Fisica Tecnica, progettata per offrire agli studenti un\'opportunità pratica di applicare i concetti teorici appresi durante il corso. Gli esercizi coprono una vasta gamma di argomenti fondamentali in Fisica Tecnica e sono strutturati per fornire una comprensione approfondita e un\'abilità pratica nella risoluzione di problemi.\r\n\r\nGli argomenti trattati includono, ma non sono limitati a:\r\n\r\nTrasmissione del Calore: Esercizi che coinvolgono la conduzione, la convezione e l\'irraggiamento termico, con applicazioni pratiche in sistemi di isolamento termico e scambio di calore.\r\n\r\nTermodinamica Applicata: Problemi che esplorano cicli termodinamici, leggi della termodinamica, e applicazioni pratiche nell\'ottimizzazione di processi energetici.\r\n\r\nFluidodinamica Applicata: Esercizi che coinvolgono la dinamica dei fluidi, flusso in condotte, perdite di carico e applicazioni nella progettazione di sistemi di raffreddamento.\r\n\r\nApplicazioni Pratiche di Fisica Tecnica: Esercizi basati su situazioni reali in cui gli studenti devono applicare i principi della Fisica Tecnica per risolvere problemi specifici in ambiti come l\'edilizia, l\'energia e l\'ambiente.\r\n\r\nTrasmissione del Suono e dell\'Acustica: Problemi che coinvolgono la propagazione del suono, la riflessione e l\'assorbimento acustico, con applicazioni pratiche nella progettazione di ambienti acusticamente confortevoli.\r\n\r\nGli esercizi sono accompagnati da soluzioni dettagliate e spiegazioni passo-passo per consentire agli studenti di comprendere appieno i processi di risoluzione. Questa risorsa mira a essere un supporto completo per lo studio e la preparazione agli esami di Fisica Tecnica.', 0, 0, '2024-01-18 12:36:06', 0, 7, 27, 28, 2),
 (6, 'Elettronica 1 - appunti di elettronica 1', 'Questo post fornisce una dettagliata raccolta di appunti dedicati al corso di Elettronica 1. Gli appunti sono pensati per gli studenti che stanno seguendo questo corso e mirano a offrire una guida completa attraverso i concetti fondamentali dell\'elettronica.\r\n\r\nGli argomenti trattati includono, ma non sono limitati a:\r\n\r\nTeoria dei Circuiti: Concetti di base sui circuiti elettrici, leggi di Kirchhoff, analisi di circuiti in corrente continua (DC) e in corrente alternata (AC).\r\n\r\nComponenti Elettronici: Descrizione e caratteristiche di componenti fondamentali come resistenze, condensatori, induttori, diodi, transistor, e amplificatori operazionali.\r\n\r\nAnalisi di Circuiti Trifase: Studio dei sistemi di alimentazione elettrica trifase, equilibrio di potenza, e analisi dei circuiti trifase.\r\n\r\nElettronica Digitale: Introduzione ai concetti di logica digitale, porte logiche, flip-flop, contatori, e circuiti combinatori.\r\n\r\nAmplificatori e Circuiti di Potenza: Approfondimento sugli amplificatori elettronici e sui circuiti di potenza, con un focus sulle applicazioni pratiche e sulle caratteristiche di progettazione.\r\n\r\nFiltri Elettronici: Studio di filtri attivi e passivi, con un\'attenzione particolare ai filtri di primo e secondo ordine e alle loro applicazioni.\r\n\r\nGli appunti sono organizzati in modo chiaro e strutturato, con esempi pratici e illustrazioni per facilitare la comprensione degli studenti. Ogni sezione è corredata da esercizi e problemi risolti per permettere agli studenti di mettere in pratica quanto appreso durante il corso. Questa risorsa è ideale per consolidare la conoscenza in Elettronica 1 e prepararsi efficacemente per gli esami.', 0, 0, '2024-01-18 12:38:27', 0, 7, 29, 30, 8),
@@ -425,6 +430,25 @@ INSERT INTO `post` (`IdPost`, `Title`, `Description`, `NumberVote`, `NumberComme
 (15, 'Fisica 3 - appunti avanzati di fisica 3 ', 'Benvenuti in un viaggio appassionante attraverso la fisica avanzata! Questo post offre appunti dettagliati e accurati per il corso di Fisica 3, progettati per coloro che cercano una comprensione approfondita di concetti avanzati della fisica. Preparati a immergerti in teorie avanzate, esperimenti sofisticati e applicazioni pratiche che porteranno la tua comprensione della fisica al livello successivo.\r\n\r\nArgomenti Trattati:\r\n\r\nMeccanica Quantistica:\r\n\r\nPrincipi fondamentali della meccanica quantistica.\r\nEquazione di Schrödinger e stati quantici.\r\nEsperimenti fondamentali: doppia fenditura, intrappolamento quantico.\r\nTeoria dei Campi:\r\n\r\nConcetti di base della teoria dei campi.\r\nCampi scalari, vettoriali e tensoriali.\r\nInterazioni fondamentali e particelle elementari.\r\nRelatività Ristretta e Generale:\r\n\r\nPrincipi della relatività.\r\nTrasformazioni di Lorentz e dilatazione del tempo.\r\nCurvatura dello spazio-tempo secondo Einstein.\r\nFisica delle Particelle:\r\n\r\nStudio delle particelle subatomiche.\r\nAcceleratori di particelle e rivelatori.\r\nModelli standard e oltre.\r\nTermodinamica Statistica:\r\n\r\nFondamenti della termodinamica statistica.\r\nEntropia, distribuzioni di probabilità e leggi del moto browniano.\r\nApplicazioni alle transizioni di fase.\r\nOnde Elettromagnetiche Avanzate:\r\n\r\nEquazioni di Maxwell in forma avanzata.\r\nProprietà delle onde elettromagnetiche.\r\nApplicazioni alle onde elettromagnetiche avanzate.\r\nTeoria del Caos e Sistemi Complessi:\r\n\r\nPrincipi della teoria del caos.\r\nDinamica dei sistemi complessi.\r\nApplicazioni alla modellazione del mondo reale.\r\nApplicazioni Pratiche e Progetti Avanzati:\r\n\r\nEsperimenti e progetti avanzati di laboratorio.\r\nApplicazioni pratiche delle teorie avanzate.\r\nProspettive future e nuove frontiere della fisica.\r\nPreparati per un\'esperienza di apprendimento stimolante, dove la fisica diventa una vera e propria avventura intellettuale. Questi appunti avanzati ti guideranno attraverso le sfide concettuali e le meraviglie della fisica, fornendo una base solida per coloro che desiderano approfondire la loro comprensione della disciplina.', 0, 0, '2024-01-18 13:02:00', 0, 3, 47, 48, 2),
 (16, 'Analisi dei dati - analisi dei dati con supporto di strumenti informatici', 'Benvenuti in un viaggio nel mondo dell\'analisi dei dati potenziato dalla potenza degli strumenti informatici! Questo post offre una panoramica completa e pratica sull\'analisi dei dati, con un focus particolare sull\'utilizzo di strumenti informatici avanzati per ottenere risultati significativi. Che tu sia uno studente, un professionista o un appassionato di dati, queste informazioni ti guideranno attraverso le fondamenta e le applicazioni avanzate dell\'analisi dei dati.\r\n\r\nArgomenti Trattati:\r\n\r\nIntroduzione all\'Analisi dei Dati:\r\n\r\nConcetti fondamentali dell\'analisi dei dati.\r\nImportanza dell\'analisi dei dati nelle decisioni aziendali e scientifiche.\r\nStrumenti Informatici per l\'Analisi dei Dati:\r\n\r\nPanoramica di strumenti come Python, R, e SQL per l\'analisi dei dati.\r\nUtilizzo di librerie e framework specializzati.\r\nRaccolta e Preparazione dei Dati:\r\n\r\nMetodi per raccogliere dati da diverse fonti.\r\nTecniche di pulizia e preparazione dei dati per l\'analisi.\r\nAnalisi Statistica:\r\n\r\nMetodi statistici di base e avanzati.\r\nInterpretazione dei risultati statistici.\r\nVisualizzazione dei Dati:\r\n\r\nRuolo chiave della visualizzazione dei dati.\r\nCreazione di grafici e visualizzazioni efficaci.\r\nApprendimento Automatico e Analisi Predittiva:\r\n\r\nConcetti di base di machine learning.\r\nApplicazioni dell\'analisi predittiva.\r\nAnalisi dei Grandi Dati:\r\n\r\nGestione e analisi di grandi volumi di dati.\r\nApprocci distribuiti e tecnologie Big Data.\r\nProgetti Pratici di Analisi dei Dati:\r\n\r\nEsempi pratici di progetti di analisi dei dati.\r\nApplicazioni reali e casi di studio.\r\nTendenze Future e Sfide:\r\n\r\nSviluppi futuri nell\'analisi dei dati.\r\nSfide etiche e legali associate all\'analisi dei dati.\r\nSe sei interessato a scoprire il potenziale dell\'analisi dei dati supportata da strumenti informatici avanzati, questo post ti offrirà una guida completa per esplorare le metodologie, gli strumenti e le applicazioni di questa disciplina in continua evoluzione. Preparati per un\'avventura nell\'analisi dei dati che trasformerà la tua prospettiva sulla gestione e sfruttamento delle informazioni.', 1, 1, '2024-01-18 13:04:10', 0, 3, 49, 50, 12),
 (17, 'Primo post privato', 'Primo post privato, vediamo', 0, 0, '2024-02-21 16:54:19', 1, 1, 135, 136, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `sponsor`
+--
+
+CREATE TABLE `sponsor` (
+  `IdSponsor` int(11) NOT NULL,
+  `Expiration` date NOT NULL,
+  `IdPost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `sponsor`
+--
+
+INSERT INTO `sponsor` (`IdSponsor`, `Expiration`, `IdPost`) VALUES
+(18, '2024-02-29', 17);
 
 -- --------------------------------------------------------
 
@@ -454,7 +478,8 @@ INSERT INTO `usercomment` (`IdComment`, `CommentText`, `IdPost`, `IdUser`) VALUE
 (11, 'dont care', 8, 1),
 (12, 'sadad', 8, 1),
 (13, 'ahcak', 10, 1),
-(14, 'ajdha', 10, 1);
+(14, 'ajdha', 10, 1),
+(15, 'Wow utili', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -477,7 +502,8 @@ INSERT INTO `vote` (`IdVote`, `IdPost`, `IdUser`) VALUES
 (18, 9, 1),
 (19, 14, 1),
 (21, 16, 1),
-(27, 10, 1);
+(27, 10, 1),
+(36, 3, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -538,6 +564,13 @@ ALTER TABLE `post`
   ADD KEY `IdCategory` (`IdCategory`);
 
 --
+-- Indici per le tabelle `sponsor`
+--
+ALTER TABLE `sponsor`
+  ADD PRIMARY KEY (`IdSponsor`),
+  ADD KEY `IdPost` (`IdPost`);
+
+--
 -- Indici per le tabelle `usercomment`
 --
 ALTER TABLE `usercomment`
@@ -567,7 +600,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT per la tabella `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT per la tabella `media`
@@ -585,13 +618,13 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT per la tabella `message`
 --
 ALTER TABLE `message`
-  MODIFY `IdMsg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdMsg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `IdNotification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `IdNotification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT per la tabella `post`
@@ -600,16 +633,22 @@ ALTER TABLE `post`
   MODIFY `IdPost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT per la tabella `sponsor`
+--
+ALTER TABLE `sponsor`
+  MODIFY `IdSponsor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT per la tabella `usercomment`
 --
 ALTER TABLE `usercomment`
-  MODIFY `IdComment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IdComment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT per la tabella `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `IdVote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `IdVote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Limiti per le tabelle scaricate
@@ -649,6 +688,12 @@ ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`IdMedia`) REFERENCES `media` (`IdMedia`),
   ADD CONSTRAINT `post_ibfk_3` FOREIGN KEY (`IdPreview`) REFERENCES `media` (`IdMedia`),
   ADD CONSTRAINT `post_ibfk_4` FOREIGN KEY (`IdCategory`) REFERENCES `category` (`IdCategory`);
+
+--
+-- Limiti per la tabella `sponsor`
+--
+ALTER TABLE `sponsor`
+  ADD CONSTRAINT `sponsor_ibfk_1` FOREIGN KEY (`IdPost`) REFERENCES `post` (`IdPost`);
 
 --
 -- Limiti per la tabella `usercomment`
