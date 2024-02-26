@@ -226,6 +226,20 @@ main {
     height: auto;
 }
 
+.post-card > .post-row {
+    margin: 1% 0 2%;
+}
+
+.sponsorized {
+    border: 2px solid rgb(252, 38, 0);
+}
+
+.sponsorized-text {
+    color: #0B5ED7;
+    float: right;
+    font-style: italic;
+}
+
 .card:not(.post-card) {
     /*width: 18rem;*/
     width: 33%;

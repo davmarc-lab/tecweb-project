@@ -105,6 +105,9 @@ function appendPostToContainer(numPostToLoad) {
             }
             let divPost = document.createElement("div");
             divPost.classList = "post-card";
+            if (skip) {
+                divPost.classList.add("sponsorized");
+            }
             divPost.setAttribute("id", "post-" + post["IdPost"]);
 
             // Post info query
@@ -129,10 +132,12 @@ function appendPostToContainer(numPostToLoad) {
             let pathPostPreview = "../" + postInfo[2]["PreviewPath"];
 
             let divRow = document.createElement("div");
-            divRow.classList = "row";
+            divRow.classList = "post-row";
 
             // creates profile image div in the row div
             let divProfileImage = document.createElement("div");
+            divProfileImage.classList.add("col");
+
             let imgProfile = document.createElement("img");
             imgProfile.setAttribute("src", pathImgAuthor);
             imgProfile.classList.add("profile-icon");
@@ -143,17 +148,20 @@ function appendPostToContainer(numPostToLoad) {
             divPost.appendChild(divRow);
 
             // append user profile page link to row div
-            let divUser = document.createElement("div");
+            //let divUser = document.createElement("div");
             let pUser = document.createElement("p");
             pUser.setAttribute("id", "index-post-user-id");
             pUser.appendChild(drawLinkUsernameElement(author["IdUser"], author["Username"]));
-            divUser.appendChild(pUser);
+            divProfileImage.appendChild(pUser);
+            //divRow.appendChild(divUser);
             if (skip) {
+                let divSponsor = document.createElement("div");
                 let pSponsor = document.createElement("p");
+                pSponsor.classList = "sponsorized-text";
                 pSponsor.innerHTML = "Sponsorized";
-                divUser.appendChild(pSponsor);
+                divSponsor.appendChild(pSponsor);
+                divRow.appendChild(divSponsor);
             }
-            divRow.appendChild(divUser);
 
             // add image preview to the post div
             if (pathPostPreview != "") {
