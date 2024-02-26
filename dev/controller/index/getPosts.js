@@ -60,6 +60,8 @@ $("document").ready(function () {
 
 let posts = null;
 let postInfo = null;
+let sponsorizedPosts = null;
+let counterSponsorized = 0;
 
 $.ajax({
     async: false,
@@ -70,15 +72,37 @@ $.ajax({
     }
 });
 
+$.ajax({
+    async: false,
+    url: "../model/index/getSponsorizedPosts.php",
+    type: "POST",
+    success: function (response) {
+        console.log(response);
+        sponsorizedPosts = JSON.parse(response);
+        console.log(sponsorizedPosts);
+    }
+});
+
+let skip = false;
+
 function appendPostToContainer(numPostToLoad) {
     console.log("GG");
     const postsContainer = document.getElementById("posts-container");
     if (posts != null) {
         let currentCounter = counter;
         // Load the posts in the container
-        for (let i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length; i++) {
-            let post = posts[i];
-
+        for (let i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length; ) {
+            console.log(counter);
+            let post;
+            if (i % 5 == 0 && currentCounter < sponsorizedPosts.length && skip == false && counter > 0) {
+                console.log("Sponsor");
+                post = sponsorizedPosts[counterSponsorized++];
+                skip = true;
+            } else {
+                i++;
+                skip = false;
+                post = posts[i];
+            }
             let divPost = document.createElement("div");
             divPost.classList = "post-card";
             divPost.setAttribute("id", "post-" + post["IdPost"]);
@@ -124,6 +148,11 @@ function appendPostToContainer(numPostToLoad) {
             pUser.setAttribute("id", "index-post-user-id");
             pUser.appendChild(drawLinkUsernameElement(author["IdUser"], author["Username"]));
             divUser.appendChild(pUser);
+            if (skip) {
+                let pSponsor = document.createElement("p");
+                pSponsor.innerHTML = "Sponsorized";
+                divUser.appendChild(pSponsor);
+            }
             divRow.appendChild(divUser);
 
             // add image preview to the post div
@@ -273,7 +302,7 @@ function appendPostToContainer(numPostToLoad) {
             if (textDescription.length > 200) {
                 textDescription = textDescription.substr(0, 200);
                 textDescription += "...";
-            } 
+            }
             descriptionPost.innerHTML = textDescription;
 
             // prepare all the elements of the card
@@ -407,6 +436,7 @@ function appendPostToContainer(numPostToLoad) {
             // Last instruction
             postsContainer.appendChild(divPost);
             counter++;
+
         }
     }
 
