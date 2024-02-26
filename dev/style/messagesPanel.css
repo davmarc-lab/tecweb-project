@@ -95,6 +95,10 @@ main {
     align-items: center;
 }
 
+#list-chat > li:hover {
+    background-color: rgba(0.4, 0.4, 0.4, 0.1);
+}
+
 #list-chat > li > img {
     margin-right: 10px;
 }

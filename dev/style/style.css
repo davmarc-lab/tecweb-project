@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com");
 @import url("https://fonts.gstatic.com");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
+@import url("darkStyle.css");
 
 body {
     font-family: 'Thasadith', sans-serif;
@@ -721,6 +722,7 @@ a[role="button"]:hover:not(.btn-following){
     border: 1px solid lightslategray !important;
     border-radius: 5px !important;
     padding: 10% 4%;
+    margin-left: 6px;
     height: auto;
     width: 120%;
     font-size: medium;

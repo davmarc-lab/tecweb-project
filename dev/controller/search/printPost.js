@@ -139,7 +139,7 @@ function createPostDescription(postDescription) {
 
 function createViewPostButton(postId) {
     let a = document.createElement("a");
-    a.setAttribute("href", "viewPost.html?id=" + postId);
+    a.setAttribute("href", "post.html?id=" + postId);
     a.setAttribute("role", "button");
     a.classList.add('btn', 'btn-primary', 'view-post');
     a.innerHTML = "View post";
