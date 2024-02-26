@@ -1,6 +1,6 @@
-const btn_hamb = document.querySelector('.hamburger');
-const nav = document.querySelector('.navbar-body');
+const hamb = document.querySelector('.toggle-button');
+const nav = document.querySelector('.navbar');
 
-btn_hamb.addEventListener('click', function () {
+hamb.addEventListener('click', function () {
     nav.classList.toggle('is-active');
 });

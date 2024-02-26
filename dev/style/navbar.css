@@ -29,7 +29,7 @@ body:not(.signup-body, .login-body) {
 .navbar.is-active {
     position: fixed;
     top: 0;
-    width: 30%;
+    width: 100%;
     height: 100%;
     display: block;
     background-color: #006f3c;
@@ -44,18 +44,20 @@ body:not(.signup-body, .login-body) {
 }
 
 .navbar.is-active .navbar-body {
-    width: 30%;
+    width: 100%;
 }
 
 .navbar.is-active .navbar-body ul {
-    display: block;
+    display: flex;
     width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .navbar.is-active .navbar-body li {
-    width: 100%;
     display: block;
-    text-align: left;
+    width: fit-content;
     line-height: 1.5em;
     padding-bottom: 2%;
 }
@@ -96,6 +98,7 @@ body:not(.signup-body, .login-body) {
     color: white;
     font-style: normal;
     font-weight: normal;
+    width: inherit;
     text-decoration: none !important;
     display: flex;
     align-items: center;
@@ -161,16 +164,23 @@ body:not(.signup-body, .login-body) {
 }
 
 .toggle-button {
+    display: none;
     float: right;
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
     height: 20px;
-    margin: 20% 2%;
+    margin: 2%;
     padding: 2%;
     border: 1px solid white;
     border-radius: 10px;
     z-index: 1;
+}
+
+.navbar.is-active .toggle-button {
+    display: flex;
+    float: right;
+    margin: 4%;
 }
 
 .toggle-button .bar {
