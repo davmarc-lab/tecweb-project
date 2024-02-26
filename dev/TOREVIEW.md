@@ -11,3 +11,5 @@
     - submit button for logout
  - [ ] `view/message.html`
     - check send messages (set class for the `p` element)
+ - [ ] `view/signup.html`
+    - insert query gives error => missing NumberFollower, NumberPost, preview image not set (NULL)

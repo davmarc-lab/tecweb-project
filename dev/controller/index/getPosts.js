@@ -372,10 +372,9 @@ function appendPostToContainer(numPostToLoad) {
 
             // add submit button
             let btnSendComment = document.createElement("button");
+            btnSendComment.disabled = true;
             btnSendComment.classList = "btn btn-primary";
             btnSendComment.innerHTML = "Comment";
-            btnSendComment.setAttribute("aria-disabled", true);
-            btnSendComment.classList.add("disabled");
 
             // add event listener to comment
             btnSendComment.addEventListener('click', function () {
@@ -383,7 +382,7 @@ function appendPostToContainer(numPostToLoad) {
                 let textComment = areaComment.value;
                 $.ajax({
                     async: false,
-                    url: "indexQuery/addComment.php",
+                    url: "../model/utils/addComment.php",
                     type: "POST",
                     data: {
                         idPost: post["IdPost"],
@@ -400,10 +399,21 @@ function appendPostToContainer(numPostToLoad) {
                 let user = null;
                 $.ajax({
                     async: false,
-                    url: "indexQuery/getCurrentUser.php",
+                    url: "../model/utils/loggedUser.php",
                     type: "POST",
                     success: function (response) {
-                        user = JSON.parse(response);
+                        console.log(response);
+                        $.ajax({
+                            async: false,
+                            url: "../model/utils/profileInfo.php",
+                            method: "POST",
+                            data: {
+                                id: response,
+                            },
+                            success: function (res) {
+                                user = JSON.parse(res);
+                            }
+                        });
                     },
                 });
 
@@ -414,17 +424,14 @@ function appendPostToContainer(numPostToLoad) {
                 }
                 // clear textarea
                 areaComment.value = "";
-                btnSendComment.setAttribute("aria-disabled", true);
-                btnSendComment.classList.add("disabled");
+                btnSendComment.setAttribute('disabled', true);
             });
 
             areaComment.addEventListener('input', function () {
                 if (this.value.length <= 0) {
-                    btnSendComment.setAttribute("aria-disabled", true);
-                    btnSendComment.classList.add("disabled");
+                    btnSendComment.disabled = true;
                 } else {
-                    btnSendComment.setAttribute("aria-disabled", false);
-                    btnSendComment.classList.remove("disabled");
+                    btnSendComment.disabled = false;
                 }
             });
 
