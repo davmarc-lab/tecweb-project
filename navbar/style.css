@@ -21,9 +21,7 @@
 .mobile-nav {
     position: fixed;
     top: 0;
-    left: 100%;
     width: 100%;
-    min-height: 100vh;
     display: block;
     background-color: black;
     padding-top: 300px;
@@ -32,7 +30,7 @@
 }
 
 .mobile-nav.is-active {
-    left: 0;
+    right: 0;
 }
 
 .mobile-nav a {

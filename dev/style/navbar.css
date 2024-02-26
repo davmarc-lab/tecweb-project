@@ -14,7 +14,7 @@ body:not(.signup-body, .login-body) {
     border: none;
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 80px;
     margin-bottom: 80px;
@@ -23,9 +23,48 @@ body:not(.signup-body, .login-body) {
     align-items: center;
     /*z-index: 100;*/
     overflow: hidden;
+    transition: 0.4s;
+}
+
+.navbar.is-active {
+    position: fixed;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    display: block;
+    background-color: #006f3c;
+    transition: 0.4s;
+    z-index: 1;
+    right: 0;
+}
+
+.navbar.is-active .navbar-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar.is-active .navbar-body {
+    width: 30%;
+}
+
+.navbar.is-active .navbar-body ul {
+    display: block;
+    width: 100%;
+}
+
+.navbar.is-active .navbar-body li {
+    width: 100%;
+    display: block;
+    text-align: left;
+    line-height: 1.5em;
+    padding-bottom: 2%;
 }
 
 .navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     font-size: xx-large;
     font-weight: bold;
     padding: 0 1%;
@@ -122,17 +161,16 @@ body:not(.signup-body, .login-body) {
 }
 
 .toggle-button {
-    position: absolute;
-    top: 40%;
-    right: 3%;
-    display: none;
+    float: right;
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
     height: 20px;
-    padding: 1%;
+    margin: 20% 2%;
+    padding: 2%;
     border: 1px solid white;
     border-radius: 10px;
+    z-index: 1;
 }
 
 .toggle-button .bar {

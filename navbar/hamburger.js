@@ -1,6 +1,6 @@
 window.onload = function () {
-    const hamb = document.querySelector('.hamburger');
-    const nav = document.querySelector('.mobile-nav');
+    const hamb = document.querySelector('.toggle-button');
+    const nav = document.querySelector('.navbar');
 
     hamb.addEventListener('click', function () {
         nav.classList.toggle('is-active');
