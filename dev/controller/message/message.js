@@ -254,6 +254,7 @@ function createModalSpace(parent, id, title) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    $("#navbar-space").load("../view/navbar.html");
     let listChat = document.getElementById('list-chat');
     let chats = null;
     $.ajax({

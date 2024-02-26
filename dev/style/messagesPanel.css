@@ -8,32 +8,29 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-aside {
-    float: left;
+main, aside {
     position: relative;
     border: 1px solid lightslategray;
     border-radius: 5px;
-    margin-left: 5%;
-    margin-top: 2%;
+    margin-top: 120px;
     padding: 2% 1%;
-    width: 22%;
-    height: 82vh;
-    overflow-y: auto;
     overflow-x: hidden;
+}
+
+aside {
+    float: left;
+    margin-left: 5%;
+    width: 22%;
+    height: 75vh;
+    overflow-y: auto;
     align-items: center;
 }
 
 main {
     float: right;
-    position: relative;
-    border: 1px solid lightslategray;
-    border-radius: 5px;
     margin-right: 5%;
-    margin-top: 2%;
-    padding: 2% 1%;
     width: 60%;
-    height: 82vh;
-    overflow-x: hidden;
+    height: 75vh;
 }
 
 #chat-content {
