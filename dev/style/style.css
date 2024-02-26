@@ -11,6 +11,8 @@ body {
     margin: 0;
     padding: 3% 0 0;
     justify-content: left;
+    background-color: white;
+    transition: background-color 0.7s ease, color 0.7s ease;
 }
 
 .login-body, .signup-body {

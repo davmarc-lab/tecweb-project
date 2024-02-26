@@ -1,3 +1,10 @@
+function drawLinkUsernameElement(userId, username) {
+    let link = document.createElement("a");
+    link.setAttribute("href", "../view/profile.html?user=" + userId);
+    link.innerHTML = "@" + username;
+    return link;
+}
+
 function loadProfileInfo(userId) {
     let userInfo = null;
     $.ajax({
@@ -264,7 +271,8 @@ function printUsersModal(div, userList) {
         let row = document.createElement('tr');
         let userCell = document.createElement('td');
         userCell.setAttribute('headers', 'user');
-        userCell.innerHTML = elem['Username'];
+        let linkUsername = drawLinkUsernameElement(elem['IdUser'], elem['Username']);
+        userCell.appendChild(linkUsername);
         row.appendChild(userCell);
 
         let actionCell = document.createElement('td');

@@ -101,11 +101,8 @@ function drawUserPost(div, user) {
     let posts = null;
     $.ajax({
         async: false,
-        url: "../model/profile/getUserPost.php",
+        url: "../model/sponsor/getUserPostToSponsor.php",
         method: "POST",
-        data: {
-            id: user['IdUser'],
-        },
         success: function (response) {
             if (response != "") {
                 posts = JSON.parse(response);
