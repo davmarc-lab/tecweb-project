@@ -30,8 +30,8 @@ if ($password === "") {
             }
         } else {
             if ($password === $passwordRep) {
-                print_r($_FILES);
-                if (isset($_FILES['icon'])) {
+                $mediaId = -1;
+                if (isset($_FILES['icon']) && $_FILES["icon"]["error"] == 0) {
                     $uploadDir = "uploads/";
                     $targetDir = "../../" . $uploadDir;
                     $mediaId = insertImage($dbh, $uploadDir, $targetDir);
@@ -39,6 +39,7 @@ if ($password === "") {
                 } else {
                     $mediaId = 19;
                 }
+                //echo "Media id prima di register: " . $mediaId;
                 register($name, $surname, $username, $email, $password, $mediaId);
             } else {
                 echo "error1";
@@ -51,9 +52,11 @@ function register($name, $surname, $username, $email, $password, $mediaId)
 {
     global $dbh;
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    //echo "Media id: " . $mediaId;
     $query = "INSERT INTO member (Name, Surname, Username, Email, Password, IdMedia) VALUES ('$name', '$surname', '$username', '$email', '$passwordHash', '$mediaId');";
     $res = $dbh->execQuery($query);
-    $_SESSION["userId"] = $res[0]['IdUser'];
+    $id = mysqli_insert_id($dbh->getDataBaseController());
+    $_SESSION["userId"] = $id;
     updateLastSeen($dbh, $_SESSION["userId"]);
     if (!isset($_COOKIE["theme"])) {
         setcookie("theme", "light", strtotime('+30 days'), "/");
