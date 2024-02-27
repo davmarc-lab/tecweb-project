@@ -61,6 +61,32 @@
     text-align: center;
 }
 
+.modal-body {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body ul {
+    list-style: none;
+    padding: 0;
+    width: 60%;
+    text-align: center;
+}
+
+.modal-body ul li:hover {
+    background-color: #198754;
+}
+
+.modal-body ul li {
+    cursor: pointer;
+    margin-top: 2%;
+    background-color: #006F3C;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: white;
+    vertical-align: middle;
+}
+
 /* The Close Button */
 .close {
     color: #aaa;
