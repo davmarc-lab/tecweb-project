@@ -1,7 +1,7 @@
 function searchResult() {
     let input = document.getElementById("search-text");
     let key = input.value;
-    let items = Array.from(document.getElementsByClassName("dropdown-item"));
+    let items = Array.from(document.getElementsByClassName("dropdown-item active"));
     if (items == null) {
         console.log("items è null");
     }
@@ -31,6 +31,7 @@ function searchResult() {
             filters: filters
         },
         success: function(response) {
+            console.log(response);
             document.getElementById("random-post-container").innerHTML = "";
             document.getElementById("search-post-container").innerHTML = "";
             printPostToTarget(document.getElementById("search-post-container"), response);

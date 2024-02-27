@@ -22,6 +22,8 @@ $("document").ready(function () {
 
     dropdownItems.forEach(function (item) {
         item.addEventListener('click', function () {
+            // Set 'active' class for the clicked item
+            this.classList.add('active');
             this.hidden = true;
 
             // Set the value of the hidden input
@@ -45,6 +47,7 @@ $("document").ready(function () {
         categoryBadges.innerHTML = "";
         dropdownItems.forEach(function (item) {
             item.hidden = false;
+            item.classList.remove('active');
         });
         location.reload();
     })

@@ -143,8 +143,11 @@ main {
     border: 2px solid lightslategray;
     border-radius: 5px;
     margin: 2% 10%;
-    text-wrap: wrap;
     padding: 3px 1%;
+}
+
+.notif-to-read {
+    border-color: red !important;
 }
 
 .profile-container {
@@ -201,9 +204,13 @@ main {
 
 .card-row {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 100%;
+    flex-wrap: wrap;
+}
+
+#random-post-container .card-row {
+    flex-direction: row;
 }
 
 .index-container {
@@ -244,8 +251,7 @@ main {
 }
 
 .card:not(.post-card) {
-    /*width: 18rem;*/
-    width: 33%;
+    width: 90%;
     border: 1px solid lightslategray;
     border-radius: 15px;
     margin: 5%;
@@ -256,6 +262,10 @@ main {
     flex-direction: column;
     flex-basis: 100%;
     flex: 1;
+}
+
+#random-post-container .card:not(.post-card) {
+    width: 33%;
 }
 
 textarea {
@@ -301,7 +311,6 @@ textarea {
     border-radius: 10px;
     font-size: medium;
     padding: 0.6% 1%;
-    text-wrap: wrap;
 }
 
 #comment-text {
@@ -829,7 +838,7 @@ ul > li {
 
 .cascading-container {
     display: inline-block;
-    align-items: center;
+    width: 100%;
     margin: 5%;
 }
 

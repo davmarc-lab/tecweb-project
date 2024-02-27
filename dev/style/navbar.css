@@ -21,7 +21,7 @@ body:not(.signup-body, .login-body) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*z-index: 100;*/
+    z-index: 100;
     overflow: hidden;
     transition: 0.4s;
 }

@@ -14,6 +14,12 @@ function drawLinkUsernameElement(userId, username) {
 function drawNotifications(div, notif) {
     let divNotif = document.createElement('p');
 
+    console.log(notif['IsRead']);
+    
+    if (notif['IsRead'] == 0) {
+        divNotif.classList.add('notif-to-read');
+    }
+
     let svg = document.createElement('svg');
     svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     svg.setAttribute('width', 16);

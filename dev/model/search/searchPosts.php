@@ -27,7 +27,7 @@
             }
         }
     }
-    if (str_contains($query, "AND")) {
+    if (str_contains($query, "AND") && sizeof($filters) > 0) {
         $query .= ")";
     }
     $query .= " ORDER BY p.NumberVote DESC;";
