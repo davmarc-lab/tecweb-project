@@ -32,7 +32,7 @@
         display: none;
     }
 
-    #new-post {
+    #new-post, .edit-profile-box {
         width: 80% !important;
     }
 
@@ -76,5 +76,14 @@
 
     .btn-search {
         width: 10% !important;
+    }
+
+    .change-password-section {
+        width: 80% !important;
+    }
+
+    .change-password-group > form {
+        width: 100% !important;
+        padding: 0 !important;
     }
 }

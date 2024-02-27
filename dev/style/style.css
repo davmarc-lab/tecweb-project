@@ -450,8 +450,10 @@ textarea {
 
 .password-field {
     border: 1px solid lightgray !important;
-    height: auto;
-    width: 70% !important;
+    height: 100%;
+    width: 80% !important;
+    margin: 0 !important;
+    padding: 2% !important;
 }
 
 .form-buttons {
@@ -656,16 +658,17 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     border: 1px solid lightslategray;
     border-radius: 5px;
     padding:2%;
-    margin: 5% 0;
-    width: 3%;
+    height: fit-content;
+}
+
+.toggle-password > svg {
+    vertical-align: middle;
 }
 
 .toggle-password:hover {
     cursor: pointer;
     background-color: lightgray;
     padding:2%;
-    margin: 5% 0;
-    width: 3%;
 }
 
 a[role="button"]:hover:not(.btn-following){
@@ -858,7 +861,7 @@ ul > li {
 }
 
 .change-password-section {
-    width: 60% !important;
+    width: 60%;
     display: flex;
     justify-content: center;
 }
@@ -872,6 +875,10 @@ ul > li {
 .change-password-group > form {
     width: 60%;
     padding-left: 10%;
+}
+
+.change-password-group .input-group {
+    margin: 2% 0 !important;
 }
 
 #profiles-table {
