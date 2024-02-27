@@ -17,7 +17,7 @@ function printProfileToTarget(targetContainer, profiles) {
     trHedaer.appendChild(numberPostHeader);
     let numberFollowerHeader = createHeader("number-follower", "Followers");
     trHedaer.appendChild(numberFollowerHeader);
-    let followHeader = createHeader("btt-follow", "");
+    let followHeader = createHeader("btt-follow", "Actions");
     trHedaer.appendChild(followHeader);
     thead.appendChild(trHedaer);
     let tableBody = document.createElement("tbody");

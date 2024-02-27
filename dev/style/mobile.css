@@ -1,0 +1,33 @@
+@media screen and (max-width: 992px) {
+    .index-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .posts-container {
+        width: 100%;
+    }
+
+    .suggested-profile {
+        display: none;
+    }
+
+    #number-post, #number-follower, td[headers="number-follower"], td[headers="number-post"] {
+        display: none;
+    }
+
+    #random-post-container .card-row {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    #random-post-container .card:not(.post-card) {
+        width: 60% !important;
+    }
+
+    #profiles-table .table-responsive {
+        min-width: 350px !important;
+        width: 90% !important;
+    }
+}
