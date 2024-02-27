@@ -80,9 +80,9 @@ function createButtonFollow(idTarget) {
             success: function (response) {
                 console.log(response);
                 if (response != 0) {
-                    btn.innerHTML = "Unfollow";
-                } else {
                     btn.innerHTML = "Follow";
+                } else {
+                    btn.innerHTML = "Unfollow";
                 }
                 addFollowListener(btn, idTarget);
             }
