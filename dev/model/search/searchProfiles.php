@@ -6,6 +6,6 @@
         $query = "SELECT * FROM member WHERE Username LIKE '%$searchKey%' ORDER BY NumberFollower DESC;";
         echo json_encode($dbh->execQuery($query));
     } else {
-        echo "";
+        echo json_encode("");
     }
 ?>

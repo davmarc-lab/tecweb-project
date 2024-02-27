@@ -12,12 +12,16 @@
     if (strlen($searchKey) > 0) {
         $query = "SELECT * FROM post p WHERE Title LIKE '%$searchKey%' AND Private = FALSE ";
     } else {
-        $query = "SELECT * FROM post p";
+        $query = "SELECT * FROM post p ";
     }
     $start = true;
 
     if (sizeof($filters) > 0) {
-        $query.= "AND (";
+        if (strlen($searchKey) > 0) {
+            $query.= "AND (";
+        } else {
+            $query.= "WHERE (";
+        }
         foreach ($filters as $filter) {
             if ($start) {
                 $query.= "p.IdCategory = $filter ";
