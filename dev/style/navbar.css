@@ -108,12 +108,20 @@ body:not(.signup-body, .login-body) {
     padding: 5px 10px;
 }
 
+.nav-item svg {
+    vertical-align: middle;
+}
+
 #btn-logout > svg {
     vertical-align: middle;
 }
 
 .navbar-body svg {
     margin-right: 5px;
+}
+
+.navbar.is-active .nav-item:last-child {
+    display: flex;
 }
 
 .nav-item:hover {
@@ -237,6 +245,15 @@ body:not(.signup-body, .login-body) {
     display: block;
 }
 
+
+.theme-switch {
+    display: flex;
+}
+
+#theme-icon {
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 992px) {
     .toggle-button {
         display: flex;
@@ -252,12 +269,4 @@ body:not(.signup-body, .login-body) {
         top: 5%;
         right: 3%;
     }
-}
-
-.theme-switch {
-    display: flex;
-}
-
-#theme-icon {
-    margin-left: 10px;
 }
