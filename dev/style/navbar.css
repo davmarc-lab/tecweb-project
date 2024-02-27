@@ -253,3 +253,11 @@ body:not(.signup-body, .login-body) {
         right: 3%;
     }
 }
+
+.theme-switch {
+    display: flex;
+}
+
+#theme-icon {
+    margin-left: 10px;
+}
