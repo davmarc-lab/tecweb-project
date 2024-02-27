@@ -9,7 +9,7 @@ body {
     display: flex;
     overflow-x: hidden;
     width: 100%;
-    margin: 0;
+    margin: 100px 0 0;
     padding: 3% 0 0;
     justify-content: left;
     background-color: white;
@@ -53,14 +53,12 @@ main {
     display: flex;
     justify-content: space-between;
     overflow-x: hidden;
-    margin-top: 10%;
 }
 
 .container-centered {
     display: flex;
     justify-content: center;
     overflow-x: hidden;
-    margin: 10% 0;
 }
 
 #edit-profile .container-centered {
@@ -227,7 +225,6 @@ main {
 .posts-container {
     display: inline;
     width: 100%;
-    margin-top: 100px;
 }
 
 .post-card {
@@ -522,7 +519,7 @@ input[type="reset"] {
     border: 1px solid lightgray;
     border-radius: 10px;
     margin: 2% 0;
-    padding: 0.6%;
+    padding: 1%;
     width: 90%;
     font-size: medium;
     height: auto;
@@ -645,7 +642,6 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     border-radius: 10px;
     padding: 0.5% 0.7%;
     margin: 2% 0;
-    height: fit-content;
     width: 6%;
 }
 
@@ -851,7 +847,7 @@ ul > li {
     display: inline-block;
     align-items: center;
     width: 100%;
-    margin: 5%;
+    margin:0 5% 5%;
 }
 
 .input-group {
@@ -963,12 +959,28 @@ ul > li {
 
 #duration-form fieldset {
     width: 40%;
+    height: 40%;
     padding: 2% 2% 5%;
     text-align: left;
     background-color: whitesmoke;
     box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+#sponsor-body .row {
+    width: 100%;
+    display: inline-block;
+}
+
+#sponsor-body .btn-back {
+    margin: 0 0 10% 5% !important;
+}
+
 fieldset > legend {
     font-weight: bold;
+}
+
+#post-media {
+    height: 100%;
+    vertical-align: middle;
+    text-decoration: underline;
 }

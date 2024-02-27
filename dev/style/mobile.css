@@ -12,7 +12,7 @@
     .post-card {
         width: 60% !important;
         min-width: 300px !important;
-        padding: 5% 20px !important;
+        padding: 3% 20px !important;
     }
 
     .suggested-profile {
@@ -44,5 +44,24 @@
     #profiles-table .table-responsive {
         min-width: 350px !important;
         width: 90% !important;
+    }
+
+    #sponsor-body {
+        display: inline-block;
+        justify-content: center;
+    }
+
+    #duration-form fieldset {
+        width: 50% !important;
+        min-width: 200px;
+    }
+
+    #search-text {
+        padding: 2% 1% !important;
+        width: 80% !important;
+    }
+
+    .btn-search {
+        width: 10% !important;
     }
 }
