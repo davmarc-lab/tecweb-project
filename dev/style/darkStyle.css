@@ -29,6 +29,16 @@ html[data-bs-theme="dark"] {
         transition: background-color 0.7s ease, color 0.7s ease;
     }
 
+    .btn:hover{
+        background-color: #198754 !important;
+        transition: none;
+    }
+
+    .card>p>a:hover, #index-post-user-id>a:hover, .notification-area > p > a:hover {
+        color: #198754;
+        transition: none
+    } 
+
     .sponsorized-text {
         color: #FEAB5D;
     }
@@ -64,5 +74,4 @@ html[data-bs-theme="dark"] {
     .table > thead {
         border: none;
     }
-
 }

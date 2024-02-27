@@ -31,7 +31,6 @@ function searchResult() {
             filters: filters
         },
         success: function(response) {
-            console.log(response);
             document.getElementById("random-post-container").innerHTML = "";
             document.getElementById("search-post-container").innerHTML = "";
             printPostToTarget(document.getElementById("search-post-container"), response);

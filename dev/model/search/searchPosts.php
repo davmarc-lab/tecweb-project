@@ -25,17 +25,6 @@
             } else {
                 $query.= "OR p.IdCategory = $filter ";
             }
-
-            /* if (str_contains($query, "AND") || $start) {
-                $query .= " OR p.IdCategory = $filter";
-            } else {
-                if (strlen($searchKey) > 0) {
-                    $query .= "AND (p.IdCategory = $filter";
-                } else {
-                    $query .= " WHERE p.IdCategory = $filter";
-                    $start = true;
-                }
-            } */
         }
         $query .= ") ";
     }
