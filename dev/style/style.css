@@ -209,6 +209,10 @@ main {
     flex-wrap: wrap;
 }
 
+.card-row:not(#random-post-container .card-row) {
+    align-items: center;
+}
+
 #random-post-container .card-row {
     flex-direction: row;
 }
@@ -251,7 +255,7 @@ main {
 }
 
 .card:not(.post-card) {
-    width: 90%;
+    width: 60%;
     border: 1px solid lightslategray;
     border-radius: 15px;
     margin: 5%;
@@ -332,6 +336,15 @@ textarea {
 #profile-info a {
     margin: 2%;
     cursor: pointer;
+    background-color: transparent !important;
+    border: 2px solid #447957 !important;
+    color: #447957 !important;
+    font-weight: bold;
+}
+
+#profile-info a:hover {
+    background-color: #447957 !important;
+    color: white !important;
 }
 
 .profile-page-icon {
@@ -838,6 +851,7 @@ ul > li {
 
 .cascading-container {
     display: inline-block;
+    align-items: center;
     width: 100%;
     margin: 5%;
 }
