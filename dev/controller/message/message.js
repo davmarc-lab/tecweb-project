@@ -1,4 +1,10 @@
 function createMessageInput(div, dst) {
+    // remove the old input if exist
+    let oldInput = document.getElementById('input-area');
+    if (oldInput != null) {
+        div.removeChild(oldInput);
+    }
+
     // add text box at the end of the div
     let divUserInput = document.createElement('div');
     divUserInput.setAttribute('id', 'input-area');
@@ -172,7 +178,7 @@ function createEmptyChat(dstId) {
     newChatSpace.innerHTML = "";
 
     // append new chat to chat list
-    let newChat = document.createElement('li');
+    let newListItem = document.createElement('li');
     // get username from this id
     $.ajax({
         url: "../model/utils/profileInfo.php",
@@ -200,25 +206,24 @@ function createEmptyChat(dstId) {
 
             imgProfile.setAttribute('alt', 'User Profile Image');
             imgProfile.classList.add('profile-icon');
-            newChat.appendChild(imgProfile);
+            newListItem.appendChild(imgProfile);
 
             let pText = document.createElement('p');
             pText.innerHTML = "@" + elem['Username'];
-            newChat.appendChild(pText);
-            newChat.addEventListener('click', function () {
+            newListItem.appendChild(pText);
+            newListItem.addEventListener('click', function () {
                 loadMessages(elem['IdUser']);
             });
         }
     });
 
     let allChat = document.getElementById('list-chat');
-    allChat.insertBefore(newChat, allChat.children[0]);
+    allChat.insertBefore(newListItem, allChat.children[0]);
 
     // event listener
-    newChat.addEventListener('click', function () {
-        console.log('AAA');
+    newListItem.addEventListener('click', function () {
         newChatSpace.innerHTML = "";
-        createMessageInput(newChatSpace, dstId)
+        createMessageInput(document.getElementById('chat-content'), dstId)
     });
 }
 
