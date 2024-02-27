@@ -9,8 +9,22 @@
         width: 100%;
     }
 
+    .post-card {
+        width: 60% !important;
+        min-width: 300px;
+    }
+
     .suggested-profile {
         display: none;
+    }
+
+    #new-post {
+        width: 80% !important;
+    }
+
+    #explain-private {
+        width: 300px !important;
+        margin-left: -150px !important;
     }
 
     #number-post, #number-follower, td[headers="number-follower"], td[headers="number-post"] {

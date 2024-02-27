@@ -406,7 +406,6 @@ textarea {
 .edit-profile-box {
     padding: 2% 5% !important;
     height: auto;
-    width: 100% !important;
 }
 
 .form-control:not(input[type="file"]) {
@@ -941,7 +940,7 @@ ul > li {
 #new-post, .edit-profile-box {
     border: 1px solid lightgray;
     border-radius: 5px;
-    width: 60% !important;
+    width: 60%;
     padding: 2% 5% 10%;
 }
 
