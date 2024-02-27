@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const idPost = urlParams.get("id");
     let btnLike = document.getElementById('post-like');
-    let status = btnLike.children[0];
+    let status = document.createElement('span');
+    status.classList.add('bi');
+    btnLike.appendChild(status);
 
     // set the initial status of the like button
     $.ajax({
@@ -15,9 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (Number(response)) {
                 // already liked post
                 status.classList.add('liked');
+                status.classList.remove('bi-hand-thumbs-up');
+                status.classList.add('bi-hand-thumbs-up-fill');
             } else {
                 // not liked post yet
                 status.classList.add('unliked');
+                status.classList.add('bi-hand-thumbs-up');
+                status.classList.remove('bi-hand-thumbs-up-fill');
             }
         }
     });
@@ -56,8 +62,12 @@ function updateIcon(icon) {
     if (icon.classList.contains("unliked")) {
         icon.classList.remove("unliked");
         icon.classList.add("liked");
+        icon.classList.remove('bi-hand-thumbs-up');
+        icon.classList.add('bi-hand-thumbs-up-fill');
     } else {
         icon.classList.remove("liked");
         icon.classList.add("unliked");
+        icon.classList.add('bi-hand-thumbs-up');
+        icon.classList.remove('bi-hand-thumbs-up-fill');
     }
 }
