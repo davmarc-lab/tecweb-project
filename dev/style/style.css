@@ -33,8 +33,20 @@ body {
     overflow: hidden;
 }
 
+.login-body .form-control:not(input[type="file"], input[type="checkbox"]), .signup-body .form-control.form-control:not(input[type="file"]) {
+    width: 70% !important;
+    justify-content: center;
+}
+
+/* login and signup form */
+.login-body .container-centered:not(.side-panel), .signup-body .container-centered:not(.side-panel) {
+    width: 80%;
+    height: fit-content;
+    margin: 0;
+}
+
 .login-body form, .signup-body form {
-    width: 50%;
+    width: 60%;
     height: fit-content;
     vertical-align: middle;
     display: inline-block;
@@ -417,18 +429,6 @@ textarea {
 #new-post .form-control, .edit-profile-box .form-control, .login-body .form-control, .signup-body .form-control {
     border: 1px solid lightgray !important;
     border-radius: 5px !important;
-}
-
-.login-body .form-control:not(input[type="file"], input[type="checkbox"]), .signup-body .form-control.form-control:not(input[type="file"]) {
-    width: 70% !important;
-    justify-content: center;
-}
-
-/* login and signup form */
-.login-body .container-centered:not(.side-panel), .signup-body .container-centered:not(.side-panel) {
-    width: 60% !important;
-    height: fit-content;
-    margin: 0;
 }
 
 

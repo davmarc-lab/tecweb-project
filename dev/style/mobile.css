@@ -1,4 +1,17 @@
 @media screen and (max-width: 992px) {
+
+    .side-panel {
+        display: none !important;
+    }
+
+    .login-body .container-centered, .signup-body .container-centered {
+        width: 100% !important;
+    }
+
+    .login-body form, .signup-body form {
+        width: 80% !important;
+    }
+
     .index-container {
         display: flex;
         width: 100%;
