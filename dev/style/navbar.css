@@ -67,10 +67,10 @@ body:not(.signup-body, .login-body) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 96%;
     font-size: xx-large;
     font-weight: bold;
-    padding: 0 1%;
+    padding: 0 2%;
 }
 
 .navbar-header button {
@@ -87,6 +87,8 @@ body:not(.signup-body, .login-body) {
     list-style: none;
     display: flex;
     align-items: right;
+    padding: 0;
+    margin-right: 10px;
 }
 
 .navbar-body ul li {
@@ -118,6 +120,11 @@ body:not(.signup-body, .login-body) {
 
 .navbar-body svg {
     margin-right: 5px;
+}
+
+.nav-item:last-child {
+    display: flex;
+    align-items: center;
 }
 
 .navbar.is-active .nav-item:last-child {
@@ -179,7 +186,7 @@ body:not(.signup-body, .login-body) {
     justify-content: space-between;
     width: 30px;
     height: 20px;
-    margin: 2%;
+    margin: 2% 4%;
     padding: 2%;
     border: 1px solid white;
     border-radius: 10px;
@@ -260,6 +267,10 @@ body:not(.signup-body, .login-body) {
     }
 
     .nav-item {
+        display: none;
+    }
+
+    .nav-item:last-child {
         display: none;
     }
 
