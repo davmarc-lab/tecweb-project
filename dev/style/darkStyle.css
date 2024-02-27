@@ -16,8 +16,12 @@ html[data-bs-theme="dark"] {
     }
 
     .btn:not(#reset) {
-        background-color: #006f3c !important;
+        background-color: #006f3c;
         transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    #reset:hover {
+        background-color:#bb2d3b !important;
     }
     
     .btn-feedback,
@@ -60,8 +64,7 @@ html[data-bs-theme="dark"] {
 
     .table-striped tr:nth-child(even),
     .table-striped>thead>tr>th,
-    .modal-content,
-    #edit-back-button {
+    .modal-content {
         background-color: #212529;
     }
 
@@ -91,9 +94,45 @@ html[data-bs-theme="dark"] {
         transition: none;
     }
 
-    #btn-followers {
+    #btn-followers, #btn-follow {
         border: none;
         background-color: #006f3c !important;
+        color: white;
+    }
+
+    #btn-followers:hover, #btn-follow:hover {
+        background-color: #198754 !important;
+        transition: none;
+    }
+
+    #edit-back-button, #change-password-button {
+        background-color: #212529 !important;
+        color: white;
+    }
+
+    #list-chat {
+        background-color: #212529;
+    }
+
+    #list-chat > li:hover {
+        background-color: #3f474f;
+    }
+
+    .message-src {
+        background-color: #003c20 !important;
+    }
+
+    #chat-content > #input-area > textarea {
+        background-color: #212529;
+        color: white;
+    }
+
+    #list-chat > li {
+        box-shadow: 2px 3px #3f474f;
+    }
+
+    #duration-form > fieldset {
+        background-color: #212529;
         color: white;
     }
 
