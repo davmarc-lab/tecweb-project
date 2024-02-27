@@ -163,18 +163,63 @@ function printAllChats(div, chats) {
             }
         });
 
-        // get message for this user        --OPTIONAL--
-
-
         div.appendChild(newChat);
     });
 }
 
 function createEmptyChat(dstId) {
-    let newChatSpace = document.getElementById('chat-content');
+    let newChatSpace = document.getElementById('chat-messages');
     newChatSpace.innerHTML = "";
 
-    createMessageInput(newChatSpace, dstId);
+    // append new chat to chat list
+    let newChat = document.createElement('li');
+    // get username from this id
+    $.ajax({
+        url: "../model/utils/profileInfo.php",
+        method: "POST",
+        data: {
+            id: dstId,
+        },
+        success: function (response) {
+            let elem = JSON.parse(response);
+
+            // get media information
+            let profileImg = null;
+            let imgProfile = document.createElement('img');
+            $.ajax({
+                url: "../model/utils/getMediaFromId.php",
+                type: "POST",
+                data: {
+                    id: elem['IdMedia'],
+                },
+                success: function (response) {
+                    profileImg = JSON.parse(response);
+                    imgProfile.setAttribute('src', '../' + profileImg['FilePath']);
+                }
+            });
+
+            imgProfile.setAttribute('alt', 'User Profile Image');
+            imgProfile.classList.add('profile-icon');
+            newChat.appendChild(imgProfile);
+
+            let pText = document.createElement('p');
+            pText.innerHTML = "@" + elem['Username'];
+            newChat.appendChild(pText);
+            newChat.addEventListener('click', function () {
+                loadMessages(elem['IdUser']);
+            });
+        }
+    });
+
+    let allChat = document.getElementById('list-chat');
+    allChat.insertBefore(newChat, allChat.children[0]);
+
+    // event listener
+    newChat.addEventListener('click', function () {
+        console.log('AAA');
+        newChatSpace.innerHTML = "";
+        createMessageInput(newChatSpace, dstId)
+    });
 }
 
 function printFollowUser(modalBody, followList) {
@@ -196,7 +241,7 @@ function printFollowUser(modalBody, followList) {
     modalBody.appendChild(usersList);
 }
 
-function createModalSpace(parent, id, title) {
+function createModalSpace(parent, id, title, chats) {
     let divModal = document.createElement('div');
     divModal.setAttribute('id', id);
     divModal.style.display = "block";
@@ -245,6 +290,7 @@ function createModalSpace(parent, id, title) {
         success: function (response) {
             if (response != "") {
                 followList = JSON.parse(response);
+                followList = followList.filter(elem => !(chats.map(elem => elem['IdUser']).includes(elem['IdUser'])));
                 printFollowUser(modalBody, followList);
             }
         },
@@ -274,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (oldModal != null) {
             document.body.removeChild(oldModal);
         }
-        let chatModal = createModalSpace(document.body, 'modal-new-chat', "New Chat");
+        let chatModal = createModalSpace(document.body, 'modal-new-chat', "New Chat", chats);
         document.body.appendChild(chatModal);
     });
 });
