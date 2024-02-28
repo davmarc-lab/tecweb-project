@@ -1,3 +1,6 @@
+// update user last seen
+updateLastSeen();
+
 document.addEventListener("DOMContentLoaded", function () {
     $(document).keypress(
         function (event) {

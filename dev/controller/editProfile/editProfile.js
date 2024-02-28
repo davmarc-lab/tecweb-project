@@ -1,3 +1,6 @@
+// updates user last seen
+updateLastSeen();
+
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("submit").addEventListener("click", function (event) {
         event.preventDefault();

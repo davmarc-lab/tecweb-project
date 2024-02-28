@@ -79,8 +79,6 @@ function printTitle2(div, string) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    updateLastSeen(1);
-
     $('#navbar-space').load('../view/navbar.html');
     let divNotif = document.getElementById('notif-space');
 

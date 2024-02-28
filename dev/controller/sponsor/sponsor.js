@@ -1,3 +1,6 @@
+// updates user last seen
+updateLastSeen();
+
 function createPost(elem) {
     let post = document.createElement('div');
     post.classList.add("card", "post-card");
