@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com");
+/*
 @import url("https://fonts.gstatic.com");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap"); */
 @import url("mobile.css");
 @import url("darkStyle.css");
 
@@ -9,11 +10,14 @@ body {
     display: flex;
     overflow-x: hidden;
     width: 100%;
-    margin: 100px 0 0;
-    padding: 3% 0 0;
+    margin-top: 80px;
     justify-content: left;
     background-color: white;
     transition: background-color 0.7s ease, color 0.7s ease;
+}
+
+body > main {
+    margin-top: 2%;
 }
 
 .login-body, .signup-body {
@@ -162,7 +166,7 @@ main {
 
 .profile-container {
     align-items: center !important;
-    width: 120%;
+    width: 100%;
 }
 
 .edit-container {
@@ -599,7 +603,8 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     padding: 1%;
     border: 1px solid lightgray;
     border-radius: 50%;
-    height: auto;
+    width: 1em;
+    height: 1em;
 }
 
 .btn-back svg {

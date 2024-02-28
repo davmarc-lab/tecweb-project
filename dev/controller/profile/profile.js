@@ -24,6 +24,23 @@ function loadProfileInfo(userId) {
 function drawProfileInfo(user, isSame) {
     let divProfile = document.getElementById('profile-info').getElementsByClassName('row').item(0);
     if (!isSame) {
+        // add back button
+
+        let aButton = document.createElement('a');
+        aButton.href = "javascript: history.go(-1)";
+        aButton.role = "button";
+        aButton.id = 'edit-back-button'
+        aButton.classList = "btn btn-utility-contrast btn-back";
+        aButton.title = "Go back";
+
+        let backIcon = document.createElement('span');
+        backIcon.classList = "bi bi-arrow-left";
+
+        aButton.appendChild(backIcon);
+
+        const profileContent = document.getElementById('profile-content');
+        profileContent.insertBefore(aButton, document.getElementById('profile'));
+
         // create follow button
         let button = document.createElement('a');
         button.setAttribute('role', 'button');

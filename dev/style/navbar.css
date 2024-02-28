@@ -68,9 +68,10 @@ body:not(.signup-body, .login-body) {
     justify-content: space-between;
     align-items: center;
     width: 96%;
+    height: 80px;
     font-size: xx-large;
     font-weight: bold;
-    padding: 0 2%;
+    padding: 0px;
 }
 
 .navbar-header button {
