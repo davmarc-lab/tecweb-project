@@ -14,7 +14,7 @@ function getProfileInfo(profileId) {
     return profile;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+$('document').ready(function () {
     let profiles = null;
     $.ajax({
         async: false,

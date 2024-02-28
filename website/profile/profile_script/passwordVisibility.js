@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+$('document').ready(function () {
     let togglePasswordIcons = document.querySelectorAll('.toggle-password');
     let passwordFields = document.querySelectorAll('.password-field');
 

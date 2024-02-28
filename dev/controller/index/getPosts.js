@@ -77,25 +77,25 @@ $.ajax({
     url: "../model/index/getSponsorizedPosts.php",
     type: "POST",
     success: function (response) {
-        console.log(response);
+        // console.log(response);
         sponsorizedPosts = JSON.parse(response);
-        console.log(sponsorizedPosts);
+        // console.log(sponsorizedPosts);
     }
 });
 
 let skip = false;
 
 function appendPostToContainer(numPostToLoad) {
-    console.log("GG");
+    // console.log("GG");
     const postsContainer = document.getElementById("posts-container");
     if (posts != null) {
         let currentCounter = counter;
         // Load the posts in the container
         for (let i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length; ) {
-            console.log(counter);
+            // console.log(counter);
             let post;
             if (i % 5 == 0 && currentCounter < sponsorizedPosts.length && skip == false && counter > 0) {
-                console.log("Sponsor");
+                // console.log("Sponsor");
                 post = sponsorizedPosts[counterSponsorized++];
                 skip = true;
             } else {
@@ -409,7 +409,7 @@ function appendPostToContainer(numPostToLoad) {
                     url: "../model/utils/loggedUser.php",
                     type: "POST",
                     success: function (response) {
-                        console.log(response);
+                        // console.log(response);
                         $.ajax({
                             async: false,
                             url: "../model/utils/profileInfo.php",

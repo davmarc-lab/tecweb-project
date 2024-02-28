@@ -1,6 +1,6 @@
 const WIDTH_MAX = 992;
 
-document.addEventListener("DOMContentLoaded", function() {
+$('document').ready(function () {
     const url = window.location.href;
     if (url.includes("profilePage.php")) {
         let backbutton = document.getElementById("edit-back-button");

@@ -223,7 +223,7 @@ body:not(.signup-body, .login-body) {
     text-decoration: underline;
 }
 
-.dropdown-content {
+.dropdown > .dropdown-content {
     display: none;
     position: fixed;
     background-color: #015a31;
@@ -232,6 +232,10 @@ body:not(.signup-body, .login-body) {
     z-index: 1;
     height: auto;
     border-radius: 4px;
+}
+
+.dropdown.click > .dropdown-content {
+    display: block;
 }
 
 .dropdown-content > a {
@@ -247,11 +251,6 @@ body:not(.signup-body, .login-body) {
     background-color: #447957;
     border-radius: 4px;
 }
-
-.dropdown:hover > .dropdown-content {
-    display: block;
-}
-
 
 .theme-switch {
     display: flex;

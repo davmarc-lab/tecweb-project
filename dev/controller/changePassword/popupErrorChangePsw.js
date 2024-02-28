@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+$('document').ready(function () {
     let urlParams = new URLSearchParams(window.location.search);
     let errorParam = urlParams.get("error");
     if (errorParam === "0") {
