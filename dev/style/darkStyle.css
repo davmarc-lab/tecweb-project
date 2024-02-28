@@ -15,9 +15,22 @@ html[data-bs-theme="dark"] {
         transition: background-color 0.7s ease, color 0.7s ease;
     }
 
-    .btn:not(#reset, .btn-danger) {
+    .btn:not(#reset, #post-like, .btn-danger) {
         background-color: #006f3c;
         transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    a#post-media {
+        color: white;
+    }
+
+    a#post-media:hover {
+        color: #198754;
+    }
+
+    #comment-text {
+        background-color: #212529;
+        color: white;
     }
 
     #reset:hover {
@@ -72,8 +85,8 @@ html[data-bs-theme="dark"] {
         border: none;
     }
 
-    .comment>a:hover {
-        color: #198754;
+    .comment>a:hover, p#post-author > a:hover {
+        color: #198754 !important;
         transition: none
     }
 
@@ -82,7 +95,7 @@ html[data-bs-theme="dark"] {
         transition: none;
     }
 
-    .btn:hover:not(.btn-danger), .view-post:hover {
+    .btn:hover:not(.btn-danger, #post-like), .view-post:hover {
         background-color: #198754 !important;
         transition: none;
     }
@@ -148,6 +161,4 @@ html[data-bs-theme="dark"] {
     #view-post > .row > a:hover, #edit-back-button:hover {
         background-color: #3f474f !important;
     }
-
-
 }
