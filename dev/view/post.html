@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- <?php
-
-$query = "SELECT * FROM post WHERE IdPost = $viewPostId;";
-$infoPost = $dbh->execQuery($query)[0];
-?> -->
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,10 +12,6 @@ $infoPost = $dbh->execQuery($query)[0];
     <script src="../controller/post/viewPost.js"></script>
     <script src="../controller/post/commentPost.js"></script>
     <script src="../controller/post/likeScript.js"></script>
-
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
-    <!-- <link rel="stylesheet" href="../includes/style.css" /> -->
-    <!-- <script src="likeScript.js"></script> -->
     <!-- <link rel="icon" href="../nfa-icon.png" type="image/x-icon" /> -->
     <title>NFA</title>
 </head>
@@ -33,9 +23,12 @@ $infoPost = $dbh->execQuery($query)[0];
         <div id="view-post">
             <!-- post section -->
             <div class="row">
-                <a href="javascript: history.go(-1)" role="button" class="btn btn-utility-contrast btn-back" title="Go back">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                <a href="javascript: history.go(-1)" role="button" class="btn btn-utility-contrast btn-back"
+                    title="Go back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                     </svg>
                 </a>
                 <p id="post-author"></p>
@@ -51,11 +44,14 @@ $infoPost = $dbh->execQuery($query)[0];
                 <div class="container-centered" id="post-files">
                     <img class="img-fluid" id="post-preview" src="" alt="File Preview Image">
                 </div>
-                    <!-- write the media and download link -->
+                <!-- write the media and download link -->
                 <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
-                        <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z" />
-                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                        class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                        <path
+                            d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z" />
+                        <path
+                            d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
                     </svg>
                     <a id="post-media" download></a>
                 </span>
@@ -64,7 +60,8 @@ $infoPost = $dbh->execQuery($query)[0];
                 <div id="comments-area"></div>
 
                 <label for="comment-text" hidden>Insert your comment here</label>
-                <textarea class="form-control" id="comment-text" rows="3" placeholder="Add your comment" name="commentText"></textarea>
+                <textarea class="form-control" id="comment-text" rows="3" placeholder="Add your comment"
+                    name="commentText"></textarea>
                 <label for="comment-button" hidden>Publish your comment</label>
 
                 <div id="comments-row">
