@@ -193,6 +193,20 @@ function createPost(elem, isSame) {
         deleteButton.classList = "btn btn-danger";
         deleteButton.innerHTML = "Remove";
         postBody.appendChild(deleteButton);
+        deleteButton.addEventListener("click", function () {
+            $.ajax({
+                async: false,
+                url: '../model/profile/deletePost.php',
+                type: 'POST',
+                data: {
+                    id: elem['IdPost']
+                },
+                success: function (r) {
+                    console.log(r);
+                    //location.reload();
+                }
+            });
+        });
     }
 
     post.appendChild(postBody);
