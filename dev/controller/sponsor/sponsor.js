@@ -163,10 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            // Se è stata selezionata una durata, mostra i post con un'animazione
             if (duration != null) {
                 allPosts.forEach(function (post) {
-                    // Utilizza fadeIn() per mostrare il post gradualmente
                     $(post).fadeIn();
                 });
             }
