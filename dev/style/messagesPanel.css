@@ -23,7 +23,7 @@ aside {
     margin-left: 5%;
     width: 22%;
     height: 75vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     align-items: center;
 }
 
@@ -46,6 +46,15 @@ main {
     width: 98%;
     padding: 2% 1% 4%; 
     align-items: center;
+}
+
+#new-chat-area {
+    display: inline-block;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
 }
 
 #input-area > textarea {
@@ -81,8 +90,10 @@ main {
 #list-chat {
     list-style: none;
     width: 98%;
+    height: 85%;
     margin: 0.5%;
     padding: 1%;
+    overflow-y: auto;
 }
 
 #list-chat > li {
@@ -110,9 +121,6 @@ main {
     height: 40px;
 }
 
-#list-chat > li > p:hover {
-    color: #006f3c;
-}
 
 #btn-new-chat {
     position: absolute;
