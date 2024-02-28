@@ -128,7 +128,7 @@ function loadMessages(userId) {
     });
 }
 
-function printAllChats(div, chats) {
+function printAllChats(div, chats, asidePanel, mainPanel) {
     chats.forEach(element => {
         let newChat = document.createElement('li');
         // get username from this id
@@ -164,6 +164,8 @@ function printAllChats(div, chats) {
                 pText.innerHTML = "@" + elem['Username'];
                 newChat.appendChild(pText);
                 newChat.addEventListener('click', function () {
+                    asidePanel.style.display = "none";
+                    mainPanel.style.display = "block";
                     loadMessages(elem['IdUser']);
                 });
             }
@@ -173,7 +175,7 @@ function printAllChats(div, chats) {
     });
 }
 
-function createEmptyChat(dstId) {
+function createEmptyChat(dstId, asidePanel, mainPanel) {
     let newChatSpace = document.getElementById('chat-messages');
     newChatSpace.innerHTML = "";
 
@@ -212,6 +214,8 @@ function createEmptyChat(dstId) {
             pText.innerHTML = "@" + elem['Username'];
             newListItem.appendChild(pText);
             newListItem.addEventListener('click', function () {
+                asidePanel.style.display = "none";
+                mainPanel.style.display = "block";
                 loadMessages(elem['IdUser']);
             });
         }
@@ -227,7 +231,7 @@ function createEmptyChat(dstId) {
     });
 }
 
-function printFollowUser(modalBody, followList) {
+function printFollowUser(modalBody, followList, asidePanel, mainPanel) {
     let usersList = document.createElement('ul');
     followList.forEach(elem => {
         let listElem = document.createElement('li');
@@ -236,11 +240,13 @@ function printFollowUser(modalBody, followList) {
 
         // event listener
         listElem.addEventListener('click', function () {
+            asidePanel.style.display = "none";
+            mainPanel.style.display = "block";
             let modal = document.getElementById('modal-new-chat');
             modal.style.display = "none";
 
             // set new space
-            createEmptyChat(elem['IdUser']);
+            createEmptyChat(elem['IdUser'], asidePanel, mainPanel);
         });
     });
     modalBody.appendChild(usersList);
@@ -308,13 +314,16 @@ document.addEventListener('DOMContentLoaded', function () {
     $("#navbar-space").load("../view/navbar.html");
     let listChat = document.getElementById('list-chat');
     let chats = null;
+    // get aside and main panels
+    let asidePanel = document.getElementById("chat-users");
+    let mainPanel = document.querySelector("main");
     $.ajax({
         url: "../model/message/getChatList.php",
         method: "POST",
         success: function (response) {
             if (response != "") {
                 chats = JSON.parse(response);
-                printAllChats(listChat, chats);
+                printAllChats(listChat, chats, asidePanel, mainPanel);
             }
         },
     });
@@ -328,4 +337,5 @@ document.addEventListener('DOMContentLoaded', function () {
         let chatModal = createModalSpace(document.body, 'modal-new-chat', "New Chat", chats);
         document.body.appendChild(chatModal);
     });
+
 });

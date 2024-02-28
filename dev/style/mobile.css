@@ -86,4 +86,40 @@
         width: 100% !important;
         padding: 0 !important;
     }
+
+    #messages-body {
+        display: inline-block !important;
+        width: 100% !important;
+    }
+
+    #messages-body main {
+        display: none;
+        width: 90% !important;
+    }
+
+    #messages-body aside {
+        width: 90% !important;
+    }
+
+    #messages-body .btn-back {
+        display: flex !important;
+        background-color: transparent;
+        color: black;
+        margin-right: 2%;
+        padding: 1%;
+        border: 1px solid lightgray;
+        border-radius: 50%;
+        width: 2em;
+        height: 2em;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #messages-body .btn-back > svg {
+        vertical-align: middle;
+    }
+
+    #messages-body #input-area > button {
+        width: fit-content !important;
+    }
 }
