@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com");
-/*
-@import url("https://fonts.gstatic.com");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
 @import url("mobile.css");
 @import url("darkStyle.css");
 
@@ -16,9 +13,9 @@ body {
     transition: background-color 0.7s ease, color 0.7s ease;
 }
 
-body > main {
+/* body > main {
     margin-top: 2%;
-}
+} */
 
 .login-body, .signup-body {
     font-family: sans-serif;
@@ -162,6 +159,17 @@ main {
 
 .notif-to-read {
     border-color: red !important;
+}
+
+main > .profile-back {
+    display: block;
+    margin: 2% 0;
+}
+
+main > .profile-back > a {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
 }
 
 .profile-container {
@@ -596,6 +604,18 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     padding: 1%;
 }
 
+.btn-danger {
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: fit-content !important;
+    padding: 10px;
+    margin: 0 10px 0 3%;
+    border-radius: 10px;
+}
+
 .btn-back {
     background-color: transparent;
     color: black;
@@ -616,7 +636,7 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     cursor: pointer;
 }
 
-a[role="button"]:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
+a[role="button"]:not(.btn-primary, .btn-danger, .btn-utility, .btn-utility-contrast) {
     background-color: #006f3c !important;
     color: white !important;
     border-color: #006f3c !important;
@@ -627,7 +647,7 @@ a[role="button"]:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     text-decoration: none;
 }
 
-a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
+a[role="button"]:hover:not(.btn-primary, .btn-danger, .btn-utility, .btn-utility-contrast) {
     background-color: #198754 !important;
     color: white !important;
 }
@@ -686,7 +706,7 @@ a[role="button"]:hover:not(.btn-primary, .btn-utility, .btn-utility-contrast) {
     padding:2%;
 }
 
-a[role="button"]:hover:not(.btn-following){
+a[role="button"]:hover:not(.btn-following, .btn-danger){
     background-color: rgb(193, 196, 198);
     color: black;
 }

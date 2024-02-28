@@ -15,7 +15,7 @@ html[data-bs-theme="dark"] {
         transition: background-color 0.7s ease, color 0.7s ease;
     }
 
-    .btn:not(#reset) {
+    .btn:not(#reset, .btn-danger) {
         background-color: #006f3c;
         transition: background-color 0.7s ease, color 0.7s ease;
     }
@@ -82,7 +82,7 @@ html[data-bs-theme="dark"] {
         transition: none;
     }
 
-    .btn:hover, .view-post:hover {
+    .btn:hover:not(.btn-danger), .view-post:hover {
         background-color: #198754 !important;
         transition: none;
     }

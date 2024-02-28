@@ -38,8 +38,8 @@ function drawProfileInfo(user, isSame) {
 
         aButton.appendChild(backIcon);
 
-        const profileContent = document.getElementById('profile-content');
-        profileContent.insertBefore(aButton, document.getElementById('profile'));
+        const profileBack = document.querySelector('.profile-back');
+        profileBack.appendChild(aButton);
 
         // create follow button
         let button = document.createElement('a');
@@ -115,7 +115,7 @@ function drawProfileInfo(user, isSame) {
     });
 }
 
-function createPost(elem) {
+function createPost(elem, isSame) {
     let post = document.createElement('div');
     post.classList.add("card", "post-card");
     let elems = Array(6);
@@ -186,12 +186,21 @@ function createPost(elem) {
     linkPost.innerHTML = "View Post";
     postBody.appendChild(linkPost);
 
+    // Remove button if isSame == true
+    if (isSame) {
+        let deleteButton = document.createElement('a');
+        deleteButton.role = 'button';
+        deleteButton.classList = "btn btn-danger";
+        deleteButton.innerHTML = "Remove";
+        postBody.appendChild(deleteButton);
+    }
+
     post.appendChild(postBody);
 
     return post;
 }
 
-function drawUserPost(div, user) {
+function drawUserPost(div, user, isSame) {
     let posts = null;
     $.ajax({
         async: false,
@@ -209,7 +218,7 @@ function drawUserPost(div, user) {
 
     if (posts != null) {
         posts.forEach(element => {
-            div.appendChild(createPost(element));
+            div.appendChild(createPost(element, isSame));
         });
     }
 }
@@ -356,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function () {
             drawProfileInfo(user, isSame);
 
             let divPosts = document.getElementById('profile-post');
-            drawUserPost(divPosts, user);
+            drawUserPost(divPosts, user, isSame);
         }
     });
 
