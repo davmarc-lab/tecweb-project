@@ -161,4 +161,9 @@ html[data-bs-theme="dark"] {
     #view-post > .row > a:hover, #edit-back-button:hover {
         background-color: #3f474f !important;
     }
+
+    .div-advert {
+        background-color: #3f474f !important;
+        color: white !important;
+    }
 }

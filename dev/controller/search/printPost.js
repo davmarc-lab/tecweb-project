@@ -77,7 +77,10 @@ function printPostToTarget (targetContainer, posts) {
         cardBody.appendChild(viewButton);
         index = (index + 1)%3;
         if (index == 1) {
-            rowContainer.appendChild(createAdvertising());
+            let advRow = document.createElement("div");
+            advRow.classList.add('row');
+            advRow.appendChild(createAdvertising());
+            targetContainer.appendChild(advRow);
         }
     });
 }
