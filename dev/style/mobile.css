@@ -115,6 +115,11 @@
         justify-content: center;
     }
 
+    #messages-body .btn-back:hover {
+        background-color: rgb(193, 196, 198);
+        cursor: pointer;
+    }
+
     #messages-body .btn-back > svg {
         vertical-align: middle;
     }

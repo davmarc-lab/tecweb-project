@@ -128,7 +128,7 @@ function loadMessages(userId) {
     });
 }
 
-function printAllChats(div, chats, asidePanel, mainPanel) {
+function printAllChats(div, chats) {
     chats.forEach(element => {
         let newChat = document.createElement('li');
         // get username from this id
@@ -163,9 +163,8 @@ function printAllChats(div, chats, asidePanel, mainPanel) {
                 let pText = document.createElement('p');
                 pText.innerHTML = "@" + elem['Username'];
                 newChat.appendChild(pText);
+                drawMobileLayout(newChat);
                 newChat.addEventListener('click', function () {
-                    asidePanel.style.display = "none";
-                    mainPanel.style.display = "block";
                     loadMessages(elem['IdUser']);
                 });
             }
@@ -175,7 +174,7 @@ function printAllChats(div, chats, asidePanel, mainPanel) {
     });
 }
 
-function createEmptyChat(dstId, asidePanel, mainPanel) {
+function createEmptyChat(dstId) {
     let newChatSpace = document.getElementById('chat-messages');
     newChatSpace.innerHTML = "";
 
@@ -213,9 +212,8 @@ function createEmptyChat(dstId, asidePanel, mainPanel) {
             let pText = document.createElement('p');
             pText.innerHTML = "@" + elem['Username'];
             newListItem.appendChild(pText);
+            drawMobileLayout(newListItem);
             newListItem.addEventListener('click', function () {
-                asidePanel.style.display = "none";
-                mainPanel.style.display = "block";
                 loadMessages(elem['IdUser']);
             });
         }
@@ -231,7 +229,7 @@ function createEmptyChat(dstId, asidePanel, mainPanel) {
     });
 }
 
-function printFollowUser(modalBody, followList, asidePanel, mainPanel) {
+function printFollowUser(modalBody, followList) {
     let usersList = document.createElement('ul');
     followList.forEach(elem => {
         let listElem = document.createElement('li');
@@ -239,14 +237,13 @@ function printFollowUser(modalBody, followList, asidePanel, mainPanel) {
         usersList.appendChild(listElem);
 
         // event listener
+        drawMobileLayout(listElem);
         listElem.addEventListener('click', function () {
-            asidePanel.style.display = "none";
-            mainPanel.style.display = "block";
             let modal = document.getElementById('modal-new-chat');
             modal.style.display = "none";
 
             // set new space
-            createEmptyChat(elem['IdUser'], asidePanel, mainPanel);
+            createEmptyChat(elem['IdUser']);
         });
     });
     modalBody.appendChild(usersList);
@@ -310,20 +307,30 @@ function createModalSpace(parent, id, title, chats) {
     return divModal;
 }
 
+function drawMobileLayout (item) {
+    // get aside and main panels
+    let asidePanel = document.getElementById("chat-users");
+    let mainPanel = document.querySelector("main");
+    /* event listener if the screen has max width of 992 pixels */
+    if (window.innerWidth <= 992) {
+        item.addEventListener('click', function () {
+            asidePanel.style.display = "none";
+            mainPanel.style.display = "block";
+        })
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     $("#navbar-space").load("../view/navbar.html");
     let listChat = document.getElementById('list-chat');
     let chats = null;
-    // get aside and main panels
-    let asidePanel = document.getElementById("chat-users");
-    let mainPanel = document.querySelector("main");
     $.ajax({
         url: "../model/message/getChatList.php",
         method: "POST",
         success: function (response) {
             if (response != "") {
                 chats = JSON.parse(response);
-                printAllChats(listChat, chats, asidePanel, mainPanel);
+                printAllChats(listChat, chats);
             }
         },
     });
