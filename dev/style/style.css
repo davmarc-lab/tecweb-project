@@ -814,11 +814,15 @@ a.dropdown-toggle:hover {
 }
 
 #cookie-div {
-    background-color: darkslategray;
-    color: white;
+    background-color: rgb(235, 194, 194);
+    color: black;
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: 10px;
+    width: 80%;
+    align-content: center;
+    text-align: center;
+    border: rgb(239, 173, 173) 2px solid;
+    border-radius: 5px;
 }
 
 #ok-button {
@@ -829,8 +833,13 @@ a.dropdown-toggle:hover {
     font-size: medium;
     font-weight: bold !important;
     margin: 0 1% 1%;
-    float: right;
-    width: 2%;
+    width: fit-content;
+}
+
+#cookie-notify {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 

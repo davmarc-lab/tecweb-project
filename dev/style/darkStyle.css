@@ -145,7 +145,7 @@ html[data-bs-theme="dark"] {
         color: white;
     }
 
-    #view-post > .row > a:hover, .container-fluid > #profile > a:hover {
+    #view-post > .row > a:hover, #edit-back-button:hover {
         background-color: #3f474f !important;
     }
 
