@@ -136,4 +136,18 @@ html[data-bs-theme="dark"] {
         color: white;
     }
 
+    #post-author > a{
+        color: white !important;
+    }
+
+    #view-post > .row > a, .container-fluid > #profile > a {
+        background-color: #212529;
+        color: white;
+    }
+
+    #view-post > .row > a:hover, .container-fluid > #profile > a:hover {
+        background-color: #3f474f !important;
+    }
+
+
 }
