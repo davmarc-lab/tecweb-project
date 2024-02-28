@@ -248,6 +248,17 @@ main {
     height: auto;
 }
 
+.div-advert {
+    border: 2px solid rgb(67, 142, 218);
+    margin: 2% auto;
+    padding: 1% 20px 2%;
+    width: 70%;
+    height: auto;
+    text-align: center;
+    background-color: rgb(152, 152, 152);
+    color: white;
+}
+
 .post-card > .post-row {
     margin: 1% 0 2%;
 }

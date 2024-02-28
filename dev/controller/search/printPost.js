@@ -76,6 +76,9 @@ function printPostToTarget (targetContainer, posts) {
         let viewButton = createViewPostButton(post.IdPost);
         cardBody.appendChild(viewButton);
         index = (index + 1)%3;
+        if (index == 1) {
+            rowContainer.appendChild(createAdvertising());
+        }
     });
 }
 
@@ -144,4 +147,13 @@ function createViewPostButton(postId) {
     a.classList.add('btn', 'btn-primary', 'view-post');
     a.innerHTML = "View post";
     return a;
+}
+
+function createAdvertising() {
+    let divAdvert = document.createElement("div");
+    divAdvert.classList = 'div-advert';
+    let p = document.createElement("p");
+    p.innerHTML = "Advertising";
+    divAdvert.appendChild(p);
+    return divAdvert;
 }

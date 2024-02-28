@@ -91,7 +91,7 @@ function appendPostToContainer(numPostToLoad) {
     if (posts != null) {
         let currentCounter = counter;
         // Load the posts in the container
-        for (let i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length; ) {
+        for (let i = currentCounter; i < numPostToLoad + currentCounter && counter < posts.length;) {
             // console.log(counter);
             let post;
             if (i % 5 == 0 && currentCounter < sponsorizedPosts.length && skip == false && counter > 0) {
@@ -449,13 +449,27 @@ function appendPostToContainer(numPostToLoad) {
 
             // Last instruction
             postsContainer.appendChild(divPost);
-            if (!skip) {
-                i++;
-                counter++;
+
+            if (i % 2 != 0 && !skip) {
+                postsContainer.appendChild(createAdvertising());
             }
+
+                if (!skip) {
+                    i++;
+                    counter++;
+                }
 
         }
     }
 
     return counter;
+}
+
+function createAdvertising() {
+    let divAdvert = document.createElement("div");
+    divAdvert.classList = 'div-advert';
+    let p = document.createElement("p");
+    p.innerHTML = "Advertising";
+    divAdvert.appendChild(p);
+    return divAdvert;
 }
