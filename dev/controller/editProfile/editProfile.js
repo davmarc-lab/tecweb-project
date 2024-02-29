@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     url: '../model/utils/loggedUser.php',
                     type: 'POST',
                     success: function (response) {
-                        printInfo(response);
+                        window.location.href = "profile.html";
                     }
                 });
             }
