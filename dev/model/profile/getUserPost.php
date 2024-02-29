@@ -17,9 +17,11 @@ if ($userId != $_SESSION["userId"]) {
     $test = $dbh->execQuery($queryFollow);
     if (sizeof($test) == 0) {
         //add private posts filter
-        $query .= " AND Private = FALSE;";
+        $query .= " AND Private = FALSE";
     }
 }
+
+$query .= " ORDER BY Date DESC;";
 
 $posts = $dbh->execQuery($query, MYSQLI_ASSOC);
 

@@ -10,7 +10,7 @@ $query = "SELECT post.*
         FROM post
         JOIN follow ON post.IdUser = follow.IdDst
         WHERE follow.IdSrc = $idUser
-        ORDER BY post.Date ASC;";
+        ORDER BY post.Date DESC;";
 $res = $dbh->execQuery($query, MYSQLI_ASSOC);
 
 echo (json_encode($res));
