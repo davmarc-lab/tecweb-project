@@ -226,7 +226,7 @@ function appendPostToContainer(numPostToLoad) {
 
             let likeButton = document.createElement("button");
             likeButton.classList = "btn-feedback";
-            let likeIcon = document.createElement("i");
+            let likeIcon = document.createElement("span");
             likeIcon.classList = "bi";
 
             // query to get like button icon
@@ -284,7 +284,7 @@ function appendPostToContainer(numPostToLoad) {
             // append commment icon
             let btnComment = document.createElement("button");
             btnComment.classList = "btn-feedback";
-            let commentIcon = document.createElement("i");
+            let commentIcon = document.createElement("span");
             commentIcon.classList = "bi bi-chat-left-text";
             btnComment.appendChild(commentIcon);
             divCardCol1.appendChild(btnComment);
