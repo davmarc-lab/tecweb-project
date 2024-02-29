@@ -30,16 +30,13 @@ if ($password === "") {
             }
         } else {
             if ($password === $passwordRep) {
-                $mediaId = -1;
+                $mediaId = 1; //default icon
                 if (isset($_FILES['icon']) && $_FILES["icon"]["error"] == 0) {
                     $uploadDir = "uploads/";
                     $targetDir = "../../" . $uploadDir;
                     $mediaId = insertImage($dbh, $uploadDir, $targetDir);
                     unset($_FILES["icon"]);
-                } else {
-                    $mediaId = 19;
                 }
-                //echo "Media id prima di register: " . $mediaId;
                 register($name, $surname, $username, $email, $password, $mediaId);
             } else {
                 echo "error1";

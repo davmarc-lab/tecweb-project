@@ -39,8 +39,12 @@ $("document").ready(function () {
             let selectedValue = String(this.id).split("-").pop();
             let value = document.getElementById("selected-category");
             console.log(value);
-            value.innerHTML = "<input type='hidden' id='selected-category' name='category' />";
-            value.setAttribute("value", selectedValue);
+            let input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("id", "selected-category");
+            input.setAttribute("name", "category");
+            input.setAttribute("value", selectedValue);
+            value.appendChild(input);
 
             // Set the badge value
             categoryBadge.innerHTML = "<p class='badge' id='selected-badge'>";
