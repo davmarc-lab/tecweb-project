@@ -5,9 +5,13 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 }
 
 require_once "../../includes/database.php";
+$user = -1;
 
-$user = $_POST['user'];
-
+if (isset($_POST['user'])) {
+    $user = $_POST['user'];
+} else {
+    $user = $_SESSION['userId'];
+}
 $query = "SELECT u.IdUser, u.Username, u.IdMedia
         FROM follow AS f
         JOIN member AS u ON f.IdDst = u.IdUser

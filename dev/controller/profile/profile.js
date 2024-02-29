@@ -395,6 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 user: user['IdUser'],
             },
             success: function (response) {
+                console.log(response);
                 let follow = JSON.parse(response);
                 if (response != null && follow.length > 0) {
                     let modalTitle = document.createElement('h2');

@@ -296,9 +296,12 @@ function createModalSpace(parent, id, title, chats) {
         url: "../model/profile/getFollow.php",
         method: "POST",
         success: function (response) {
+            console.log(response);
             if (response != "") {
                 followList = JSON.parse(response);
-                followList = followList.filter(elem => !(chats.map(elem => elem['IdUser']).includes(elem['IdUser'])));
+                if (chats != null) {
+                    followList = followList.filter(elem => !(chats.map(elem => elem['IdUser']).includes(elem['IdUser'])));
+                }
                 printFollowUser(modalBody, followList);
             }
         },
