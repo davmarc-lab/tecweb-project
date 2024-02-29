@@ -430,7 +430,7 @@ textarea {
     color: #198754 !important;
 }
 
-.suggested-profile > h1 {
+.suggested-profile > header > h2 {
     color: #FEAB5D;
     font-size: 30px;
     font-family: 'Thasadith', sans-serif;
@@ -743,7 +743,7 @@ a[role="button"]:hover:not(.btn-following, .btn-danger){
 }
 
 .number-badge {
-    color: white !important;
+    color: black !important;
     background-color: lightslategray !important;
     font-size: small;
     width: fit-content;

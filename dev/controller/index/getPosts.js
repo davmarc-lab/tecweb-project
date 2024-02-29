@@ -299,7 +299,7 @@ function appendPostToContainer(numPostToLoad) {
             divCardCol2.appendChild(linkPost);
 
             // append post title and description
-            let titlePost = document.createElement("h5");
+            let titlePost = document.createElement("h3");
             titlePost.classList.add("card-title");
             titlePost.innerHTML = post["Title"];
 

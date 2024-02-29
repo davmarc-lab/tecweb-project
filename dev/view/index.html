@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../style/style.css">
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="../controller/sponsor/deleteSponsor.js"></script>
-        <script src="../controller/index/index.js"></script>
-        <script src="../controller/utils/checkLogin.js"></script>
-        <script src="../controller/index/cookies.js"></script>
-        <script src="../controller/index/getPosts.js"></script>
-        <!-- <link rel="icon" href="nfa-icon.png" type="image/x-icon" /> -->
-        <script src="../controller/index/suggested.js"></script>
-        <title>NoteForAll</title>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../controller/sponsor/deleteSponsor.js"></script>
+    <script src="../controller/index/index.js"></script>
+    <script src="../controller/utils/checkLogin.js"></script>
+    <script src="../controller/index/cookies.js"></script>
+    <script src="../controller/index/getPosts.js"></script>
+    <!-- <link rel="icon" href="nfa-icon.png" type="image/x-icon" /> -->
+    <script src="../controller/index/suggested.js"></script>
+    <title>NoteForAll</title>
+</head>
 
-    <body id="index-id">
-        <div id="navbar-space"></div>
-        <div class="index-container">
-            <!-- all post loaded -->
-            <div class="posts-container" id="posts-container">
-            </div>
+<body id="index-id">
+    <div id="navbar-space"></div>
+    <div class="index-container">
+        <!-- all post loaded -->
+        <section class="posts-container" id="posts-container">
+            <header hidden>
+                <h2>Posts</h2>
+            </header>
+        </section>
 
-            <!-- suggested profile -->
-            <div class="suggested-profile">
-                <h1>Suggested Profile</h1>
-                <ul class="list-unstyled" id="list-profiles">
-                    
-                </ul>
-            </div>
-            <!-- cookie banner -->
-            <div id="cookie-div">
-                <div id="cookie-notify">
-                </div>
+        <!-- suggested profile -->
+        <section class="suggested-profile">
+            <header>
+                <h2>Suggested Profile</h2>
+            </header>
+            <ul class="list-unstyled" id="list-profiles">
+
+            </ul>
+        </section>
+        <!-- cookie banner -->
+        <div id="cookie-div">
+            <div id="cookie-notify">
             </div>
         </div>
+    </div>
 </body>
 
 </html>
-
