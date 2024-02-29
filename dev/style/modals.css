@@ -28,7 +28,7 @@
 .modal-content table {
     display: block;
     margin-top: 5%;
-    padding-top: 0;
+    padding: 0;
     height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -63,7 +63,7 @@
 .modal-content table td[headers="action"] {
     display: flex;
     text-align: end !important;
-    justify-content: flex-end;
+    justify-content: center;
     padding-right: 3%;
     align-items: center;
 }
@@ -81,13 +81,14 @@
 }
 
 .modal-body ul li:hover {
-    background-color: #198754;
+    background-color: #1EA465;
+    color: black;
 }
 
 .modal-body ul li {
     cursor: pointer;
     margin-top: 2%;
-    background-color: #006F3C;
+    background-color: #198754;
     border: 1px solid gray;
     border-radius: 5px;
     color: white;

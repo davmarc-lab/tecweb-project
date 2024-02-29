@@ -9,23 +9,41 @@ html[data-bs-theme="dark"] {
         transition: background-color 0.7s ease, color 0.7s ease;
     }
 
+    textarea {
+        border: 1px solid lightgray;
+    }
+
     nav {
-        background-color: #006f3c !important;
-        color: white;
         transition: background-color 0.7s ease, color 0.7s ease;
     }
 
-    .btn:not(#reset, #post-like, .btn-danger) {
-        background-color: #006f3c;
+    .btn:not(#reset, #post-like, .btn-danger, .btn-search) {
+        background-color: #198754;
         transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    .btn-primary:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post {
+        background-color: #198754 !important;
+        color: white;
+    }
+
+    .btn-primary:hover:not(.signup-body .btn-primary, .login-body .btn-primary), .btn-primary:hover:active:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post:hover {
+        background-color: #1EA465 !important;
+        color: black !important;
+        cursor: pointer;
     }
 
     a#post-media {
         color: white;
     }
 
-    a#post-media:hover {
-        color: #1EA465;
+    a {
+        color: white !important;
+    }
+
+    a:hover:not(.nav-item a, .suggested-profile a, .btn-utility, .btn-utility-contrast, .btn-back) {
+        color: #1EA465 !important;
+        transition: none !important;
     }
 
     #comment-text {
@@ -34,13 +52,10 @@ html[data-bs-theme="dark"] {
     }
 
     #reset:hover {
-        background-color:#bb2d3b !important;
+        background-color:#E5061C !important;
     }
     
     .btn-feedback,
-    .comment>a,
-    .index-post-user-id>a,
-    .card>p>a,
     #private-more-info>svg {
         color: white !important;
         fill: white !important;
@@ -52,11 +67,8 @@ html[data-bs-theme="dark"] {
     }
 
     #search-text,
-    #search-button,
     #category-search,
     .dropdown-menu,
-    .dropdown-menu>a,
-    .notification-area>p>a,
     #new-post>form>input,
     #new-post>form>textarea,
     .dropdown-toggle,
@@ -76,13 +88,7 @@ html[data-bs-theme="dark"] {
         background-color: #2c3034;
     }
 
-    .table-striped>tbody>tr>td>p>a,
-    .table-striped>tbody>tr>td>a {
-        color: white !important;
-    }
-
     .table-striped tr:nth-child(even),
-    .table-striped>thead>tr>th,
     .modal-content {
         background-color: #212529;
     }
@@ -95,27 +101,16 @@ html[data-bs-theme="dark"] {
         border: 1px solid #1EA465 !important;
     }
 
-    .comment>a:hover, p#post-author > a:hover {
-        color: #1EA465 !important;
-        transition: none !important;
-    }
-
     #reset:hover {
         background-color: #bb2d3b;
         transition: none;
     }
 
-    .btn:hover:not(.btn-danger, #post-like), .view-post:hover {
-        background-color: #198754 !important;
-        transition: none;
+    .btn:hover:not(.btn-danger, #post-like, .btn-search), .view-post:hover {
+        background-color: #1EA465 !important;
+        color: black !important;
+        transition: none !important;
         cursor: pointer;
-    }
-
-    .card>p>a:hover,
-    .index-post-user-id>a:hover,
-    .notification-area>p>a:hover {
-        color: #1EA465 !important;
-        transition: none;
     }
 
     #btn-followers, #btn-follow {
@@ -157,15 +152,6 @@ html[data-bs-theme="dark"] {
         color: white;
     }
 
-    #post-author > a{
-        color: white !important;
-    }
-
-    #view-post > .row > a, .container-fluid > #profile > a {
-        background-color: #212529;
-        color: white;
-    }
-
     #view-post > .row > a:hover, #edit-back-button:hover {
         background-color: #3f474f !important;
     }
@@ -186,11 +172,20 @@ html[data-bs-theme="dark"] {
         transition: none !important;
     }
 
+    .btn-search {
+        background-color: transparent !important;
+        color: white !important;
+    }
+
     .btn-utility-contrast:hover, .btn-search:hover {
         cursor: pointer !important;
         background-color: #3f474f !important;
         color: white !important;
         border: 1px solid white !important;
         transition: none !important;
+    }
+
+    .close:hover {
+        color: white !important;
     }
 }

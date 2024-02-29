@@ -73,6 +73,7 @@ main {
     justify-content: center;
     overflow-x: hidden;
     margin-top: 20px;
+    height: 100%;
 }
 
 .cascading-container {
@@ -438,7 +439,7 @@ textarea {
 }
 
 .suggested-profile a:hover {
-    color: #198754 !important;
+    color: #FEAB5D !important;
 }
 
 .suggested-profile > header > h2 {
@@ -546,7 +547,7 @@ input[type="submit"] {
 
 input[type="reset"] {
     cursor: pointer;
-    background-color: red;
+    background-color: #E60000;
     color: white;
     border: none;
     border-radius: 4px;
@@ -554,6 +555,10 @@ input[type="reset"] {
     padding: 8px 2% !important;
     margin: 0 10px 0 0 !important;
     font-size: medium;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(0, 105, 0) !important;
 }
 
 #reset:hover {
@@ -624,7 +629,7 @@ a:hover:not(a[role="button"], .signup-body a, .login-body a) {
 
 .btn-danger {
     cursor: pointer;
-    background-color: red;
+    background-color: #E60000;
     color: white;
     border: none;
     border-radius: 4px;
@@ -668,6 +673,7 @@ a[role="button"]:not(.btn-primary, .btn-danger, .btn-utility, .btn-utility-contr
 a[role="button"]:hover:not(.btn-primary, .btn-danger, .btn-utility, .btn-utility-contrast) {
     background-color: #198754 !important;
     color: white !important;
+    cursor: pointer !important;
 }
 
 .btn-following {
@@ -773,9 +779,12 @@ a[role="button"]:hover:not(.btn-following, .btn-danger){
     border-radius: 5px;
     position: absolute;
     left: 0;
-    z-index: 1;
     width: 180%;
     padding: 1%;
+}
+
+#new-post .dropdown-menu {
+    bottom: 100%;
 }
 
 .scrollable-menu {
@@ -975,9 +984,9 @@ ul > li {
     position: sticky;
     width: 100%;
     top: 0;
-    background-color: rgba(0, 105, 0);
+    background-color: #198754;
     color: white;
-    border: 2px solid rgba(0, 105, 0);
+    border: 2px solid #198754;
 }
 
 .table > thead th {
@@ -1003,7 +1012,8 @@ ul > li {
     border: 1px solid lightgray;
     border-radius: 5px;
     width: 60%;
-    padding: 2% 5% 10%;
+    padding: 2% 5%;
+    margin-bottom: 20px;
 }
 
 #post-files {
@@ -1017,7 +1027,7 @@ ul > li {
 
 #duration-form fieldset {
     width: 40%;
-    height: 40%;
+    height: fit-content;
     padding: 2% 2% 5%;
     text-align: left;
     background-color: whitesmoke;
