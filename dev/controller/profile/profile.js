@@ -202,8 +202,7 @@ function createPost(elem, isSame) {
                     id: elem['IdPost']
                 },
                 success: function (r) {
-                    console.log(r);
-                    //location.reload();
+                    location.reload();
                 }
             });
         });
