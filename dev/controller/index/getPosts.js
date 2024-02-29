@@ -140,6 +140,7 @@ function appendPostToContainer(numPostToLoad) {
             let imgProfile = document.createElement("img");
             imgProfile.setAttribute("src", pathImgAuthor);
             imgProfile.classList.add("profile-icon");
+            imgProfile.alt = "Profile Icon";
 
             // append profile image to row div
             divProfileImage.appendChild(imgProfile);
@@ -147,12 +148,11 @@ function appendPostToContainer(numPostToLoad) {
             divPost.appendChild(divRow);
 
             // append user profile page link to row div
-            //let divUser = document.createElement("div");
             let pUser = document.createElement("p");
-            pUser.setAttribute("id", "index-post-user-id");
+            pUser.classList.add("index-post-user-id");
             pUser.appendChild(drawLinkUsernameElement(author["IdUser"], author["Username"]));
             divProfileImage.appendChild(pUser);
-            //divRow.appendChild(divUser);
+
             if (skip) {
                 let divSponsor = document.createElement("div");
                 let pSponsor = document.createElement("p");
@@ -167,6 +167,7 @@ function appendPostToContainer(numPostToLoad) {
                 let imgPreview = document.createElement("img");
                 imgPreview.setAttribute("src", pathPostPreview);
                 imgPreview.classList = "card-img-top img-fluid";
+                imgPreview.alt = "Post Preview Image";
                 divPost.appendChild(imgPreview);
             }
 
@@ -203,8 +204,8 @@ function appendPostToContainer(numPostToLoad) {
                 });
                 // category info taken
                 let pCat = document.createElement("p");
-                pCat.setAttribute("id", "category-badge");
                 pCat.classList = "badge";
+                pCat.classList.add("category-badge");
                 pCat.innerHTML = category["Description"];
 
                 divCardBody.appendChild(pCat);
@@ -291,11 +292,10 @@ function appendPostToContainer(numPostToLoad) {
 
             // append link to viewPost page
             let linkPost = document.createElement("a");
-            linkPost.setAttribute("href", "../" + viewPostPage + "?id=" + post["IdPost"]);
-            let linkButton = document.createElement("button");
-            linkButton.classList = "btn btn-primary view-post";
-            linkButton.innerHTML = "View Post";
-            linkPost.appendChild(linkButton);
+            linkPost.classList = "btn btn-primary view-post";
+            linkPost.role = "button";
+            linkPost.href = "../" + viewPostPage + "?id=" + post["IdPost"];
+            linkPost.innerText = "View Post";
             divCardCol2.appendChild(linkPost);
 
             // append post title and description
@@ -368,9 +368,15 @@ function appendPostToContainer(numPostToLoad) {
             divUserComment.classList.add("form-group");
 
             // add input for the user
+            let commentLabel = document.createElement('label');
+            commentLabel.setAttribute('for', 'text-area-comment-' + post['IdPost']);
+            commentLabel.innerHTML = "Write your comment";
+            commentLabel.hidden = true;
+            divUserComment.appendChild(commentLabel);
+            
             let areaComment = document.createElement("textarea");
             areaComment.classList = "form-control";
-            areaComment.setAttribute("id", "text-area-comment");
+            areaComment.setAttribute("id", "text-area-comment-" + post['IdPost']);
             areaComment.setAttribute("rows", 3);
             areaComment.setAttribute("cols", 20);
             areaComment.setAttribute("placeholder", "Add your comment");

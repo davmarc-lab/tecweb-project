@@ -39,7 +39,7 @@ html[data-bs-theme="dark"] {
     
     .btn-feedback,
     .comment>a,
-    #index-post-user-id>a,
+    .index-post-user-id>a,
     .card>p>a,
     #private-more-info>svg {
         color: white !important;
@@ -112,7 +112,7 @@ html[data-bs-theme="dark"] {
     }
 
     .card>p>a:hover,
-    #index-post-user-id>a:hover,
+    .index-post-user-id>a:hover,
     .notification-area>p>a:hover {
         color: #1EA465 !important;
         transition: none;

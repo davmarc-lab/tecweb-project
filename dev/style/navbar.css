@@ -72,6 +72,7 @@ body:not(.signup-body, .login-body) {
     font-size: xx-large;
     font-weight: bold;
     padding: 0px;
+    margin-left: 1%;
 }
 
 .navbar-header button {
@@ -81,7 +82,7 @@ body:not(.signup-body, .login-body) {
 .navbar-body {
     position: fixed;
     right: 0;
-    margin-right: 2%;
+    margin-right: 1%;
 }
 
 .navbar-body ul {

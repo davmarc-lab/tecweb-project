@@ -392,17 +392,17 @@ textarea {
     margin-left: 2%;
 }
 
-#index-post-user-id {
+.index-post-user-id {
     width: fit-content;
     margin-left: 1%;
 }
 
-#index-post-user-id > a {
+.index-post-user-id > a {
     text-decoration: none;
     color: black;
 }
 
-#index-post-user-id > a:hover {
+.index-post-user-id > a:hover {
     color: #006f3c;
     text-decoration: none;
 }
@@ -830,13 +830,13 @@ a.dropdown-toggle:hover {
     border-color: #006f3c !important;
 }
 
-#category-badges, #category-badge:not(.posts-container #category-badge) {
+#category-badges, #category-badge:not(.posts-container .category-badge) {
     display: flex;
     justify-content: space-between;
     margin-left: 10%;
 }
 
-#category-badges > p, #category-badge > p {
+#category-badges > p, #category-badge > p, .category-badge > p {
     width: max-content !important;
     margin-right: 5px;
 }
