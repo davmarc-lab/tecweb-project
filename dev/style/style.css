@@ -266,6 +266,7 @@ main > .profile-back > a {
     margin: 2% auto;
     padding: 1% 20px;
     width: 50%;
+    min-width: 300px;
     height: auto;
     text-align: center;
     background-color: lightgray;

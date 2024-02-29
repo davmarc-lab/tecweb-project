@@ -25,7 +25,7 @@ html[data-bs-theme="dark"] {
     }
 
     a#post-media:hover {
-        color: #198754;
+        color: #1EA465;
     }
 
     #comment-text {
@@ -85,9 +85,13 @@ html[data-bs-theme="dark"] {
         border: none;
     }
 
+    .comment {
+        border: 1px solid #1EA465 !important;
+    }
+
     .comment>a:hover, p#post-author > a:hover {
-        color: #198754 !important;
-        transition: none
+        color: #1EA465 !important;
+        transition: none !important;
     }
 
     #reset:hover {
@@ -98,24 +102,27 @@ html[data-bs-theme="dark"] {
     .btn:hover:not(.btn-danger, #post-like), .view-post:hover {
         background-color: #198754 !important;
         transition: none;
+        cursor: pointer;
     }
 
     .card>p>a:hover,
     #index-post-user-id>a:hover,
     .notification-area>p>a:hover {
-        color: #198754 !important;
+        color: #1EA465 !important;
         transition: none;
     }
 
     #btn-followers, #btn-follow {
-        border: none;
-        background-color: #006f3c !important;
-        color: white;
+        border: 1px solid #1EA465 !important;
+        background-color: transparent !important;
+        color: #1EA465 !important;
     }
 
     #btn-followers:hover, #btn-follow:hover {
-        background-color: #198754 !important;
-        transition: none;
+        background-color: #1EA465 !important;
+        color: white !important;
+        transition: none !important;
+        border: 1px solid #1EA465 !important;
     }
 
     #edit-back-button, #change-password-button {
