@@ -75,6 +75,6 @@ $("document").ready(function () {
     let resetButton = document.getElementById("reset");
     $(resetButton).on('click', function () {
         //the category badge now has to be not visible
-        categoryDescription.innerHTML = "";
+        categoryBadge.innerHTML = "";
     })
 });
