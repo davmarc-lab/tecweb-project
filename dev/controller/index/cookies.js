@@ -58,5 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         div.appendChild(btnButton);
+    } else {
+        document.getElementById('cookie-div').style.display = "none";
     }
 });
