@@ -30,7 +30,7 @@ function drawProfileInfo(user, isSame) {
         aButton.href = "javascript: history.go(-1)";
         aButton.role = "button";
         aButton.id = 'edit-back-button'
-        aButton.classList = "btn btn-utility-contrast btn-back";
+        aButton.classList = "btn-utility-contrast btn-back";
         aButton.title = "Go back";
 
         let backIcon = document.createElement('span');

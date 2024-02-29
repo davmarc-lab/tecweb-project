@@ -64,7 +64,6 @@ main {
 #input-area > textarea {
     width: 80%;
     height: 50%;
-    text-wrap: wrap;
     padding: 1%;
     border-radius: 5px;
     font-family: Arial, Helvetica, sans-serif;

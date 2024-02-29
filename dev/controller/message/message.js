@@ -312,12 +312,12 @@ function drawMobileLayout (item) {
     let asidePanel = document.getElementById("chat-users");
     let mainPanel = document.querySelector("main");
     /* event listener if the screen has max width of 992 pixels */
-    if (window.innerWidth <= 992) {
-        item.addEventListener('click', function () {
+    item.addEventListener('click', function () {
+        if (window.innerWidth <= 992) {
             asidePanel.style.display = "none";
             mainPanel.style.display = "block";
-        })
-    }
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {

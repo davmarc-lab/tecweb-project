@@ -125,11 +125,6 @@ html[data-bs-theme="dark"] {
         border: 1px solid #1EA465 !important;
     }
 
-    #edit-back-button, #change-password-button {
-        background-color: #212529 !important;
-        color: white;
-    }
-
     #list-chat {
         background-color: #212529;
     }
@@ -172,5 +167,16 @@ html[data-bs-theme="dark"] {
     .div-advert {
         background-color: #3f474f !important;
         color: white !important;
+    }
+
+    .btn-back, .btn-utility {
+        background-color: transparent !important;
+        color: white !important;
+        border: 1px solid white !important;
+    }
+
+    .btn-back:hover, .btn-utility:hover {
+        background-color: #3f474f !important;
+        transition: none !important;
     }
 }
