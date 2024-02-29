@@ -73,7 +73,7 @@ function drawNotifications(div, notif) {
 }
 
 function printTitle2(div, string) {
-    let text = document.createElement('h2');
+    let text = document.createElement('h3');
     text.innerHTML = string;
     div.appendChild(text);
 }

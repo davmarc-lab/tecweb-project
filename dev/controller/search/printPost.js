@@ -127,7 +127,7 @@ function createCategory(category) {
 }
 
 function createPostTitle(postTitle) {
-    let title = document.createElement("h5");
+    let title = document.createElement("h2");
     title.classList.add('card-title');
     title.innerHTML = postTitle;
     return title;
