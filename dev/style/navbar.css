@@ -84,6 +84,10 @@ body:not(.signup-body, .login-body) {
     margin-right: 1%;
 }
 
+.nav-item {
+    background-color: transparent !important;
+}
+
 .navbar-body ul {
     list-style: none;
     display: flex;

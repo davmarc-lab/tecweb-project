@@ -38,7 +38,6 @@ $("document").ready(function () {
             // Set the value of the hidden input
             let selectedValue = String(this.id).split("-").pop();
             let value = document.getElementById("selected-category");
-            console.log(value);
             let input = document.createElement("input");
             input.setAttribute("type", "hidden");
             input.setAttribute("id", "selected-category");
@@ -49,9 +48,7 @@ $("document").ready(function () {
             // Set the badge value
             categoryBadge.innerHTML = "<p class='badge' id='selected-badge'>";
             let categoryDescription = document.getElementById("selected-badge");
-            console.log(item.innerHTML);
             categoryDescription.innerHTML = item.innerHTML;
-            console.log(categoryDescription);
         });
     });
 
@@ -65,8 +62,8 @@ $("document").ready(function () {
             },
             success: function (response) {
                 //the category badge now has to be visible
-                categoryDescription.innerHTML = elem.value;
-                value.setAttribute("id", response);
+                document.getElementById('category-badge').innerHTML = "<p class='badge' id='selected-badge'>" + elem.value + "</p>";
+                elem.parentElement.parentElement.classList.toggle('click');
             }
         });
     });
