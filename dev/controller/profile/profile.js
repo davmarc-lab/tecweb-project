@@ -100,6 +100,7 @@ function drawProfileInfo(user, isSame) {
         success: function (response) {
             let image = JSON.parse(response);
             img.setAttribute('src', "../" + image['FilePath']);
+            img.setAttribute('alt', "User Profile Image");
         }
     });
     
@@ -123,6 +124,7 @@ function createPost(elem, isSame) {
     if (elem['IdPreview'] != null) {
         let imgPreview = document.createElement('img');
         imgPreview.classList.add("card-img-top");
+        imgPreview.alt = "Post Preview Image";
         $.ajax({
             async: false,
             url: "../model/utils/getMediaFromId.php",
