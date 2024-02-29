@@ -6,7 +6,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
 require_once "../../includes/database.php";
 
-$user = $_SESSION['userId'];
+$user = $_POST['user'];
 
 $query = "SELECT u.IdUser, u.Username, u.IdMedia
         FROM follow AS f
