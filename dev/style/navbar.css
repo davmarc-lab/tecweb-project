@@ -98,6 +98,11 @@ body:not(.signup-body, .login-body) {
     margin: 0;
 }
 
+.nav-item a, .nav-item button, nav p {
+    color: white !important;
+    text-decoration: none !important;
+}
+
 .nav-item > a {
     color: white;
     font-style: normal;

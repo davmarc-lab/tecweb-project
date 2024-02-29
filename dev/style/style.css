@@ -7,7 +7,7 @@ body {
     display: flex;
     overflow-x: hidden;
     width: 100%;
-    margin: 80px 0 0;
+    margin: 100px 0 0;
     justify-content: left;
     background-color: white;
     transition: background-color 0.7s ease, color 0.7s ease;
@@ -72,10 +72,29 @@ main {
     display: flex;
     justify-content: center;
     overflow-x: hidden;
+    margin-top: 20px;
 }
 
-#edit-profile .container-centered {
-    margin-top: 2% !important;
+.cascading-container {
+    display: inline-block;
+    align-items: center;
+    width: 100%;
+    margin:0 5% 5%;
+}
+
+.index-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.profile-container {
+    align-items: center !important;
+    width: 100%;
+}
+
+.edit-container {
+    width: 70%;
 }
 
 #changing-text {
@@ -163,22 +182,13 @@ main {
 
 main > .profile-back {
     display: block;
-    margin: 2% 0;
+    margin: 2%;
 }
 
 main > .profile-back > a {
     display: flex;
     flex-direction: column;
     vertical-align: middle;
-}
-
-.profile-container {
-    align-items: center !important;
-    width: 100%;
-}
-
-.edit-container {
-    width: 70%;
 }
 
 .row {
@@ -239,11 +249,7 @@ main > .profile-back > a {
     flex-direction: row;
 }
 
-.index-container {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
+
 
 .posts-container {
     display: inline;
@@ -322,6 +328,11 @@ textarea {
 
 #view-post {
     border-color: lightslategray !important;
+    width: 60%;
+    min-width: 250px;
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+    padding: 3%;
 }
 
 .card-img-top, .img-fluid {
@@ -577,11 +588,6 @@ a:not(a[role="button"], .signup-body a, .login-body a) {
 a:hover:not(a[role="button"], .signup-body a, .login-body a) {
     color: #447957;
     text-decoration: none;
-}
-
-.nav-item a, .nav-item button, nav p {
-    color: white !important;
-    text-decoration: none !important;
 }
 
 .btn-primary:disabled {
@@ -902,11 +908,8 @@ ul > li {
     margin-bottom: 3% !important;
 }
 
-.cascading-container {
-    display: inline-block;
-    align-items: center;
-    width: 100%;
-    margin:0 5% 5%;
+#change-password-button {
+    padding: 0.8% !important;
 }
 
 .input-group {
@@ -1001,14 +1004,6 @@ ul > li {
     border-radius: 5px;
     width: 60%;
     padding: 2% 5% 10%;
-}
-
-#view-post {
-    width: 60%;
-    align-items: center;
-    border: 1px solid lightslategray;
-    border-radius: 10px;
-    padding: 3%;
 }
 
 #post-files {
