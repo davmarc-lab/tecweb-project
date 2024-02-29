@@ -241,9 +241,9 @@ function printFollowUser(modalBody, followList) {
         listElem.addEventListener('click', function () {
             let modal = document.getElementById('modal-new-chat');
             modal.style.display = "none";
-
             // set new space
             createEmptyChat(elem['IdUser']);
+            modal.parentElement.removeChild(modal);
         });
     });
     modalBody.appendChild(usersList);
