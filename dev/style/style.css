@@ -545,6 +545,11 @@ input[type="reset"] {
     font-size: medium;
 }
 
+#reset:hover {
+    background-color:#bb2d3b !important;
+    color: white !important;
+}
+
 #search-text {
     float: left;
     border: 1px solid lightgray;
@@ -776,7 +781,7 @@ a[role="button"]:hover:not(.btn-following, .btn-danger){
     max-height: 180px;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown.click .dropdown-menu {
     display: block;
     overflow-y: auto;
 }

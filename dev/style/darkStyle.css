@@ -1,7 +1,7 @@
 html[data-bs-theme="dark"] {
 
     body,
-    #text-area-comment,
+    textarea,
     .post-card,
     .card {
         background-color: #212529;
@@ -42,7 +42,8 @@ html[data-bs-theme="dark"] {
     #index-post-user-id>a,
     .card>p>a,
     #private-more-info>svg {
-        color: white;
+        color: white !important;
+        fill: white !important;
         transition: background-color 0.7s ease, color 0.7s ease;
     }
 
@@ -64,6 +65,11 @@ html[data-bs-theme="dark"] {
         background-color: #212529 !important;
         color: white;
         transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    .dropdown-toggle:hover {
+        background-color: #3f474f !important;
+        transition: none !important;
     }
 
     .table-striped {
@@ -177,6 +183,14 @@ html[data-bs-theme="dark"] {
 
     .btn-back:hover, .btn-utility:hover {
         background-color: #3f474f !important;
+        transition: none !important;
+    }
+
+    .btn-utility-contrast:hover, .btn-search:hover {
+        cursor: pointer !important;
+        background-color: #3f474f !important;
+        color: white !important;
+        border: 1px solid white !important;
         transition: none !important;
     }
 }
