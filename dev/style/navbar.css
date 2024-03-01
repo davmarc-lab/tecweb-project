@@ -91,7 +91,6 @@ body:not(.signup-body, .login-body) {
 .navbar-body ul {
     list-style: none;
     display: flex;
-    align-items: end;
     padding: 0;
     margin-right: 10px;
 }
