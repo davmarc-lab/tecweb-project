@@ -10,8 +10,13 @@ function createMessageInput(div, dst) {
     divUserInput.setAttribute('id', 'input-area');
 
     let areaMessage = document.createElement('textarea');
+    areaMessage.id = "message-textarea";
     areaMessage.setAttribute('rows', '3');
     areaMessage.placeholder = "Write your message here...";
+    let label = document.createElement('label');
+    label.setAttribute('for', 'message-textarea');
+    label.innerText = "Write your message";
+    divUserInput.appendChild(label);
     divUserInput.appendChild(areaMessage);
 
     let sendMessage = document.createElement('button');

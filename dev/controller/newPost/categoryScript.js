@@ -40,7 +40,6 @@ $("document").ready(function () {
             let value = document.getElementById("selected-category");
             let input = document.createElement("input");
             input.setAttribute("type", "hidden");
-            input.setAttribute("id", "selected-category");
             input.setAttribute("name", "category");
             input.setAttribute("value", selectedValue);
             value.appendChild(input);

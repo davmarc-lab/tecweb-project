@@ -12,7 +12,11 @@
     justify-content: center !important;
     align-items: center !important;
 }
-  
+
+#modal-title {
+    font-size: large;
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;

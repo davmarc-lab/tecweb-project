@@ -23,17 +23,30 @@
         <div class="profile-back"></div>
         <div class="container-fluid" id="profile-content">
             <section id="profile" class="profile-container">
+                <header hidden>
+                    <h2>User profile</h2>
+                </header>
                 <section id="profile-info">
+                    <header hidden>
+                        <h3>User profile information</h3>
+                    </header>
                     <div class="row">
                         <img alt="User profile image" id="profile-image" class="profile-page-icon" />
                     </div>
                     <div id="profile-follow" class="row">
+                        <header>
+                            <h4 id="modal-title" hidden>List of followers or followed</h4>
+                        </header>
                         <a id="btn-follow" role="button" class="btn btn-secondary">Follow</a>
                         <a id="btn-followers" role="button" class="btn btn-secondary">Followers</a>
                     </div>
                     <ul id="list-info"></ul>
                 </section>
-                <section id="profile-post" class="posts-container"></section>
+                <section id="profile-post" class="posts-container">
+                    <header hidden>
+                        <h5>User profile posts</h5>
+                    </header>
+                </section>
             </section>
         </div>
     </main>

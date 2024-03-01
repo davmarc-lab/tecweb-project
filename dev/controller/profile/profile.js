@@ -398,7 +398,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(response);
                 let follow = JSON.parse(response);
                 if (response != null && follow.length > 0) {
-                    let modalTitle = document.createElement('h2');
+                    let modalTitle = document.getElementById('modal-title');
+                    modalTitle.hidden = false;
                     modalTitle.innerHTML = "Following";
                     modalContent.appendChild(modalTitle);
                     printUsersModal(modalContent, JSON.parse(response));
@@ -422,7 +423,8 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (response) {
                 let follow = JSON.parse(response);
                 if (response != null && follow.length > 0) {
-                    let modalTitle = document.createElement('h2');
+                    let modalTitle = document.getElementById('modal-title');
+                    modalTitle.hidden = false;
                     modalTitle.innerHTML = "Followers";
                     modalContent.appendChild(modalTitle);
                     printUsersModal(modalContent, JSON.parse(response));

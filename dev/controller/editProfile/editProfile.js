@@ -55,7 +55,6 @@ function printInfo(id) {
             document.getElementById("input-username").setAttribute("value", response.Username);
             document.getElementById("input-email").setAttribute("value", response.Email);
             document.getElementById("input-description").innerHTML = response.Description;
-            document.getElementById("input-image").setAttribute("value", "");
         }
     });
 }
