@@ -158,7 +158,7 @@ function appendPostToContainer(numPostToLoad) {
             }
 
             // add image preview to the post div
-            if (pathPostPreview != "") {
+            if (pathPostPreview != "../") {
                 let imgPreview = document.createElement("img");
                 imgPreview.setAttribute("src", pathPostPreview);
                 imgPreview.classList = "card-img-top img-fluid";
