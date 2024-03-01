@@ -91,7 +91,7 @@ body:not(.signup-body, .login-body) {
 .navbar-body ul {
     list-style: none;
     display: flex;
-    align-items: right;
+    align-items: end;
     padding: 0;
     margin-right: 10px;
 }
@@ -214,15 +214,6 @@ body:not(.signup-body, .login-body) {
     width: 100%;
     background-color: white;
     border-radius: 10px;
-}
-
-
-.badge-notification-red {
-    padding: 5px 10px;
-    border-radius: 50%;
-    background: red;
-    color: white;
-    scale: 0.8;
 }
 
 .navbar .dropdown {
