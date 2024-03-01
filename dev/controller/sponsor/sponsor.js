@@ -8,6 +8,7 @@ function createPost(elem) {
     // preview
     if (elem['IdPreview'] != null) {
         let imgPreview = document.createElement('img');
+        imgPreview.setAttribute("alt", "Post preview image");
         imgPreview.classList.add("card-img-top");
         $.ajax({
             async: false,
