@@ -6,7 +6,8 @@
     height: 100%;
     line-height: 1.5em;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -156,6 +157,7 @@ main {
     justify-content: left;
     height: 5%;
     align-items: center;
+    margin: 2%;
 }
 
 .btn-back {

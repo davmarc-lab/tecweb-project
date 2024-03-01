@@ -15,6 +15,7 @@ function createMessageInput(div, dst) {
     areaMessage.placeholder = "Write your message here...";
     let label = document.createElement('label');
     label.setAttribute('for', 'message-textarea');
+    label.hidden = true;
     label.innerText = "Write your message";
     divUserInput.appendChild(label);
     divUserInput.appendChild(areaMessage);
