@@ -256,12 +256,14 @@ function createModalSpace(parent, id) {
     // actions
     span.addEventListener('click', function () {
         divModal.style.display = "none";
+        // divModal.removeChild(divContent);
         parent.removeChild(divModal);
     });
 
     window.addEventListener('click', function (event) {
         if (event.target == divModal) {
             divModal.style.display = "none";
+            // divModal.removeChild(divContent);
             parent.removeChild(divModal);
         }
     });
@@ -346,6 +348,13 @@ function printUsersModal(div, userList) {
     div.appendChild(table);
 }
 
+function setTitle(modal, title) {
+    let hTitle = document.createElement('h4');
+    hTitle.innerHTML = title;
+    let span = modal.children[0];
+    span.after(hTitle);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     $('#navbar-space').load('../view/navbar.html');
 
@@ -398,15 +407,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 let follow = JSON.parse(response);
                 if (response != null && follow.length > 0) {
                     let modalTitle = document.getElementById('modal-title');
-                    modalTitle.hidden = false;
+                    modalTitle.hidden = true;
                     modalTitle.innerHTML = "Following";
-                    modalContent.appendChild(modalTitle);
+                    setTitle(modalContent, modalTitle.innerHTML);
                     printUsersModal(modalContent, JSON.parse(response));
                 }
             },
         });
 
-        followModal.style.display = "block";
+        followModal.style.display = "flex";
         divFollow.appendChild(followModal);
     });
     document.getElementById('btn-followers').addEventListener('click', function () {
@@ -423,15 +432,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 let follow = JSON.parse(response);
                 if (response != null && follow.length > 0) {
                     let modalTitle = document.getElementById('modal-title');
-                    modalTitle.hidden = false;
+                    modalTitle.hidden = true;
                     modalTitle.innerHTML = "Followers";
-                    modalContent.appendChild(modalTitle);
+                    setTitle(modalContent, modalTitle.innerHTML);
                     printUsersModal(modalContent, JSON.parse(response));
                 }
             },
         });
 
-        followerModal.style.display = "block";
+        followerModal.style.display = "flex";
         divFollowers.appendChild(followerModal);
     });
 });
