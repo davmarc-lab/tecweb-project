@@ -1,0 +1,130 @@
+@media screen and (max-width: 992px) {
+
+    .side-panel {
+        display: none !important;
+    }
+
+    .login-body .container-centered, .signup-body .container-centered {
+        width: 100% !important;
+    }
+
+    .login-body form, .signup-body form {
+        width: 80% !important;
+    }
+
+    .index-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .posts-container {
+        width: 100%;
+    }
+
+    .post-card {
+        width: 50% !important;
+        min-width: 250px !important;
+        padding: 3% 20px !important;
+    }
+
+    .suggested-profile {
+        display: none;
+    }
+
+    #new-post, .edit-profile-box {
+        width: 80% !important;
+    }
+
+    #explain-private {
+        width: 300px !important;
+        margin-left: -150px !important;
+    }
+
+    #number-post, #number-follower, td[headers="number-follower"], td[headers="number-post"] {
+        display: none;
+    }
+
+    #random-post-container .card-row {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    #random-post-container .card:not(.post-card) {
+        width: 60% !important;
+    }
+
+    #profiles-table .table-responsive {
+        min-width: 350px !important;
+        width: 90% !important;
+    }
+
+    #sponsor-body {
+        display: inline-block;
+        justify-content: center;
+    }
+
+    #duration-form fieldset {
+        width: 50% !important;
+        min-width: 200px;
+    }
+
+    #search-text {
+        padding: 2% 2% !important;
+        width: 80% !important;
+    }
+
+    .btn-search {
+        width: 10% !important;
+    }
+
+    .change-password-section {
+        width: 80% !important;
+    }
+
+    .change-password-group > form {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    #messages-body {
+        display: inline-block !important;
+        width: 100% !important;
+    }
+
+    #messages-body main {
+        display: none;
+        width: 90% !important;
+    }
+
+    #messages-body aside {
+        width: 90% !important;
+    }
+
+    #messages-body .btn-back {
+        display: flex !important;
+        background-color: transparent;
+        color: black;
+        margin-right: 2%;
+        padding: 1%;
+        border: 1px solid lightgray;
+        border-radius: 50%;
+        width: 2em;
+        height: 2em;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #messages-body .btn-back:hover {
+        background-color: rgb(193, 196, 198);
+        cursor: pointer;
+    }
+
+    #messages-body .btn-back > svg {
+        vertical-align: middle;
+    }
+
+    #messages-body #input-area > button {
+        width: fit-content !important;
+    }
+}

@@ -1,0 +1,191 @@
+html[data-bs-theme="dark"] {
+
+    body,
+    textarea,
+    .post-card,
+    .card {
+        background-color: #212529;
+        color: white;
+        transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    textarea {
+        border: 1px solid lightgray;
+    }
+
+    nav {
+        transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    .btn:not(#reset, #post-like, .btn-danger, .btn-search) {
+        background-color: #198754;
+        transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    .btn-primary:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post {
+        background-color: #198754 !important;
+        color: white;
+    }
+
+    .btn-primary:hover:not(.signup-body .btn-primary, .login-body .btn-primary), .btn-primary:hover:active:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post:hover {
+        background-color: #1EA465 !important;
+        color: black !important;
+        cursor: pointer;
+    }
+
+    a#post-media {
+        color: white;
+    }
+
+    a {
+        color: white !important;
+    }
+
+    a:hover:not(.nav-item a, .suggested-profile a, .btn-utility, .btn-utility-contrast, .btn-back) {
+        color: #1EA465 !important;
+        transition: none !important;
+    }
+
+    #comment-text {
+        background-color: #212529;
+        color: white;
+    }
+
+    #reset:hover {
+        background-color:#E5061C !important;
+    }
+    
+    .btn-feedback,
+    #private-more-info>svg {
+        color: white !important;
+        fill: white !important;
+        transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    .sponsorized-text {
+        color: #FEAB5D;
+    }
+
+    #search-text,
+    #category-search,
+    .dropdown-menu,
+    #new-post>form>input,
+    #new-post>form>textarea,
+    .dropdown-toggle,
+    #edit-profile-form>input,
+    #edit-profile-form>textarea {
+        background-color: #212529 !important;
+        color: white;
+        transition: background-color 0.7s ease, color 0.7s ease;
+    }
+
+    .dropdown-toggle:hover {
+        background-color: #3f474f !important;
+        transition: none !important;
+    }
+
+    .table-striped {
+        background-color: #2c3034;
+    }
+
+    .table-striped tr:nth-child(even),
+    .modal-content {
+        background-color: #212529;
+    }
+
+    .table>thead {
+        border: none;
+    }
+
+    .comment {
+        border: 1px solid #1EA465 !important;
+    }
+
+    #reset:hover {
+        background-color: #bb2d3b;
+        transition: none;
+    }
+
+    .btn:hover:not(.btn-danger, #post-like, .btn-search), .view-post:hover {
+        background-color: #1EA465 !important;
+        color: black !important;
+        transition: none !important;
+        cursor: pointer;
+    }
+
+    #btn-followers, #btn-follow {
+        border: 1px solid #1EA465 !important;
+        background-color: transparent !important;
+        color: #1EA465 !important;
+    }
+
+    #btn-followers:hover, #btn-follow:hover {
+        background-color: #1EA465 !important;
+        color: white !important;
+        transition: none !important;
+        border: 1px solid #1EA465 !important;
+    }
+
+    #list-chat {
+        background-color: #212529;
+    }
+
+    #list-chat > li:hover {
+        background-color: #3f474f;
+    }
+
+    .message-src {
+        background-color: #003c20 !important;
+    }
+
+    #chat-content > #input-area > textarea {
+        background-color: #212529;
+        color: white;
+    }
+
+    #list-chat > li {
+        box-shadow: 2px 3px #3f474f;
+    }
+
+    #duration-form > fieldset {
+        background-color: #212529;
+        color: white;
+    }
+
+    #view-post > .row > a:hover, #edit-back-button:hover {
+        background-color: #3f474f !important;
+    }
+
+    .div-advert {
+        background-color: #3f474f !important;
+        color: white !important;
+    }
+
+    .btn-back, .btn-utility {
+        background-color: transparent !important;
+        color: white !important;
+        border: 1px solid white !important;
+    }
+
+    .btn-back:hover, .btn-utility:hover {
+        background-color: #3f474f !important;
+        transition: none !important;
+    }
+
+    .btn-search {
+        background-color: transparent !important;
+        color: white !important;
+    }
+
+    .btn-utility-contrast:hover, .btn-search:hover {
+        cursor: pointer !important;
+        background-color: #3f474f !important;
+        color: white !important;
+        border: 1px solid white !important;
+        transition: none !important;
+    }
+
+    .close:hover {
+        color: white !important;
+    }
+}

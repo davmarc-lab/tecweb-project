@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../controller/signup/signup.js"></script>
+    <script src="../controller/login/changingTextScript.js"></script>
+    <script src="../controller/login/reloadPageScript.js"></script>
+    <script src="../controller/signup/popupErrorSignupScript.js"></script>
+    
+    <link rel="icon" href="nfa-icon.png" type="image/x-icon" />
+    
+    <title>NFA - Sign up</title>
+</head>
+
+<body class="signup-body">
+    <main>
+        <div class="container-fluid">
+            <div class="side-panel">
+                <p id="changing-text"></p>
+            </div>
+            <div class="container-centered">
+                <!-- signup form -->
+                <form action="#" method="post" id="signup-form" enctype="multipart/form-data">
+                    <h1>Sign up to start sharing</h1>
+                    <label for="signup-name" class="form-label" hidden>Name</label>
+                    <input type="text" id="signup-name" name="name" placeholder="Name" class="form-control" required />
+                    <label for="signup-surname" class="form-label" hidden>Surname</label>
+                    <input type="text" id="signup-surname" name="surname" placeholder="Surname" class="form-control" required />
+                    <label for="signup-email" class="form-label" hidden>Email</label>
+                    <input type="email" id="signup-email" name="email" placeholder="Email" class="form-control" required />
+                    <label for="signup-username" class="form-label" hidden>Username</label>
+                    <input type="text" id="signup-username" name="username" placeholder="Username" class="form-control" required />
+                    <label for="icon" class="form-label" hidden>Profile icon</label>
+                    <input type="file" id="icon" name="icon" class="form-control" accept="image/*" />
+                    <label for="signup-password" class="form-label" hidden>Password</label>
+                    <input type="password" id="signup-password" name="password" placeholder="Password" class="form-control" required />
+                    <label for="signup-password-repeat" class="form-label" hidden>Repeat password</label>
+                    <input type="password" id="signup-password-repeat" name="passwordRepeat" placeholder="Repeat Password" class="form-control" required />
+                    <div class="signup-buttons">
+                        <label for="btn-signup" hidden>Sign up</label>
+                        <button type="submit" class="btn btn-primary" value="signup" id="btn-signup">Sign up</button>
+                        <p>Already have an account? <a href="login.html">Log in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div class="waves">
+        <canvas id="square"></canvas>
+
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            precision mediump float;
+            attribute vec2 a_position;
+
+            uniform mat3 u_matrix;
+            uniform vec2 blockDim;
+            
+            varying vec4 v_color;
+            
+            void main() {
+                // Multiply the position by the matrix.
+                vec3 position = vec3((u_matrix * vec3(a_position, 1)).xy, 0);
+
+                gl_Position = vec4(position, 1);
+                
+                v_color = vec4(0.5058823529411764, 0.7411764705882353, 0.8745098039215686, 1);
+            }
+        </script>
+
+        <script id="fragment-shader" type="x-shader/x-fragment">
+            precision mediump float;
+
+            uniform vec2 blockDim;
+            uniform float a_time;
+
+            varying vec4 v_color;
+
+            #define PI 3.14
+
+            
+            void main() {
+                vec3 color = vec3(v_color.rgb);
+
+                vec3 bgColorDown = vec3(1, 1, 1);
+                vec3 bgColorUp = vec3(color);
+
+                vec3 P1ColorIn = vec3(color);
+                vec3 P1ColorOut = vec3(color);
+
+                vec3 P2ColorIn = vec3(color);
+                vec3 P2ColorOut = vec3(color);
+
+                vec2 uv = gl_FragCoord.xy / blockDim.xy;
+
+                float curve = 0.3 * sin(a_time) * sin((9.25 * uv.x) + (2.0 * a_time));
+
+                float lineAShape = smoothstep(1.0 - clamp(distance(curve + uv.y, 0.5) * 1.0, 0.0, 1.0), 1.0, 0.99);
+
+                vec3 bgColor = mix(bgColorDown, bgColorUp, step(uv.y, -curve + 0.5));
+                vec3 lineACol = mix(mix(P1ColorIn, P1ColorOut, lineAShape), P2ColorOut, lineAShape);
+
+                gl_FragColor = vec4(mix(bgColor, lineACol, 1.0 - lineAShape), 1.0);
+            }
+
+        </script>
+
+        <script src="https://webgl2fundamentals.org/webgl/resources/webgl-utils.js"></script>
+        <script src="https://webglfundamentals.org/webgl/resources/m3.js"></script>
+        <script src="../controller/login/wave.js"></script>
+    </div>
+</body>
+
+</html>

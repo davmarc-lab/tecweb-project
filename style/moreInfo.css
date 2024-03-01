@@ -1,0 +1,38 @@
+#private-more-info {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#explain-private {
+    visibility: hidden;
+    width: 500px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -250px;
+    padding: 5px;
+    text-align: center;
+    line-height: 1.5em;
+}
+
+#explain-private::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: lightslategray transparent transparent transparent;
+  }
+
+#private-more-info:hover #explain-private {
+    visibility: visible;
+    background-color: white;
+    color: black;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding: 2%;
+}

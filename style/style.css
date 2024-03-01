@@ -1,0 +1,1050 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display&family=Satisfy&display=swap");
+@import url("mobile.css");
+@import url("darkStyle.css");
+
+body {
+    font-family: 'Thasadith', sans-serif;
+    display: flex;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 100px 0 0;
+    justify-content: left;
+    background-color: white;
+    transition: background-color 0.7s ease, color 0.7s ease;
+}
+
+.login-body, .signup-body {
+    font-family: sans-serif;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.login-body .container-fluid, .signup-body .container-fluid {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.login-body .form-control:not(input[type="file"], input[type="checkbox"]), .signup-body .form-control.form-control:not(input[type="file"]) {
+    width: 70% !important;
+    justify-content: center;
+}
+
+/* login and signup form */
+.login-body .container-centered:not(.side-panel), .signup-body .container-centered:not(.side-panel) {
+    width: 80%;
+    height: fit-content;
+    margin: 0;
+}
+
+.login-body form, .signup-body form {
+    width: 60%;
+    height: fit-content;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+}
+
+.login-body form h1, .signup-body form h1 {
+    font-size: 38px;
+}
+
+main {
+    width: 100%;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+
+.container-centered {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    margin-top: 20px;
+    height: 100%;
+}
+
+.cascading-container {
+    display: inline-block;
+    align-items: center;
+    width: 100%;
+    margin:0 5% 5%;
+}
+
+.index-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.profile-container {
+    align-items: center !important;
+    width: 100%;
+}
+
+.edit-container {
+    width: 70%;
+}
+
+#changing-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin: 0 10%;
+}
+
+.side-panel {
+    display: flex;
+    background-color: #81BDDF;
+    width: 30%;
+    height: 100% !important;
+    align-items: center;
+}
+
+.waves {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 20%;
+    z-index: -1;
+}
+
+.login-buttons, .signup-buttons {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: 20%;
+}
+
+.signup-buttons {
+    margin-top: 1% !important;
+}
+
+.login-buttons .btn-primary, .signup-buttons .btn-primary {
+    background-color: #0D6EFD;
+    color: white;
+    font-size: medium;
+    border: 1px solid #0D6EFD;
+    border-radius: 5px;
+    padding: 1.5% 3%;
+}
+
+.login-buttons a, .signup-buttons a {
+    color: #0D6EFD;
+}
+
+.login-buttons .btn-primary:hover,.signup-buttons .btn-primary:hover {
+    cursor: pointer;
+    background-color: #0B5ED7;
+}
+
+.notification-container {
+    display: inline-block;
+    text-align: center;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.notification-area {
+    width: 100%;
+    text-align: center;
+}
+
+.notification-container h2 {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.notification-container p {
+    text-align: left;
+    border: 2px solid lightslategray;
+    border-radius: 5px;
+    margin: 2% 10%;
+    padding: 3px 1%;
+}
+
+.notif-to-read {
+    border-color: red !important;
+}
+
+main > .profile-back {
+    display: block;
+    margin: 2%;
+}
+
+main > .profile-back > a {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.post-row {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+    margin: 2% 0 0;
+}
+
+.col:first-of-type {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+
+.col {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-feedback {
+    cursor: pointer;
+    margin: 2% 4% 0 1%;
+    background-color: transparent;
+    border: none;
+    font-size: x-large;
+    padding-bottom: 1.5%;
+}
+
+.profile-row {
+    display: flex;
+    width: 100%;
+    align-items: start;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.card-row:not(#random-post-container .card-row) {
+    align-items: center;
+}
+
+#random-post-container .card-row {
+    flex-direction: row;
+}
+
+
+
+.posts-container {
+    display: inline;
+    width: 100%;
+}
+
+.post-card {
+    border: 2px solid lightslategray;
+    border-radius: 15px;
+    margin: 2% auto;
+    padding: 1% 20px 2%;
+    background-color: whitesmoke;
+    width: 50%;
+    height: auto;
+}
+
+#random-post-container .div-advert, .div-advert {
+    border: 2px solid rgb(67, 142, 218);
+    border-radius: 15px;
+    margin: 2% auto;
+    padding: 1% 20px;
+    width: 50%;
+    min-width: 300px;
+    height: auto;
+    text-align: center;
+    background-color: lightgray;
+    color: black;
+}
+
+#random-post-container .div-advert {
+    width: 90%;
+    padding: 1% 0;
+}
+
+.post-card > .post-row {
+    margin: 1% 0 2%;
+}
+
+.sponsorized {
+    border: 2px solid rgb(252, 38, 0);
+}
+
+.sponsorized-text {
+    color: #0B5ED7;
+    float: right;
+    font-style: italic;
+}
+
+.card:not(.post-card) {
+    width: 50%;
+    border: 1px solid lightslategray;
+    border-radius: 15px;
+    margin: 5%;
+    height: auto;
+    padding: 1% 20px 2%;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+#random-post-container .card:not(.post-card) {
+    width: 33%;
+}
+
+textarea {
+    font-family: 'Thasadith', sans-serif;
+    font-size: small;
+    line-height: 1.5em;
+    width: 100%;
+    border: 1px solid lightgray !important;
+    border-radius: 5px;
+    margin: 1% 0 2% !important;
+}
+
+#view-post {
+    border-color: lightslategray !important;
+    width: 60%;
+    min-width: 250px;
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+    padding: 3%;
+}
+
+.card-img-top, .img-fluid {
+    width: 100%;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: large;
+    padding: 0;
+    margin: 5% 0 0 0;
+}
+
+.card-text {
+    padding-bottom: 2%;
+    line-height: 1.5em;
+}
+
+.profile-icon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.comment {
+    border: 1px solid #006f3c;
+    border-radius: 10px;
+    font-size: medium;
+    padding: 0.6% 1%;
+}
+
+#comment-text {
+    border: 1px solid lightslategray !important;
+}
+
+#comment-button {
+    height: fit-content;
+}
+
+#comments-row {
+    display: flex;
+    justify-content: end;
+    margin-right: 2%;
+    height: auto;
+    width: 100%;
+}
+
+#btn-follow, #btn-followers {
+    margin: 2%;
+    cursor: pointer;
+    background-color: transparent !important;
+    border: 2px solid #447957 !important;
+    color: #447957 !important;
+    font-weight: bold;
+}
+
+#btn-follow:hover, #btn-followers:hover {
+    background-color: #447957 !important;
+    color: white !important;
+}
+
+.profile-page-icon {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin-left: 2%;
+}
+
+.index-post-user-id {
+    width: fit-content;
+    margin-left: 1%;
+}
+
+.index-post-user-id > a {
+    text-decoration: none;
+    color: black;
+}
+
+.index-post-user-id > a:hover {
+    color: #006f3c;
+    text-decoration: none;
+}
+
+.suggested-profile {
+    background-color: #303030;
+    position: sticky;
+    top: 30vh;
+    right: 5vh;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    height: fit-content;
+    text-align: center;
+}
+
+.suggested-profile a {
+    color: white !important;
+    text-decoration: none !important;
+    font-family: 'Thasadith', sans-serif !important;
+    font-size: 20px;
+}
+
+.suggested-profile a:hover {
+    color: #FEAB5D !important;
+}
+
+.suggested-profile > header > h2 {
+    color: #FEAB5D;
+    font-size: 30px;
+    font-family: 'Thasadith', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px;
+    text-align: center;
+}
+
+.edit-profile-box {
+    padding: 2% 5% !important;
+    height: auto;
+}
+
+.form-control:not(input[type="file"]) {
+    border: none;
+    border-radius: 4px;
+    margin: 1% 0 4%;
+    width: 96%;
+    padding: 1.5%;
+    font-size: medium;
+}
+
+#new-post .form-control, .edit-profile-box .form-control, .login-body .form-control, .signup-body .form-control {
+    border: 1px solid lightgray !important;
+    border-radius: 5px !important;
+}
+
+
+#new-post .form-control:not(input[type="file"], input[type="checkbox"]), .edit-profile-box .form-control:not(input[type="file"]) {
+    padding: 1% 2%;
+}
+
+/* checkbox to make a new post private */
+#new-post input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0 2%;
+}
+
+/* row with the label and the checkbox to make a new post private */
+#new-post .row {
+    margin-bottom: 2%;
+}
+
+.password-field {
+    border: 1px solid lightgray !important;
+    height: 100%;
+    width: 80% !important;
+    margin: 0 !important;
+    padding: 2% !important;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: right;
+    margin: 10px 0;
+}
+
+.change-form-buttons {
+    display: flex;
+    justify-content: right;
+    margin: 10px 18% 10px 0;
+}
+
+input[type="file"] {
+    background-color: white;
+    font-size: medium;
+    border-radius: 4px;
+    width: 100%;
+    margin: 1% 0 4%;
+}
+
+.edit-profile-box input {
+    margin: 1% 0 2% !important;
+}
+
+.signup-body input[type="file"] {
+    width: 73% !important;
+}
+
+input::file-selector-button {
+    background-color: rgb(222, 220, 220) !important;
+    border: none;
+    border-right: 1px solid black;
+    font-weight: bold;
+    padding: 1.5%;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    background-color: green !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: fit-content !important;
+    padding: 8px 2% !important;
+    margin: 0 0 0 10px !important;
+    font-size: medium;
+}
+
+input[type="reset"] {
+    cursor: pointer;
+    background-color: #E60000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: fit-content !important;
+    padding: 8px 2% !important;
+    margin: 0 10px 0 0 !important;
+    font-size: medium;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(0, 105, 0) !important;
+}
+
+#reset:hover {
+    background-color:#bb2d3b !important;
+    color: white !important;
+}
+
+#search-text {
+    float: left;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin: 2% 0;
+    padding: 1% 2%;
+    width: 85%;
+    font-size: medium;
+    height: auto;
+}
+
+#category-search {
+    width: 60% !important;
+    height: fit-content !important;
+    padding: 3% !important;
+    border: 1px solid lightgray !important;
+    border-radius: 5px !important;
+}
+
+a:not(a[role="button"], .signup-body a, .login-body a) {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover:not(a[role="button"], .signup-body a, .login-body a) {
+    color: #447957;
+    text-decoration: none;
+}
+
+.btn-primary:disabled {
+    background-color: #006f3c !important;
+    cursor: not-allowed !important;
+    opacity: 0.5;
+}
+
+.btn-primary:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post {
+    background-color: #006f3c;
+    color: white !important;
+    border: none !important;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.view-post, .btn-comment {
+    float: right;
+    padding: 10%;
+}
+
+.btn-primary:hover:not(.signup-body .btn-primary, .login-body .btn-primary), .btn-primary:hover:active:not(.signup-body .btn-primary, .login-body .btn-primary), .view-post:hover {
+    background-color: #198754;
+    cursor: pointer;
+}
+
+.btn-secondary, .btn-utility-contrast {
+    background-color: transparent;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding: 1%;
+}
+
+.btn-danger {
+    cursor: pointer;
+    background-color: #E60000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: fit-content !important;
+    padding: 10px;
+    margin: 0 10px 0 3%;
+    border-radius: 10px;
+}
+
+.btn-back {
+    background-color: transparent;
+    color: black;
+    margin-right: 2%;
+    padding: 1%;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+}
+
+.btn-back svg {
+    vertical-align: middle;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-utility-contrast:hover {
+    background-color: rgb(193, 196, 198);
+    cursor: pointer;
+}
+
+a[role="button"]:not(.btn-primary, .btn-danger, .btn-utility, .btn-utility-contrast) {
+    background-color: #006f3c !important;
+    color: white !important;
+    border-color: #006f3c !important;
+    padding: 10px;
+    margin: 0 1%;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+a[role="button"]:hover:not(.btn-primary, .btn-danger, .btn-utility, .btn-utility-contrast) {
+    background-color: #198754 !important;
+    color: white !important;
+    cursor: pointer !important;
+}
+
+.btn-following {
+    cursor: pointer;
+    margin: 2%;
+}
+
+.btn-utility {
+    color: black;
+    width: fit-content;
+    padding: 1%;
+    margin: 0 2% 0 0;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.btn-utility > svg {
+    vertical-align: middle;
+    align-items: center;
+}
+
+.btn-search {
+    float: right;
+    background-color: lightgray;
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+    padding: 0.5% 0.7%;
+    margin: 2% 0;
+    width: 6%;
+}
+
+.btn-search:hover {
+    cursor: pointer;
+    background-color: rgb(187, 186, 186);
+    border-radius: 10px;
+}
+
+.toggle-password {
+    background-color: transparent;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding:2%;
+    height: fit-content;
+}
+
+.toggle-password > svg {
+    vertical-align: middle;
+}
+
+.toggle-password:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    padding:2%;
+}
+
+a[role="button"]:hover:not(.btn-following, .btn-danger){
+    background-color: rgb(193, 196, 198);
+    color: black;
+}
+
+.badge {
+    color: white !important;
+    background-color: #198754 !important;
+    font-size: small;
+    width: fit-content;
+    border: none;
+    border-radius: 16px;
+    padding: 5px;
+}
+
+.badge > p {
+    width: fit-content;
+}
+
+.col > p, .col > button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.number-badge {
+    color: black !important;
+    background-color: lightslategray !important;
+    font-size: small;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin: 0 2% !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+
+.dropdown-menu {
+    display: none;
+    background-color: white;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    width: 180%;
+    padding: 1%;
+}
+
+#new-post .dropdown-menu {
+    bottom: 100%;
+}
+
+.scrollable-menu {
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+#new-post .scrollable-menu {
+    max-height: 180px;
+}
+
+.dropdown.click .dropdown-menu {
+    display: block;
+    overflow-y: auto;
+}
+
+.dropdown-toggle {
+    border: 1px solid lightslategray !important;
+    border-radius: 5px !important;
+    padding: 10% 4%;
+    margin-left: 6px;
+    height: auto;
+    width: 120%;
+    font-size: medium;
+}
+
+.dropdown-toggle:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+.dropdown-item {
+    margin: 2% 2px;
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: #198754 !important;
+    color: white !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+.dropdown-menu a[role="button"] {
+    padding: 3% 3% 4%;
+}
+
+a.dropdown-toggle {
+    background-color: #198754 !important;
+    color: white !important;
+    border-color: #198754 !important;
+    padding: 1%;
+}
+
+a.dropdown-toggle:hover {
+    background-color: #006f3c !important;
+    color: white !important;
+    border-color: #006f3c !important;
+}
+
+#category-badges, #category-badge:not(.posts-container .category-badge) {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+}
+
+#category-badges > p, #category-badge > p, .category-badge > p {
+    width: max-content !important;
+    margin-right: 5px;
+}
+
+.show-date {
+    font-style: italic !important;
+}
+
+#cookie-div {
+    background-color: rgb(235, 194, 194);
+    color: black;
+    position: fixed;
+    bottom: 10px;
+    width: 80%;
+    align-content: center;
+    text-align: center;
+    border: rgb(239, 173, 173) 2px solid;
+    border-radius: 5px;
+}
+
+#ok-button {
+    background-color: whitesmoke;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: bold !important;
+    margin: 0 1% 1%;
+    width: fit-content;
+}
+
+#cookie-notify {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.logout-button {
+    background: none;
+    border: none;
+}
+
+.list-unstyled {
+    list-style: none;
+    align-items: start;
+}
+
+ul > li {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.list-unstyled > li > a {
+    margin-left: 5%;
+    height: fit-content;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.utility-buttons {
+    margin-bottom: 3% !important;
+}
+
+#change-password-button {
+    padding: 0.8% !important;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100% !important;
+    vertical-align: middle !important;
+}
+
+.change-password-section {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.change-password-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.change-password-group > form {
+    width: 60%;
+    padding-left: 10%;
+}
+
+.change-password-group .input-group {
+    margin: 2% 0 !important;
+}
+
+#profiles-table {
+    display: flex;
+    margin: 10% 0;
+    justify-content: center;
+}
+
+#profiles-table .table-responsive {
+    overflow-x: hidden;
+    width: 60%;
+    min-width: 400px;
+    height: 90%;
+    max-height: 350px;
+}
+
+.table {
+    width: 94% !important;
+    height: 100%;
+}
+
+.table th, .table td {
+    height: 30px;
+    padding: 2%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table th > p, .table td > p {
+    padding: 0;
+    margin: 0;
+}
+
+.table > thead {
+    position: sticky;
+    width: 100%;
+    top: 0;
+    background-color: #198754;
+    color: white;
+    border: 2px solid #198754;
+}
+
+.table > thead th {
+    flex: 1;
+}
+
+.table > tbody {
+    overflow-y: auto;
+}
+
+.table-striped {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 2%;
+}
+
+.table-striped tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+#new-post, .edit-profile-box {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 60%;
+    padding: 2% 5%;
+    margin-bottom: 20px;
+}
+
+#post-files {
+    margin: 2% 0 !important;
+}
+
+#duration-form {
+    width: 100%;
+    height: 100%;
+}
+
+#duration-form fieldset {
+    width: 40%;
+    height: fit-content;
+    padding: 2% 2% 5%;
+    text-align: left;
+    background-color: whitesmoke;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#sponsor-body .row {
+    width: 100%;
+    display: inline-block;
+}
+
+#sponsor-body .btn-back {
+    margin: 0 0 10% 5% !important;
+}
+
+fieldset > legend {
+    font-weight: bold;
+}
+
+#post-media {
+    height: 100%;
+    vertical-align: middle;
+    text-decoration: underline;
+}
